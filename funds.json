@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-01",
+  "source": "MOEX ISS and preserved manual data",
+  "market": {},
+  "nav": {
+    "TMON": {
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/8628/",
+      "value": 322295633054.17
+    },
+    "TBRU": {
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/7067/",
+      "value": 9196688196.52
+    },
+    "TOFZ": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/11445/",
+      "value": 5269448344.87
+    },
+    "TMOS": {
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/6333/",
+      "value": 13659829636.78
+    },
+    "TDIV": {
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/9585/",
+      "value": 978189219.24
+    },
+    "TITR": {
+      "asOf": "2026-09-30",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/10421/",
+      "value": 294765842.47
+    },
+    "TRND": {
+      "asOf": "2026-09-30",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/11925/",
+      "value": 497715019.54
+    },
+    "TGLD": {
+      "asOf": "2026-10-01",
+      "currency": "USD",
+      "source": "https://investfunds.ru/funds/6329/",
+      "value": 179439142.11
+    },
+    "TRUR": {
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/5945/",
+      "value": 17828480668.69
+    },
+    "TLCB": {
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/9627/",
+      "value": 11932208477.39
+    },
+    "TPAY": {
+      "value": 23246001680.54,
+      "currency": "RUB",
+      "source": "https://www.tbank.ru/invest/etfs/TPAY/",
+      "asOf": null
+    },
+    "TIND": {
+      "value": 3348885093.23,
+      "currency": "RUB",
+      "source": "https://www.tbank.ru/invest/etfs/TIND/",
+      "asOf": null
+    },
+    "TKVC": {
+      "value": 1915897991.87,
+      "currency": "RUB",
+      "source": "https://www.tbank.ru/invest/etfs/TKVC/",
+      "asOf": null
+    },
+    "TLCN": {
+      "value": 2920100298.23,
+      "currency": "RUB",
+      "source": "https://www.tbank.ru/invest/etfs/TLCN/",
+      "asOf": null
+    },
+    "TRBR": {
+      "value": 689845796.98,
+      "currency": "RUB",
+      "source": "https://www.tbank.ru/invest/etfs/RU000A106G80/",
+      "asOf": null
+    },
+    "TSAV": {
+      "value": 1174688459.12,
+      "currency": "RUB",
+      "source": "https://www.tbank.ru/invest/etfs/TSAV/",
+      "asOf": null
+    },
+    "TRRE": {
+      "value": 1143941866.7,
+      "currency": "RUB",
+      "source": "https://www.tbank.ru/invest/etfs/TRRE/",
+      "asOf": null
+    },
+    "AKMM": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/8181/",
+      "value": 333700820225.77
+    },
+    "LQDT": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/5973/",
+      "value": 763827958448.15
+    },
+    "SBMM": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/7373/",
+      "value": 355684683255.47
+    },
+    "AKGD": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/7589/",
+      "value": 20657287670.06
+    },
+    "AKME": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/6575/",
+      "value": 13012350691.81
+    },
+    "EQMX": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/6073/",
+      "value": 11800873080.59
+    },
+    "GOLD": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/6223/",
+      "value": 24440896666.72
+    },
+    "SBCB": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/5395/",
+      "value": 9401801411.07
+    },
+    "SBGB": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/5393/",
+      "value": 4637037545.46
+    },
+    "SBGD": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/8293/",
+      "value": 9961449085.93
+    },
+    "SBMX": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/5247/",
+      "value": 18554997677.89
+    },
+    "SBRB": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/5713/",
+      "value": 42489006394.76
+    },
+    "OBLG": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/5433/",
+      "value": 10123464524.51
+    },
+    "BOND": {
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/8003/",
+      "value": 1766350899.61
+    },
+    "TKVM": {
+      "asOf": "2026-07-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/3925/",
+      "value": 3016023648.06
+    },
+    "TSEC": {
+      "asOf": "2026-07-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/13585/",
+      "value": 1407396691.45
+    },
+    "XSECUR": {
+      "asOf": "2026-08-27",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/14077/",
+      "value": 5308646129.57
+    },
+    "TVEN": {
+      "asOf": "2026-07-31",
+      "currency": "RUB",
+      "source": "https://investfunds.ru/funds/11247/",
+      "value": 2094868384.27
+    }
+  },
+  "history": {
+    "TMON": {
+      "source": "https://investfunds.ru/funds/8628/",
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "returns": {
+        "m1": 1.05,
+        "m6": 6.71,
+        "y1": 14.78
+      }
+    },
+    "AKMM": {
+      "source": "https://investfunds.ru/funds/8181/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 1.14,
+        "m6": 7.22,
+        "y1": 15.93
+      }
+    },
+    "LQDT": {
+      "source": "https://investfunds.ru/funds/5973/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 1.16,
+        "m6": 7.39,
+        "y1": 16.3
+      }
+    },
+    "SBMM": {
+      "source": "https://investfunds.ru/funds/7373/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 1.16,
+        "m6": 7.44,
+        "y1": 16.34
+      }
+    },
+    "TBRU": {
+      "source": "https://investfunds.ru/funds/7067/",
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "returns": {
+        "m1": 0.36,
+        "m6": 4.51,
+        "y1": 14.69
+      }
+    },
+    "TDIV": {
+      "source": "https://investfunds.ru/funds/9585/",
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "returns": {
+        "m1": 0.95,
+        "m6": -7.65,
+        "y1": -2.37
+      }
+    },
+    "TGLD": {
+      "source": "https://investfunds.ru/funds/6329/",
+      "asOf": "2026-10-01",
+      "currency": "USD",
+      "returns": {
+        "m1": -4.85,
+        "m6": -11.7,
+        "y1": 8.02
+      }
+    },
+    "TITR": {
+      "source": "https://investfunds.ru/funds/10421/",
+      "asOf": "2026-09-30",
+      "currency": "RUB",
+      "returns": {
+        "m1": 4.62,
+        "m6": -19.73,
+        "y1": -22.88
+      }
+    },
+    "TLCB": {
+      "source": "https://investfunds.ru/funds/9627/",
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "returns": {
+        "m1": -2.37,
+        "m6": 6.65,
+        "y1": 8.92
+      }
+    },
+    "TMOS": {
+      "source": "https://investfunds.ru/funds/6333/",
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "returns": {
+        "m1": 4.57,
+        "m6": -12.94,
+        "y1": -7.11
+      }
+    },
+    "TOFZ": {
+      "source": "https://investfunds.ru/funds/11445/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": -0.68,
+        "m6": 1.08,
+        "y1": 5.19
+      }
+    },
+    "TRND": {
+      "source": "https://investfunds.ru/funds/11925/",
+      "asOf": "2026-09-30",
+      "currency": "RUB",
+      "returns": {
+        "m1": 4.03,
+        "m6": -14.11,
+        "y1": -8.11
+      }
+    },
+    "TRUR": {
+      "source": "https://investfunds.ru/funds/5945/",
+      "asOf": "2026-10-01",
+      "currency": "RUB",
+      "returns": {
+        "m1": -1.65,
+        "m6": -5.05,
+        "y1": 5.09
+      }
+    },
+    "TSAV": {
+      "source": "https://investfunds.ru/funds/14053/",
+      "asOf": "2026-08-28",
+      "currency": "RUB",
+      "returns": {
+        "m1": 1.1,
+        "m6": null,
+        "y1": null
+      }
+    },
+    "AKGD": {
+      "source": "https://investfunds.ru/funds/7589/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 17.22,
+        "m6": -7.85,
+        "y1": 33.91
+      }
+    },
+    "AKME": {
+      "source": "https://investfunds.ru/funds/6575/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": -2.86,
+        "m6": -19.9,
+        "y1": -18.7
+      }
+    },
+    "EQMX": {
+      "source": "https://investfunds.ru/funds/6073/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": -2.44,
+        "m6": -17.96,
+        "y1": -18.95
+      }
+    },
+    "GOLD": {
+      "source": "https://investfunds.ru/funds/6223/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 16.67,
+        "m6": -4.95,
+        "y1": 37.08
+      }
+    },
+    "SBCB": {
+      "source": "https://investfunds.ru/funds/5395/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 7.03,
+        "m6": 11.07,
+        "y1": 6.98
+      }
+    },
+    "SBGB": {
+      "source": "https://investfunds.ru/funds/5393/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": -0.26,
+        "m6": 1.65,
+        "y1": 7.01
+      }
+    },
+    "SBGD": {
+      "source": "https://investfunds.ru/funds/8293/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 16.75,
+        "m6": -7.89,
+        "y1": 35.79
+      }
+    },
+    "SBMX": {
+      "source": "https://investfunds.ru/funds/5247/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": -2.14,
+        "m6": -18.13,
+        "y1": -19.16
+      }
+    },
+    "SBRB": {
+      "source": "https://investfunds.ru/funds/5713/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 0.74,
+        "m6": 6.3,
+        "y1": 14.59
+      }
+    },
+    "OBLG": {
+      "source": "https://investfunds.ru/funds/5433/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 0.78,
+        "m6": 7.33,
+        "y1": 14.84
+      }
+    },
+    "BOND": {
+      "source": "https://investfunds.ru/funds/8003/",
+      "asOf": "2026-08-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 0.64,
+        "m6": 8.95,
+        "y1": 17.25
+      }
+    },
+    "TRBR": {
+      "source": "https://investfunds.ru/funds/9037/",
+      "asOf": "2026-07-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 1.1,
+        "m6": 3.95,
+        "y1": 0.58
+      }
+    },
+    "TKVM": {
+      "source": "https://investfunds.ru/funds/3925/",
+      "asOf": "2026-07-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 0.5,
+        "m6": 8.14,
+        "y1": 17.83
+      }
+    },
+    "TSEC": {
+      "source": "https://investfunds.ru/funds/13585/",
+      "asOf": "2026-07-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 1.7,
+        "m6": null,
+        "y1": null
+      }
+    },
+    "XSECUR": {
+      "source": "https://investfunds.ru/funds/14077/",
+      "asOf": "2026-08-27",
+      "currency": "RUB",
+      "returns": {
+        "m1": 1.28,
+        "m6": null,
+        "y1": null
+      }
+    },
+    "TVEN": {
+      "source": "https://investfunds.ru/funds/11247/",
+      "asOf": "2026-07-31",
+      "currency": "RUB",
+      "returns": {
+        "m1": 0.77,
+        "m6": 4.93,
+        "y1": 12.3
+      }
+    }
+  },
+  "tickers": [
+    "AKGD",
+    "AKME",
+    "AKMM",
+    "BOND",
+    "EQMX",
+    "GOLD",
+    "LQDT",
+    "OBLG",
+    "RU000A106G80",
+    "RU000A109KH9",
+    "SBCB",
+    "SBGB",
+    "SBGD",
+    "SBMM",
+    "SBMX",
+    "SBRB",
+    "TBRU",
+    "TDIV",
+    "TGLD",
+    "TIND",
+    "TITR",
+    "TKVC",
+    "TKVM",
+    "TLCB",
+    "TLCN",
+    "TMON",
+    "TMOS",
+    "TOFZ",
+    "TPAY",
+    "TRBR",
+    "TRND",
+    "TRRE",
+    "TRUR",
+    "TSAV",
+    "TSEC",
+    "TVEN",
+    "XSECUR"
+  ]
+}
