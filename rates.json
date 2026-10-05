@@ -1,0 +1,30 @@
+{
+  "updatedAt": "2026-10-05",
+  "deposit": {
+    "defaultRate": 12
+  },
+  "tAccount": {
+    "defaultRate": 13.9,
+    "rates": {
+      "days": {},
+      "months": {
+        "1": null,
+        "3": null,
+        "6": 13.9,
+        "12": null
+      }
+    }
+  },
+  "investLoan": {
+    "defaultRate": 15.6,
+    "rates": {
+      "days": {},
+      "months": {
+        "1": null,
+        "3": null,
+        "6": null,
+        "12": 15.6
+      }
+    }
+  }
+}
