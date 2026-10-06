@@ -620,8 +620,8 @@ else
     ['tacc','loan'].forEach(function(prefix){
       var feeToggle=document.getElementById(prefix+'FeeEnabled');
       var feeField=document.getElementById(prefix+'FeeField');
-      if(feeToggle&&feeToggle.closest('label'))feeToggle.closest('label').remove();
-      if(feeField)feeField.remove();
+      if(feeToggle){feeToggle.checked=false;if(feeToggle.closest('label'))feeToggle.closest('label').style.display='none';}
+      if(feeField)feeField.style.display='none';
     });
     addSharePanel('tacc','Т‑Счёта');
     addSharePanel('loan','Инвестзайма');
