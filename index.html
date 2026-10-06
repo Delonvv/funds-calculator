@@ -554,43 +554,31 @@ else
     var field=document.getElementById(prefix+'Term');
     return field&&field.options&&field.selectedIndex>=0?field.options[field.selectedIndex].text:String(field&&field.value||'');
   }
-  function clientMessage(prefix,mode,showTax){
+  function clientMessage(prefix,mode){
     var label=productLabel(prefix);
     var amount=Number((document.getElementById(prefix+'Amount')||{}).value)||0;
     var productTotal=numberFromText((document.getElementById(prefix+'ProductBefore')||{}).textContent);
     var depositTotal=numberFromText((document.getElementById(prefix+'DepositBefore')||{}).textContent);
     var productBefore=Math.max(0,productTotal-amount);
     var depositBefore=Math.max(0,depositTotal-amount);
-    var productTax=showTax?productBefore*0.13:0;
-    var depositTax=showTax?depositBefore*0.13:0;
-    var productIncome=productBefore-productTax;
-    var depositIncome=depositBefore-depositTax;
-    var difference=productIncome-depositIncome;
+    var difference=productBefore-depositBefore;
     var winner=difference>=0?label:'вклад';
     var rate=String((document.getElementById(prefix+'Rate')||{}).value||'—').replace('.',',');
     var depositRate=String((document.getElementById(prefix+'DepositRate')||{}).value||'—').replace('.',',');
     var term=termLabel(prefix);
     if(mode==='short'){
-      return 'Расчёт на '+term+' при размещении '+money(amount)+':\n\n'+label+' — доход '+(showTax?'после НДФЛ ':'до НДФЛ ')+money(productIncome)+'.\nВклад — доход '+(showTax?'после НДФЛ ':'до НДФЛ ')+money(depositIncome)+'.\n\n'+(difference===0?'Доход одинаковый.':winner+' принесёт на '+money(Math.abs(difference))+' больше.');
+      return 'Ожидаемый доход при размещении '+money(amount)+' на '+term+':\n\n'+label+' — до '+rate+'% годовых: '+money(productBefore)+'.\nВклад — до '+depositRate+'% годовых: '+money(depositBefore)+'.\n\n'+(difference===0?'Сумма дохода одинаковая.':'По '+(difference>=0?label:'вкладу')+' сумма дохода выше на '+money(Math.abs(difference))+'.')+'\n\nСуммы указаны без вычета налога.';
     }
-    var productLines=[label+', ставка '+rate+'% годовых:','— доход до НДФЛ: '+money(productBefore)+';'];
-    var depositLines=['Вклад, ставка '+depositRate+'% годовых:','— доход до НДФЛ: '+money(depositBefore)+';'];
-    if(showTax){
-      productLines.push('— НДФЛ: '+money(productTax)+';','— доход после НДФЛ: '+money(productIncome)+';','— итоговая сумма: '+money(amount+productIncome)+'.');
-      depositLines.push('— НДФЛ: '+money(depositTax)+';','— доход после НДФЛ: '+money(depositIncome)+';','— итоговая сумма: '+money(amount+depositIncome)+'.');
-    }else{
-      productLines.push('— итоговая сумма до НДФЛ: '+money(amount+productBefore)+'.');
-      depositLines.push('— итоговая сумма до НДФЛ: '+money(amount+depositBefore)+'.');
-    }
-    var ending=difference===0?'Доход одинаковый.':'Разница в пользу '+winner+' — '+money(Math.abs(difference))+' '+(showTax?'после НДФЛ.':'до НДФЛ.');
-    return 'Направляю сравнение '+label+' и вклада при размещении '+money(amount)+' на '+term+'.\n\n'+productLines.join('\n')+'\n\n'+depositLines.join('\n')+'\n\n'+ending;
+    var productLines=[label+' — до '+rate+'% годовых:','— доход — '+money(productBefore)+';','— сумма по окончании срока — '+money(amount+productBefore)+'.'];
+    var depositLines=['Вклад — до '+depositRate+'% годовых:','— доход — '+money(depositBefore)+';','— сумма по окончании срока — '+money(amount+depositBefore)+'.'];
+    var ending=difference===0?'По итогам расчёта сумма дохода одинаковая.':'По итогам расчёта доход по '+(difference>=0?label:'вкладу')+' выше на '+money(Math.abs(difference))+'.';
+    return 'Направляю сравнение ожидаемого дохода по '+label+' и вкладу при размещении '+money(amount)+' на '+term+'.\n\n'+productLines.join('\n')+'\n\n'+depositLines.join('\n')+'\n\n'+ending+'\n\nСуммы указаны без вычета налога.';
   }
   function refreshSharePanel(prefix){
     var panel=document.querySelector('.client-share[data-prefix="'+prefix+'"]');
     if(!panel)return;
     var active=panel.querySelector('.client-share-tab.active');
-    var tax=panel.querySelector('.client-share-tax input');
-    panel.querySelector('.client-share-preview').textContent=clientMessage(prefix,active?active.dataset.mode:'short',tax?tax.checked:true);
+    panel.querySelector('.client-share-preview').textContent=clientMessage(prefix,active?active.dataset.mode:'short');
   }
   function addSharePanel(prefix,label){
     var verdict=document.getElementById(prefix+'Verdict');
@@ -598,9 +586,8 @@ else
     var panel=document.createElement('div');
     panel.className='client-share';
     panel.dataset.prefix=prefix;
-    panel.innerHTML='<div class="client-share-head"><div><div class="client-share-title">Сообщение для клиента</div><span class="client-share-subtitle">Готовый расчёт '+label+' в сравнении со вкладом</span></div><label class="client-share-tax"><input type="checkbox" checked>Показывать НДФЛ</label></div><div class="client-share-tabs"><button class="client-share-tab active" data-mode="short" type="button">Короткое</button><button class="client-share-tab" data-mode="detailed" type="button">Подробное</button></div><pre class="client-share-preview"></pre><button class="client-share-copy" type="button">Скопировать для клиента</button>';
+    panel.innerHTML='<div class="client-share-head"><div><div class="client-share-title">Сообщение для клиента</div><span class="client-share-subtitle">Готовый расчёт '+label+' в сравнении со вкладом</span></div></div><div class="client-share-tabs"><button class="client-share-tab active" data-mode="short" type="button">Короткое</button><button class="client-share-tab" data-mode="detailed" type="button">Подробное</button></div><pre class="client-share-preview"></pre><button class="client-share-copy" type="button">Скопировать для клиента</button>';
     panel.querySelectorAll('.client-share-tab').forEach(function(tab){tab.addEventListener('click',function(){panel.querySelectorAll('.client-share-tab').forEach(function(item){item.classList.remove('active');});tab.classList.add('active');refreshSharePanel(prefix);});});
-    panel.querySelector('.client-share-tax input').addEventListener('change',function(){refreshSharePanel(prefix);});
     panel.querySelector('.client-share-copy').addEventListener('click',function(){copyProductMessage(prefix,this);});
     verdict.insertAdjacentElement('afterend',panel);
     refreshSharePanel(prefix);
