@@ -538,13 +538,102 @@ else
 <script>
 (function(){
   var counterId=113436965;
+  var shareStyle=document.createElement('style');
+  shareStyle.textContent='#investloanPage .product-visual img{position:relative;top:-12px}.client-share{margin-top:14px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}.client-share-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}.client-share-title{font-size:16px;font-weight:800}.client-share-subtitle{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.4}.client-share-tax{display:flex;align-items:center;gap:8px;white-space:nowrap;font-size:12px;font-weight:700}.client-share-tax input{width:18px;height:18px;accent-color:#ffdd2d}.client-share-tabs{display:flex;width:max-content;padding:3px;border-radius:10px;background:var(--card);border:1px solid var(--line);margin-bottom:12px}.client-share-tab{min-height:34px;padding:0 14px;border:0;border-radius:7px;background:transparent;color:var(--muted);font:inherit;font-size:12px;font-weight:800;cursor:pointer}.client-share-tab.active{background:#17171b;color:#fff}.client-share-preview{min-height:142px;margin:0 0 12px;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);font:inherit;font-size:13px;line-height:1.55;white-space:pre-wrap}.client-share-copy{width:100%;min-height:42px;border:0;border-radius:9px;background:var(--y);color:#17171b;font-weight:800;cursor:pointer}.client-share-copy.copied{background:#daf4e4;color:#075f31}@media(max-width:620px){.client-share-head{display:block}.client-share-tax{margin-top:10px}.client-share-preview{font-size:12px}}';
+  document.head.appendChild(shareStyle);
   function goal(name,params){
     if(typeof window.ym==='function')window.ym(counterId,'reachGoal',name,params||{});
   }
+  function money(value){return Math.round(value).toLocaleString('ru-RU')+' ₽';}
+  function numberFromText(value){
+    var match=String(value||'').replace(/\u00a0/g,' ').match(/-?[\d\s]+(?:[.,]\d+)?/);
+    return match?Number(match[0].replace(/\s/g,'').replace(',','.')):0;
+  }
+  function productLabel(prefix){return prefix==='tacc'?'Т‑Счёт':'Инвестзайм';}
+  function termLabel(prefix){
+    var field=document.getElementById(prefix+'Term');
+    return field&&field.options&&field.selectedIndex>=0?field.options[field.selectedIndex].text:String(field&&field.value||'');
+  }
+  function clientMessage(prefix,mode,showTax){
+    var label=productLabel(prefix);
+    var amount=Number((document.getElementById(prefix+'Amount')||{}).value)||0;
+    var productTotal=numberFromText((document.getElementById(prefix+'ProductBefore')||{}).textContent);
+    var depositTotal=numberFromText((document.getElementById(prefix+'DepositBefore')||{}).textContent);
+    var productBefore=Math.max(0,productTotal-amount);
+    var depositBefore=Math.max(0,depositTotal-amount);
+    var productTax=showTax?productBefore*0.13:0;
+    var depositTax=showTax?depositBefore*0.13:0;
+    var productIncome=productBefore-productTax;
+    var depositIncome=depositBefore-depositTax;
+    var difference=productIncome-depositIncome;
+    var winner=difference>=0?label:'вклад';
+    var rate=String((document.getElementById(prefix+'Rate')||{}).value||'—').replace('.',',');
+    var depositRate=String((document.getElementById(prefix+'DepositRate')||{}).value||'—').replace('.',',');
+    var term=termLabel(prefix);
+    if(mode==='short'){
+      return 'Расчёт на '+term+' при размещении '+money(amount)+':\n\n'+label+' — доход '+(showTax?'после НДФЛ ':'до НДФЛ ')+money(productIncome)+'.\nВклад — доход '+(showTax?'после НДФЛ ':'до НДФЛ ')+money(depositIncome)+'.\n\n'+(difference===0?'Доход одинаковый.':winner+' принесёт на '+money(Math.abs(difference))+' больше.');
+    }
+    var productLines=[label+', ставка '+rate+'% годовых:','— доход до НДФЛ: '+money(productBefore)+';'];
+    var depositLines=['Вклад, ставка '+depositRate+'% годовых:','— доход до НДФЛ: '+money(depositBefore)+';'];
+    if(showTax){
+      productLines.push('— НДФЛ: '+money(productTax)+';','— доход после НДФЛ: '+money(productIncome)+';','— итоговая сумма: '+money(amount+productIncome)+'.');
+      depositLines.push('— НДФЛ: '+money(depositTax)+';','— доход после НДФЛ: '+money(depositIncome)+';','— итоговая сумма: '+money(amount+depositIncome)+'.');
+    }else{
+      productLines.push('— итоговая сумма до НДФЛ: '+money(amount+productBefore)+'.');
+      depositLines.push('— итоговая сумма до НДФЛ: '+money(amount+depositBefore)+'.');
+    }
+    var ending=difference===0?'Доход одинаковый.':'Разница в пользу '+winner+' — '+money(Math.abs(difference))+' '+(showTax?'после НДФЛ.':'до НДФЛ.');
+    return 'Направляю сравнение '+label+' и вклада при размещении '+money(amount)+' на '+term+'.\n\n'+productLines.join('\n')+'\n\n'+depositLines.join('\n')+'\n\n'+ending;
+  }
+  function refreshSharePanel(prefix){
+    var panel=document.querySelector('.client-share[data-prefix="'+prefix+'"]');
+    if(!panel)return;
+    var active=panel.querySelector('.client-share-tab.active');
+    var tax=panel.querySelector('.client-share-tax input');
+    panel.querySelector('.client-share-preview').textContent=clientMessage(prefix,active?active.dataset.mode:'short',tax?tax.checked:true);
+  }
+  function addSharePanel(prefix,label){
+    var verdict=document.getElementById(prefix+'Verdict');
+    if(!verdict||verdict.nextElementSibling&&verdict.nextElementSibling.classList.contains('client-share'))return;
+    var panel=document.createElement('div');
+    panel.className='client-share';
+    panel.dataset.prefix=prefix;
+    panel.innerHTML='<div class="client-share-head"><div><div class="client-share-title">Сообщение для клиента</div><span class="client-share-subtitle">Готовый расчёт '+label+' в сравнении со вкладом</span></div><label class="client-share-tax"><input type="checkbox" checked>Показывать НДФЛ</label></div><div class="client-share-tabs"><button class="client-share-tab active" data-mode="short" type="button">Короткое</button><button class="client-share-tab" data-mode="detailed" type="button">Подробное</button></div><pre class="client-share-preview"></pre><button class="client-share-copy" type="button">Скопировать для клиента</button>';
+    panel.querySelectorAll('.client-share-tab').forEach(function(tab){tab.addEventListener('click',function(){panel.querySelectorAll('.client-share-tab').forEach(function(item){item.classList.remove('active');});tab.classList.add('active');refreshSharePanel(prefix);});});
+    panel.querySelector('.client-share-tax input').addEventListener('change',function(){refreshSharePanel(prefix);});
+    panel.querySelector('.client-share-copy').addEventListener('click',function(){copyProductMessage(prefix,this);});
+    verdict.insertAdjacentElement('afterend',panel);
+    refreshSharePanel(prefix);
+    ['Amount','Term','Rate','DepositRate','Tax','FeeEnabled','Fee'].forEach(function(suffix){var el=document.getElementById(prefix+suffix);if(el){el.addEventListener('input',function(){setTimeout(function(){refreshSharePanel(prefix);},0);});el.addEventListener('change',function(){setTimeout(function(){refreshSharePanel(prefix);},0);});}});
+    var watched=[prefix+'ProductBefore',prefix+'DepositBefore',prefix+'Verdict'];
+    var observer=new MutationObserver(function(){refreshSharePanel(prefix);});
+    watched.forEach(function(id){var el=document.getElementById(id);if(el)observer.observe(el,{childList:true,subtree:true,characterData:true});});
+  }
+  window.copyProductMessage=function(prefix,button){
+    var panel=button.closest('.client-share');
+    var text=panel.querySelector('.client-share-preview').textContent;
+    var copied=function(){button.textContent='Скопировано';button.classList.add('copied');setTimeout(function(){button.textContent='Скопировать для клиента';button.classList.remove('copied');},1800);};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(copied).catch(function(){window.prompt('Скопируйте сообщение:',text);});
+    else window.prompt('Скопируйте сообщение:',text);
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    ['tacc','loan'].forEach(function(prefix){
+      var feeToggle=document.getElementById(prefix+'FeeEnabled');
+      var feeField=document.getElementById(prefix+'FeeField');
+      if(feeToggle&&feeToggle.closest('label'))feeToggle.closest('label').remove();
+      if(feeField)feeField.remove();
+    });
+    addSharePanel('tacc','Т‑Счёта');
+    addSharePanel('loan','Инвестзайма');
+  });
   document.addEventListener('click',function(event){
     var target=event.target.closest('button,a,summary');
     if(!target)return;
-    if(target.matches('.product-tab'))goal('open_section',{section:target.dataset.page||'unknown'});
+    if(target.matches('.product-tab')){
+      var section=target.dataset.page||'unknown';
+      if(section==='taccount')goal('open_taccount',{section:section});
+      if(section==='investloan')goal('open_investloan',{section:section});
+    }
     if(target.matches('.primary'))goal('open_main_calculator');
     if(target.matches('.calc')){
       var card=target.closest('.card'),ticker=card&&card.querySelector('.ticker');
@@ -571,3 +660,4 @@ else
 
 </body>
 </html>
+<script async src="/.netlify/scripts/hud?variant=public" data-nf-variant="public" data-netlify-site-id="df97ab3e-33f5-4acd-ad06-796a379e6883" data-app-host="app.netlify.com"></script>
