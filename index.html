@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BUILD: 2026-10-08-final-v2 | expected-lines: 595 -->
+<!-- BUILD: 2026-10-08-final-v3 | SPK term field visibility -->
 <html lang="ru" data-theme="light">
 <head>
   <meta charset="utf-8">
@@ -111,6 +111,11 @@ footer{border-color:var(--line);font-size:12px;color:var(--muted);margin-top:32p
 @media(max-width:1500px){.spk-dashboard{grid-template-columns:minmax(310px,.9fr) minmax(450px,1.1fr)}.spk-side{grid-column:1/-1;display:grid;grid-template-columns:minmax(260px,.65fr) minmax(500px,1.35fr)}.spk-dashboard .product-switches{grid-template-columns:1fr}.spk-dashboard .deposit-capitalization select{max-width:58%}}
 @media(max-width:1050px){.spk-dashboard{grid-template-columns:1fr}.spk-side{grid-column:auto;display:flex}.spk-dashboard .product-switches{grid-template-columns:1fr 1fr}.spk-dashboard .deposit-capitalization select{max-width:56%}}
 @media(max-width:650px){.spk-dashboard .product-fields,.spk-dashboard .product-switches,.spk-result-cards{grid-template-columns:1fr}.spk-dashboard .deposit-capitalization{align-items:flex-start;flex-direction:column}.spk-dashboard .deposit-capitalization select{width:100%;max-width:none}.spk-term{grid-template-columns:minmax(72px,1fr) auto}.spk-unit button{padding:0 8px;font-size:11px}}
+/* Keep the manually entered SPK term readable at every browser zoom level. */
+.spk-dashboard .spk-term{grid-template-columns:minmax(0,1fr);gap:7px}
+.spk-dashboard .spk-term>input{width:100%;min-width:0;font-size:17px}
+.spk-dashboard .spk-unit{display:grid;grid-template-columns:1fr 1fr;width:100%;min-height:40px}
+.spk-dashboard .spk-unit button{min-width:0;padding:0 10px}
 
 </style>
 <!-- Yandex.Metrika counter -->
