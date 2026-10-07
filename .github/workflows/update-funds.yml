@@ -1,10 +1,10 @@
-name: Weekly fund data update
+name: Daily funds and RUSFAR update
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 9 * * 1'
-      timezone: 'Europe/Moscow'
+    # 10:15 UTC = 13:15 МСК
+    - cron: "15 10 * * *"
 
 permissions:
   contents: write
@@ -20,19 +20,20 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
 
-      - name: Update funds.json from MOEX ISS
-        run: node scripts/update-funds.mjs
+      - name: Update funds and market rates
+        run: node scripts/update-data.mjs
 
       - name: Commit changed data
         run: |
-          if git diff --quiet -- funds.json; then
-            echo "No fund data changes"
+          if git diff --quiet; then
+            echo "No data changes"
             exit 0
           fi
+
           git config user.name "funds-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add funds.json
-          git commit -m "Weekly fund data update"
+          git add funds.json market-rates.json
+          git commit -m "Daily funds and RUSFAR update"
           git push
