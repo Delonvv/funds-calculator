@@ -1,7 +1,7 @@
 (function(){
-  const colors={'Денежный рынок':'#41414d','ОФЗ с фиксированным купоном':'#65439d','Рублевые корпоративные и секьюритизированные облигации':'#9698d0','Валютные облигации':'#d4d5e2','Золото':'#ffcf24','Российские акции':'#c9c7ff','Альтернативные инвестиции':'#61616c'};
+  const colors={'Денежный рынок':'#41414d','ОФЗ с фиксированным купоном':'#65439d','Рублевые корпоративные и секьюритизированные облигации':'#9698d0','Валютные облигации':'#d4d5e2','Золото':'#ffcf24','Российские акции':'#c9c7ff'};
   const sourceUrl='https://www.tbank.ru/invest/research/strategy/2026-summer-update/';
-  const fallback={updatedAt:'2026-10-07',sourceUrl,profiles:[{id:'conservative',name:'Консервативный',basis:'Официальный консервативный портфель аналитиков',interpolated:false,assets:{'Денежный рынок':14.3,'ОФЗ с фиксированным купоном':13.3,'Рублевые корпоративные и секьюритизированные облигации':33.2,'Валютные облигации':9.5,'Золото':15.2,'Российские акции':9.5,'Альтернативные инвестиции':5}}]};
+  const fallback={updatedAt:'2026-10-07',sourceUrl,note:'Доли представленных классов пропорционально нормализованы до 100%.',profiles:[{id:'conservative',name:'Консервативный',basis:'Консервативный портфель аналитиков',interpolated:false,assets:{'Денежный рынок':15.1,'ОФЗ с фиксированным купоном':14,'Рублевые корпоративные и секьюритизированные облигации':34.9,'Валютные облигации':10,'Золото':16,'Российские акции':10}}]};
   let config=fallback,recommendations={classes:{}};
   const nav=document.querySelector('.product-nav');
   const dropdown=document.createElement('div');
@@ -42,7 +42,7 @@
     document.getElementById('modelTotal').textContent=money(total);
     document.getElementById('modelLegend').innerHTML=entries.map(([name,share])=>'<div class="model-legend-row"><i class="model-color" style="background:'+(colors[name]||'#777')+'"></i><span>'+name+'</span><span>'+pct(share)+'</span><b>'+money(total*share/100)+'</b></div>').join('');
     document.getElementById('modelBuyList').innerHTML=entries.map(([name,share])=>'<div class="model-buy-row" data-asset="'+name+'"><span class="model-buy-name"><i class="model-color" style="background:'+(colors[name]||'#777')+'"></i>'+name+'</span><span>'+pct(share)+'</span><b>'+money(total*share/100)+'</b><button type="button" class="model-open" data-asset="'+name+'">Посмотреть фонды ›</button></div>').join('');
-    document.getElementById('modelDemoNote').textContent=profile.basis+(profile.interpolated?' · Промежуточный профиль рассчитан математически и не является отдельным портфелем из публикации.':'');
+    document.getElementById('modelDemoNote').textContent=profile.basis+(profile.interpolated?' · Промежуточный профиль рассчитан математически и не является отдельным портфелем из публикации.':'')+(config.note?' · '+config.note:'');
     document.getElementById('modelSource').href=config.sourceUrl||sourceUrl;
     document.getElementById('modelSource').textContent='Источник: стратегия аналитиков Т‑Инвестиций · обновлено '+new Date(config.updatedAt+'T00:00:00').toLocaleDateString('ru-RU');
     document.getElementById('modelDetails').hidden=true;
