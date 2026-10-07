@@ -1,0 +1,13 @@
+{
+  "updatedAt":"2026-10-07",
+  "sourceUrl":"https://www.tbank.ru/invest/research/strategy/2026-summer-update/",
+  "classes":{
+    "Денежный рынок":{"funds":[{"ticker":"TMON","name":"Денежный рынок"},{"ticker":"TSAV","name":"Накопительный"}],"recommendations":[]},
+    "ОФЗ с фиксированным купоном":{"funds":[{"ticker":"TOFZ","name":"Облигации ОФЗ"}],"recommendations":[]},
+    "Рублевые корпоративные и секьюритизированные облигации":{"funds":[{"ticker":"TBRU","name":"Российские облигации"},{"ticker":"TSEC","name":"Секьюритизация плюс"},{"ticker":"XSECUR","name":"Обеспеченные активы"}],"recommendations":[{"name":"Селигдар 001Р‑06","yield":"17,49%","maturity":"03.02.2029","currency":"RUB"},{"name":"Селектел 001Р‑08R","yield":"16,44%","maturity":"27.06.2029","currency":"RUB"},{"name":"АБЗ‑1 002Р‑03","yield":"19,69%","maturity":"07.05.2028","currency":"RUB"}]},
+    "Валютные облигации":{"funds":[{"ticker":"TLCB","name":"Валютные облигации"},{"ticker":"TRBR","name":"Замещающие облигации"}],"recommendations":[{"name":"Акрон БО‑001Р‑07","yield":"9,19%","maturity":"11.10.2029","currency":"CNY"},{"name":"Атомэнергопром 001Р‑06","yield":"8,64%","maturity":"13.07.2029","currency":"USD"},{"name":"Металлоинвест 028","yield":"9,52%","maturity":"22.10.2028","currency":"USD"}]},
+    "Золото":{"funds":[{"ticker":"TGLD","name":"Золото"}],"recommendations":[]},
+    "Российские акции":{"funds":[{"ticker":"TMOS","name":"Крупнейшие компании РФ"},{"ticker":"TDIV","name":"Дивидендные акции"},{"ticker":"TITR","name":"Стратегия вечного портфеля РФ"},{"ticker":"TRND","name":"Трендовые акции"}],"recommendations":[]},
+    "Альтернативные инвестиции":{"funds":[{"ticker":"TKVM","name":"Капитал с защитой"},{"ticker":"TLCN","name":"Логистическая недвижимость"},{"ticker":"TRRE","name":"Арендный доход"},{"ticker":"TKVC","name":"Венчурные инвестиции"}],"recommendations":[]}
+  }
+}
