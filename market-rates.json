@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-10-07T09:15:04.091Z",
+  "updatedAt": "2026-10-07T20:14:43.938Z",
   "rusfar": {
     "code": "RUSFAR",
     "value": 13.68,
-    "valueDate": "2026-10-06",
+    "valueDate": "2026-10-07",
     "source": "https://iss.moex.com/iss/engines/stock/markets/index/securities/RUSFAR.json"
   }
 }
