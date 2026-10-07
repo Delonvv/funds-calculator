@@ -1,0 +1,16 @@
+{
+  "product": "СПК 2.0",
+  "updatedAt": "2026-10-07",
+  "fundExpensesAnnual": 0.25,
+  "segmentFees": {
+    "mm": 5,
+    "pro": 4,
+    "bronze": 3,
+    "silver": 3,
+    "gold": 2,
+    "diamond": 1,
+    "private": 1,
+    "employee": 0
+  },
+  "sourceNote": "Использован только правый столбец СПК 2.0. Для сотрудников Т комиссия 0%."
+}
