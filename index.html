@@ -1,11 +1,11 @@
 <!doctype html>
-<!-- BUILD: 2026-10-08-smart-sales-v1 | Products and sales points -->
+<!-- BUILD: 2026-10-08-mission-brand-v1 | Products and sales points -->
 <html lang="ru" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Сравнение фондов и калькулятор доходности</title>
-  <script>(function(){var theme='light';try{var saved=localStorage.getItem('funds-theme-v2');theme=saved==='light'||saved==='dark'?saved:'light'}catch(e){}document.documentElement.dataset.theme=theme})()</script>
+  <script>(function(){var theme='light';try{var saved=localStorage.getItem('funds-theme-v2');theme=['light','dark','brand'].includes(saved)?saved:'light'}catch(e){}document.documentElement.dataset.theme=theme})()</script>
   <style>
     :root{color-scheme:dark;--bg:#0b0c0d;--panel:#17181a;--line:#34363a;--y:#ffe62e;--muted:#969aa1;--white:#f7f7f5}:root[data-theme=light]{color-scheme:light;--bg:#f3f4f6;--panel:#fff;--line:#dde0e4;--muted:#686e77;--white:#17191c}
     *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:radial-gradient(circle at 68% -5%,rgba(255,230,46,.1),transparent 27%),var(--bg);color:var(--white);font:15px Arial,sans-serif}button,input,select{font:inherit}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--y);outline-offset:2px}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
@@ -149,12 +149,239 @@ footer{border-color:var(--line);font-size:12px;color:var(--muted);margin-top:32p
   ym(113436965,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false});
 </script>
 <!-- /Yandex.Metrika counter -->
-  <link rel="stylesheet" href="assets/smart-sales-20261008.css">
-  <link rel="stylesheet" href="assets/sales-pages-20261008.css">
+  <style data-component="smart-sales-20261008">
+/* Smart sales navigation, model portfolio calculator and consistent focus state. */
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus{
+  outline:none!important;
+  border-color:#cda900!important;
+  border-radius:10px!important;
+  box-shadow:0 0 0 3px rgba(255,221,45,.32)!important;
+}
+.reset:disabled{opacity:.42;cursor:default}.reset:not(:disabled){color:var(--y)!important;font-weight:750!important}:root[data-theme="light"] .reset:not(:disabled){color:#806600!important}
+.modal .fields input[type="text"],.modal .fields input.money-input{width:100%;height:45px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--white);padding:0 12px;font-size:16px;font-variant-numeric:tabular-nums}
+.modal .fields input[type="text"]:focus,.modal .fields input.money-input:focus{outline:none!important;border:1px solid #d1ae00!important;border-radius:9px!important;box-shadow:0 0 0 3px rgba(255,221,45,.3)!important}
+.smart-sales-nav{position:relative;align-self:stretch;display:flex;align-items:center}
+.smart-sales-trigger{height:100%;border:0;background:transparent;color:var(--white);font:inherit;font-size:14px;font-weight:700;cursor:pointer;padding:0 3px;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.smart-sales-trigger:after{content:'⌄';font-size:14px;color:var(--muted);transition:transform .18s}
+.smart-sales-nav.open .smart-sales-trigger:after{transform:rotate(180deg)}
+.smart-sales-trigger.active{border-bottom:3px solid var(--y)}
+.smart-sales-menu{position:absolute;z-index:120;top:calc(100% - 7px);left:-14px;width:260px;padding:8px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 42px rgba(0,0,0,.15);opacity:0;visibility:hidden;transform:translateY(-5px);transition:.16s}
+.smart-sales-nav:hover .smart-sales-menu,.smart-sales-nav:focus-within .smart-sales-menu,.smart-sales-nav.open .smart-sales-menu{opacity:1;visibility:visible;transform:none}
+.smart-sales-menu button{width:100%;border:0;border-radius:9px;background:transparent;color:var(--white);padding:11px 12px;text-align:left;font:inherit;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.smart-sales-menu button:hover,.smart-sales-menu button.active{background:var(--soft)}
+.smart-sales-menu button b{font-size:13px}.smart-sales-menu button small{font-size:10px;color:var(--muted)}
+.smart-sales-menu button[disabled]{cursor:default;opacity:.58}
+.smart-sales-divider{height:1px;background:var(--line);margin:6px 4px}
+.smart-sales-caption{padding:7px 12px 4px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.model-page{padding:30px 0 20px}.model-hero{margin-bottom:20px}.model-hero h1{font-size:clamp(36px,4.5vw,54px);line-height:1.05;letter-spacing:-.045em;margin:0 0 10px}.model-hero p{color:var(--muted);margin:0;font-size:15px}
+.model-hero-image{display:grid;grid-template-columns:minmax(0,.88fr) minmax(420px,1.12fr);gap:18px;align-items:center;min-height:228px}
+.model-hero-visual{height:228px;min-width:0;overflow:hidden;border-radius:20px;mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 100%)}
+.model-hero-visual img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+:root[data-theme=dark] .model-hero-visual img{filter:brightness(.72) contrast(1.04) saturate(.88)}
+.model-calculator{display:grid;grid-template-columns:minmax(330px,.85fr) minmax(500px,1.15fr);border:1px solid var(--line);border-radius:20px;background:var(--panel);overflow:hidden}
+.model-controls,.model-structure{padding:26px}.model-controls{border-right:1px solid var(--line)}
+.model-field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}.model-field>span{font-size:13px;color:var(--muted);font-weight:750}.model-field input,.model-field select{width:100%;height:48px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--white);padding:0 14px;font-size:17px;font-weight:750}
+.model-calculate{width:100%;height:46px;border:0;border-radius:10px;background:var(--y);color:#111;font-weight:850;cursor:pointer}
+.model-demo-note{margin:14px 0 0;padding:11px 12px;border-radius:10px;background:#fff6ca;color:#4c3a00;font-size:11px;line-height:1.45}
+.model-structure h2,.model-buy h2{margin:0 0 18px;font-size:25px}.model-chart-layout{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:center}.model-donut{width:210px;height:210px;border-radius:50%;display:grid;place-items:center;position:relative}.model-donut:after{content:'';position:absolute;width:112px;height:112px;border-radius:50%;background:var(--panel)}.model-donut-center{position:relative;z-index:1;text-align:center}.model-donut-center b{display:block;font-size:20px}.model-donut-center small{color:var(--muted);font-size:11px}
+.model-legend{display:grid}.model-legend-row{display:grid;grid-template-columns:14px minmax(120px,1fr) 46px 100px;gap:9px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.model-color{width:11px;height:11px;border-radius:50%}.model-legend-row span:nth-child(3){color:var(--muted);text-align:right}.model-legend-row b{text-align:right}
+.model-buy{margin-top:18px;padding:24px;border:1px solid var(--line);border-radius:20px;background:var(--panel)}.model-buy-list{display:grid;gap:7px}.model-buy-row{display:grid;grid-template-columns:minmax(180px,1fr) 70px 130px auto;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:13px}.model-buy-name{display:flex;align-items:center;gap:10px;font-weight:750}.model-buy-row>span:nth-child(2){color:var(--muted);text-align:right}.model-buy-row>b{text-align:right}.model-buy-row button{border:0;background:transparent;color:var(--muted);font-weight:750;cursor:pointer}.model-buy-footer{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:13px;color:var(--muted);font-size:11px}.model-copy{border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--white);padding:9px 12px;font-weight:750;cursor:pointer}
+.model-buy-footer a{color:var(--muted);text-decoration:none}.model-buy-footer a:hover{text-decoration:underline}
+.model-details{margin-top:12px;padding:20px;border:1px solid #e5c333;border-radius:14px;background:var(--panel);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+.model-details[hidden]{display:none}.model-details-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.model-details-head h3{margin:0;font-size:22px}.model-details-head p{margin:4px 0 0;color:var(--muted);font-size:12px}.model-details-close{width:32px;height:32px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--white);font-size:20px;cursor:pointer}.model-details h4{margin:18px 0 9px;font-size:14px}.model-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.model-fund-card,.model-rec-card{min-width:0;padding:13px;border:1px solid var(--line);border-radius:11px;background:var(--bg)}.model-fund-card{display:flex;align-items:center;justify-content:space-between;gap:10px}.model-fund-card div{min-width:0}.model-fund-card b,.model-rec-card b{display:block;font-size:13px}.model-fund-card small{display:block;margin-top:4px;color:var(--muted)}.model-fund-card button{border:1px solid #e2ba00;border-radius:7px;background:transparent;color:var(--white);padding:7px 10px;font-weight:750;cursor:pointer}.model-rec-card span{display:block;margin-top:6px;color:var(--muted);font-size:11px;line-height:1.35}.model-detail-note{margin:14px 0 0;padding:10px 12px;border-radius:9px;background:var(--soft);color:var(--muted);font-size:10px;line-height:1.45}.model-detail-note a{color:inherit}.model-empty{margin:0;color:var(--muted);font-size:12px}
+@media(max-width:980px){.product-nav{gap:16px}.model-hero-image{display:block}.model-hero-visual{height:180px;margin-top:8px;mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 100%)}.model-calculator{grid-template-columns:1fr}.model-controls{border-right:0;border-bottom:1px solid var(--line)}.model-chart-layout{grid-template-columns:200px 1fr}.model-donut{width:190px;height:190px}.model-detail-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:639px){.smart-sales-nav{position:static}.smart-sales-menu{position:fixed;top:112px;left:14px;right:14px;width:auto}.model-page{padding-top:12px}.model-chart-layout{grid-template-columns:1fr}.model-donut{margin:auto}.model-legend-row{grid-template-columns:12px minmax(100px,1fr) 42px 86px}.model-buy-row{grid-template-columns:1fr auto}.model-buy-row>b{grid-column:2}.model-buy-row button{grid-column:1/-1;text-align:left}.model-buy-footer{align-items:flex-start;flex-direction:column}.model-copy{width:100%}.model-detail-grid{grid-template-columns:1fr}}
+@media(max-width:639px){.model-hero-visual{height:145px}}
+
+</style>
+  <style data-component="sales-pages-20261008">
+.smart-sales-content{padding:30px 0 70px}
+.smart-sales-content *{box-sizing:border-box}
+.ss-hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:18px;align-items:stretch;margin-bottom:22px}
+.ss-eyebrow{font-size:11px;line-height:1.2;text-transform:uppercase;letter-spacing:.08em;color:#a88600;font-weight:700;margin-bottom:8px}
+.ss-hero h1{font-size:clamp(34px,4vw,54px);line-height:1.02;letter-spacing:-.04em;margin:0 0 12px}
+.ss-image-hero{grid-template-columns:minmax(0,.88fr) minmax(420px,1.12fr);align-items:center;min-height:228px}
+.ss-page-visual{height:228px;min-width:0;overflow:hidden;border-radius:20px;mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 100%)}
+.ss-page-visual img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.ss-analyst-inline{display:grid;grid-template-columns:150px minmax(210px,.45fr) minmax(0,1fr);gap:16px;align-items:center;margin:0 0 24px;padding:14px 18px}
+.ss-analyst-inline p{margin:0}
+:root[data-theme=dark] .ss-page-visual img{filter:brightness(.72) contrast(1.04) saturate(.88)}
+.ss-lead{max-width:760px;margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+.ss-analyst{padding:18px;border-radius:18px;background:color-mix(in srgb,#ffd91a 15%,var(--panel));border:1px solid color-mix(in srgb,#d2aa00 34%,var(--line))}
+.ss-analyst strong{display:block;font-size:17px;line-height:1.25;margin-bottom:8px}
+.ss-analyst p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+.ss-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:23px 0 11px}
+.ss-section-head h2,.ss-panel h2{margin:0;font-size:20px;line-height:1.2}
+.ss-section-head span{color:var(--muted);font-size:11px;text-align:right}
+.ss-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.ss-product{display:flex;flex-direction:column;min-height:250px;padding:17px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}
+.ss-product-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.ss-product-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:color-mix(in srgb,#ffdd2d 22%,var(--panel));color:var(--white);font-size:17px;font-weight:800}
+.ss-product-tag{max-width:68%;padding:5px 8px;border-radius:9px;background:var(--soft);color:var(--muted);font-size:10px;line-height:1.2;text-align:right}
+.ss-product h3{margin:13px 0 6px;font-size:17px;line-height:1.25}
+.ss-product>p{margin:0 0 12px;color:var(--muted);font-size:12px;line-height:1.48}
+.ss-facts{display:grid;gap:7px;margin-top:auto}
+.ss-fact{display:flex;justify-content:space-between;gap:10px;padding-top:7px;border-top:1px solid var(--line);font-size:11px;line-height:1.35}
+.ss-fact span{color:var(--muted)}
+.ss-fact b{text-align:right;font-weight:650;color:var(--white)}
+.ss-product button{width:100%;margin-top:12px;padding:9px 10px;border:0;border-radius:10px;background:var(--soft);color:var(--white);font:inherit;font-size:11px;font-weight:700;cursor:pointer}
+.ss-product button:hover{background:color-mix(in srgb,#ffdd2d 22%,var(--soft))}
+.ss-sales{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.ss-sale{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:17px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}
+.ss-sale-num{width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:#ffd91a;color:#171717;font-size:13px;font-weight:800}
+.ss-sale h3{margin:1px 0 7px;font-size:15px;line-height:1.3}
+.ss-sale p{margin:0;color:var(--muted);font-size:12px;line-height:1.52}
+.ss-say{margin-top:10px;padding:10px 11px;border-radius:10px;border-left:3px solid #39a861;background:color-mix(in srgb,#39a861 10%,var(--panel));color:var(--white);font-size:11px;line-height:1.48}
+.ss-bottom{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);gap:13px;margin-top:13px}
+.ss-panel{padding:17px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}
+.ss-quick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+.ss-quick div{padding:11px;border-radius:11px;background:var(--soft)}
+.ss-quick b{display:block;margin-bottom:4px;font-size:11px;color:var(--white)}
+.ss-quick span{display:block;color:var(--muted);font-size:10.5px;line-height:1.4}
+.ss-script{background:color-mix(in srgb,#ffd91a 13%,var(--panel));border-color:color-mix(in srgb,#cba900 30%,var(--line))}
+.ss-script p{margin:10px 0 13px;color:var(--muted);font-size:12px;line-height:1.52}
+.ss-copy{width:100%;padding:10px;border:0;border-radius:10px;background:#ffd91a;color:#151515;font:inherit;font-size:12px;font-weight:750;cursor:pointer}
+.ss-risk{margin-top:15px;color:var(--muted);font-size:10.5px;line-height:1.5}
+.ss-fixed-note{display:flex;gap:10px;align-items:flex-start;margin:12px 0 0;padding:12px;border-radius:12px;background:var(--soft);color:var(--muted);font-size:11px;line-height:1.45}
+.ss-fixed-note b{color:var(--white)}
+.ss-fi-hero{grid-template-columns:minmax(320px,.88fr) minmax(420px,1.12fr);align-items:center;margin-bottom:18px;padding:0;overflow:hidden;border-radius:20px;background:linear-gradient(100deg,color-mix(in srgb,var(--panel) 94%,transparent) 0 42%,transparent 68%)}
+.ss-fi-hero>div:first-child{position:relative;z-index:1;padding:24px 0 24px 4px}
+.ss-fi-visual{height:228px;overflow:hidden;border-radius:20px;mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 100%)}
+.ss-fi-visual img{width:100%;height:100%;display:block;object-fit:cover;object-position:67% center}
+:root[data-theme=dark] .ss-fi-visual img{filter:brightness(.72) saturate(.88)}
+.ss-dcm{padding:18px;border:1px solid var(--line);border-radius:20px;background:var(--panel)}
+.ss-dcm-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:13px}
+.ss-dcm-head h2{margin:0 0 4px;font-size:20px;line-height:1.2}
+.ss-dcm-head>div>span{color:var(--muted);font-size:11px}
+.ss-dcm-controls{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+.ss-dcm-tabs{display:flex;gap:4px;padding:4px;border-radius:11px;background:var(--soft)}
+.ss-dcm-tabs button,.ss-dcm-refresh,.ss-dcm-arrow{border:0;font:inherit;cursor:pointer;color:var(--white)}
+.ss-dcm-tabs button{padding:7px 9px;border-radius:8px;background:transparent;font-size:10.5px}
+.ss-dcm-tabs button.active{background:var(--panel);box-shadow:0 1px 5px #00000012;font-weight:700}
+.ss-dcm-refresh{min-height:36px;padding:8px 11px;border-radius:10px;background:#ffd91a;color:#171717;font-size:11px;font-weight:750}
+.ss-dcm-refresh:disabled{opacity:.55;cursor:wait}
+.ss-dcm-arrow{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--soft);font-size:16px}
+.ss-dcm-viewport{overflow:hidden;scroll-behavior:smooth}
+.ss-dcm-track{display:flex;gap:12px;min-width:0}
+.ss-dcm-card{flex:0 0 calc((100% - 24px)/3);display:flex;flex-direction:column;min-height:276px;padding:15px;border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--panel) 93%,var(--soft))}
+.ss-dcm-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.ss-dcm-issuer{display:flex;align-items:center;gap:9px;min-width:0}
+.ss-dcm-issuer>span{position:relative;width:38px;height:38px;display:grid;place-items:center;flex:0 0 auto;overflow:hidden;border-radius:11px;background:color-mix(in srgb,#ffd91a 23%,var(--soft));color:var(--white);font-size:10px;font-weight:800}
+.ss-dcm-issuer>span img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--panel)}
+.ss-dcm-issuer b,.ss-dcm-issuer small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ss-dcm-issuer b{font-size:12px}.ss-dcm-issuer small{margin-top:2px;color:var(--muted);font-size:9.5px}
+.ss-dcm-top em{padding:5px 7px;border-radius:8px;background:color-mix(in srgb,#4b91ff 12%,var(--soft));color:#5194ff;font-size:9.5px;font-style:normal;white-space:nowrap}
+.ss-dcm-card h3{margin:13px 0 4px;font-size:17px;line-height:1.25}
+.ss-dcm-coupon{display:block;color:var(--white);font-size:14px;line-height:1.3}
+.ss-dcm-card>p{margin:8px 0 12px;color:var(--muted);font-size:11px;line-height:1.45}
+.ss-dcm-facts{display:grid;grid-template-columns:1.15fr 1fr .65fr;gap:8px;margin-top:auto;padding-top:9px;border-top:1px solid var(--line)}
+.ss-dcm-facts span,.ss-dcm-facts b{display:block}.ss-dcm-facts span{color:var(--muted);font-size:9.5px}.ss-dcm-facts b{margin-top:3px;color:var(--white);font-size:11px}
+.ss-dcm-card>a{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:11px;padding:9px;border-radius:10px;background:#ffd91a;color:#171717;text-decoration:none;font-size:11px;font-weight:750}
+.ss-dcm-counter{min-height:15px;margin-top:9px;color:var(--muted);font-size:10.5px;text-align:right}
+.ss-dcm-loading,.ss-dcm-empty{width:100%;padding:36px 16px;border-radius:14px;background:var(--soft);color:var(--muted);font-size:12px;text-align:center}
+.ss-fi-hero+.ss-dcm+.ss-section-head{margin-top:22px}
+.ss-fi-hero~.ss-sales .ss-say{padding:13px 14px;border-left-width:4px;color:color-mix(in srgb,#7bd695 88%,var(--white));font-size:13px;line-height:1.5;font-weight:700}
+@media(max-width:1020px){.ss-products{grid-template-columns:repeat(2,minmax(0,1fr))}.ss-hero,.ss-bottom{grid-template-columns:1fr}.ss-image-hero{display:block}.ss-page-visual{height:180px;margin-top:8px;mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 100%)}.ss-analyst-inline{grid-template-columns:130px minmax(180px,.5fr) minmax(0,1fr)}}
+@media(max-width:1020px){.ss-fi-hero{grid-template-columns:minmax(280px,.9fr) minmax(340px,1.1fr)}.ss-dcm-card{flex-basis:calc((100% - 12px)/2)}.ss-dcm-head{align-items:flex-start;flex-direction:column}.ss-dcm-controls{width:100%;justify-content:flex-start}}
+@media(max-width:680px){.smart-sales-content{padding-top:22px}.ss-products,.ss-sales,.ss-quick{grid-template-columns:1fr}.ss-section-head{align-items:flex-start;flex-direction:column}.ss-section-head span{text-align:left}.ss-hero h1{font-size:36px}.ss-product{min-height:0}.ss-page-visual{height:145px}.ss-analyst-inline{display:block}.ss-analyst-inline strong{display:block;margin:5px 0}.ss-fi-hero{display:block}.ss-fi-hero>div:first-child{padding:6px 0 16px}.ss-fi-visual{height:150px;mask-image:linear-gradient(180deg,transparent 0,#000 22%,#000 100%)}.ss-dcm{padding:13px}.ss-dcm-tabs{order:4;width:100%}.ss-dcm-tabs button{flex:1}.ss-dcm-card{flex-basis:100%;min-height:260px}}
+
+</style>
+<style data-component="dcm-layout-fix">
+.ss-dcm-issuer>div{min-width:0}.ss-dcm-card{min-width:0}.ss-dcm-card h3,.ss-dcm-coupon{overflow-wrap:anywhere}.ss-dcm-issuer>span img{object-fit:contain;padding:3px}.ss-dcm-card .ss-dcm-facts{grid-template-columns:1fr}
+</style>
+<style data-component="brand-theme">
+
+/* Third theme: warm ivory and bronze, original fund artwork retained. */
+.theme-picker{display:flex;align-items:center;gap:2px;flex-shrink:0;padding:3px;border:1px solid var(--line);border-radius:15px;background:var(--panel)}
+.theme-picker button{border:0;border-radius:12px;padding:8px 9px;color:var(--muted);background:transparent;font:600 11px 'T Sans',Arial,sans-serif;cursor:pointer;min-height:34px;white-space:nowrap}
+.theme-picker button[aria-pressed=true]{background:var(--soft);color:var(--white);box-shadow:0 1px 4px #0000000b}
+.theme-picker button:focus-visible,.theme-picker-mobile:focus-visible{outline:2px solid #ad7b3b;outline-offset:3px}
+.theme-picker-mobile{display:none;background:var(--panel);border:1px solid var(--line);color:var(--white);padding:8px;border-radius:12px;font:600 12px 'T Sans',Arial,sans-serif;min-height:40px;max-width:112px}
+:root[data-theme=brand]{color-scheme:light;--bg:#f5eee5;--panel:#fffcf7;--line:#e4d8c8;--y:#ebc678;--muted:#776c61;--white:#32271f;--soft:#efe5d8;--card:#fffcf7;--text:#32271f}
+:root[data-theme=brand] body{background:radial-gradient(ellipse at 0 50%,#dab78918,transparent 40%),var(--bg);color:var(--white)}
+:root[data-theme=brand] header{background:#fffcf7f5;border-color:var(--line)}
+:root[data-theme=brand] .theme-picker button[aria-pressed=true]{background:#e8c887;color:#32271f}
+:root[data-theme=brand] .primary{background:#ffdd2d;border-radius:14px}
+:root[data-theme=brand] .hero{position:relative;isolation:isolate;display:block;min-height:350px;padding:32px 0 45px;margin-bottom:25px}
+:root[data-theme=brand] .hero:before{content:'';position:absolute;z-index:-1;top:-30px;bottom:-25px;left:50%;width:100vw;transform:translateX(-50%);background-image:linear-gradient(90deg,#f5eee599,transparent 66%),url('assets/brand-spinning-top-20261008.webp');background-size:cover;background-position:center;pointer-events:none}
+:root[data-theme=brand] .hero-copy{width:62%;max-width:760px}
+:root[data-theme=brand] .hero-art{display:none}
+:root[data-theme=brand] .hero h1{color:#2e241c}
+:root[data-theme=brand] .hero .lead{color:#64574b}
+:root[data-theme=brand] .search{background:#fffcf7f2;color:var(--white);border-color:#e4d4bf;border-radius:17px}
+:root[data-theme=brand] .filter-panel{background:#fffcf7f5;border-radius:24px;border-color:var(--line);box-shadow:0 8px 22px #69492706}
+:root[data-theme=brand] .chips button{background:#fffcf7;border-color:var(--line);color:#55483c}
+:root[data-theme=brand] .chips button.on{background:#e8c887;border-color:#cdab6a;color:#32271f}
+:root[data-theme=brand] .card{background:var(--panel);border-color:var(--line);border-radius:24px;box-shadow:0 7px 22px #69492706}
+:root[data-theme=brand] .card .cat,:root[data-theme=brand] .yield strong,:root[data-theme=brand] .row>b[style]{color:#92612f!important}
+:root[data-theme=brand] .ticker{background:#ffdd2d;color:#32271f;border-radius:10px}
+:root[data-theme=brand] .fund-icon{border-radius:15px}
+:root[data-theme=brand] .actions button,:root[data-theme=brand] .actions a{border-radius:13px}
+:root[data-theme=brand] .compare{background:#f4eadc;border:1px solid #dac2a1;color:#55402c}
+:root[data-theme=brand] .all{background:#e5ead8;color:#3f512d}
+:root[data-theme=brand] .qual{background:#efdfc8;color:#6a4826}
+:root[data-theme=brand] .positive{color:#087840}:root[data-theme=brand] .negative{color:#b63535}
+:root[data-theme=brand] .modal{background:var(--panel);border-radius:26px;border-color:var(--line)}
+:root[data-theme=brand] .modal-head,:root[data-theme=brand] .close{background:var(--panel);color:var(--white);border-color:var(--line)}
+:root[data-theme=brand] .fields input,:root[data-theme=brand] .fields select,:root[data-theme=brand] .term-buttons{background:var(--bg);border-color:var(--line);color:var(--white)}
+:root[data-theme=brand] .result{background:var(--soft);border-color:var(--line)}
+:root[data-theme=brand] .product-summary,:root[data-theme=brand] .product-calculator,:root[data-theme=brand] .spk-side,:root[data-theme=brand] .ss-dcm,:root[data-theme=brand] .ss-product,:root[data-theme=brand] .ss-sale{border-radius:24px}
+:root[data-theme=brand] .ss-page-visual,:root[data-theme=brand] .ss-fi-visual{border-radius:24px}
+:root[data-theme=brand] body:before,:root[data-theme=brand] body:after{background-image:radial-gradient(circle,rgba(152,99,54,.09) 1px,transparent 1.25px);opacity:.3}
+@media(max-width:1250px){.header-actions{gap:8px}.product-nav{gap:18px;margin-left:20px}.header-actions .live{display:none}}
+@media(max-width:1020px){.theme-picker{display:none}.theme-picker-mobile{display:block}:root[data-theme=brand] .hero-copy{width:67%}:root[data-theme=brand] .hero{min-height:320px}}
+@media(max-width:639px){:root[data-theme=brand] .hero{min-height:0;padding:0 0 24px}:root[data-theme=brand] .hero-copy{width:100%}:root[data-theme=brand] .hero:before{background-image:linear-gradient(90deg,#f5eee5ee,#f5eee5bc),url('assets/brand-spinning-top-20261008.webp');background-position:65% center}:root[data-theme=brand] .hero h1{font-size:33px}.theme-picker-mobile{max-width:98px;font-size:11px}}
+
+</style>
+<style data-component="compact-theme-menu">
+.theme-dropdown{position:relative;flex-shrink:0}
+.theme-menu-trigger{display:flex;align-items:center;gap:7px;min-height:40px;padding:8px 12px;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--white);font:600 12px 'T Sans',Arial,sans-serif;cursor:pointer;white-space:nowrap}
+.theme-menu{position:absolute;top:100%;right:0;z-index:150;width:168px;padding:7px;visibility:hidden;opacity:0;pointer-events:none;border:1px solid var(--line);border-radius:16px;background:var(--panel);box-shadow:0 10px 30px #00000015;transition:opacity .12s}
+.theme-dropdown.open .theme-menu{visibility:visible;opacity:1;pointer-events:auto}
+.theme-menu button{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:39px;padding:8px 11px;border:0;border-radius:11px;background:transparent;color:var(--white);font:500 13px 'T Sans',Arial,sans-serif;text-align:left;cursor:pointer}
+.theme-menu button>span{visibility:hidden}.theme-menu button[aria-pressed=true]{background:var(--soft);font-weight:700}.theme-menu button[aria-pressed=true]>span{visibility:visible}.theme-menu button:hover{background:var(--soft)}
+.theme-menu-trigger:focus-visible,.theme-menu button:focus-visible{outline:2px solid #ad7b3b;outline-offset:2px}
+:root[data-theme=brand] .theme-menu button[aria-pressed=true]{background:#f0dfba}
+@media(max-width:639px){.theme-menu-trigger{font-size:11px;padding:8px;gap:4px}.theme-menu{width:158px}}
+</style>
+<style data-component="mission-page">
+/* Standalone Mission page: approved hero + three pillars, independent of smart sales. */
+.mission-page{position:relative;isolation:isolate;padding:0 0 28px}
+.mission-hero{position:relative;isolation:isolate;min-height:410px;display:flex;align-items:center;padding:26px 0 52px}
+.mission-hero:before{content:'';position:absolute;z-index:-1;top:-30px;bottom:-80px;left:50%;width:100vw;transform:translateX(-50%);background-image:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 95%,transparent) 20%,color-mix(in srgb,var(--bg) 78%,transparent) 42%,transparent 76%),linear-gradient(0deg,var(--bg),transparent 28%),url('assets/mission-spinning-top-20261008.webp');background-position:center,right center,right center;background-size:cover;pointer-events:none}
+.mission-copy{max-width:650px;width:54%}.mission-eyebrow{text-transform:uppercase;font-size:11px;letter-spacing:.22em;color:var(--muted);margin:0 0 22px;font-weight:600}
+.mission-copy h1{font-size:clamp(36px,4.3vw,60px);line-height:1.08;letter-spacing:-.035em;margin:0 0 24px;color:var(--white);font-weight:750}
+.mission-copy h1 span{color:#94602f}.mission-intro{font-size:17px;line-height:1.65;max-width:590px;margin:0;color:var(--white)}
+.mission-quote{position:absolute;right:0;top:100px;width:142px;font-size:14px;line-height:1.5;padding:14px 0 0 14px;border-left:1px solid #b88043;border-top:1px solid #b88043;color:#32271f;background:#fff8e5b0;border-radius:0 12px 12px 0}
+.mission-pillars{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mission-pillar{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:start;gap:18px;background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:22px;box-shadow:0 6px 22px #00000004}
+.mission-pillar h2{margin:2px 0 9px;font-size:20px;line-height:1.3;font-weight:700;letter-spacing:-.02em}
+.mission-pillar p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.mission-icon{display:grid;place-items:center;width:64px;height:64px;flex-shrink:0;border-radius:50%;background:linear-gradient(135deg,#fff2d2,#f3dfb7);color:#98602d}
+.mission-icon svg{width:29px;height:29px;fill:currentColor;overflow:visible}.mission-icon-detail{fill:none;stroke:#fff8e7;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.mission-icon-stem{stroke:currentColor;stroke-width:2;fill:none}
+.mission-result{display:grid;grid-template-columns:64px 210px minmax(0,1fr);align-items:center;gap:22px;padding:18px 22px;margin:12px 0 24px;border:1px solid var(--line);border-radius:26px;background:var(--panel)}
+.mission-result h2{font-size:20px;line-height:1.35;margin:0;padding-right:22px;border-right:1px solid #d9bd98;letter-spacing:-.02em}
+.mission-result p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.mission-features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-bottom:24px}
+.mission-feature{display:flex;align-items:flex-start;gap:14px;padding:8px 18px;border-right:1px solid var(--line)}.mission-feature:first-child{padding-left:0}.mission-feature:last-child{border:0;padding-right:0}
+.mission-feature .mission-icon{width:50px;height:50px}.mission-feature .mission-icon svg{width:24px;height:24px}
+.mission-feature h3{font-size:14px;line-height:1.4;margin:3px 0 7px;font-weight:700}.mission-feature p{font-size:12px;line-height:1.6;margin:0;color:var(--muted)}
+.mission-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}.mission-actions button{display:flex;align-items:center;justify-content:space-between;gap:26px;min-width:230px;min-height:48px;border-radius:20px;padding:12px 20px;font:600 14px 'T Sans',Arial,sans-serif;cursor:pointer}.mission-action-secondary{background:var(--panel);color:var(--white);border:1px solid #bb8f54}.mission-action-primary{background:#ffdd2d;color:#32271f;border:1px solid #ffdd2d}.mission-actions button:focus-visible{outline:2px solid #ad7b3b;outline-offset:3px}
+body.mission-active .product-pages-note{display:none}
+:root[data-theme=dark] .mission-hero:before{background-image:linear-gradient(90deg,var(--bg),color-mix(in srgb,var(--bg) 94%,transparent) 35%,color-mix(in srgb,var(--bg) 35%,transparent) 70%),linear-gradient(0deg,var(--bg),transparent 40%),url('assets/mission-spinning-top-20261008.webp')}
+:root[data-theme=dark] .mission-copy h1 span{color:#e4bd83}:root[data-theme=dark] .mission-quote{color:#f2e5cf;background:#28211ddd}
+:root[data-theme=brand] .mission-pillar,:root[data-theme=brand] .mission-result{background:#fffcf7f5}
+.product-nav{gap:22px}
+@media(max-width:1280px){.product-nav{gap:16px;margin-left:20px}.mission-pillar{grid-template-columns:48px minmax(0,1fr);gap:12px;padding:18px}.mission-pillar .mission-icon{width:48px;height:48px}.mission-feature{gap:10px;padding:8px 12px}.mission-feature .mission-icon{width:40px;height:40px}}
+@media(max-width:1020px){.mission-hero{min-height:370px}.mission-copy{width:62%}.mission-copy h1{font-size:44px}.mission-intro{font-size:15px}.mission-quote{display:none}.mission-features{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.mission-feature{padding:0!important;border:0}.mission-pillars{gap:10px}.mission-pillar{display:block}.mission-pillar .mission-icon{margin-bottom:12px}.mission-pillar h2{font-size:18px}.mission-result{grid-template-columns:50px 180px minmax(0,1fr);gap:16px}.mission-result>.mission-icon{width:50px;height:50px}}
+@media(max-width:680px){.mission-copy{width:100%;max-width:none}.mission-copy h1{font-size:38px}.mission-hero{min-height:0;padding:6px 0 28px}.mission-eyebrow{margin-bottom:16px}.mission-intro{font-size:15px}.mission-hero:before{background-image:linear-gradient(90deg,var(--bg),color-mix(in srgb,var(--bg) 88%,transparent)),url('assets/mission-spinning-top-20261008.webp')}.mission-pillars{grid-template-columns:1fr}.mission-pillar{display:grid;grid-template-columns:48px minmax(0,1fr)}.mission-pillar .mission-icon{margin:0}.mission-result{grid-template-columns:48px 1fr;padding:18px;gap:12px}.mission-result h2{border:0;padding:0}.mission-result p{grid-column:1/-1}.mission-features{grid-template-columns:1fr}.mission-actions{gap:10px}.mission-actions button{width:100%}.mission-copy h1 br{display:none}}
+</style>
 </head>
 <body><svg id="fund-icon-assets" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none"><defs><symbol id="fund-icon-TMON" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tmon.webp"/></symbol><symbol id="fund-icon-TSAV" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tsav.webp"/></symbol><symbol id="fund-icon-TBRU" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tbru.webp"/></symbol><symbol id="fund-icon-TOFZ" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tofz.webp"/></symbol><symbol id="fund-icon-TPAY" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tpay.webp"/></symbol><symbol id="fund-icon-TRBR" viewBox="0 0 320 320"><image width="320" height="320" href="assets/fund-trbr.webp"/></symbol><symbol id="fund-icon-TLCB" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tlcb.webp"/></symbol><symbol id="fund-icon-TMOS" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tmos.webp"/></symbol><symbol id="fund-icon-TDIV" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tdiv.webp"/></symbol><symbol id="fund-icon-TITR" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-titr.webp"/></symbol><symbol id="fund-icon-TRND" viewBox="0 0 641 640"><image width="641" height="640" href="assets/fund-trnd.webp"/></symbol><symbol id="fund-icon-TGLD" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tgld.webp"/></symbol><symbol id="fund-icon-TRUR" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-trur.webp"/></symbol><symbol id="fund-icon-RU000A109KH9" viewBox="0 0 641 640"><image width="641" height="640" href="assets/fund-ru000a109kh9.webp"/></symbol><symbol id="fund-icon-TIND" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tind.webp"/></symbol><symbol id="fund-icon-TKVM" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tkvm.webp"/></symbol><symbol id="fund-icon-TLCN" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tlcn.webp"/></symbol><symbol id="fund-icon-TRRE" viewBox="0 0 641 640"><image width="641" height="640" href="assets/fund-trre.webp"/></symbol><symbol id="fund-icon-TKVC" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tkvc.webp"/></symbol><symbol id="fund-icon-TSEC" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tsec.webp"/></symbol><symbol id="fund-icon-XSECUR" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-xsecur.webp"/></symbol><symbol id="fund-icon-TVEN" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-tven.webp"/></symbol><symbol id="fund-icon-LQDT" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-lqdt.webp"/></symbol><symbol id="fund-icon-AKMM" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-akmm.webp"/></symbol><symbol id="fund-icon-SBMM" viewBox="0 0 640 640"><image width="640" height="640" href="assets/fund-sbmm.webp"/></symbol><symbol id="fund-icon-BOND" viewBox="0 0 144 144"><image width="144" height="144" href="assets/fund-bond.webp"/></symbol></defs></svg>
   <noscript><p class="script-notice">Калькулятор и фильтры работают в браузере с JavaScript. Если это предпросмотр файла, скачайте HTML и откройте его в Chrome или Edge.</p></noscript>
-  <header><div class="wrap bar"><div class="brand"><img class="brand-logo" src="assets/t-bank-logo-2025.png" alt="Т‑Банк">Т‑Капитал</div><nav class="product-nav" aria-label="Разделы сайта"><button class="product-tab active" type="button" data-page="funds" onclick="showProductPage('funds')">Фонды</button><button class="product-tab" type="button" data-page="taccount" onclick="showProductPage('taccount')">Т‑Счёт</button><button class="product-tab" type="button" data-page="spk" onclick="showProductPage('spk')">СПК</button><button class="product-tab" type="button" data-page="investloan" onclick="showProductPage('investloan')">Инвестзайм</button></nav><div class="header-actions"><div class="live"><i></i><span id="status">автономная версия</span></div><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему"><span aria-hidden="true">☾</span><b>Тёмная</b></button><a class="primary" href="#modalBg" onclick="openCalc('TMON');return false">Калькулятор</a></div></div></header>
+  <header><div class="wrap bar"><div class="brand"><img class="brand-logo" src="assets/t-bank-logo-2025.png" alt="Т‑Банк">Т‑Капитал</div><nav class="product-nav" aria-label="Разделы сайта"><button class="product-tab active" type="button" data-page="funds" onclick="showProductPage('funds')">Фонды</button><button class="product-tab" type="button" data-page="taccount" onclick="showProductPage('taccount')">Т‑Счёт</button><button class="product-tab" type="button" data-page="spk" onclick="showProductPage('spk')">СПК</button><button class="product-tab" type="button" data-page="investloan" onclick="showProductPage('investloan')">Инвестзайм</button></nav><div class="header-actions"><div class="live"><i></i><span id="status">автономная версия</span></div><div class="theme-dropdown" id="themeDropdown" onmouseenter="openThemeMenu()" onmouseleave="closeThemeMenu()"><button class="theme-menu-trigger" id="themeToggle" type="button" aria-expanded="false" aria-controls="themeMenu" onclick="toggleThemeMenu()"><span aria-hidden="true">◐</span> Тема <span aria-hidden="true">⌄</span></button><div class="theme-menu" id="themeMenu" aria-label="Выбор темы"><button type="button" data-theme-choice="light" onclick="setTheme('light')">Светлая <span aria-hidden="true">✓</span></button><button type="button" data-theme-choice="dark" onclick="setTheme('dark')">Тёмная <span aria-hidden="true">✓</span></button><button type="button" data-theme-choice="brand" onclick="setTheme('brand')">Фирменная <span aria-hidden="true">✓</span></button></div></div><a class="primary" href="#modalBg" onclick="openCalc('TMON');return false">Калькулятор</a></div></div></header>
   <main class="wrap">
 <section id="fundsPage" class="product-page active"><section class="hero" id="funds"><div class="hero-copy"><h1>Сравнение фондов и калькулятор доходности</h1><p class="lead">Комиссии, время торгов, доступность, ориентир доходности и срок получения денег — в одной карточке. Все часы указаны по Москве.</p><div class="search-row"><input class="search" aria-label="Поиск фонда" id="search" placeholder="Найти по названию или тикеру"><span class="count" id="count">Показано: 22</span></div></div><img class="hero-art" width="2000" height="1166" src="assets/hero-funds.webp" alt="Портфель Т‑Капитала" fetchpriority="high"></section><p class="catalog-caption">22 фонда Т‑Капитала · данные обновлены 05.10.2026 · условия комиссий проверены 02.09.2026</p>
     <section class="filter-panel" aria-label="Фильтры фондов"><div class="filter-head"><div><b>Фильтры</b><small>Можно выбрать несколько плашек</small></div><button class="reset" id="reset" onclick="resetFilters()" disabled>Сбросить</button></div><div id="filters"><div class="filter-group"><span>Тип</span><div class="chips"><button class="" onclick="toggle('category','Ликвидность')">Ликвидность</button><button class="" onclick="toggle('category','Облигации РФ')">Облигации РФ</button><button class="" onclick="toggle('category','Валютные облигации')">Валютные облигации</button><button class="" onclick="toggle('category','Акции России')">Акции России</button><button class="" onclick="toggle('category','Золото')">Золото</button><button class="" onclick="toggle('category','Смешанные')">Смешанные</button><button class="" onclick="toggle('category','Недвижимость')">Недвижимость</button><button class="" onclick="toggle('category','Альтернативные')">Альтернативные</button></div></div><div class="filter-group"><span>Доступ</span><div class="chips"><button class="" onclick="toggle('access','Неквалам')">Неквалам</button><button class="" onclick="toggle('access','Только квалам')">Только квалам</button></div></div><div class="filter-group"><span>Получение денег</span><div class="chips"><button class="" onclick="toggle('exit','Продажа · Т+1')">Продажа · Т+1</button><button class="" onclick="toggle('exit','Особый порядок')">Особый порядок</button></div></div><div class="filter-group"><span>Риск</span><div class="chips"><button class="" onclick="toggle('risk','До среднего')">До среднего</button><button class="" onclick="toggle('risk','Выше среднего')">Выше среднего</button></div></div></div></section>
@@ -178,6 +405,9 @@ footer{border-color:var(--line);font-size:12px;color:var(--muted);margin-top:32p
  <div hidden><span id="spkInvested"></span><span id="spkNetRate"></span><span id="spkTaxValue"></span><span id="spkAfter"></span><span id="spkFormulaRusfar"></span><span id="spkFormulaSegment"></span><span id="spkFormulaFee"></span><span id="spkFormulaNet"></span></div>
 </section>
 <section id="investloanPage" class="product-page savings-page"><div class="savings-hero"><div><span class="cat">Т‑Финанс · прямое инвестирование</span><h1>Инвестзайм и вклад: сравнение доходности</h1><p class="lead">Инвестиции в микрофинансовую компанию на выбранный срок. Доход выплачивается в конце срока.</p></div><div class="product-badge product-visual"><img src="assets/investloan.webp" alt="Круговая диаграмма Инвестзайма"></div></div><div class="product-layout"><section class="product-summary"><div class="product-title"><div class="product-icon product-icon-image"><img src="assets/investloan-icon.webp" alt="Инвестзайм"></div><div><h2>Инвестзайм</h2><p>Инвестиции в компанию «Т‑Финанс»</p></div></div><div class="product-facts"><div class="product-fact"><span>Минимальная сумма</span><b>1 500 000 ₽</b></div><div class="product-fact"><span>Срок</span><b>до 1 года</b></div><div class="product-fact"><span>Выплата дохода</span><b>в конце срока</b></div><div class="product-fact"><span>Ставка</span><b>индивидуально при оформлении</b></div><div class="product-fact"><span>Пополнение и частичное снятие</span><b>условиями не заявлены</b></div><div class="product-fact"><span>Страхование АСВ</span><b>нет</b></div></div><p class="product-source">Источник: <a href="https://www.tbank.ru/finance/blog/t-finance/" target="_blank" rel="noopener">описание «Т‑Финанс» и Инвестзайма</a>. Ставка 15,6% в калькуляторе — редактируемый пример; фактическую ставку нужно взять из предложения в приложении Т‑Банка.</p></section><section class="product-calculator" aria-labelledby="loanCalcTitle"><h2 id="loanCalcTitle">Сравнить со вкладом</h2><p>Одинаковые сумма и срок. Для вклада можно отдельно выбрать способ капитализации процентов.</p><div class="product-fields"><label><span>Сумма, ₽</span><input id="loanAmount" type="text" inputmode="numeric" class="money-input" value="1 500 000"><small id="loanMinWarning" class="min-warning">Минимальная сумма — 1 500 000 ₽</small></label><label><span>Срок размещения</span><div class="product-term product-term-json"><select id="loanTerm" aria-label="Срок Инвестзайма"><option value="months:12">12 месяцев</option></select><small id="loanTermSource" class="term-source">Сроки загружаются из rates.json</small></div></label><label><span>Ставка Инвестзайма, % годовых</span><input id="loanRate" type="number" min="0" max="100" step="0.1" value="15.6"><small id="loanRateSource" class="rate-source">Сценарная ставка · ожидается rates.json</small></label><label><span>Ставка вклада, % годовых</span><input id="loanDepositRate" type="number" min="0" max="100" step="0.1" value="12"></label></div><div class="product-switches"><label class="compact-switch"><span><b>Учитывать НДФЛ</b><small>Для обоих вариантов</small></span><input id="loanTax" type="checkbox" checked></label><label class="deposit-capitalization"><span><b>Капитализация вклада</b><small>Применяется только ко вкладу</small></span><select id="loanDepositCap"><option value="none">Без капитализации</option><option value="monthly">Ежемесячно</option><option value="daily">Ежедневно</option></select></label></div><div class="product-results"><article class="product-result"><span>Инвестзайма · итог до НДФЛ</span><strong id="loanProductBefore">—</strong><b id="loanProductIncome">—</b><small id="loanProductAfter">—</small></article><article class="product-result"><span>Вклад · итог до НДФЛ</span><strong id="loanDepositBefore">—</strong><b id="loanDepositIncome">—</b><small id="loanDepositAfter">—</small></article></div><div id="loanVerdict" class="product-verdict">—</div><p class="product-disclaimer">Расчёт ориентировочный. Когда включено «Учитывать НДФЛ», единая ставка 13% применяется ко всему рассчитанному доходу обоих вариантов. Это упрощённый сценарий сравнения; фактический налог по вкладу рассчитывается с учётом необлагаемого лимита и индивидуальной налоговой базы.</p></section></div></section>
+<section id="missionPage" class="product-page mission-page" aria-labelledby="missionTitle">
+<div class="mission-hero"><div class="mission-copy"><p class="mission-eyebrow">Наша миссия</p><h1 id="missionTitle">Простые решения<br>для <span>больших целей</span></h1><p class="mission-intro">Помогаем клиентам приумножать капитал через понятные инвестиционные продукты: создаём качественный диалог, подбираем решения под задачи клиента и сопровождаем его на всех этапах — от первой консультации до реализации целей.</p></div><p class="mission-quote">Больше возможностей<br>для каждого клиента<br>сегодня и завтра</p></div>
+<div class="mission-pillars"><article class="mission-pillar"><span class="mission-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 2 21 6v6c0 6-9 10-9 10S3 18 3 12V6Z"/><path class="mission-icon-detail" d="M8 12h8M12 8v8"/></svg></span><div><h2>Качество</h2><p>Простые и надёжные решения с глубокой аналитикой, прозрачными условиями и понятной логикой продукта.</p></div></article><article class="mission-pillar"><span class="mission-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m14 2-9 12h7l-2 8 9-12h-7Z"/></svg></span><div><h2>Эффективность</h2><p>Диджитальные касания и голосовой канал помогают улучшать конверсию и средний чек при том же штате.</p></div></article><article class="mission-pillar"><span class="mission-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="13" width="4" height="9" rx="1"/><rect x="10" y="8" width="4" height="14" rx="1"/><rect x="17" y="2" width="4" height="20" rx="1"/></svg></span><div><h2>Развитие клиента</h2><p>Помогаем клиенту развивать инвестиционный портфель, расширять возможности и расти вместе с Т‑Капиталом.</p></div></article></div><section class="mission-result"><span class="mission-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 13C5 14 2 10 2 4c6 0 10 3 10 9Zm0 0c0-7 4-11 10-11 0 7-4 11-10 11Z"/><path class="mission-icon-stem" d="M12 12v10"/></svg></span><h2>Главный результат</h2><p>Клиент получает простое решение под свою задачу, остаётся в экосистеме и использует инвестиции как привычный инструмент достижения целей.</p></section><div class="mission-features"><article class="mission-feature"><span class="mission-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m12 2 10 5v10l-10 5-10-5V7Z"/><path class="mission-icon-detail" d="m2 7 10 5 10-5M12 12v10"/></svg></span><div><h3>Широкая линейка продуктов</h3><p>Фонды, Т‑Счёт, СПК, Инвестзайм и структурные продукты под разные инвестиционные задачи.</p></div></article><article class="mission-feature"><span class="mission-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="6" r="4"/><circle cx="3" cy="10" r="2.5"/><circle cx="21" cy="10" r="2.5"/><path d="M5 22v-5a7 7 0 0 1 14 0v5ZM0 21v-5a4 4 0 0 1 4-4v9Zm20 0v-9a4 4 0 0 1 4 4v5Z"/></svg></span><div><h3>Персональный подход</h3><p>Решения под цели и горизонт клиента с учётом риск‑профиля и текущей ситуации.</p></div></article><article class="mission-feature"><span class="mission-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="13" width="4" height="9" rx="1"/><rect x="10" y="8" width="4" height="14" rx="1"/><rect x="17" y="2" width="4" height="20" rx="1"/></svg></span><div><h3>Рост и развитие</h3><p>Помогаем клиенту перейти в инвестиции и последовательно развивать портфель.</p></div></article><article class="mission-feature"><span class="mission-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 2 21 6v6c0 6-9 10-9 10S3 18 3 12V6Z"/><path class="mission-icon-detail" d="m7 12 3 3 7-7"/></svg></span><div><h3>Экспертная поддержка</h3><p>Сопровождаем клиента на всех этапах: от первого диалога до достижения долгосрочных целей.</p></div></article></div><div class="mission-actions"><button type="button" class="mission-action-secondary" onclick="showProductPage('funds')">Перейти к фондам <span aria-hidden="true">→</span></button><button type="button" class="mission-action-primary" onclick="openCalc('TMON')">Открыть калькулятор <span aria-hidden="true">→</span></button></div></section>
 <footer class="product-pages-note">Торговые комиссии указаны для Т‑Инвестиций; условия продажи и погашения проверены 02.09.2026. Нулевая комиссия в карточке брокера не отменяет расходов фонда, уже включённых в пай. Точный тариф проверяйте перед заявкой.<br>СЧА и историческая доходность обновлены 05.10.2026; дата оценки и источник указаны у показателя. Это сохранённые значения; автоматически обновляются только котировки. Стоимость чистых активов — размер имущества фонда за вычетом обязательств.<br>Время операций, доступность и показатели фондов — по данным Т‑Инвестиций на 25.08.2026. Показатели доходности имеют разную базу и не гарантированы. Калькулятор даёт ориентировочный результат для налогового резидента РФ и не учитывает все особенности конкретного счёта. Не является индивидуальной инвестиционной рекомендацией.</footer>
   </main>
   <div class="modal-bg" id="modalBg"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="calcTitle"><div class="modal-head"><div><span class="cat" id="calcTicker"></span><h2 id="calcTitle">Фонд и вклад: расчёт дохода</h2><p id="calcName"></p></div><a class="close" href="#" onclick="closeCalc();return false" aria-label="Закрыть">×</a></div><div class="modal-body"><form class="form" onsubmit="return false">
@@ -277,12 +507,15 @@ function historyHtml(x) {
     out += rows.map(function (row) { var h = metricsSnapshot.history[row[0]], value = h && h.returns[period], missing = row[0] === 'TPAY' ? 'Нужны данные о выплатах' : value == null ? 'Нет истории за срок' : null, source = h ? h.source : 'https://www.tbank.ru/invest/etfs/' + row[0] + '/'; return '<div class="historyRow"><div><a href="' + source + '" target="_blank" rel="noreferrer" class="fund-identity">' + fundIconHtml(row[0], 'small') + '<b>' + row[0] + '</b></a><small>' + row[1] + '</small><small>Цена: <span data-q="' + row[0] + '">—</span></small></div><b>' + (row[2] === null ? '—' : pct(row[2])) + '</b><div>' + (missing ? '<b>—</b><small>' + missing + '</small>' : '<a href="' + h.source + '" target="_blank" rel="noreferrer"><b class="' + (value < 0 ? 'negative' : 'positive') + '">' + (value > 0 ? '+' : '') + pct(value) + '</b><small>' + h.currency + ' · ' + dateLabel(h.asOf) + '</small></a>') + '</div></div>'; }).join('');
     return out + '<p class="verdict">Прирост расчётной стоимости пая за выбранный срок, до НДФЛ. Расходы фонда уже учтены. Выплаты пайщикам отдельно не добавлены. Даты и валюты указаны в строках: при их различии прямое ранжирование некорректно. Прочерк — нет полной истории. Источник — Investfunds; проверено ' + dateLabel(metricsSnapshot.checkedAt) + '.</p></div>';
 }
-function updateThemeButton() { var button = document.querySelector('#themeToggle'), dark = document.documentElement.dataset.theme !== 'light'; if (!button)
-    return; button.querySelector('span').textContent = dark ? '☀' : '☾'; button.querySelector('b').textContent = dark ? 'Светлая' : 'Тёмная'; button.title = 'Включить ' + (dark ? 'светлую' : 'тёмную') + ' тему'; }
-function toggleTheme() { var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'; document.documentElement.dataset.theme = next; try {
-    localStorage.setItem('funds-theme-v2', next);
-}
-catch (e) { } updateThemeButton(); }
+function updateThemeButton(){var theme=document.documentElement.dataset.theme;document.querySelectorAll('[data-theme-choice]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.themeChoice===theme));});var select=document.getElementById('themeSelect');if(select)select.value=theme;}
+function setTheme(theme){if(!['light','dark','brand'].includes(theme))return;document.documentElement.dataset.theme=theme;try{localStorage.setItem('funds-theme-v2',theme);}catch(e){}updateThemeButton();closeThemeMenu();}
+function toggleTheme(){var themes=['light','dark','brand'];setTheme(themes[(themes.indexOf(document.documentElement.dataset.theme)+1)%themes.length]);}
+function openThemeMenu(){var d=document.getElementById('themeDropdown');if(d)d.classList.add('open');var b=document.getElementById('themeToggle');if(b)b.setAttribute('aria-expanded','true');}
+function closeThemeMenu(){var d=document.getElementById('themeDropdown');if(d)d.classList.remove('open');var b=document.getElementById('themeToggle');if(b)b.setAttribute('aria-expanded','false');}
+function toggleThemeMenu(){var d=document.getElementById('themeDropdown');if(d&&d.classList.contains('open'))closeThemeMenu();else openThemeMenu();}
+document.addEventListener('click',function(e){if(!e.target.closest('#themeDropdown'))closeThemeMenu();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var d=document.getElementById('themeDropdown');if(d&&d.classList.contains('open')){closeThemeMenu();document.getElementById('themeToggle').focus();}}});
+document.addEventListener('focusin',function(e){if(!e.target.closest('#themeDropdown'))closeThemeMenu();});
 const money = [['LQDT', 'ВИМ Инвестиции', .29], ['AKMM', 'Альфа-Капитал', .35], ['SBMM', 'Первая', .5]], bonds = [['SBRB', 'Первая', .8], ['BOND', 'ДОХОДЪ', .78], ['OBLG', 'ВИМ Инвестиции', .89]], stocks = [['EQMX', 'ВИМ Инвестиции', .69], ['SBMX', 'Первая', 1], ['AKME', 'Альфа-Капитал', 1.5]], gold = [['GOLD', 'ВИМ Инвестиции', .6], ['SBGD', 'Первая', 1.3], ['AKGD', 'Альфа-Капитал', 1]], fx = [['SBCB', 'Первая', 1]];
 const data = [
     { t: 'TMON', n: 'Денежный рынок', c: 'Ликвидность', d: 'РЕПО и инструменты денежного рынка.', f: 1.199, r: 'Низкий', a: '#ffe62e', v: 'СПБ Биржа · 09:00–23:50', e: '13,9%', b: 'текущая ставка денежного рынка ON', k: 'Неквал', p: money, cr: 13.9 },
@@ -484,10 +717,10 @@ else
   async function loadRates(){try{const r=await fetch('./rates.json?ts='+Date.now(),{cache:'no-store'});ratesConfig=await r.json();const d=validRate(ratesConfig.deposit&&ratesConfig.deposit.defaultRate);if(d!==null){['tacc','loan'].forEach(id=>document.getElementById(id+'DepositRate').value=d);document.getElementById('spkDepositRate').value=d}['tacc','loan'].forEach(id=>{populateTerms(id);applyProductRate(id)})}catch(e){['tacc','loan'].forEach(id=>{document.getElementById(id+'RateSource').textContent='rates.json недоступен';calculateProduct(id)})}}
   async function loadSpkConfig(){try{const r=await fetch('./spk-config.json?ts='+Date.now(),{cache:'no-store'});const cfg=await r.json();if(cfg&&cfg.segmentFees)segmentFees=Object.assign(segmentFees,cfg.segmentFees);document.querySelectorAll('#spkSegment option').forEach(option=>{const fee=segmentFees[option.value];if(Number.isFinite(Number(fee)))option.textContent=segmentLabels[option.value]+' · комиссия '+Number(fee).toLocaleString('ru-RU')+'%'});calculateSpk()}catch(e){console.warn('spk-config.json недоступен, используются встроенные значения')}}
   async function loadMarketRates(){try{const r=await fetch('./market-rates.json?ts='+Date.now(),{cache:'no-store'});marketRates=await r.json();const x=marketRates.rusfar,value=Number(x.value),rawDate=x.updatedAt||marketRates.updatedAt||'',parsed=rawDate?new Date(rawDate):null,updated=parsed&&!Number.isNaN(parsed.getTime())?parsed.toLocaleString('ru-RU'):'дата обновления не указана';document.getElementById('spkRusfar').value=value;document.getElementById('spkRusfarHero').textContent=value.toLocaleString('ru-RU',{maximumFractionDigits:2})+'%';document.getElementById('spkUpdated').textContent='Значение на '+x.valueDate+' · '+updated;document.getElementById('spkRateSource').textContent='Из market-rates.json · '+x.valueDate;document.getElementById('spkRateSource').classList.add('loaded');calculateSpk()}catch(e){document.getElementById('spkUpdated').textContent='Не удалось загрузить market-rates.json';document.getElementById('spkRateSource').textContent='Введите значение вручную';document.getElementById('spkRusfar').readOnly=false;calculateSpk()}}
-  window.showProductPage=function(name){document.querySelectorAll('.product-page').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.product-tab').forEach(x=>x.classList.toggle('active',x.dataset.page===name));const map={funds:'fundsPage',taccount:'taccountPage',spk:'spkPage',investloan:'investloanPage'},page=document.getElementById(map[name]||'fundsPage');if(page)page.classList.add('active');history.replaceState(null,'','#'+name);window.scrollTo({top:0,behavior:'smooth'})};
+  window.showProductPage=function(name){document.querySelectorAll('.product-page').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.product-tab').forEach(x=>x.classList.toggle('active',x.dataset.page===name));const map={funds:'fundsPage',taccount:'taccountPage',spk:'spkPage',investloan:'investloanPage',mission:'missionPage'},page=document.getElementById(map[name]||'fundsPage');if(page)page.classList.add('active');history.replaceState(null,'','#'+name);window.scrollTo({top:0,behavior:'smooth'})};
   ['tacc','loan'].forEach(id=>{const page=document.getElementById(id==='tacc'?'taccountPage':'investloanPage');page.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',()=>calculateProduct(id)));document.getElementById(id+'Term').addEventListener('change',()=>applyProductRate(id));calculateProduct(id)});
   document.querySelectorAll('#spkPage input,#spkPage select').forEach(el=>el.addEventListener('input',calculateSpk));document.querySelectorAll('.spk-unit button').forEach(btn=>btn.addEventListener('click',()=>{spkUnit=btn.dataset.unit;document.querySelectorAll('.spk-unit button').forEach(x=>x.classList.toggle('active',x===btn));calculateSpk()}));
-  loadRates();loadSpkConfig();loadMarketRates();setInterval(loadMarketRates,60*1000);const initial=location.hash.replace('#','');if(['taccount','spk','investloan'].includes(initial))showProductPage(initial);
+  loadRates();loadSpkConfig();loadMarketRates();setInterval(loadMarketRates,60*1000);const initial=location.hash.replace('#','');if(['taccount','spk','investloan','mission'].includes(initial))showProductPage(initial);
 })();
 </script>
 
@@ -651,7 +884,7 @@ else
   var initial=location.hash.replace('#','');if(initial.indexOf('smart-')===0)window.showProductPage(initial);
 })();
 </script>
-<script src="scripts/sales-pages.js?v=20261008-dcm-state-2"></script>
+<script src="scripts/sales-pages.js?v=20261008-dcm-design-3"></script>
 <script>
 (function(){
   function numberValue(id){var el=document.getElementById(id);return Number(String(el&&el.value||'').replace(/[\s\u00a0]/g,'').replace(',','.'))||0}
@@ -674,5 +907,15 @@ else
 })();
 </script>
 
+<script>
+(function(){
+ var nav=document.querySelector('.product-nav');if(!nav)return;
+ var tab=document.createElement('button');tab.type='button';tab.className='product-tab';tab.dataset.page='mission';tab.textContent='Миссия';tab.addEventListener('click',function(){window.showProductPage('mission')});nav.appendChild(tab);
+ var previous=window.showProductPage;
+ window.showProductPage=function(name){document.body.classList.toggle('mission-active',name==='mission');return previous(name)};
+ if(location.hash==='#mission')window.showProductPage('mission');
+ window.addEventListener('hashchange',function(){var name=location.hash.slice(1);if(name==='mission'||['funds','taccount','spk','investloan','model'].includes(name)||name.indexOf('smart-')===0)window.showProductPage(name)});
+})();
+</script>
 </body>
 </html>
