@@ -100,6 +100,45 @@ function extractCards(html) {
   return cards;
 }
 
+async function renderedHtml() {
+  const { chromium } = await import('playwright');
+  const browser = await chromium.launch({ headless: true });
+  try {
+    const page = await browser.newPage({
+      viewport: { width: 1440, height: 1400 },
+      userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+    });
+    await page.goto(SOURCE, { waitUntil: 'domcontentloaded', timeout: 90000 });
+    await page.waitForLoadState('networkidle', { timeout: 45000 }).catch(() => {});
+    await page.waitForFunction(() => /облигаци/i.test(document.body.innerText) && /купон|доходност/i.test(document.body.innerText), null, { timeout: 45000 });
+    const grouped = await page.evaluate(() => {
+      const all = [...document.body.querySelectorAll('*')];
+      const index = new Map(all.map((node, i) => [node, i]));
+      const normalized = value => String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
+      const markers = all.filter(node => {
+        const text = normalized(node.textContent);
+        if (node.children.length > 2) return false;
+        return text === 'сейчас размещаются' || text === 'первичные размещения' ||
+          text === 'по мнению аналитиков' || text === 'мнение аналитиков';
+      }).map(node => ({
+        position: index.get(node) || 0,
+        section: /аналитик/.test(normalized(node.textContent)) ? 'analyst' : 'current'
+      }));
+      return [...document.querySelectorAll('a[href]')].map(anchor => {
+        const text = normalized(anchor.innerText || anchor.textContent);
+        if (!/облигац/.test(text) || !/купон|доходност/.test(text)) return null;
+        const position = index.get(anchor) || 0;
+        const preceding = markers.filter(marker => marker.position < position).sort((a, b) => b.position - a.position)[0];
+        return { section: preceding?.section || 'current', html: anchor.outerHTML };
+      }).filter(Boolean);
+    });
+    if (!grouped.length) return await page.content();
+    return grouped.map(item => `<h2>${item.section === 'analyst' ? 'По мнению аналитиков' : 'Первичные размещения'}</h2>${item.html}`).join('\n');
+  } finally {
+    await browser.close();
+  }
+}
+
 try {
   const response = await fetch(SOURCE, {
     headers: {
@@ -108,9 +147,13 @@ try {
     },
     redirect: 'follow'
   });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const html = await response.text();
-  const placements = extractCards(html);
+  let html = response.ok ? await response.text() : '';
+  let placements = html ? extractCards(html) : [];
+  if (placements.length < 3) {
+    console.log(`DCM: статическая страница дала ${placements.length} карточек, запускаю браузер`);
+    html = await renderedHtml();
+    placements = extractCards(html);
+  }
   if (placements.length < 3) throw new Error(`распознано только ${placements.length} размещений`);
   const payload = {updatedAt: new Date().toISOString(), source: SOURCE, placements};
   await fs.writeFile(FILE, JSON.stringify(payload, null, 2) + '\n');
