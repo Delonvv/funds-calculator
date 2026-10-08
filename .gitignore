@@ -1,0 +1,5 @@
+node_modules/
+dcm-debug.html
+dcm-debug.png
+dcm-debug-error.txt
+.DS_Store

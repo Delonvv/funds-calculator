@@ -28,27 +28,6 @@ jobs:
       - name: Update funds and market rates
         run: node scripts/update-data.mjs
 
-      - name: Install browser for T-Investments placements
-        run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
-
-      - name: Update current bond placements
-        id: dcm
-        continue-on-error: true
-        run: node scripts/update-dcm.mjs
-
-      - name: Save DCM diagnostics
-        if: steps.dcm.outcome == 'failure'
-        uses: actions/upload-artifact@v4
-        with:
-          name: dcm-debug
-          path: |
-            dcm-debug.html
-            dcm-debug.png
-            dcm-debug-error.txt
-          if-no-files-found: warn
-
       - name: Commit changed data
         run: |
           if git diff --quiet; then
@@ -58,12 +37,6 @@ jobs:
 
           git config user.name "funds-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add funds.json market-rates.json dcm.json
-          git commit -m "Daily funds, RUSFAR and DCM update"
+          git add funds.json market-rates.json
+          git commit -m "Daily funds and RUSFAR update"
           git push
-
-      - name: Report DCM failure
-        if: steps.dcm.outcome == 'failure'
-        run: |
-          echo "T-Investments placements were not parsed. Download the dcm-debug artifact."
-          exit 1
