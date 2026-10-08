@@ -167,5 +167,6 @@ try {
   console.log(`DCM: сохранено размещений — ${placements.length}`);
 } catch (error) {
   console.error(`DCM update failed; previous dcm.json preserved: ${error.message}`);
+  await fs.writeFile('dcm-debug-error.txt', String(error.stack || error)).catch(() => {});
   process.exitCode = 1;
 }
