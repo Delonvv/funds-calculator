@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BUILD: 2026-10-08-final-v3 | SPK term field visibility -->
+<!-- BUILD: 2026-10-08-final-v4 | SPK icons and pre/post-tax difference -->
 <html lang="ru" data-theme="light">
 <head>
   <meta charset="utf-8">
@@ -116,6 +116,20 @@ footer{border-color:var(--line);font-size:12px;color:var(--muted);margin-top:32p
 .spk-dashboard .spk-term>input{width:100%;min-width:0;font-size:17px}
 .spk-dashboard .spk-unit{display:grid;grid-template-columns:1fr 1fr;width:100%;min-height:40px}
 .spk-dashboard .spk-unit button{min-width:0;padding:0 10px}
+.spk-card-icon{overflow:hidden;padding:6px;background:rgba(255,221,45,.34)!important;border:1px solid rgba(202,162,0,.22)}
+.spk-card-icon img{display:block;width:100%;height:100%;object-fit:contain}
+.spk-result-card.deposit .spk-card-icon{background:rgba(151,164,205,.2)!important;border-color:rgba(111,124,166,.22)}
+:root[data-theme=dark] .spk-card-icon{background:rgba(255,221,45,.22)!important;border-color:rgba(255,221,45,.28)}
+:root[data-theme=dark] .spk-result-card.deposit .spk-card-icon{background:rgba(161,176,225,.18)!important;border-color:rgba(161,176,225,.26)}
+.spk-verdict{display:block;text-align:left}
+.spk-verdict-head{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:11px}
+.spk-difference-values{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.spk-difference-item{padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.52)}
+.spk-difference-item span{display:block;margin-bottom:4px;font-size:11px;opacity:.78}
+.spk-difference-item strong{display:block!important;font-size:22px!important;line-height:1.1}
+.spk-difference-item.after-tax{transform:translateY(4px)}
+:root[data-theme=dark] .spk-difference-item{background:rgba(0,0,0,.16)}
+@media(max-width:520px){.spk-difference-values{grid-template-columns:1fr}.spk-difference-item.after-tax{transform:none}}
 
 </style>
 <!-- Yandex.Metrika counter -->
@@ -148,8 +162,8 @@ footer{border-color:var(--line);font-size:12px;color:var(--muted);margin-top:32p
   <button class="spk-calc-button" type="button" onclick="calculateSpk()">Рассчитать</button>
  </div>
  <section class="spk-comparison"><h2>Результат сравнения</h2><div class="spk-result-cards">
-  <article class="spk-result-card product"><div class="spk-card-title"><span class="spk-card-icon" aria-hidden="true">С</span><div><h3>СПК</h3><small>Счёт под ключ</small></div></div><span>Итоговая сумма</span><strong id="spkBefore">—</strong><div class="spk-result-row"><span>Чистый доход</span><b id="spkIncome">—</b></div><div class="spk-result-row"><span>Эффективная годовая доходность</span><b id="spkEffective">—</b></div></article>
-  <article class="spk-result-card deposit"><div class="spk-card-title"><span class="spk-card-icon" aria-hidden="true">₽</span><div><h3>Банковский вклад</h3><small>Для сравнения</small></div></div><span>Итоговая сумма</span><strong id="spkDepositBefore">—</strong><div class="spk-result-row"><span>Чистый доход</span><b id="spkDepositIncome">—</b></div><div class="spk-result-row"><span>Эффективная годовая доходность</span><b id="spkDepositEffective">—</b></div></article>
+  <article class="spk-result-card product"><div class="spk-card-title"><span class="spk-card-icon" aria-hidden="true"><img src="assets/spk-result-icon.webp" alt=""></span><div><h3>СПК</h3><small>Счёт под ключ</small></div></div><span>Итоговая сумма</span><strong id="spkBefore">—</strong><div class="spk-result-row"><span>Чистый доход</span><b id="spkIncome">—</b></div><div class="spk-result-row"><span>Эффективная годовая доходность</span><b id="spkEffective">—</b></div></article>
+  <article class="spk-result-card deposit"><div class="spk-card-title"><span class="spk-card-icon" aria-hidden="true"><img src="assets/deposit-result-icon.webp" alt=""></span><div><h3>Банковский вклад</h3><small>Для сравнения</small></div></div><span>Итоговая сумма</span><strong id="spkDepositBefore">—</strong><div class="spk-result-row"><span>Чистый доход</span><b id="spkDepositIncome">—</b></div><div class="spk-result-row"><span>Эффективная годовая доходность</span><b id="spkDepositEffective">—</b></div></article>
  </div><div class="spk-verdict" id="spkVerdict"><span class="spk-verdict-arrow" aria-hidden="true">→</span><span>—</span></div></section>
  <aside class="spk-side"><div class="spk-rate-card"><div><span>RUSFAR</span><strong id="spkRusfarHero">—</strong><small id="spkUpdated">Обновление ставки…</small></div><svg viewBox="0 0 170 70" aria-hidden="true"><path d="M4 61 C22 55 28 42 45 47 S67 35 82 37 S102 21 119 25 S145 20 166 5"/></svg></div><section class="spk-info"><h2>Комиссии и доходность</h2><p class="spk-note">Комиссия уже учтена в доходности</p><table class="spk-table"><thead><tr><th>Сегмент</th><th>Комиссия</th><th>Доходность</th></tr></thead><tbody id="spkCommissionRows"></tbody></table><p class="spk-expense-note">Расходы фонда 0,25% в год указаны справочно и дополнительно не вычитаются.</p></section></aside></section>
  <div hidden><span id="spkInvested"></span><span id="spkNetRate"></span><span id="spkTaxValue"></span><span id="spkAfter"></span><span id="spkFormulaRusfar"></span><span id="spkFormulaSegment"></span><span id="spkFormulaFee"></span><span id="spkFormulaNet"></span></div>
@@ -595,6 +609,27 @@ else
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/113436965" style="position:absolute;left:-9999px" alt=""></div></noscript>
 <script src="scripts/smart-sales.js?v=20261007-5"></script>
+<script>
+(function(){
+  function numberValue(id){var el=document.getElementById(id);return Number(String(el&&el.value||'').replace(/[\s\u00a0]/g,'').replace(',','.'))||0}
+  function percentText(id){var el=document.getElementById(id),match=String(el&&el.textContent||'').replace(',','.').match(/-?[\d.]+/);return match?Number(match[0]):0}
+  function rub(value){return Math.round(Math.abs(value)).toLocaleString('ru-RU')+' ₽'}
+  function depositIncome(amount,rate,years,cap){if(cap==='daily')return amount*(Math.pow(1+rate/365,years*365)-1);if(cap==='monthly')return amount*(Math.pow(1+rate/12,years*12)-1);return amount*rate*years}
+  function renderDualDifference(){
+    var verdict=document.getElementById('spkVerdict');if(!verdict)return;
+    var amount=numberValue('spkAmount'),term=Math.max(0,numberValue('spkTerm'));
+    var activeUnit=document.querySelector('.spk-unit button.active'),unit=activeUnit&&activeUnit.dataset.unit==='days'?'days':'months';
+    var days=unit==='days'?term:term*365/12,years=days/365,netRate=Math.max(0,percentText('spkNetRate'))/100;
+    var spkIncome=amount*(Math.pow(1+netRate/365,days)-1),depositRate=Math.max(0,numberValue('spkDepositRate'))/100;
+    var cap=(document.getElementById('spkDepositCap')||{}).value||'none',depIncome=depositIncome(amount,depositRate,years,cap);
+    var diffBefore=spkIncome-depIncome,diffAfter=spkIncome*.87-depIncome*.87,equal=Math.abs(diffBefore)<1,positive=diffBefore>0;
+    verdict.classList.toggle('positive',positive);verdict.classList.toggle('equal',equal);
+    verdict.innerHTML='<div class="spk-verdict-head"><span class="spk-verdict-arrow" aria-hidden="true">'+(equal?'→':positive?'↑':'↓')+'</span><span>'+(equal?'Результат одинаковый':(positive?'СПК':'Вклад')+' выгоднее')+'</span></div><div class="spk-difference-values"><div class="spk-difference-item"><span>Разница до НДФЛ</span><strong>'+(diffBefore>=0?'+':'−')+rub(diffBefore)+'</strong></div><div class="spk-difference-item after-tax"><span>Разница после НДФЛ</span><strong>'+(diffAfter>=0?'+':'−')+rub(diffAfter)+'</strong></div></div>';
+  }
+  function start(){var verdict=document.getElementById('spkVerdict');if(!verdict)return;var observer=new MutationObserver(function(){observer.disconnect();renderDualDifference();observer.observe(verdict,{childList:true,subtree:true,characterData:true})});observer.observe(verdict,{childList:true,subtree:true,characterData:true});renderDualDifference()}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
 
 </body>
 </html>
