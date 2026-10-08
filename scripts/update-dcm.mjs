@@ -107,6 +107,7 @@ async function renderedHtml() {
   try {
     page = await browser.newPage({
       viewport: { width: 1440, height: 1400 },
+      ignoreHTTPSErrors: true,
       userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
     });
     await page.goto(SOURCE, { waitUntil: 'domcontentloaded', timeout: 90000 });
@@ -147,14 +148,19 @@ async function renderedHtml() {
 }
 
 try {
-  const response = await fetch(SOURCE, {
-    headers: {
-      'user-agent': 'Mozilla/5.0 (compatible; funds-calculator-data/1.0)',
-      accept: 'text/html,application/xhtml+xml'
-    },
-    redirect: 'follow'
-  });
-  let html = response.ok ? await response.text() : '';
+  let html = '';
+  try {
+    const response = await fetch(SOURCE, {
+      headers: {
+        'user-agent': 'Mozilla/5.0 (compatible; funds-calculator-data/1.0)',
+        accept: 'text/html,application/xhtml+xml'
+      },
+      redirect: 'follow'
+    });
+    if (response.ok) html = await response.text();
+  } catch (fetchError) {
+    console.warn(`DCM: обычный запрос недоступен (${fetchError.message}), запускаю браузер`);
+  }
   let placements = html ? extractCards(html) : [];
   if (placements.length < 3) {
     console.log(`DCM: статическая страница дала ${placements.length} карточек, запускаю браузер`);
