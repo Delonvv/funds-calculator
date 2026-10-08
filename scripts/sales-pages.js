@@ -1,6 +1,7 @@
 (function(){
   const pages={
     'stocks':{
+      hero:'assets/smart-stocks-hero.webp',
       title:'Акции',lead:'Подборка для задачи «добавить российские акции»: готовые фонды, разные стили управления и аргументы для разговора с клиентом.',
       analystTitle:'Доля акций зависит от риска и горизонта',analystText:'Акции подходят для долгосрочного капитала и способны обгонять инфляцию, но требуют готовности к заметным колебаниям стоимости.',
       products:[
@@ -19,6 +20,7 @@
       risk:'Стоимость акций может существенно снижаться. Историческая доходность и мнение аналитиков не гарантируют будущий результат.'
     },
     'fixed-income':{
+      fixedIncome:true,
       title:'Fixed Income',lead:'Продукты с заранее определённой или прогнозируемой доходностью и конкретным сроком: облигации, ЦФА, Т‑счёт, Инвестзайм и банковские вклады.',
       analystTitle:'Почему сейчас важно фиксировать доходность',analystText:'При дальнейшем снижении рыночных ставок новые размещения могут предлагать меньшую доходность. Фиксация текущих условий позволяет заранее определить денежный поток на выбранный срок.',
       fixedNote:'Не все продукты ниже юридически гарантируют одинаковый результат. У вклада ставка фиксируется договором; по облигации купон известен, но цена при досрочной продаже меняется; в ЦФА условия зависят от конкретного выпуска; для Т‑счёта и Инвестзайма используется заявленная доходность выбранного срока.',
@@ -41,6 +43,7 @@
       risk:'Термин Fixed Income объединяет разные по юридической природе продукты. Фиксированный купон не означает фиксированную цену при досрочной продаже, а заявленная доходность инвестиционного продукта не равна гарантии банковского вклада.'
     },
     'deposits':{
+      hero:'assets/smart-deposits-hero.webp',
       title:'Депозиты',lead:'Банковские продукты для предсказуемого результата: выбор срока, капитализации и возможности досрочного доступа к деньгам.',
       analystTitle:'Ставку выгоднее сопоставлять с целью',analystText:'Самая высокая ставка не всегда даёт лучший результат: важны срок, капитализация, необлагаемый лимит и условия досрочного закрытия.',
       products:[
@@ -59,6 +62,7 @@
       risk:'При досрочном закрытии ставка может пересчитываться. У накопительного счёта банк вправе изменить ставку; актуальные условия проверяются перед оформлением.'
     },
     'currency-bonds':{
+      hero:'assets/smart-currency-bonds-hero.webp',
       title:'Валютные облигации',lead:'Инструменты для валютной части портфеля: готовые фонды и отдельные выпуски с привязкой к иностранной валюте.',
       analystTitle:'Фокус — качество эмитента и разумный срок',analystText:'Валютная доходность помогает диверсифицировать рублёвый портфель, но итог в рублях зависит и от курса, и от цены облигации.',
       products:[
@@ -77,6 +81,7 @@
       risk:'Укрепление рубля может уменьшить рублёвый результат. Доходность к погашению реализуется при удержании бумаги до погашения и выполнении обязательств эмитентом.'
     },
     'money-market':{
+      hero:'assets/smart-money-market-hero.webp',
       title:'Денежный рынок',lead:'Инструменты для временного размещения денег и ликвидного резерва с доходностью, близкой к ставкам денежного рынка.',
       analystTitle:'Решение для денег между инвестициями',analystText:'Денежный рынок позволяет не оставлять свободный остаток без дохода, сохраняя возможность быстро перейти в другие инструменты.',
       products:[
@@ -95,6 +100,7 @@
       risk:'Доходность денежного рынка не фиксируется на весь срок и снижается вслед за рыночными ставками. Продажа биржевого фонда зависит от торговой сессии и расчётного цикла.'
     },
     'ofz':{
+      hero:'assets/smart-ofz-hero.webp',
       title:'ОФЗ',lead:'Государственные облигации и фонды на ОФЗ: подбор срока, дюрации и подхода под финансовую цель клиента.',
       analystTitle:'Срок облигации должен совпадать с целью',analystText:'Короткие выпуски меньше реагируют на ставки, длинные способны сильнее вырасти при снижении ставок, но и колеблются заметнее.',
       products:[
@@ -113,6 +119,7 @@
       risk:'Если продать облигацию до погашения, результат зависит от рыночной цены. Длинные выпуски сильнее реагируют на изменение ключевой ставки.'
     },
     'precious-metals':{
+      hero:'assets/smart-precious-metals-hero.webp',
       title:'Драгоценные металлы',lead:'Три способа добавить золото: биржевой фонд, металлический счёт для небольших покупок и счёт с возможностью получить физические слитки.',
       analystTitle:'Золото сохраняет защитную роль',analystText:'Низкая связь с рублёвыми и рисковыми активами помогает диверсифицировать портфель в периоды рыночного стресса.',
       products:[
@@ -137,10 +144,31 @@
   function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
   function product(x,index){return `<article class="ss-product"><div class="ss-product-top"><div class="ss-product-icon">${index+1}</div><span class="ss-product-tag">${esc(x.tag)}</span></div><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p><div class="ss-facts">${x.facts.map(f=>`<div class="ss-fact"><span>${esc(f[0])}</span><b>${esc(f[1])}</b></div>`).join('')}</div>${x.action!=='none'?`<button type="button" data-ss-action="${esc(x.action)}">Подробнее</button>`:''}</article>`}
   function sale(x,index){return `<article class="ss-sale"><div class="ss-sale-num">${index+1}</div><div><h3>${esc(x.title)}</h3><p>${esc(x.why)}</p><div class="ss-say">${esc(x.say)}</div></div></article>`}
+  function placementCard(x){
+    const initials=String(x.issuer||x.title||'DCM').replace(/[^A-Za-zА-Яа-яЁё0-9 ]/g,' ').split(/\s+/).filter(Boolean).slice(0,2).map(v=>v.slice(0,2)).join('').toUpperCase().slice(0,6);
+    return `<article class="ss-dcm-card"><div class="ss-dcm-top"><div class="ss-dcm-issuer"><span>${esc(initials||'DCM')}</span><div><b>${esc(x.issuer||'Размещение')}</b><small>${x.section==='analyst'?'Выбор аналитиков':'Первичное размещение'}</small></div></div><em>${esc(x.deadline||'Уточнить')}</em></div><h3>${esc(x.title||'Облигации')}</h3><strong class="ss-dcm-coupon">${esc(x.coupon||'Условия уточняются')}</strong><p>${esc(x.description||'Перед подачей заявки проверьте полные параметры выпуска.')}</p><div class="ss-dcm-facts"><div><span>Срок</span><b>${esc(x.term||'Уточнить')}</b></div><div><span>Валюта</span><b>${esc(x.currency||'RUB')}</b></div></div><a href="${esc(x.url||'https://www.tbank.ru/invest/recommendations/')}" target="_blank" rel="noopener noreferrer">Подробнее <span aria-hidden="true">›</span></a></article>`;
+  }
+  function renderFixedIncome(root,data){
+    root.innerHTML=`<section class="ss-hero ss-fi-hero"><div><div class="ss-eyebrow">Умные продажи</div><h1>${esc(data.title)}</h1><p class="ss-lead">Актуальные первичные размещения и выпуски, отмеченные аналитиками Т‑Инвестиций.</p></div><div class="ss-fi-visual"><img src="assets/fixed-income-hero.webp" alt="Панорама делового центра с жёлтым стеклянным зданием"></div></section><section class="ss-dcm"><div class="ss-dcm-head"><div><h2>Сейчас размещаются</h2><span id="ssDcmUpdated">Загрузка актуальных данных…</span></div><div class="ss-dcm-controls"><div class="ss-dcm-tabs" role="group" aria-label="Раздел размещений"><button type="button" class="active" data-dcm-section="current">Размещения</button><button type="button" data-dcm-section="analyst">Мнение аналитиков</button></div><button type="button" class="ss-dcm-refresh" id="ssDcmRefresh">↻ Обновить облигации</button><button type="button" class="ss-dcm-arrow" id="ssDcmPrev" aria-label="Предыдущие размещения">←</button><button type="button" class="ss-dcm-arrow" id="ssDcmNext" aria-label="Следующие размещения">→</button></div></div><div class="ss-dcm-viewport" id="ssDcmViewport"><div class="ss-dcm-track" id="ssDcmTrack"><div class="ss-dcm-loading">Загружаем размещения…</div></div></div><div class="ss-dcm-counter" id="ssDcmCounter"></div></section><div class="ss-section-head"><h2>Sales points</h2><span>Почему важно → что сказать клиенту</span></div><section class="ss-sales">${data.points.map(sale).join('')}</section><div class="ss-risk">${esc(data.risk)} Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией.</div>`;
+    initDcm(root);
+  }
+  function initDcm(root){
+    const state={data:[],section:'current'};
+    const track=root.querySelector('#ssDcmTrack'),viewport=root.querySelector('#ssDcmViewport'),counter=root.querySelector('#ssDcmCounter'),updated=root.querySelector('#ssDcmUpdated'),refresh=root.querySelector('#ssDcmRefresh');
+    function visibleCount(){return window.innerWidth<700?1:window.innerWidth<1050?2:3}
+    function updateCounter(){const cards=track.querySelectorAll('.ss-dcm-card'),count=cards.length;if(!count){counter.textContent='';return}const width=(cards[0].offsetWidth+12)||1,start=Math.min(count,Math.round(viewport.scrollLeft/width)+1),end=Math.min(count,start+visibleCount()-1);counter.textContent=`${start}–${end} из ${count}`}
+    function draw(){const list=state.data.filter(x=>(x.section||'current')===state.section);track.innerHTML=list.length?list.map(placementCard).join(''):`<div class="ss-dcm-empty">${state.section==='analyst'?'Сейчас нет сохранённых выпусков из блока аналитиков.':'Актуальные размещения не найдены.'}</div>`;viewport.scrollLeft=0;updateCounter()}
+    async function load(){refresh.disabled=true;refresh.textContent='Обновляем…';try{const response=await fetch(`dcm.json?ts=${Date.now()}`,{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status}`);const payload=await response.json();state.data=Array.isArray(payload.placements)?payload.placements:[];const stamp=payload.updatedAt?new Date(payload.updatedAt):null;updated.textContent=stamp&&!Number.isNaN(stamp.valueOf())?`Обновлено ${stamp.toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}`:'Данные загружены';draw()}catch(error){track.innerHTML='<div class="ss-dcm-empty">Не удалось загрузить размещения. Попробуйте ещё раз.</div>';updated.textContent='Ошибка обновления';counter.textContent=''}finally{refresh.disabled=false;refresh.textContent='↻ Обновить облигации'}}
+    root.querySelectorAll('[data-dcm-section]').forEach(button=>button.addEventListener('click',()=>{state.section=button.dataset.dcmSection;root.querySelectorAll('[data-dcm-section]').forEach(x=>x.classList.toggle('active',x===button));draw()}));
+    root.querySelector('#ssDcmPrev').addEventListener('click',()=>viewport.scrollBy({left:-viewport.clientWidth,behavior:'smooth'}));
+    root.querySelector('#ssDcmNext').addEventListener('click',()=>viewport.scrollBy({left:viewport.clientWidth,behavior:'smooth'}));
+    viewport.addEventListener('scroll',()=>requestAnimationFrame(updateCounter),{passive:true});window.addEventListener('resize',updateCounter);refresh.addEventListener('click',load);load();
+  }
   function render(id,data){
     const root=document.getElementById(`smart-${id}Page`);if(!root)return;
     root.className='product-page smart-sales-content';
-    root.innerHTML=`<section class="ss-hero"><div><div class="ss-eyebrow">Умные продажи</div><h1>${esc(data.title)}</h1><p class="ss-lead">${esc(data.lead)}</p>${data.fixedNote?`<div class="ss-fixed-note"><b>Важно:</b><span>${esc(data.fixedNote)}</span></div>`:''}</div><aside class="ss-analyst"><div class="ss-eyebrow">Взгляд аналитиков</div><strong>${esc(data.analystTitle)}</strong><p>${esc(data.analystText)}</p></aside></section><div class="ss-section-head"><h2>Что можно предложить</h2><span>Условия проверяются перед оформлением</span></div><section class="ss-products">${data.products.map(product).join('')}</section><div class="ss-section-head"><h2>Sales points</h2><span>Почему важно → что сказать клиенту</span></div><section class="ss-sales">${data.points.map(sale).join('')}</section><section class="ss-bottom"><div class="ss-panel"><h2>Быстрый выбор</h2><div class="ss-quick">${data.quick.map(q=>`<div><b>${esc(q[0])}</b><span>${esc(q[1])}</span></div>`).join('')}</div></div><aside class="ss-panel ss-script"><h2>Готовый заход</h2><p>${esc(data.script)}</p><button class="ss-copy" type="button">Скопировать текст</button></aside></section><div class="ss-risk">${esc(data.risk)} Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией.</div>`;
+    if(data.fixedIncome){renderFixedIncome(root,data);return}
+    root.innerHTML=`<section class="ss-hero ss-image-hero"><div><div class="ss-eyebrow">Умные продажи</div><h1>${esc(data.title)}</h1><p class="ss-lead">${esc(data.lead)}</p>${data.fixedNote?`<div class="ss-fixed-note"><b>Важно:</b><span>${esc(data.fixedNote)}</span></div>`:''}</div><div class="ss-page-visual"><img src="${esc(data.hero)}" alt=""></div></section><aside class="ss-analyst ss-analyst-inline"><div class="ss-eyebrow">Взгляд аналитиков</div><strong>${esc(data.analystTitle)}</strong><p>${esc(data.analystText)}</p></aside><div class="ss-section-head"><h2>Что можно предложить</h2><span>Условия проверяются перед оформлением</span></div><section class="ss-products">${data.products.map(product).join('')}</section><div class="ss-section-head"><h2>Sales points</h2><span>Почему важно → что сказать клиенту</span></div><section class="ss-sales">${data.points.map(sale).join('')}</section><section class="ss-bottom"><div class="ss-panel"><h2>Быстрый выбор</h2><div class="ss-quick">${data.quick.map(q=>`<div><b>${esc(q[0])}</b><span>${esc(q[1])}</span></div>`).join('')}</div></div><aside class="ss-panel ss-script"><h2>Готовый заход</h2><p>${esc(data.script)}</p><button class="ss-copy" type="button">Скопировать текст</button></aside></section><div class="ss-risk">${esc(data.risk)} Информация носит ознакомительный характер и не является индивидуальной инвестиционной рекомендацией.</div>`;
   }
   function openFund(ticker){window.showProductPage('funds');setTimeout(()=>{const q=document.getElementById('search');if(q){q.value=ticker;q.dispatchEvent(new Event('input',{bubbles:true}));q.scrollIntoView({behavior:'smooth',block:'center'})}},80)}
   function act(value){const [kind,...rest]=value.split(':'),target=rest.join(':');if(kind==='fund')openFund(target);else if(kind==='search')openFund(target);else if(kind==='page')window.showProductPage(target);else if(kind==='external')window.open(target,'_blank','noopener')}
