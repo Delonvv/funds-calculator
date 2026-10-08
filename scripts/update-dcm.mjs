@@ -103,8 +103,9 @@ function extractCards(html) {
 async function renderedHtml() {
   const { chromium } = await import('playwright');
   const browser = await chromium.launch({ headless: true });
+  let page;
   try {
-    const page = await browser.newPage({
+    page = await browser.newPage({
       viewport: { width: 1440, height: 1400 },
       userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
     });
@@ -134,6 +135,12 @@ async function renderedHtml() {
     });
     if (!grouped.length) return await page.content();
     return grouped.map(item => `<h2>${item.section === 'analyst' ? 'По мнению аналитиков' : 'Первичные размещения'}</h2>${item.html}`).join('\n');
+  } catch (error) {
+    if (page) {
+      await page.screenshot({ path: 'dcm-debug.png', fullPage: true }).catch(() => {});
+      await fs.writeFile('dcm-debug.html', await page.content()).catch(() => {});
+    }
+    throw error;
   } finally {
     await browser.close();
   }
@@ -159,5 +166,6 @@ try {
   await fs.writeFile(FILE, JSON.stringify(payload, null, 2) + '\n');
   console.log(`DCM: сохранено размещений — ${placements.length}`);
 } catch (error) {
-  console.warn(`DCM update skipped; previous dcm.json preserved: ${error.message}`);
+  console.error(`DCM update failed; previous dcm.json preserved: ${error.message}`);
+  process.exitCode = 1;
 }
