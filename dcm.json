@@ -1,0 +1,102 @@
+{
+  "updatedAt": "2026-10-08T11:00:00.000Z",
+  "source": "https://www.tbank.ru/invest/recommendations/",
+  "placements": [
+    {
+      "id": "a7-fixed-202610",
+      "section": "current",
+      "issuer": "А7",
+      "title": "Облигации А7",
+      "coupon": "Фиксированный купон до 17%",
+      "description": "Рублёвое первичное размещение с фиксированным купоном.",
+      "term": "Уточнить в карточке",
+      "currency": "RUB",
+      "deadline": "До 9 октября",
+      "url": "https://www.tbank.ru/invest/recommendations/"
+    },
+    {
+      "id": "rusal-cny-202610",
+      "section": "current",
+      "issuer": "РУСАЛ",
+      "title": "Облигации РУСАЛ CNY",
+      "coupon": "Купон до 11% в CNY",
+      "description": "Валютное размещение в юанях с расчётами по условиям выпуска.",
+      "term": "Уточнить в карточке",
+      "currency": "CNY",
+      "deadline": "До 9 октября",
+      "url": "https://www.tbank.ru/invest/recommendations/"
+    },
+    {
+      "id": "pkt-float-202610",
+      "section": "current",
+      "issuer": "ПКТ",
+      "title": "Облигации ПКТ",
+      "coupon": "Плавающий купон до 17,15%",
+      "description": "Плавающий купон меняется вместе с базовой рыночной ставкой.",
+      "term": "Уточнить в карточке",
+      "currency": "RUB",
+      "deadline": "До 8 октября",
+      "url": "https://www.tbank.ru/invest/recommendations/"
+    },
+    {
+      "id": "pkt-fixed-202610",
+      "section": "current",
+      "issuer": "ПКТ",
+      "title": "Облигации ПКТ",
+      "coupon": "Фиксированный купон до 16,99%",
+      "description": "Фиксированный купон позволяет заранее оценить денежный поток.",
+      "term": "Уточнить в карточке",
+      "currency": "RUB",
+      "deadline": "До 9 октября",
+      "url": "https://www.tbank.ru/invest/recommendations/"
+    },
+    {
+      "id": "avtoban-fixed-202610",
+      "section": "current",
+      "issuer": "АВТОБАН",
+      "title": "Облигации АВТОБАН‑Финанс",
+      "coupon": "Фиксированный купон до 18,25%",
+      "description": "Рублёвый выпуск для фиксации доходности на срок обращения.",
+      "term": "Уточнить в карточке",
+      "currency": "RUB",
+      "deadline": "До 9 октября",
+      "url": "https://www.tbank.ru/invest/recommendations/"
+    },
+    {
+      "id": "softline-float-202610",
+      "section": "current",
+      "issuer": "SOFTLINE",
+      "title": "Облигации Софтлайн",
+      "coupon": "Плавающий купон до 18,5%",
+      "description": "Переменная выплата следует за базовой рыночной ставкой.",
+      "term": "Уточнить в карточке",
+      "currency": "RUB",
+      "deadline": "До 13 октября",
+      "url": "https://www.tbank.ru/invest/recommendations/"
+    },
+    {
+      "id": "softline-fixed-202610",
+      "section": "current",
+      "issuer": "SOFTLINE",
+      "title": "Облигации Софтлайн",
+      "coupon": "Фиксированный купон до 18,5%",
+      "description": "Фиксированная выплата для закрепления текущей доходности.",
+      "term": "Уточнить в карточке",
+      "currency": "RUB",
+      "deadline": "До 13 октября",
+      "url": "https://www.tbank.ru/invest/recommendations/"
+    },
+    {
+      "id": "cloud-float-202610",
+      "section": "current",
+      "issuer": "CLOUD",
+      "title": "Облигации Облачные технологии",
+      "coupon": "Плавающий купон до 16%",
+      "description": "Выпуск технологической компании с плавающим купоном.",
+      "term": "Уточнить в карточке",
+      "currency": "RUB",
+      "deadline": "Уточнить",
+      "url": "https://www.tbank.ru/invest/recommendations/"
+    }
+  ]
+}
