@@ -111,8 +111,21 @@ async function renderedHtml() {
       userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
     });
     await page.goto(SOURCE, { waitUntil: 'domcontentloaded', timeout: 90000 });
-    await page.waitForLoadState('networkidle', { timeout: 45000 }).catch(() => {});
-    await page.waitForFunction(() => /облигаци/i.test(document.body.innerText) && /купон|доходност/i.test(document.body.innerText), null, { timeout: 45000 });
+    let cardsVisible = false;
+    for (let attempt = 0; attempt < 24; attempt += 1) {
+      await page.waitForTimeout(1500);
+      const text = await page.locator('body').innerText({ timeout: 3000 }).catch(() => '');
+      if (/облигаци/i.test(text) && /купон|доходност/i.test(text)) {
+        cardsVisible = true;
+        break;
+      }
+    }
+    await page.evaluate(() => window.stop()).catch(() => {});
+    await page.waitForTimeout(800);
+    if (!cardsVisible) {
+      const title = await page.title().catch(() => 'неизвестен');
+      throw new Error(`карточки не появились; URL: ${page.url()}; title: ${title}`);
+    }
     const grouped = await page.evaluate(() => {
       const all = [...document.body.querySelectorAll('*')];
       const index = new Map(all.map((node, i) => [node, i]));
@@ -138,8 +151,11 @@ async function renderedHtml() {
     return grouped.map(item => `<h2>${item.section === 'analyst' ? 'По мнению аналитиков' : 'Первичные размещения'}</h2>${item.html}`).join('\n');
   } catch (error) {
     if (page) {
+      await page.evaluate(() => window.stop()).catch(() => {});
+      await page.waitForTimeout(500).catch(() => {});
       await page.screenshot({ path: 'dcm-debug.png', fullPage: true }).catch(() => {});
-      await fs.writeFile('dcm-debug.html', await page.content()).catch(() => {});
+      const debugHtml = await page.content().catch(() => '');
+      if (debugHtml) await fs.writeFile('dcm-debug.html', debugHtml).catch(() => {});
     }
     throw error;
   } finally {
