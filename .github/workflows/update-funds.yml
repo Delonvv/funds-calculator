@@ -46,6 +46,7 @@ jobs:
           path: |
             dcm-debug.html
             dcm-debug.png
+            dcm-debug-error.txt
           if-no-files-found: warn
 
       - name: Commit changed data
