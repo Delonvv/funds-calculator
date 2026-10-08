@@ -34,7 +34,19 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Update current bond placements
+        id: dcm
+        continue-on-error: true
         run: node scripts/update-dcm.mjs
+
+      - name: Save DCM diagnostics
+        if: steps.dcm.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dcm-debug
+          path: |
+            dcm-debug.html
+            dcm-debug.png
+          if-no-files-found: warn
 
       - name: Commit changed data
         run: |
@@ -48,3 +60,9 @@ jobs:
           git add funds.json market-rates.json dcm.json
           git commit -m "Daily funds, RUSFAR and DCM update"
           git push
+
+      - name: Report DCM failure
+        if: steps.dcm.outcome == 'failure'
+        run: |
+          echo "T-Investments placements were not parsed. Download the dcm-debug artifact."
+          exit 1
