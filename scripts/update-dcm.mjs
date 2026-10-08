@@ -110,7 +110,9 @@ async function renderedHtml() {
       ignoreHTTPSErrors: true,
       userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
     });
-    await page.goto(SOURCE, { waitUntil: 'domcontentloaded', timeout: 90000 });
+    await page.goto(SOURCE, { waitUntil: 'commit', timeout: 45000 }).catch(error => {
+      console.warn(`DCM: переход не завершён (${error.message}), проверяю уже полученный контент`);
+    });
     let cardsVisible = false;
     for (let attempt = 0; attempt < 24; attempt += 1) {
       await page.waitForTimeout(1500);
