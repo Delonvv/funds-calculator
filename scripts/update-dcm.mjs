@@ -30,8 +30,24 @@ function currency(text) {
 function sectionAt(html, index) {
   const before = html.slice(0, index).toLowerCase();
   const analyst = Math.max(before.lastIndexOf('по мнению аналитиков'), before.lastIndexOf('мнение аналитиков'));
-  const current = before.lastIndexOf('сейчас размещаются');
+  const current = Math.max(before.lastIndexOf('сейчас размещаются'), before.lastIndexOf('первичные размещения'));
   return analyst > current ? 'analyst' : 'current';
+}
+
+function firstMatch(text, patterns, fallback) {
+  for (const pattern of patterns) {
+    const match = text.match(pattern);
+    if (match) return (match[1] || match[0]).replace(/\s+/g, ' ').trim();
+  }
+  return fallback;
+}
+
+function cardImage(fragment = '') {
+  const img = fragment.match(/<img\b[^>]*(?:src|data-src)=["']([^"']+)["'][^>]*>/i)?.[1];
+  const source = fragment.match(/<source\b[^>]*srcset=["']([^"',\s]+)[^"']*["'][^>]*>/i)?.[1];
+  const value = img || source || '';
+  if (!value || /^data:/i.test(value)) return '';
+  return absoluteUrl(value);
 }
 
 function extractCards(html) {
@@ -45,10 +61,21 @@ function extractCards(html) {
     const title = text.match(/(Облигации\s+.{2,80}?)(?=\s+(?:Фиксированн|Плавающ|Купон|До\s+\d)|$)/i)?.[1]?.trim();
     const coupon = text.match(/((?:Фиксированный|Плавающий)?\s*купон\s+до\s+[\d,.]+%[^.]{0,22})/i)?.[1]?.trim();
     if (!title || !coupon) continue;
-    const deadline = text.match(/До\s+\d{1,2}\s+[А-Яа-яЁё]+/i)?.[0] || 'Уточнить';
-    const term = text.match(/(?:Срок|на срок)\s*[:—-]?\s*(\d+\s+(?:месяц\w*|год\w*))/i)?.[1] || 'Уточнить в карточке';
+    const deadline = firstMatch(text, [
+      /(?:приём\s+заявок\s+)?до\s+(\d{1,2}\s+[А-Яа-яЁё]+(?:\s+\d{4})?)/i,
+      /(?:окончание\s+размещения|срок\s+подачи)\s*[:—-]?\s*([^|•]{3,35})/i
+    ], 'Срок заявки не указан');
+    const term = firstMatch(text, [
+      /(?:срок\s+обращения|срок\s+до\s+погашения|на\s+срок)\s*[:—-]?\s*(\d+(?:[.,]\d+)?\s+(?:месяц\w*|год\w*|дн\w*))/i,
+      /погашение\s*[:—-]?\s*(\d{1,2}[./]\d{1,2}[./]\d{2,4})/i
+    ], 'Не указан');
+    const minimumAmount = firstMatch(text, [
+      /(?:минимальн\w*\s+(?:сумм\w*|заявк\w*)|сумма\s+от)\s*[:—-]?\s*([\d\s.,]+\s*(?:₽|руб\w*|CNY|USD|EUR|¥|\$|€))/i,
+      /(?:минимальн\w*\s+(?:сумм\w*|заявк\w*))\s*[:—-]?\s*(\d[\d\s.,]*)/i
+    ], 'Не указана');
     const issuer = title.replace(/^Облигации\s+/i, '').replace(/\s+(?:CNY|USD|EUR).*$/i, '').trim();
     const url = absoluteUrl(match[2]);
+    const image = cardImage(match[4]);
     const id = `${issuer}-${coupon}`.toLowerCase().replace(/[^a-zа-яё0-9]+/gi, '-').replace(/^-|-$/g, '');
     if (seen.has(id)) continue;
     seen.add(id);
@@ -61,6 +88,8 @@ function extractCards(html) {
       description: /плавающ/i.test(coupon)
         ? 'Плавающий купон меняется вместе с базовой рыночной ставкой.'
         : 'Фиксированный купон позволяет заранее оценить денежный поток.',
+      minimumAmount,
+      image,
       term,
       currency: currency(text),
       deadline,
