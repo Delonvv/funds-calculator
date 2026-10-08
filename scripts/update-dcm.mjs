@@ -149,7 +149,10 @@ async function renderedHtml() {
         return { section: preceding?.section || 'current', html: anchor.outerHTML };
       }).filter(Boolean);
     });
-    if (!grouped.length) return await page.content();
+    const fullHtml = await page.content();
+    await fs.writeFile('dcm-debug.html', fullHtml);
+    await page.screenshot({ path: 'dcm-debug.png', fullPage: true });
+    if (!grouped.length) return fullHtml;
     return grouped.map(item => `<h2>${item.section === 'analyst' ? 'По мнению аналитиков' : 'Первичные размещения'}</h2>${item.html}`).join('\n');
   } catch (error) {
     if (page) {
