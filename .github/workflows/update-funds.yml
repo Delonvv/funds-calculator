@@ -3,11 +3,8 @@ name: Daily funds, RUSFAR and placements update
 on:
   workflow_dispatch:
   schedule:
-    # Основной запуск — 13:17 МСК
-    - cron: "17 10 * * 1-5"
-
-    # Резервный запуск — 14:07 МСК
-    - cron: "07 11 * * 1-5"
+    # Один запуск каждый день в 12:40 МСК (09:40 UTC), включая выходные.
+    - cron: "40 9 * * *"
     
 permissions:
   contents: write
