@@ -1,10 +1,11 @@
-name: Daily funds, RUSFAR and placements update
+name: Twice daily funds, RUSFAR and placements update
 
 on:
   workflow_dispatch:
   schedule:
-    # Один запуск каждый день в 12:40 МСК (09:40 UTC), включая выходные.
+    # Ежедневно в 12:40 и 16:00 МСК (09:40 и 13:00 UTC).
     - cron: "40 9 * * *"
+    - cron: "0 13 * * *"
     
 permissions:
   contents: write

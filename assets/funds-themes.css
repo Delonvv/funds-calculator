@@ -1,0 +1,25 @@
+/* Shared scenic background for all three themes. */
+:root #fundsPage{position:relative;isolation:isolate}
+:root #fundsPage:before{content:'';position:absolute;z-index:-1;pointer-events:none;top:-58px;left:50%;transform:translateX(-50%);width:100vw;height:max(920px,62vw);background-image:linear-gradient(180deg,transparent 65%,var(--bg) 100%),url('funds-sunset-soft-20261009.webp');background-size:100% 100%,100% auto;background-position:center top;background-repeat:no-repeat;opacity:1}
+:root #fundsPage .hero{position:relative;display:block;min-height:350px;padding:32px 0 45px;margin-bottom:25px}
+:root #fundsPage .hero:before{display:none}
+:root #fundsPage .hero-art{display:none}
+:root #fundsPage .hero-copy{width:62%;max-width:760px}
+:root #fundsPage .filter-panel,:root #fundsPage .card{border-radius:24px;background:var(--panel)}
+:root[data-theme=light] #fundsPage{--panel:#fff;--bg:#f3f4f6;--white:#17191c;--muted:#555c65;--line:#dde0e4}
+:root[data-theme=light] #fundsPage .hero h1{color:#17191c}
+:root[data-theme=light] #fundsPage .hero .lead{color:#41464f}
+:root[data-theme=light] #fundsPage .search{background:#fff;color:#17191c;border-color:#dde0e4;border-radius:17px}
+:root[data-theme=dark] #fundsPage{--panel:#202329;--bg:#181a1f;--white:#f4f4f5;--muted:#bdc0c7;--line:#3d4148}
+:root[data-theme=dark] #fundsPage:before{background-image:linear-gradient(180deg,rgba(19,22,28,.32) 0%,rgba(19,22,28,.2) 60%,#181a1f 100%),url('funds-sunset-soft-20261009.webp')}
+:root[data-theme=dark] #fundsPage .hero h1{color:#fff;text-shadow:0 2px 12px #0005}
+:root[data-theme=dark] #fundsPage .hero .lead,:root[data-theme=dark] #fundsPage .meta,:root[data-theme=dark] #fundsPage .search-count{color:#f1f1f3;text-shadow:0 1px 5px #0008}
+:root[data-theme=dark] #fundsPage .search,:root[data-theme=dark] #fundsPage .chips button{background:#252830;color:#f4f4f5;border-color:#474c55}
+:root[data-theme=dark] #fundsPage .search{border-radius:17px}
+:root[data-theme=dark] #fundsPage .chips button.on{background:#ffe62e;color:#17191c;border-color:#ffe62e}
+:root[data-theme=brand] #fundsPage .hero h1{color:#2e241c}
+:root[data-theme=brand] #fundsPage .hero .lead{color:#53473b}
+:root[data-theme=brand] body:before,:root[data-theme=brand] body:after{opacity:.08}
+@media(max-width:1020px){:root #fundsPage .hero-copy{width:67%}}
+@media(max-width:800px){:root #fundsPage:before{top:-36px;background-size:100% 100%,auto 860px;background-position:center top,62% top;opacity:1}:root[data-theme=light] #fundsPage:before{background-image:linear-gradient(180deg,#ffffff60,transparent 55%,#f3f4f6 100%),url('funds-sunset-soft-20261009.webp')}}
+@media(max-width:639px){:root #fundsPage .hero{min-height:0;padding:0 0 24px}:root #fundsPage .hero-copy{width:100%}:root #fundsPage .hero h1{font-size:33px}:root #fundsPage:before{height:920px}}
