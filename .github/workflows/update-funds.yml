@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Trust official Russian CA for T-Bank
+        run: bash scripts/setup-tbank-ca.sh
+
       - name: Update funds and market rates
         run: node scripts/update-data.mjs
 
@@ -33,12 +36,6 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
           npx playwright install --with-deps chromium
-
-      - name: Diagnose certificate chain
-        shell: bash
-        run: |
-          timeout 20 openssl s_client -connect www.tbank.ru:443 -servername www.tbank.ru -showcerts -verify_return_error </dev/null > dcm-certificates.txt 2>&1 || true
-          cat dcm-certificates.txt
 
       - name: Read placement cards from page data
         id: dcm
@@ -54,7 +51,6 @@ jobs:
             dcm-debug.html
             dcm-debug.png
             dcm-debug-error.txt
-            dcm-certificates.txt
           if-no-files-found: warn
 
       - name: Commit changed data
