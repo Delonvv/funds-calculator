@@ -33,15 +33,10 @@ export function extract(html){
  if(!found.has('primary')||!found.has('current'))throw new Error('Один из двух блоков отсутствует; старые данные сохранены');
  return placements;
 }
-export function reconcile(old,fresh){
- const incoming=new Map(fresh.map(x=>[x.id,x]));const result=[...incoming.values()];
- for(const x of old.placements||[]){
-  // Older parser used unrelated identifiers: migrate to verified source IDs once.
-  if(!x.sourceId||incoming.has(x.id))continue;
-  const missingChecks=(x.missingChecks||0)+1;
-  if(missingChecks<2)result.push({...x,missingChecks});
- }
- return result;
+export function reconcile(_old,fresh){
+ // Called only after a complete successful collection of both source sections.
+ // Missing placements are removed immediately; collection errors preserve the old file.
+ return [...new Map(fresh.map(x=>[x.id,{...x,missingChecks:0}])).values()];
 }
 async function collect(){
  let lastError;
