@@ -1,0 +1,5 @@
+Замените scripts/update-dcm.mjs в папке scripts.
+Файл update-funds.yml загрузите в .github/workflows/update-funds.yml, НЕ в корень репозитория.
+В GitHub откройте .github → workflows → update-funds.yml и замените содержимое файлом из архива.
+Расписание: ежедневно в 12:40 МСК.
+После коммита: Actions → Daily funds, RUSFAR and placements update → Run workflow.
