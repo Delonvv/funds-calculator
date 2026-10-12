@@ -1,11 +1,11 @@
-name: Twice daily funds, RUSFAR and placements update
+name: Daily funds, RUSFAR and placements update
 
 on:
   workflow_dispatch:
   schedule:
-    # Ежедневно в 12:40 и 16:00 МСК (09:40 и 13:00 UTC).
+    # Каждый день: 12:40 и 15:00 МСК (UTC+3). GitHub может задерживать запуск.
     - cron: "40 9 * * *"
-    - cron: "0 13 * * *"
+    - cron: "0 12 * * *"
     
 permissions:
   contents: write
