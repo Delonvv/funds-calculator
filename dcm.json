@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T15:57:43.903Z",
+  "updatedAt": "2026-10-12T09:33:05.780Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
@@ -17,27 +17,13 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-0b08a599-50cd-44ac-a2f8-6a9af196242f",
-      "sourceId": "0b08a599-50cd-44ac-a2f8-6a9af196242f",
+      "id": "primary-b7d1fe50-5cde-419c-aae5-bd4fb195fa0c",
+      "sourceId": "b7d1fe50-5cde-419c-aae5-bd4fb195fa0c",
       "section": "primary",
-      "issuer": "Смарт-Процент на 3 месяца",
-      "title": "Смарт-Процент на 3 месяца",
-      "issueName": "До 14 января",
-      "coupon": "Фиксированная доходность 13,3%",
-      "currency": "RUB",
-      "deadline": "До 12 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-d21c48f1-4aa1-405b-bb4f-33b6512e0a2c",
-      "sourceId": "d21c48f1-4aa1-405b-bb4f-33b6512e0a2c",
-      "section": "primary",
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 19 октября",
-      "coupon": "Фиксированная доходность 13%",
+      "issuer": "Смарт-Процент на 1 день",
+      "title": "Смарт-Процент на 1 день",
+      "issueName": "До 13 окт",
+      "coupon": "Фиксированная доходность 11,5%",
       "currency": "RUB",
       "deadline": "До 12 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
@@ -73,16 +59,30 @@
       "missingChecks": 0
     },
     {
-      "id": "current-dd14bb1d-641a-4fec-9f7b-181eb74fd739",
-      "sourceId": "dd14bb1d-641a-4fec-9f7b-181eb74fd739",
-      "section": "current",
-      "issuer": "РУСАЛ CNY",
-      "title": "Облигации РУСАЛ CNY",
-      "issueName": "РУСАЛ БО-001Р-17 с расчетами в рублях",
-      "coupon": "Купон до 11% в CNY с расчетами в рублях",
-      "currency": "CNY",
-      "deadline": "До 13 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JWDN61x160.png",
+      "id": "primary-d21c48f1-4aa1-405b-bb4f-33b6512e0a2c",
+      "sourceId": "d21c48f1-4aa1-405b-bb4f-33b6512e0a2c",
+      "section": "primary",
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 19 октября",
+      "coupon": "Фиксированная доходность 13%",
+      "currency": "RUB",
+      "deadline": "До 12 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-0b08a599-50cd-44ac-a2f8-6a9af196242f",
+      "sourceId": "0b08a599-50cd-44ac-a2f8-6a9af196242f",
+      "section": "primary",
+      "issuer": "Смарт-Процент на 3 месяца",
+      "title": "Смарт-Процент на 3 месяца",
+      "issueName": "До 14 января",
+      "coupon": "Фиксированная доходность 13,3%",
+      "currency": "RUB",
+      "deadline": "До 12 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -115,20 +115,6 @@
       "missingChecks": 0
     },
     {
-      "id": "current-96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
-      "sourceId": "96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
-      "section": "current",
-      "issuer": "Софтлайн",
-      "title": "Облигации Софтлайн",
-      "issueName": "Софтлайн 002Р-03",
-      "coupon": "Фиксированный купон до 18,5%",
-      "currency": "RUB",
-      "deadline": "До 13 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0ZZBC2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "current-afa8f9b3-7002-4038-8b80-e756a2053116",
       "sourceId": "afa8f9b3-7002-4038-8b80-e756a2053116",
       "section": "current",
@@ -139,6 +125,34 @@
       "currency": "USD",
       "deadline": "До 21 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-dd14bb1d-641a-4fec-9f7b-181eb74fd739",
+      "sourceId": "dd14bb1d-641a-4fec-9f7b-181eb74fd739",
+      "section": "current",
+      "issuer": "РУСАЛ CNY",
+      "title": "Облигации РУСАЛ CNY",
+      "issueName": "РУСАЛ БО-001Р-17 с расчетами в рублях",
+      "coupon": "Купон до 11% в CNY с расчетами в рублях",
+      "currency": "CNY",
+      "deadline": "До 13 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JWDN61x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
+      "sourceId": "96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
+      "section": "current",
+      "issuer": "Софтлайн",
+      "title": "Облигации Софтлайн",
+      "issueName": "Софтлайн 002Р-03",
+      "coupon": "Фиксированный купон до 18,5%",
+      "currency": "RUB",
+      "deadline": "До 13 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0ZZBC2x160.png",
       "isQual": false,
       "missingChecks": 0
     }
