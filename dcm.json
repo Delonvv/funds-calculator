@@ -1,21 +1,7 @@
 {
-  "updatedAt": "2026-10-13T10:09:12.867Z",
+  "updatedAt": "2026-10-13T17:07:59.150Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
-    {
-      "id": "primary-6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
-      "sourceId": "6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
-      "section": "primary",
-      "issuer": "Долговые ЦФА Т-Проекты",
-      "title": "Долговые ЦФА Т-Проекты",
-      "issueName": "Т-Проекты 8",
-      "coupon": "Процентная ставка 15%",
-      "currency": "RUB",
-      "deadline": "До 16 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
     {
       "id": "primary-972a9702-9e1e-4dac-9c8f-70ffc5f1bb08",
       "sourceId": "972a9702-9e1e-4dac-9c8f-70ffc5f1bb08",
@@ -31,13 +17,13 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
-      "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
+      "id": "primary-419ab738-6728-4b39-ba6c-3e819f7fb189",
+      "sourceId": "419ab738-6728-4b39-ba6c-3e819f7fb189",
       "section": "primary",
       "issuer": "Южуралзолото ГК CNY",
       "title": "Облигации Южуралзолото ГК CNY",
-      "issueName": "Южуралзолото ГК 001P-06 с расчетами в юанях",
-      "coupon": "Фиксированный купон до 9,9% в юанях",
+      "issueName": "Южуралзолото ГК 001P-06 с расчетами в рублях",
+      "coupon": "Купон до 9,9% в CNY с расчетами в рублях",
       "currency": "CNY",
       "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
@@ -59,16 +45,44 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-419ab738-6728-4b39-ba6c-3e819f7fb189",
-      "sourceId": "419ab738-6728-4b39-ba6c-3e819f7fb189",
+      "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
+      "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
       "section": "primary",
       "issuer": "Южуралзолото ГК CNY",
       "title": "Облигации Южуралзолото ГК CNY",
-      "issueName": "Южуралзолото ГК 001P-06 с расчетами в рублях",
-      "coupon": "Фиксированный купон до 9,9% в рублях",
+      "issueName": "Южуралзолото ГК 001P-06 с расчетами в юанях",
+      "coupon": "Купон до 9,9% в CNY с расчетами в юанях",
       "currency": "CNY",
       "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
+      "sourceId": "6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
+      "section": "primary",
+      "issuer": "Долговые ЦФА Т-Проекты",
+      "title": "Долговые ЦФА Т-Проекты",
+      "issueName": "Т-Проекты 8",
+      "coupon": "Процентная ставка 15%",
+      "currency": "RUB",
+      "deadline": "До 16 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-8e8d1647-eb66-4707-aa57-d12fe478d7da",
+      "sourceId": "8e8d1647-eb66-4707-aa57-d12fe478d7da",
+      "section": "primary",
+      "issuer": "ИКС 5 ФИНАНС",
+      "title": "Облигации ИКС 5 ФИНАНС",
+      "issueName": "ИКС 5 ФИНАНС 003P-23",
+      "coupon": "Фиксированный купон до 14,5%",
+      "currency": "RUB",
+      "deadline": "До 19 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/US98387E205x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -87,31 +101,17 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-8e8d1647-eb66-4707-aa57-d12fe478d7da",
-      "sourceId": "8e8d1647-eb66-4707-aa57-d12fe478d7da",
-      "section": "primary",
-      "issuer": "ИКС 5 ФИНАНС",
-      "title": "Облигации ИКС 5 ФИНАНС",
-      "issueName": "ИКС 5 ФИНАНС 003P-23",
-      "coupon": "Фиксированный купон до 14,5%",
-      "currency": "RUB",
-      "deadline": "До 13 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/US98387E205x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-644bb73f-98de-44fc-960a-e09703e2b8c8",
-      "sourceId": "644bb73f-98de-44fc-960a-e09703e2b8c8",
+      "id": "current-96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
+      "sourceId": "96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
       "section": "current",
       "issuer": "Софтлайн",
       "title": "Облигации Софтлайн",
-      "issueName": "Софтлайн 002Р-04",
-      "coupon": "Плавающий купон до 18,5%",
+      "issueName": "Софтлайн 002Р-03",
+      "coupon": "Фиксированный купон до 18,5%",
       "currency": "RUB",
-      "deadline": "До 13 октября",
+      "deadline": "До 16 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0ZZBC2x160.png",
-      "isQual": true,
+      "isQual": false,
       "missingChecks": 0
     },
     {
@@ -125,20 +125,6 @@
       "currency": "USD",
       "deadline": "До 21 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
-      "sourceId": "96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
-      "section": "current",
-      "issuer": "Софтлайн",
-      "title": "Облигации Софтлайн",
-      "issueName": "Софтлайн 002Р-03",
-      "coupon": "Фиксированный купон до 18,5%",
-      "currency": "RUB",
-      "deadline": "До 13 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0ZZBC2x160.png",
       "isQual": false,
       "missingChecks": 0
     }
