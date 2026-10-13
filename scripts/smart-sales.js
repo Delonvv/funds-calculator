@@ -39,7 +39,7 @@
   function currentProfile(){return config.profiles.find(p=>p.id===document.getElementById('modelProfile').value)||config.profiles[0]}
   function render(){
     const total=amount(),profile=currentProfile();if(!profile)return;
-    const entries=Object.entries(profile.assets).filter(([,share])=>Number(share)>0),sum=entries.reduce((s,[,v])=>s+Number(v),0);
+    const entries=Object.entries(profile.assets).filter(([,share])=>Number(share)>0).sort((a,b)=>Number(b[1])-Number(a[1])),sum=entries.reduce((s,[,v])=>s+Number(v),0);
     let cursor=0;const parts=entries.map(([name,share])=>{const start=cursor;cursor+=Number(share)/sum*100;return (colors[name]||'#777')+' '+start+'% '+cursor+'%'});
     document.getElementById('modelDonut').style.background='conic-gradient('+parts.join(',')+')';
     document.getElementById('modelTotal').textContent=money(total);

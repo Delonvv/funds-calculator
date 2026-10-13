@@ -160,14 +160,24 @@
   function initDcm(root){
     const state={data:[],section:'current'};
     const track=root.querySelector('#ssDcmTrack'),viewport=root.querySelector('#ssDcmViewport'),counter=root.querySelector('#ssDcmCounter'),updated=root.querySelector('#ssDcmUpdated'),refresh=root.querySelector('#ssDcmRefresh'),title=root.querySelector('#ssDcmTitle');
-    function visibleCount(){return window.innerWidth<700?1:window.innerWidth<1050?2:3}
-    function updateCounter(){const cards=track.querySelectorAll('.ss-dcm-card'),count=cards.length;if(!count){counter.textContent='';return}const width=(cards[0].offsetWidth+12)||1,start=Math.min(count,Math.round(viewport.scrollLeft/width)+1),end=Math.min(count,start+visibleCount()-1);counter.textContent=`${start}–${end} из ${count}`}
+    function updateCounter(){
+      const cards=track.querySelectorAll('.ss-dcm-card'),count=cards.length;
+      const maxScroll=Math.max(0,viewport.scrollWidth-viewport.clientWidth);
+      root.querySelector('#ssDcmPrev').disabled=!count||viewport.scrollLeft<=2;
+      root.querySelector('#ssDcmNext').disabled=!count||viewport.scrollLeft>=maxScroll-2;
+      if(!count){counter.textContent='';return;}
+      const gap=parseFloat(getComputedStyle(track).gap)||12;
+      const width=(cards[0].offsetWidth+gap)||1;
+      const start=Math.min(count,Math.floor((viewport.scrollLeft+2)/width)+1);
+      const end=Math.min(count,Math.ceil((viewport.scrollLeft+viewport.clientWidth-2)/width));
+      counter.textContent=`${start}–${end} из ${count}`;
+    }
     function draw(){const labels={current:'Сейчас размещаются',primary:'От Т‑Банка'};root.querySelectorAll('[data-dcm-section]').forEach(button=>{const section=button.dataset.dcmSection;button.textContent=`${labels[section]} · ${state.data.filter(x=>x.section===section).length}`});const list=state.data.filter(x=>x.section===state.section);title.textContent=labels[state.section];track.innerHTML=list.length?list.map(placementCard).join(''):'<div class="ss-dcm-empty">В этой подборке пока нет сохранённых размещений.</div>';viewport.scrollLeft=0;updateCounter()}
-    async function load(){refresh.disabled=true;refresh.textContent='Обновляем…';try{const response=await fetch(`dcm.json?ts=${Date.now()}`,{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status}`);const payload=await response.json();state.data=Array.isArray(payload.placements)?payload.placements:[];const stamp=payload.updatedAt?new Date(payload.updatedAt):null;updated.textContent=stamp&&!Number.isNaN(stamp.valueOf())?`Обновлено ${stamp.toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}`:'Список из сохранённой страницы · 08.10.2026';draw()}catch(error){track.innerHTML='<div class="ss-dcm-empty">Не удалось загрузить размещения. Попробуйте ещё раз.</div>';updated.textContent='Ошибка обновления';counter.textContent=''}finally{refresh.disabled=false;refresh.textContent='↻ Обновить облигации'}}
+    async function load(){refresh.disabled=true;refresh.textContent='Обновляем…';try{const response=await fetch(`dcm.json?ts=${Date.now()}`,{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status}`);const payload=await response.json();state.data=Array.isArray(payload.placements)?payload.placements:[];const stamp=payload.updatedAt?new Date(payload.updatedAt):null;updated.textContent=stamp&&!Number.isNaN(stamp.valueOf())?`Обновлено ${stamp.toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}`:'Список из сохранённой страницы · 08.10.2026';draw()}catch(error){track.innerHTML='<div class="ss-dcm-empty">Не удалось загрузить размещения. Попробуйте ещё раз.</div>';updated.textContent='Ошибка обновления';counter.textContent=''}finally{refresh.disabled=false;refresh.textContent='↻ Обновить облигации';updateCounter()}}
     root.querySelectorAll('[data-dcm-section]').forEach(button=>button.addEventListener('click',()=>{state.section=button.dataset.dcmSection;root.querySelectorAll('[data-dcm-section]').forEach(x=>x.classList.toggle('active',x===button));draw()}));
     root.querySelector('#ssDcmPrev').addEventListener('click',()=>viewport.scrollBy({left:-viewport.clientWidth,behavior:'smooth'}));
     root.querySelector('#ssDcmNext').addEventListener('click',()=>viewport.scrollBy({left:viewport.clientWidth,behavior:'smooth'}));
-    viewport.addEventListener('scroll',()=>requestAnimationFrame(updateCounter),{passive:true});window.addEventListener('resize',updateCounter);refresh.addEventListener('click',load);load();
+    viewport.addEventListener('scroll',()=>requestAnimationFrame(updateCounter),{passive:true});window.addEventListener('resize',updateCounter);if(typeof ResizeObserver==='function')new ResizeObserver(updateCounter).observe(viewport);refresh.addEventListener('click',load);updateCounter();load();
   }
   function render(id,data){
     const root=document.getElementById(`smart-${id}Page`);if(!root)return;

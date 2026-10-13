@@ -1,0 +1,8 @@
+.ss-dcm-controls{gap:12px;flex-wrap:wrap}
+.ss-dcm-tabs button{font-size:15px!important;min-height:46px;padding:12px 17px!important}
+.ss-dcm-refresh{font-size:16px!important;min-height:48px;padding:12px 20px!important;border-radius:14px!important;font-weight:650}
+.ss-dcm-arrow{width:48px!important;height:48px!important;flex:0 0 48px;font-size:25px!important;background:#ffdd2d!important;color:#211d12!important;border-color:#e6c72b!important;transition:background .15s,color .15s}
+.ss-dcm-arrow:disabled{background:#858b941f!important;color:#969ba4!important;border-color:#858b9440!important;cursor:default;opacity:.7}
+.ss-dcm-arrow:not(:disabled):hover{background:#f0cb21!important}
+.ss-dcm-arrow:focus-visible{outline:2px solid #4a6dcc;outline-offset:3px}
+@media(max-width:680px){.ss-dcm-refresh{flex:1}.ss-dcm-tabs button{padding:10px!important;font-size:14px!important}}
