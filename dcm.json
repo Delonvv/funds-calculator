@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T17:07:59.150Z",
+  "updatedAt": "2026-10-14T11:37:53.316Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
@@ -31,20 +31,6 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-1199fbdb-8e4c-444d-b8ca-bf6d4c258898",
-      "sourceId": "1199fbdb-8e4c-444d-b8ca-bf6d4c258898",
-      "section": "primary",
-      "issuer": "Акрон CNY",
-      "title": "Облигации Акрон CNY",
-      "issueName": "Акрон БО-002Р-04 с расчетами в китайских юанях",
-      "coupon": "Купон до 9% в CNY с расчетами в юанях",
-      "currency": "CNY",
-      "deadline": "До 15 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU0009028674x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
       "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
       "section": "primary",
@@ -55,20 +41,6 @@
       "currency": "CNY",
       "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
-      "sourceId": "6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
-      "section": "primary",
-      "issuer": "Долговые ЦФА Т-Проекты",
-      "title": "Долговые ЦФА Т-Проекты",
-      "issueName": "Т-Проекты 8",
-      "coupon": "Процентная ставка 15%",
-      "currency": "RUB",
-      "deadline": "До 16 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -87,6 +59,34 @@
       "missingChecks": 0
     },
     {
+      "id": "primary-6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
+      "sourceId": "6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
+      "section": "primary",
+      "issuer": "Долговые ЦФА Т-Проекты",
+      "title": "Долговые ЦФА Т-Проекты",
+      "issueName": "Т-Проекты 8",
+      "coupon": "Процентная ставка 15%",
+      "currency": "RUB",
+      "deadline": "До 16 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-1199fbdb-8e4c-444d-b8ca-bf6d4c258898",
+      "sourceId": "1199fbdb-8e4c-444d-b8ca-bf6d4c258898",
+      "section": "primary",
+      "issuer": "Акрон CNY",
+      "title": "Облигации Акрон CNY",
+      "issueName": "Акрон БО-002Р-04 с расчетами в китайских юанях",
+      "coupon": "Купон до 9% в CNY с расчетами в юанях",
+      "currency": "CNY",
+      "deadline": "До 15 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU0009028674x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
       "id": "primary-0b562d1e-009b-4ebf-bd5c-a8545fa7ab20",
       "sourceId": "0b562d1e-009b-4ebf-bd5c-a8545fa7ab20",
       "section": "primary",
@@ -101,20 +101,6 @@
       "missingChecks": 0
     },
     {
-      "id": "current-96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
-      "sourceId": "96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
-      "section": "current",
-      "issuer": "Софтлайн",
-      "title": "Облигации Софтлайн",
-      "issueName": "Софтлайн 002Р-03",
-      "coupon": "Фиксированный купон до 18,5%",
-      "currency": "RUB",
-      "deadline": "До 16 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0ZZBC2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "current-afa8f9b3-7002-4038-8b80-e756a2053116",
       "sourceId": "afa8f9b3-7002-4038-8b80-e756a2053116",
       "section": "current",
@@ -125,6 +111,20 @@
       "currency": "USD",
       "deadline": "До 21 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
+      "sourceId": "96cd139b-2e3e-40bc-b8ce-9c8116d3642a",
+      "section": "current",
+      "issuer": "Софтлайн",
+      "title": "Облигации Софтлайн",
+      "issueName": "Софтлайн 002Р-03",
+      "coupon": "Фиксированный купон до 18,5%",
+      "currency": "RUB",
+      "deadline": "До 16 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0ZZBC2x160.png",
       "isQual": false,
       "missingChecks": 0
     }
