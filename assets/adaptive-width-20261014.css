@@ -1,5 +1,5 @@
 /* Fluid page width: breakpoints follow available CSS viewport, including browser zoom. */
-.wrap{width:80%!important;max-width:none!important;margin-inline:auto!important}
+.wrap{width:72%!important;max-width:none!important;margin-inline:auto!important}
 main,.product-page,.smart-sales-content{min-width:0}
 .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))!important}
 .smart-sales-content .ss-products:not(.ss-product-viewport .ss-products){grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))!important}
