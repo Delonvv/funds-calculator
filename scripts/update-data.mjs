@@ -3,7 +3,8 @@ import fs from 'node:fs/promises';
 const FILE = new URL('../funds.json', import.meta.url);
 const MARKET_FILE = new URL('../market-rates.json', import.meta.url);
 const data = JSON.parse(await fs.readFile(FILE, 'utf8'));
-const tickers = Array.isArray(data.tickers) ? data.tickers : [];
+const tickers = (Array.isArray(data.tickers) ? data.tickers : []).filter(t=>t!=='TSEC');
+data.tickers=tickers;for(const key of ['market','nav','history'])if(data[key])delete data[key].TSEC;
 const skippedHistory = new Set(['TPAY', 'TGLD']);
 
 const iso = d => d.toISOString().slice(0, 10);
