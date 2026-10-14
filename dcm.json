@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T11:37:53.316Z",
+  "updatedAt": "2026-10-14T14:40:00.969Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
@@ -17,6 +17,20 @@
       "missingChecks": 0
     },
     {
+      "id": "primary-325667c9-a75f-40d8-823a-08746e9024d2",
+      "sourceId": "325667c9-a75f-40d8-823a-08746e9024d2",
+      "section": "primary",
+      "issuer": "Смарт-Процент на 3 месяца",
+      "title": "Смарт-Процент на 3 месяца",
+      "issueName": "До 13 января",
+      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 15 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
       "id": "primary-419ab738-6728-4b39-ba6c-3e819f7fb189",
       "sourceId": "419ab738-6728-4b39-ba6c-3e819f7fb189",
       "section": "primary",
@@ -27,6 +41,20 @@
       "currency": "CNY",
       "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-51153c92-82c1-4df5-a3e7-de3b0109b7fe",
+      "sourceId": "51153c92-82c1-4df5-a3e7-de3b0109b7fe",
+      "section": "primary",
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 22 октября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 15 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -59,6 +87,20 @@
       "missingChecks": 0
     },
     {
+      "id": "primary-0b562d1e-009b-4ebf-bd5c-a8545fa7ab20",
+      "sourceId": "0b562d1e-009b-4ebf-bd5c-a8545fa7ab20",
+      "section": "primary",
+      "issuer": "Акрон CNY",
+      "title": "Облигации Акрон CNY",
+      "issueName": "Акрон БО-002Р-04 с расчетами в рублях",
+      "coupon": "Купон до 9% в CNY с расчетами в рублях",
+      "currency": "CNY",
+      "deadline": "До 15 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU0009028674x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
       "id": "primary-6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
       "sourceId": "6e7e5980-bc3a-45ad-af8c-64e72521d8b3",
       "section": "primary",
@@ -80,20 +122,6 @@
       "title": "Облигации Акрон CNY",
       "issueName": "Акрон БО-002Р-04 с расчетами в китайских юанях",
       "coupon": "Купон до 9% в CNY с расчетами в юанях",
-      "currency": "CNY",
-      "deadline": "До 15 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU0009028674x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-0b562d1e-009b-4ebf-bd5c-a8545fa7ab20",
-      "sourceId": "0b562d1e-009b-4ebf-bd5c-a8545fa7ab20",
-      "section": "primary",
-      "issuer": "Акрон CNY",
-      "title": "Облигации Акрон CNY",
-      "issueName": "Акрон БО-002Р-04 с расчетами в рублях",
-      "coupon": "Купон до 9% в CNY с расчетами в рублях",
       "currency": "CNY",
       "deadline": "До 15 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU0009028674x160.png",
