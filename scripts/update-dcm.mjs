@@ -27,7 +27,7 @@ export function extract(html){
    const logo=x.security?.asset?.logoName;
    const image=logo?`https://invest-brands.cdn-tinkoff.ru/${logo.replace(/\.png$/i,'x160.png')}`:'';
    const text=`${x.name} ${x.shortDescription}`;
-   placements.push({id:`${section}-${x.id}`,sourceId:x.id,section,issuer:x.name.replace(/^Облигации\s+/i,''),title:x.name,issueName:x.security?.asset?.showName||'',coupon:x.shortDescription,currency:/CNY|юан/i.test(text)?'CNY':/USD|доллар/i.test(text)?'USD':/EUR|евро/i.test(text)?'EUR':'RUB',deadline:x.bar?.text||'',image,isQual:x.security?.isQual??null,missingChecks:0});
+   placements.push({id:`${section}-${x.id}`,sourceId:x.id,section,issuer:x.name.replace(/^Облигации\s+/i,''),title:x.name,issueName:x.security?.asset?.showName||'',coupon:x.shortDescription,currency:/CNY|юан/i.test(text)?'CNY':/USD|доллар/i.test(text)?'USD':/(?<![A-Za-zА-Яа-яЁё])(?:EUR|евро)(?![A-Za-zА-Яа-яЁё])/i.test(text)?'EUR':'RUB',deadline:x.bar?.text||'',image,isQual:x.security?.isQual??null,missingChecks:0});
   }
  }
  if(!found.has('primary')||!found.has('current'))throw new Error('Один из двух блоков отсутствует; старые данные сохранены');

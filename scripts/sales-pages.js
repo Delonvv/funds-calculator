@@ -171,8 +171,8 @@
     initDcm(root,'ssDcm',false);
   }
   function eligiblePlacement(x){const text=[x.issuer,x.title,x.issueName,x.coupon,x.type,x.category].filter(Boolean).join(' ').replace(/\u00a0/g,' ');if(/структурн[а-яё]*\s+(?:актив|продукт)/i.test(text))return false;if(/цфа/i.test(text)&&!/смарт[- ]?процент|т[-‑– ](?:банк|проекты|инвестиции)/i.test(text))return false;return true;}
-  function currencyPlacement(x){return /CNY|USD|EUR|юан|доллар|евро|валютн|замещающ/i.test([x.currency,x.issuer,x.title,x.issueName,x.coupon].filter(Boolean).join(' '));}
-  function placementList(items,foreign){const seen=new Set();return items.filter(eligiblePlacement).filter(x=>currencyPlacement(x)===foreign&&(foreign||/^(RUB|SUR|RUR)$/i.test(x.currency||''))).filter(x=>{const key=String(x.sourceId||[x.issuer,x.issueName,x.currency].join('|')).replace(/\s+/g,' ').trim().toLowerCase();if(seen.has(key))return false;seen.add(key);return true;});}
+  function currencyPlacement(x){return /(?<![A-Za-zА-Яа-яЁё])(?:CNY|USD|EUR|юан[а-я]*|доллар[а-я]*|евро)(?![A-Za-zА-Яа-яЁё])|валютн|замещающ/i.test([x.currency,x.title,x.issueName,x.coupon].filter(Boolean).join(' '));}
+  function placementList(items,foreign){const seen=new Set();return items.map(x=>x.sourceId==='ea384f29-fb79-4fa0-9509-70fb0a7d71cf'?{...x,currency:'RUB'}:x).filter(eligiblePlacement).filter(x=>currencyPlacement(x)===foreign&&(foreign||/^(RUB|SUR|RUR)$/i.test(x.currency||''))).filter(x=>{const key=String(x.sourceId||[x.issuer,x.issueName,x.currency].join('|')).replace(/\s+/g,' ').trim().toLowerCase();if(seen.has(key))return false;seen.add(key);return true;});}
   function initDcm(root,prefix,foreign){
     const q=s=>root.querySelector('#'+prefix+s),viewport=q('Viewport'),track=q('Track'),counter=q('Counter'),refresh=q('Refresh'),updated=q('Updated');
     function update(){const count=track.querySelectorAll('.ss-dcm-card').length,max=Math.max(0,viewport.scrollWidth-viewport.clientWidth);q('Prev').disabled=!count||viewport.scrollLeft<=2;q('Next').disabled=!count||viewport.scrollLeft>=max-2;counter.textContent=count?'Размещений: '+count:'';}
