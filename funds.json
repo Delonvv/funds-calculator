@@ -1,174 +1,174 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-18",
+  "updatedAt": "2026-10-19",
   "source": "MOEX ISS and preserved manual data",
   "market": {
     "AKGD": {
-      "price": 247.5,
+      "price": 245.59,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:31:53",
+      "asOf": "2026-10-19 16:39:21",
       "source": "https://www.moex.com/"
     },
     "AKME": {
-      "price": 183.4,
+      "price": 183.8,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:31:35",
+      "asOf": "2026-10-19 16:39:22",
       "source": "https://www.moex.com/"
     },
     "AKMM": {
-      "price": 179.74,
+      "price": 179.76,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:31:47",
+      "asOf": "2026-10-19 16:39:16",
       "source": "https://www.moex.com/"
     },
     "BOND": {
-      "price": 1697.2,
+      "price": 1707,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:48",
+      "asOf": "2026-10-19 16:39:26",
       "source": "https://www.moex.com/"
     },
     "EQMX": {
-      "price": 133.65,
+      "price": 135.2,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:48",
+      "asOf": "2026-10-19 16:39:21",
       "source": "https://www.moex.com/"
     },
     "GOLD": {
-      "price": 2.8335,
+      "price": 2.8035,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:48",
+      "asOf": "2026-10-19 16:39:26",
       "source": "https://www.moex.com/"
     },
     "LQDT": {
       "price": 2.1125,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:31:57",
+      "asOf": "2026-10-19 16:39:28",
       "source": "https://www.moex.com/"
     },
     "OBLG": {
-      "price": 212.2,
+      "price": 212.5,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:48",
+      "asOf": "2026-10-19 16:39:24",
       "source": "https://www.moex.com/"
     },
     "RU000A106G80": {
       "price": 901.5,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:13",
+      "asOf": "2026-10-19 15:48:01",
       "source": "https://www.moex.com/"
     },
     "SBCB": {
-      "price": 1433.5,
+      "price": 1414,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:13",
+      "asOf": "2026-10-19 16:39:00",
       "source": "https://www.moex.com/"
     },
     "SBGB": {
-      "price": 15.375,
+      "price": 15.417,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:31:33",
+      "asOf": "2026-10-19 16:39:28",
       "source": "https://www.moex.com/"
     },
     "SBGD": {
-      "price": 32.8,
+      "price": 32.37,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:13",
+      "asOf": "2026-10-19 16:39:29",
       "source": "https://www.moex.com/"
     },
     "SBMM": {
-      "price": 19.6495,
+      "price": 19.6505,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:31:50",
+      "asOf": "2026-10-19 16:39:31",
       "source": "https://www.moex.com/"
     },
     "SBMX": {
-      "price": 17.614,
+      "price": 17.558,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:31:55",
+      "asOf": "2026-10-19 16:39:33",
       "source": "https://www.moex.com/"
     },
     "SBRB": {
-      "price": 19.17,
+      "price": 19.173,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:32:01",
+      "asOf": "2026-10-19 16:39:32",
       "source": "https://www.moex.com/"
     },
     "TBRU": {
-      "price": 8.57,
+      "price": 8.53,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:32:01",
+      "asOf": "2026-10-19 16:39:00",
       "source": "https://www.moex.com/"
     },
     "TDIV": {
-      "price": 10,
+      "price": 10.25,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:48",
+      "asOf": "2026-10-19 16:35:45",
       "source": "https://www.moex.com/"
     },
     "TGLD": {
-      "price": 13.69,
+      "price": 13.49,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:13",
+      "asOf": "2026-10-19 16:39:00",
       "source": "https://www.moex.com/"
     },
     "TITR": {
-      "price": 4.51,
+      "price": 4.69,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:13",
+      "asOf": "2026-10-19 16:39:00",
       "source": "https://www.moex.com/"
     },
     "TLCB": {
-      "price": 11.09,
+      "price": 11.1,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:13",
+      "asOf": "2026-10-19 16:28:02",
       "source": "https://www.moex.com/"
     },
     "TMON": {
-      "price": 166.22,
+      "price": 166.28,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:13",
+      "asOf": "2026-10-19 16:39:00",
       "source": "https://www.moex.com/"
     },
     "TMOS": {
-      "price": 6.17,
+      "price": 6.13,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:32:04",
+      "asOf": "2026-10-19 16:39:00",
       "source": "https://www.moex.com/"
     },
     "TOFZ": {
-      "price": 13.84,
+      "price": 13.87,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:31:01",
+      "asOf": "2026-10-19 16:39:00",
       "source": "https://www.moex.com/"
     },
     "TPAY": {
-      "price": 101.88,
+      "price": 101.94,
       "currency": "RUB",
-      "asOf": "2026-10-18 16:32:06",
+      "asOf": "2026-10-19 16:39:40",
       "source": "https://www.moex.com/"
     },
     "TRND": {
-      "price": 8.8,
+      "price": 9.12,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:48",
+      "asOf": "2026-10-19 16:39:34",
       "source": "https://www.moex.com/"
     },
     "TRUR": {
-      "price": 10.02,
+      "price": 10.07,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:13",
+      "asOf": "2026-10-19 16:34:54",
       "source": "https://www.moex.com/"
     },
     "TSAV": {
-      "price": 5.11,
+      "price": 5.19,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:48",
+      "asOf": "2026-10-19 16:13:01",
       "source": "https://www.moex.com/"
     },
     "XSECUR": {
-      "price": 10.49,
+      "price": 10.51,
       "currency": "RUB",
-      "asOf": "2026-10-18 06:43:48",
+      "asOf": "2026-10-19 16:39:43",
       "source": "https://www.moex.com/"
     }
   },
@@ -381,32 +381,32 @@
   "history": {
     "TMON": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TMON",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 1,
-        "m6": 6.65,
-        "y1": 14.52
+        "m1": 1.04,
+        "m6": 6.69,
+        "y1": 14.57
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "AKMM": {
       "source": "https://www.moex.com/ru/issue.aspx?code=AKMM",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 1.06,
-        "m6": 6.94,
-        "y1": 15.28
+        "m1": 1.03,
+        "m6": 6.96,
+        "y1": 15.3
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "LQDT": {
       "source": "https://www.moex.com/ru/issue.aspx?code=LQDT",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 1.09,
+        "m1": 1.05,
         "m6": 7.11,
         "y1": 15.63
       },
@@ -414,34 +414,34 @@
     },
     "SBMM": {
       "source": "https://www.moex.com/ru/issue.aspx?code=SBMM",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 1.1,
-        "m6": 7.18,
-        "y1": 15.85
+        "m1": 1.07,
+        "m6": 7.19,
+        "y1": 15.86
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TBRU": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TBRU",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 1.3,
-        "m6": 4.38,
-        "y1": 14.73
+        "m1": 0.83,
+        "m6": 3.9,
+        "y1": 14.19
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TDIV": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TDIV",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 5.62,
-        "m6": -2.87,
-        "y1": -0.1
+        "m1": 6.24,
+        "m6": -2.3,
+        "y1": 0.49
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
@@ -457,62 +457,62 @@
     },
     "TITR": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TITR",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 6.62,
-        "m6": -13.52,
-        "y1": -15.86
+        "m1": 7.08,
+        "m6": -13.15,
+        "y1": -15.5
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TLCB": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TLCB",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 0.18,
-        "m6": 11.84,
-        "y1": 10.18
+        "m1": -0.27,
+        "m6": 11.33,
+        "y1": 9.68
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TMOS": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TMOS",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 9.19,
-        "m6": -4.33,
-        "y1": -2.22
+        "m1": 8.88,
+        "m6": -5.11,
+        "y1": -3.01
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TOFZ": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TOFZ",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": -0.57,
-        "m6": -2.6,
-        "y1": 5.17
+        "m1": 0.36,
+        "m6": -2.39,
+        "y1": 5.4
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TRND": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TRND",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 5.32,
-        "m6": -8.72,
-        "y1": -2.98
+        "m1": 5.55,
+        "m6": -8.52,
+        "y1": -2.77
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TRUR": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TRUR",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
         "m1": 0.2,
@@ -523,10 +523,10 @@
     },
     "TSAV": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TSAV",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 0.97,
+        "m1": 1.17,
         "m6": null,
         "y1": null
       },
@@ -534,122 +534,122 @@
     },
     "AKGD": {
       "source": "https://www.moex.com/ru/issue.aspx?code=AKGD",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": -6.28,
-        "m6": -5.66,
-        "y1": -1.28
+        "m1": -7.08,
+        "m6": -6.35,
+        "y1": -1.98
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "AKME": {
       "source": "https://www.moex.com/ru/issue.aspx?code=AKME",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 8.09,
-        "m6": -4.06,
-        "y1": -3.44
+        "m1": 8.72,
+        "m6": -4.1,
+        "y1": -3.22
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "EQMX": {
       "source": "https://www.moex.com/ru/issue.aspx?code=EQMX",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 7.54,
-        "m6": -5.23,
-        "y1": -3.11
+        "m1": 8.34,
+        "m6": -4.52,
+        "y1": -2.38
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "GOLD": {
       "source": "https://www.moex.com/ru/issue.aspx?code=GOLD",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": -6.33,
-        "m6": -4.53,
-        "y1": 3.35
+        "m1": -7.08,
+        "m6": -5.29,
+        "y1": 2.52
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "SBCB": {
       "source": "https://www.moex.com/ru/issue.aspx?code=SBCB",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 0.49,
-        "m6": 8.63,
-        "y1": 2.57
+        "m1": -0.88,
+        "m6": 7.16,
+        "y1": 1.18
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "SBGB": {
       "source": "https://www.moex.com/ru/issue.aspx?code=SBGB",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 0.09,
-        "m6": -1.69,
-        "y1": 7.36
+        "m1": -0.06,
+        "m6": -1.88,
+        "y1": 7.32
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "SBGD": {
       "source": "https://www.moex.com/ru/issue.aspx?code=SBGD",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": -5.4,
-        "m6": -7.47,
-        "y1": 1.95
+        "m1": -6.21,
+        "m6": -8.26,
+        "y1": 1.08
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "SBMX": {
       "source": "https://www.moex.com/ru/issue.aspx?code=SBMX",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 9.03,
-        "m6": -4.79,
-        "y1": -3.04
+        "m1": 8.79,
+        "m6": -5.59,
+        "y1": -3.38
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "SBRB": {
       "source": "https://www.moex.com/ru/issue.aspx?code=SBRB",
-      "asOf": "2026-10-18",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 0.72,
+        "m1": 0.52,
         "m6": 3.18,
-        "y1": 14.33
+        "y1": 14.4
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "OBLG": {
       "source": "https://www.moex.com/ru/issue.aspx?code=OBLG",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 0.92,
-        "m6": 5.55,
-        "y1": 16.58
+        "m1": 1.03,
+        "m6": 5.66,
+        "y1": 16.7
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "BOND": {
       "source": "https://www.moex.com/ru/issue.aspx?code=BOND",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": -0.68,
-        "m6": 4.45,
-        "y1": 14.61
+        "m1": -0.42,
+        "m6": 4.72,
+        "y1": 14.91
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
@@ -675,10 +675,10 @@
     },
     "XSECUR": {
       "source": "https://www.moex.com/ru/issue.aspx?code=XSECUR",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 1.45,
+        "m1": 1.74,
         "m6": null,
         "y1": null
       },
@@ -696,12 +696,12 @@
     },
     "RU000A106G80": {
       "source": "https://www.moex.com/ru/issue.aspx?code=RU000A106G80",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "currency": "RUB",
       "returns": {
-        "m1": 0.83,
-        "m6": 5.09,
-        "y1": -5.71
+        "m1": 0.11,
+        "m6": 4.34,
+        "y1": -6.39
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     }
@@ -744,6 +744,6 @@
     "TVEN",
     "XSECUR"
   ],
-  "lastRun": "2026-10-18T13:32:09.257Z",
+  "lastRun": "2026-10-19T13:39:44.317Z",
   "failedTickers": []
 }
