@@ -1,7 +1,21 @@
 {
-  "updatedAt": "2026-10-19T13:40:02.732Z",
+  "updatedAt": "2026-10-19T16:38:03.190Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
+    {
+      "id": "primary-b64bf244-ca1b-4f6d-82a2-cb7c529711e0",
+      "sourceId": "b64bf244-ca1b-4f6d-82a2-cb7c529711e0",
+      "section": "primary",
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 27 октября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 20 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
     {
       "id": "primary-b2260153-d236-44ab-ac8f-a4c65e13ccaa",
       "sourceId": "b2260153-d236-44ab-ac8f-a4c65e13ccaa",
@@ -17,30 +31,16 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-5f385f10-e8f2-414a-90d2-a1855258fe0f",
-      "sourceId": "5f385f10-e8f2-414a-90d2-a1855258fe0f",
+      "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
+      "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
       "section": "primary",
-      "issuer": "Смарт-Процент на 3 месяца",
-      "title": "Смарт-Процент на 3 месяца",
-      "issueName": "До 18 января",
-      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
+      "issuer": "ЭкоНива",
+      "title": "Облигации ЭкоНива",
+      "issueName": "ЭкоНива 001P-04",
+      "coupon": "Фиксированный купон до 18%",
       "currency": "RUB",
-      "deadline": "До 19 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-972a9702-9e1e-4dac-9c8f-70ffc5f1bb08",
-      "sourceId": "972a9702-9e1e-4dac-9c8f-70ffc5f1bb08",
-      "section": "primary",
-      "issuer": "Долговые ЦФА ГК ЕКС",
-      "title": "Долговые ЦФА ГК ЕКС",
-      "issueName": "ГК ЕКС",
-      "coupon": "Процентная ставка 17,5%",
-      "currency": "RUB",
-      "deadline": "До 20 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/eksx160.png",
+      "deadline": "До 22 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -73,6 +73,20 @@
       "missingChecks": 0
     },
     {
+      "id": "primary-972a9702-9e1e-4dac-9c8f-70ffc5f1bb08",
+      "sourceId": "972a9702-9e1e-4dac-9c8f-70ffc5f1bb08",
+      "section": "primary",
+      "issuer": "Долговые ЦФА ГК ЕКС",
+      "title": "Долговые ЦФА ГК ЕКС",
+      "issueName": "ГК ЕКС",
+      "coupon": "Процентная ставка 17,5%",
+      "currency": "RUB",
+      "deadline": "До 20 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/eksx160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
       "id": "primary-419ab738-6728-4b39-ba6c-3e819f7fb189",
       "sourceId": "419ab738-6728-4b39-ba6c-3e819f7fb189",
       "section": "primary",
@@ -83,34 +97,6 @@
       "currency": "CNY",
       "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-80ab7b22-53b3-48cf-bb0e-9b7891dcde7b",
-      "sourceId": "80ab7b22-53b3-48cf-bb0e-9b7891dcde7b",
-      "section": "primary",
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 26 октября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 19 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
-      "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
-      "section": "primary",
-      "issuer": "ЭкоНива",
-      "title": "Облигации ЭкоНива",
-      "issueName": "ЭкоНива 001P-04",
-      "coupon": "Фиксированный купон до 18%",
-      "currency": "RUB",
-      "deadline": "До 22 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
       "isQual": false,
       "missingChecks": 0
     },
