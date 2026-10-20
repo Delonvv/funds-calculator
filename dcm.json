@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T16:38:03.190Z",
+  "updatedAt": "2026-10-20T10:08:05.879Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
@@ -13,6 +13,34 @@
       "currency": "RUB",
       "deadline": "До 20 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
+      "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
+      "section": "primary",
+      "issuer": "Южуралзолото ГК CNY",
+      "title": "Облигации Южуралзолото ГК CNY",
+      "issueName": "Южуралзолото ГК 001P-06 с расчетами в юанях",
+      "coupon": "Купон до 9,9% в CNY с расчетами в юанях",
+      "currency": "CNY",
+      "deadline": "До 27 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "section": "primary",
+      "issuer": "Европлан",
+      "title": "Облигации Европлан",
+      "issueName": "Европлан 001Р-11",
+      "coupon": "Фиксированный купон до 15%",
+      "currency": "RUB",
+      "deadline": "До 26 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -45,27 +73,13 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "section": "primary",
-      "issuer": "Европлан",
-      "title": "Облигации Европлан",
-      "issueName": "Европлан 001Р-11",
-      "coupon": "Фиксированный купон до 15%",
-      "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
-      "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
+      "id": "primary-419ab738-6728-4b39-ba6c-3e819f7fb189",
+      "sourceId": "419ab738-6728-4b39-ba6c-3e819f7fb189",
       "section": "primary",
       "issuer": "Южуралзолото ГК CNY",
       "title": "Облигации Южуралзолото ГК CNY",
-      "issueName": "Южуралзолото ГК 001P-06 с расчетами в юанях",
-      "coupon": "Купон до 9,9% в CNY с расчетами в юанях",
+      "issueName": "Южуралзолото ГК 001P-06 с расчетами в рублях",
+      "coupon": "Купон до 9,9% в CNY с расчетами в рублях",
       "currency": "CNY",
       "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
@@ -83,20 +97,6 @@
       "currency": "RUB",
       "deadline": "До 20 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/eksx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-419ab738-6728-4b39-ba6c-3e819f7fb189",
-      "sourceId": "419ab738-6728-4b39-ba6c-3e819f7fb189",
-      "section": "primary",
-      "issuer": "Южуралзолото ГК CNY",
-      "title": "Облигации Южуралзолото ГК CNY",
-      "issueName": "Южуралзолото ГК 001P-06 с расчетами в рублях",
-      "coupon": "Купон до 9,9% в CNY с расчетами в рублях",
-      "currency": "CNY",
-      "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
