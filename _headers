@@ -1,0 +1,8 @@
+/*
+  X-Content-Type-Options: nosniff
+/index.html
+  Cache-Control: no-cache
+/index-new.html
+  Cache-Control: no-cache
+/favicon*
+  Cache-Control: no-cache

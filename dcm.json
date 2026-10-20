@@ -12,7 +12,7 @@
       "coupon": "Фиксированная доходность 13% от Т-Банка",
       "currency": "RUB",
       "deadline": "До 20 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "image": "",
       "isQual": false,
       "missingChecks": 0
     },
@@ -26,7 +26,7 @@
       "coupon": "Купон до 9,9% в CNY с расчетами в юанях",
       "currency": "CNY",
       "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
+      "image": "",
       "isQual": false,
       "missingChecks": 0
     },
@@ -40,7 +40,7 @@
       "coupon": "Фиксированный купон до 15%",
       "currency": "RUB",
       "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
+      "image": "",
       "isQual": false,
       "missingChecks": 0
     },
@@ -54,7 +54,7 @@
       "coupon": "Фиксированный купон до 1,6%",
       "currency": "RUB",
       "deadline": "До 20 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
+      "image": "",
       "isQual": false,
       "missingChecks": 0
     },
@@ -68,7 +68,7 @@
       "coupon": "Фиксированный купон до 18%",
       "currency": "RUB",
       "deadline": "До 22 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
+      "image": "",
       "isQual": false,
       "missingChecks": 0
     },
@@ -82,7 +82,7 @@
       "coupon": "Купон до 9,9% в CNY с расчетами в рублях",
       "currency": "CNY",
       "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
+      "image": "",
       "isQual": false,
       "missingChecks": 0
     },
@@ -96,7 +96,7 @@
       "coupon": "Процентная ставка 17,5%",
       "currency": "RUB",
       "deadline": "До 20 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/eksx160.png",
+      "image": "",
       "isQual": false,
       "missingChecks": 0
     },
@@ -110,7 +110,7 @@
       "coupon": "Условный купон 20% годовых",
       "currency": "USD",
       "deadline": "До 21 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "image": "",
       "isQual": false,
       "missingChecks": 0
     }
