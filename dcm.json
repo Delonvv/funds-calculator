@@ -1,7 +1,67 @@
 {
-  "updatedAt": "2026-10-21T15:10:24.080Z",
+  "updatedAt": "2026-10-21T15:56:06.098Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
+    {
+      "id": "primary-47d8dc2b-82cd-44a2-a6a7-6ed34c2f55ab",
+      "sourceId": "47d8dc2b-82cd-44a2-a6a7-6ed34c2f55ab",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 3 месяца",
+      "title": "Смарт-Процент на 3 месяца",
+      "issueName": "До 20 января",
+      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 22 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-e772c8ac-0d80-4ad4-8f15-f611fb408d48",
+      "sourceId": "e772c8ac-0d80-4ad4-8f15-f611fb408d48",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 29 октября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 22 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
+      "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Южуралзолото ГК CNY",
+      "title": "Облигации Южуралзолото ГК CNY",
+      "issueName": "Южуралзолото ГК 001P-06 с расчетами в юанях",
+      "coupon": "Купон до 9,9% в CNY с расчетами в юанях",
+      "currency": "CNY",
+      "deadline": "До 27 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
     {
       "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
       "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
@@ -17,7 +77,7 @@
       "issueName": "ЭкоНива 001P-04",
       "coupon": "Фиксированный купон до 18%",
       "currency": "RUB",
-      "deadline": "До 22 октября",
+      "deadline": "До 29 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
       "isQual": false,
       "missingChecks": 0
@@ -43,6 +103,26 @@
       "missingChecks": 0
     },
     {
+      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Европлан",
+      "title": "Облигации Европлан",
+      "issueName": "Европлан 001Р-11",
+      "coupon": "Фиксированный купон до 15%",
+      "currency": "RUB",
+      "deadline": "До 26 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
       "id": "primary-f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
       "sourceId": "f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
       "section": "primary",
@@ -63,82 +143,42 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
-      "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
-      "section": "primary",
+      "id": "current-d9ae62b3-6c6f-43a9-b70a-c3150328b539",
+      "sourceId": "d9ae62b3-6c6f-43a9-b70a-c3150328b539",
+      "section": "current",
       "sourceSections": [
-        "primary"
+        "current"
       ],
       "sourceShelves": [
-        "Первичные размещения от Т-Банка"
+        "Сейчас размещаются"
       ],
-      "issuer": "Южуралзолото ГК CNY",
-      "title": "Облигации Южуралзолото ГК CNY",
-      "issueName": "Южуралзолото ГК 001P-06 с расчетами в юанях",
-      "coupon": "Купон до 9,9% в CNY с расчетами в юанях",
-      "currency": "CNY",
-      "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-e772c8ac-0d80-4ad4-8f15-f611fb408d48",
-      "sourceId": "e772c8ac-0d80-4ad4-8f15-f611fb408d48",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 29 октября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "issuer": "МТС",
+      "title": "Облигации МТС",
+      "issueName": "МТС 003P-04",
+      "coupon": "Плавающий купон до 15,8%",
       "currency": "RUB",
       "deadline": "До 22 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "image": "https://invest-brands.cdn-tinkoff.ru/mtsnewx160.png",
       "isQual": false,
       "missingChecks": 0
     },
     {
-      "id": "primary-47d8dc2b-82cd-44a2-a6a7-6ed34c2f55ab",
-      "sourceId": "47d8dc2b-82cd-44a2-a6a7-6ed34c2f55ab",
-      "section": "primary",
+      "id": "current-92f496d1-a612-4250-b09f-c0a44c504645",
+      "sourceId": "92f496d1-a612-4250-b09f-c0a44c504645",
+      "section": "current",
       "sourceSections": [
-        "primary"
+        "current"
       ],
       "sourceShelves": [
-        "Первичные размещения от Т-Банка"
+        "Сейчас размещаются"
       ],
-      "issuer": "Смарт-Процент на 3 месяца",
-      "title": "Смарт-Процент на 3 месяца",
-      "issueName": "До 20 января",
-      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
+      "issuer": "Эн+ Гидро",
+      "title": "Облигации Эн+ Гидро",
+      "issueName": "Эн+ Гидро 001РС-11",
+      "coupon": "Плавающий купон до 16,5%",
       "currency": "RUB",
       "deadline": "До 22 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Европлан",
-      "title": "Облигации Европлан",
-      "issueName": "Европлан 001Р-11",
-      "coupon": "Фиксированный купон до 15%",
-      "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A10AG22x160.png",
       "isQual": false,
       "missingChecks": 0
     }
