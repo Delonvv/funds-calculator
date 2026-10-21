@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T14:57:32.725Z",
+  "updatedAt": "2026-10-21T15:10:24.080Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
@@ -23,26 +23,6 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
-      "sourceId": "f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Долговые ЦФА ГК ДОБРОФЛОТ",
-      "title": "Долговые ЦФА ГК ДОБРОФЛОТ",
-      "issueName": "ГК ДОБРОФЛОТ 2",
-      "coupon": "Процентная ставка 18,25%",
-      "currency": "RUB",
-      "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/dobroflotx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "primary-419ab738-6728-4b39-ba6c-3e819f7fb189",
       "sourceId": "419ab738-6728-4b39-ba6c-3e819f7fb189",
       "section": "primary",
@@ -59,6 +39,26 @@
       "currency": "CNY",
       "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A105GS2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
+      "sourceId": "f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Долговые ЦФА ГК ДОБРОФЛОТ",
+      "title": "Долговые ЦФА ГК ДОБРОФЛОТ",
+      "issueName": "ГК ДОБРОФЛОТ 2",
+      "coupon": "Процентная ставка 18,25%",
+      "currency": "RUB",
+      "deadline": "До 27 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/dobroflotx160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -103,26 +103,6 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Европлан",
-      "title": "Облигации Европлан",
-      "issueName": "Европлан 001Р-11",
-      "coupon": "Фиксированный купон до 15%",
-      "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "primary-47d8dc2b-82cd-44a2-a6a7-6ed34c2f55ab",
       "sourceId": "47d8dc2b-82cd-44a2-a6a7-6ed34c2f55ab",
       "section": "primary",
@@ -139,6 +119,26 @@
       "currency": "RUB",
       "deadline": "До 22 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Европлан",
+      "title": "Облигации Европлан",
+      "issueName": "Европлан 001Р-11",
+      "coupon": "Фиксированный купон до 15%",
+      "currency": "RUB",
+      "deadline": "До 26 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
       "isQual": false,
       "missingChecks": 0
     }
