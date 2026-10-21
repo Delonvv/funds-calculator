@@ -3,9 +3,8 @@ name: Daily funds, RUSFAR and placements update
 on:
   workflow_dispatch:
   schedule:
-    # Каждый день: 12:40 и 15:00 МСК (UTC+3). GitHub может задерживать запуск.
-    - cron: "40 9 * * *"
-    - cron: "0 12 * * *"
+    - cron: "40 12 * * *"
+      timezone: "Europe/Moscow"
     
 permissions:
   contents: write
@@ -55,17 +54,44 @@ jobs:
           if-no-files-found: warn
 
       - name: Commit changed data
+        id: commit_data
         run: |
           if git diff --quiet -- funds.json market-rates.json dcm.json; then
             echo "No data changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           git config user.name "funds-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git add funds.json market-rates.json dcm.json
-          git commit -m "Daily funds, RUSFAR and placements update"
+          git commit -m "Daily funds, RUSFAR and placements update [netlify-hook-only]"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Netlify production deploy
+        if: steps.commit_data.outputs.changed == 'true'
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK" ]; then
+            echo "::error::Repository secret NETLIFY_BUILD_HOOK is missing."
+            exit 1
+          fi
+          case "$NETLIFY_BUILD_HOOK" in
+            https://api.netlify.com/build_hooks/*) ;;
+            *)
+              echo "::error::NETLIFY_BUILD_HOOK must be a Netlify build hook URL."
+              exit 1
+              ;;
+          esac
+          curl --fail --silent --show-error \
+            --connect-timeout 15 --max-time 45 \
+            --request POST --header 'Content-Type: application/json' \
+            --data '{}' \
+            --output "$RUNNER_TEMP/netlify-deploy-response.json" \
+            "$NETLIFY_BUILD_HOOK"
+          echo "Netlify accepted the deployment request. Check Deploys for the final Published status."
 
       - name: Report DCM error
         if: steps.dcm.outcome == 'failure'

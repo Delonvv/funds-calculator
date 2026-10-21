@@ -1,0 +1,4 @@
+# Skip the redundant Git-triggered build for data-update commits only.
+# Netlify explicitly bypasses ignore rules for builds requested by a build hook.
+[build]
+  ignore = "bash ./scripts/netlify-ignore-auto-data.sh"
