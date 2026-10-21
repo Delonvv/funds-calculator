@@ -1,7 +1,27 @@
 {
-  "updatedAt": "2026-10-21T16:02:43.580Z",
+  "updatedAt": "2026-10-21T16:18:56.614Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
+    {
+      "id": "primary-e772c8ac-0d80-4ad4-8f15-f611fb408d48",
+      "sourceId": "e772c8ac-0d80-4ad4-8f15-f611fb408d48",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 29 октября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 22 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
     {
       "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
       "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
@@ -19,6 +39,26 @@
       "currency": "RUB",
       "deadline": "До 26 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
+      "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "ЭкоНива",
+      "title": "Облигации ЭкоНива",
+      "issueName": "ЭкоНива 001P-04",
+      "coupon": "Фиксированный купон до 18%",
+      "currency": "RUB",
+      "deadline": "До 29 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -83,46 +123,6 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-e772c8ac-0d80-4ad4-8f15-f611fb408d48",
-      "sourceId": "e772c8ac-0d80-4ad4-8f15-f611fb408d48",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 29 октября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 22 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
-      "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "ЭкоНива",
-      "title": "Облигации ЭкоНива",
-      "issueName": "ЭкоНива 001P-04",
-      "coupon": "Фиксированный купон до 18%",
-      "currency": "RUB",
-      "deadline": "До 29 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
       "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
       "section": "primary",
@@ -143,26 +143,6 @@
       "missingChecks": 0
     },
     {
-      "id": "current-d9ae62b3-6c6f-43a9-b70a-c3150328b539",
-      "sourceId": "d9ae62b3-6c6f-43a9-b70a-c3150328b539",
-      "section": "current",
-      "sourceSections": [
-        "current"
-      ],
-      "sourceShelves": [
-        "Сейчас размещаются"
-      ],
-      "issuer": "МТС",
-      "title": "Облигации МТС",
-      "issueName": "МТС 003P-04",
-      "coupon": "Плавающий купон до 15,8%",
-      "currency": "RUB",
-      "deadline": "До 22 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/mtsnewx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "current-92f496d1-a612-4250-b09f-c0a44c504645",
       "sourceId": "92f496d1-a612-4250-b09f-c0a44c504645",
       "section": "current",
@@ -179,6 +159,26 @@
       "currency": "RUB",
       "deadline": "До 22 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A10AG22x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-d9ae62b3-6c6f-43a9-b70a-c3150328b539",
+      "sourceId": "d9ae62b3-6c6f-43a9-b70a-c3150328b539",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "МТС",
+      "title": "Облигации МТС",
+      "issueName": "МТС 003P-04",
+      "coupon": "Плавающий купон до 15,8%",
+      "currency": "RUB",
+      "deadline": "До 22 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/mtsnewx160.png",
       "isQual": false,
       "missingChecks": 0
     }
