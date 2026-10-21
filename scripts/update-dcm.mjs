@@ -14,29 +14,48 @@ export function extract(html){
  const match=html.match(/<script\b[^>]*id=["']__REACT_QUERY_STATE__invest["'][^>]*>([\s\S]*?)<\/script>/i);
  if(!match)throw new Error('Нет встроенного каталога __REACT_QUERY_STATE__invest');
  const state=JSON.parse(match[1]);
- const data=state.queries?.map(q=>q.state?.data).find(d=>Array.isArray(d?.shelves));
- if(!data)throw new Error('Не найден список shelves');
- const titles={'Первичные размещения от Т-Банка':'primary','Сейчас размещаются':'current'};
- const found=new Set();const placements=[];
- for(const shelf of data.shelves){
-  const section=titles[shelf.shelfName?.replace(/‑|–/g,'-')];if(!section)continue;found.add(section);
-  if(!Array.isArray(shelf.shelfSections))throw new Error(`Неполный блок ${shelf.shelfName}`);
-  for(const x of shelf.shelfSections){
-   if(x.type!=='Issuance')continue;
-   if(!x.id||!x.name||!x.shortDescription)throw new Error('Неполная карточка размещения');
+ const catalogues=state.queries?.map(q=>q.state?.data).filter(d=>Array.isArray(d?.shelves));
+ if(!catalogues?.length)throw new Error('Не найден список shelves; старые данные сохранены');
+ const normalizeTitle=value=>String(value??'').normalize('NFKC').replace(/[\u2010-\u2015\u2212]/g,'-').replace(/\s+/g,' ').trim();
+ const sectionFor=title=>title==='Первичные размещения от Т-Банка'?'primary':title==='Сейчас размещаются'?'current':/аналитик/i.test(title)?'analysts':'other';
+ const placements=[];
+ // Follow typed placement cards, including cards nested in analyst lists.
+ // Plain stocks, traded bonds and editorial articles are not placements.
+ function issuanceCards(value){
+  if(!value||typeof value!=='object')return [];
+  if(Array.isArray(value))return value.flatMap(issuanceCards);
+  if(value.type==='Issuance')return [value];
+  return Object.values(value).flatMap(issuanceCards);
+ }
+ for(const shelf of catalogues.flatMap(d=>d.shelves)){
+  if(!shelf||typeof shelf!=='object')throw new Error('Повреждённый блок каталога; старые данные сохранены');
+  const title=normalizeTitle(shelf.shelfName),section=sectionFor(title);
+  if(!Array.isArray(shelf.shelfSections)){
+   if('shelfSections' in shelf||section!=='other')throw new Error(`Неполный блок ${title}; старые данные сохранены`);
+   continue;
+  }
+  for(const x of issuanceCards(shelf.shelfSections)){
+   if(!x.id||!x.name||!x.shortDescription)throw new Error(`Неполная карточка размещения в блоке ${title}; старые данные сохранены`);
    const logo=x.security?.asset?.logoName;
    const image=logo?`https://invest-brands.cdn-tinkoff.ru/${logo.replace(/\.png$/i,'x160.png')}`:'';
    const text=`${x.name} ${x.shortDescription}`;
-   placements.push({id:`${section}-${x.id}`,sourceId:x.id,section,issuer:x.name.replace(/^Облигации\s+/i,''),title:x.name,issueName:x.security?.asset?.showName||'',coupon:x.shortDescription,currency:/CNY|юан/i.test(text)?'CNY':/USD|доллар/i.test(text)?'USD':/(?<![A-Za-zА-Яа-яЁё])(?:EUR|евро)(?![A-Za-zА-Яа-яЁё])/i.test(text)?'EUR':'RUB',deadline:x.bar?.text||'',image,isQual:x.security?.isQual??null,missingChecks:0});
+   placements.push({id:`${section}-${x.id}`,sourceId:x.id,section,sourceSections:[section],sourceShelves:[title||'Без названия'],issuer:x.name.replace(/^Облигации\s+/i,''),title:x.name,issueName:x.security?.asset?.showName||'',coupon:x.shortDescription,currency:/CNY|юан/i.test(text)?'CNY':/USD|доллар/i.test(text)?'USD':/(?<![A-Za-zА-Яа-яЁё])(?:EUR|евро)(?![A-Za-zА-Яа-яЁё])/i.test(text)?'EUR':'RUB',deadline:x.bar?.text||'',image,isQual:x.security?.isQual??null,missingChecks:0});
   }
  }
- if(!found.has('primary')||!found.has('current'))throw new Error('Один из двух блоков отсутствует; старые данные сохранены');
- return placements;
+ // An available catalogue may legitimately contain no placement cards.
+ return reconcile([],placements);
 }
 export function reconcile(_old,fresh){
- // Called only after a complete successful collection of both source sections.
- // Missing placements are removed immediately; collection errors preserve the old file.
- return [...new Map(fresh.map(x=>[x.id,{...x,missingChecks:0}])).values()];
+ const unique=new Map();
+ for(const x of fresh){
+  const key=x.sourceId||x.id;
+  if(!key)throw new Error('Карточка без идентификатора; старые данные сохранены');
+  const previous=unique.get(key);
+  if(!previous){unique.set(key,{...x,missingChecks:0});continue;}
+  previous.sourceSections=[...new Set([...(previous.sourceSections||[previous.section]),...(x.sourceSections||[x.section])])];
+  previous.sourceShelves=[...new Set([...(previous.sourceShelves||[]),...(x.sourceShelves||[])])];
+ }
+ return [...unique.values()];
 }
 async function collect(){
  let lastError;

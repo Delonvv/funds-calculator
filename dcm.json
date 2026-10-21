@@ -1,25 +1,17 @@
 {
-  "updatedAt": "2026-10-21T10:03:53.310Z",
+  "updatedAt": "2026-10-21T14:57:32.725Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
-    {
-      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "section": "primary",
-      "issuer": "Европлан",
-      "title": "Облигации Европлан",
-      "issueName": "Европлан 001Р-11",
-      "coupon": "Фиксированный купон до 15%",
-      "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
     {
       "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
       "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
       "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
       "issuer": "ЭкоНива",
       "title": "Облигации ЭкоНива",
       "issueName": "ЭкоНива 001P-04",
@@ -34,6 +26,12 @@
       "id": "primary-f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
       "sourceId": "f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
       "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
       "issuer": "Долговые ЦФА ГК ДОБРОФЛОТ",
       "title": "Долговые ЦФА ГК ДОБРОФЛОТ",
       "issueName": "ГК ДОБРОФЛОТ 2",
@@ -48,6 +46,12 @@
       "id": "primary-419ab738-6728-4b39-ba6c-3e819f7fb189",
       "sourceId": "419ab738-6728-4b39-ba6c-3e819f7fb189",
       "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
       "issuer": "Южуралзолото ГК CNY",
       "title": "Облигации Южуралзолото ГК CNY",
       "issueName": "Южуралзолото ГК 001P-06 с расчетами в рублях",
@@ -62,6 +66,12 @@
       "id": "primary-994e95eb-c0e2-480c-92fd-cc526a538ce1",
       "sourceId": "994e95eb-c0e2-480c-92fd-cc526a538ce1",
       "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
       "issuer": "Южуралзолото ГК CNY",
       "title": "Облигации Южуралзолото ГК CNY",
       "issueName": "Южуралзолото ГК 001P-06 с расчетами в юанях",
@@ -73,100 +83,62 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-343a5296-c4bd-471d-ab1f-50d6205bfb4d",
-      "sourceId": "343a5296-c4bd-471d-ab1f-50d6205bfb4d",
+      "id": "primary-e772c8ac-0d80-4ad4-8f15-f611fb408d48",
+      "sourceId": "e772c8ac-0d80-4ad4-8f15-f611fb408d48",
       "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
       "issuer": "Смарт-Процент на 7 дней",
       "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 28 октября",
+      "issueName": "До 29 октября",
       "coupon": "Фиксированная доходность 13% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 21 октября",
+      "deadline": "До 22 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
     {
-      "id": "primary-6c62656b-d6d8-4b33-8760-f35317fb2a40",
-      "sourceId": "6c62656b-d6d8-4b33-8760-f35317fb2a40",
+      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
       "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Европлан",
+      "title": "Облигации Европлан",
+      "issueName": "Европлан 001Р-11",
+      "coupon": "Фиксированный купон до 15%",
+      "currency": "RUB",
+      "deadline": "До 26 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-47d8dc2b-82cd-44a2-a6a7-6ed34c2f55ab",
+      "sourceId": "47d8dc2b-82cd-44a2-a6a7-6ed34c2f55ab",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
       "issuer": "Смарт-Процент на 3 месяца",
       "title": "Смарт-Процент на 3 месяца",
-      "issueName": "До 19 января",
+      "issueName": "До 20 января",
       "coupon": "Фиксированная доходность 13,5% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 21 октября",
+      "deadline": "До 22 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-afa8f9b3-7002-4038-8b80-e756a2053116",
-      "sourceId": "afa8f9b3-7002-4038-8b80-e756a2053116",
-      "section": "current",
-      "issuer": "Структурный актив на USD/RUB",
-      "title": "Структурный актив на USD/RUB",
-      "issueName": "Условный купон 20% годовых на USD/RUB",
-      "coupon": "Условный купон 20% годовых",
-      "currency": "USD",
-      "deadline": "До 21 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-0560090f-b798-4f88-b4c9-264b5c6884d4",
-      "sourceId": "0560090f-b798-4f88-b4c9-264b5c6884d4",
-      "section": "current",
-      "issuer": "ФосАгро CNY",
-      "title": "Облигации ФосАгро CNY",
-      "issueName": "ФосАгро БО-03-03 с расчетами в юанях",
-      "coupon": "Купон до 9,2% в CNY с расчетами в юанях",
-      "currency": "CNY",
-      "deadline": "До 21 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JRKT8x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-93208e91-2d24-4bc9-9713-e1158aa47ca8",
-      "sourceId": "93208e91-2d24-4bc9-9713-e1158aa47ca8",
-      "section": "current",
-      "issuer": "ФосАгро CNY",
-      "title": "Облигации ФосАгро CNY",
-      "issueName": "ФосАгро БО-03-03 с расчетами в рублях",
-      "coupon": "Купон до 9,2% в CNY с расчетами в рублях",
-      "currency": "CNY",
-      "deadline": "До 21 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JRKT8x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-ffdd33eb-d0b4-4ac8-99b3-16f07331b4a6",
-      "sourceId": "ffdd33eb-d0b4-4ac8-99b3-16f07331b4a6",
-      "section": "current",
-      "issuer": "ФосАгро",
-      "title": "Облигации ФосАгро",
-      "issueName": "ФосАгро БО-03-02",
-      "coupon": "Купон до 9,2% в USD с расчетами в рублях",
-      "currency": "USD",
-      "deadline": "До 21 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JRKT8x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-7715ff27-a4bd-436c-a203-634db644ba23",
-      "sourceId": "7715ff27-a4bd-436c-a203-634db644ba23",
-      "section": "current",
-      "issuer": "Ростелеком",
-      "title": "Облигации Ростелеком",
-      "issueName": "Ростелеком 001P-29R",
-      "coupon": "Плавающий купон до 15,5%",
-      "currency": "RUB",
-      "deadline": "До 21 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU0008943394x160.png",
       "isQual": false,
       "missingChecks": 0
     }
