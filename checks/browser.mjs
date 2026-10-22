@@ -72,6 +72,32 @@ export async function browserChecks(check, directory) {
       assert(await page.locator('#grid>.card').getAttribute('data-fund-ticker') === 'TMON', 'Wrong favorite');
       await page.locator('.ct-star').first().click(); assert(await page.locator('#grid>.card').count() === 0, 'Favorite not removed');
     });
+    await test('browser/catalog-reuse', 'Карточки переиспользуются, сравнения создаются только по нажатию', async page => {
+      assert(await page.locator('#grid .historyRow').count() === 0, 'Closed comparisons created during startup');
+      await page.evaluate(() => {
+        window.auditCard = document.querySelector('[data-fund-ticker="TMON"]');
+        window.auditStar = window.auditCard.querySelector('.ct-star');
+      });
+      for (const query of ['TMON', 'no-such-fund', '']) await page.locator('#search').fill(query);
+      assert(await page.evaluate(() => document.querySelector('[data-fund-ticker="TMON"]') === window.auditCard), 'Search recreated card');
+      await page.locator('[data-fund-ticker="TMON"] .ct-star').click();
+      assert(await page.evaluate(() => document.querySelector('[data-fund-ticker="TMON"] .ct-star') === window.auditStar), 'Favorite recreated star');
+      assert(await page.locator('[data-fund-ticker="TMON"] .ct-star').textContent() === '★', 'Favorite star not updated');
+      const button = page.locator('[data-fund-ticker="TMON"] .compare');
+      await button.click();
+      assert(await page.locator('#peers-TMON .historyRow').count() > 0, 'Comparison did not load');
+      assert(await button.getAttribute('aria-expanded') === 'true', 'Expanded state missing');
+      await page.evaluate(() => { window.auditHistory = document.querySelector('#peers-TMON .historyRow'); });
+      await button.click(); await button.click();
+      assert(await page.evaluate(() => document.querySelector('#peers-TMON .historyRow') === window.auditHistory), 'Reopening rebuilt comparison');
+      await page.locator('#peers-TMON button').filter({ hasText: '1 месяц' }).click();
+      await page.locator('#search').fill('TOFZ'); await page.locator('#search').fill('');
+      assert(await page.locator('#peers-TMON').evaluate(x => x.classList.contains('open')), 'Search lost expanded comparison');
+      assert(await page.locator('#peers-TMON button[aria-pressed="true"]').textContent() === '1 месяц', 'Search lost comparison period');
+      assert(await page.locator('.peers:not(#peers-TMON) .historyRow').count() === 0, 'Unopened comparisons created');
+      await page.locator('[data-catalog-mode="favorites"]').click();
+      assert(await page.evaluate(() => document.querySelector('#grid>.card') === window.auditCard), 'Favorites recreated card');
+    });
     await test('browser/modal', 'Калькулятор фонда и Escape', async page => {
       await page.locator('[data-fund-ticker="TMON"] .calc').click();
       assert(await page.locator('#modalBg').evaluate(x => x.classList.contains('open')), 'Modal closed');
