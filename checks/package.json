@@ -1,0 +1,13 @@
+{
+  "name": "funds-calculator-checks",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node self-test.mjs",
+    "daily": "node run.mjs",
+    "weekly": "node run.mjs --weekly"
+  },
+  "devDependencies": {
+    "playwright": "1.61.1"
+  }
+}
