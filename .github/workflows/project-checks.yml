@@ -1,0 +1,91 @@
+name: Project checks
+
+on:
+  schedule:
+    # UTC: daily 09:17 and Monday 09:47 in Asia/Yekaterinburg (UTC+5).
+    - cron: '17 4 * * *'
+    - cron: '47 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      weekly:
+        description: Include JSON freshness and updater history
+        type: boolean
+        default: false
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: project-checks-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'monitor' }}
+  cancel-in-progress: false
+
+env:
+  CHECK_WEEKLY: ${{ (github.event.schedule == '47 4 * * 1' || inputs.weekly == true) && 'true' || 'false' }}
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated check dependencies
+        run: npm ci --prefix checks --ignore-scripts
+      - name: Install Chromium
+        working-directory: checks
+        run: npx playwright install --with-deps chromium
+      - name: Test monitor and Issue deduplication
+        run: node checks/self-test.mjs
+      - name: Check static site, JavaScript, finances and browser flows
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          args=()
+          if [ "$CHECK_WEEKLY" = true ]; then args+=(--weekly); fi
+          node checks/run.mjs "${args[@]}"
+      - name: Save check report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-check-results
+          path: checks/results/
+          if-no-files-found: warn
+          retention-days: 14
+
+  report:
+    needs: checks
+    if: ${{ always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download check report
+        id: download
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: project-check-results
+          path: checks/results/
+      - name: Update monitoring Issues
+        uses: actions/github-script@v7
+        env:
+          CHECK_JOB_RESULT: ${{ needs.checks.result }}
+        with:
+          script: |
+            const { report } = require('./checks/report.cjs');
+            await report({ github, context, core });
