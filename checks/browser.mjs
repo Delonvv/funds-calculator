@@ -75,10 +75,31 @@ export async function browserChecks(check, directory) {
     await test('browser/modal', 'Калькулятор фонда и Escape', async page => {
       await page.locator('[data-fund-ticker="TMON"] .calc').click();
       assert(await page.locator('#modalBg').evaluate(x => x.classList.contains('open')), 'Modal closed');
-      await page.locator('#initial').fill('1000000'); await page.locator('#term').fill('12'); await page.locator('#rate').fill('10');
+      await fillAmount(page, '#initial', '1000000'); await page.locator('#term').fill('12'); await page.locator('#rate').fill('10');
       close(await number(page, '#beforeTax'), 1_100_000, 1);
       await page.keyboard.press('Escape');
       assert(!await page.locator('#modalBg').evaluate(x => x.classList.contains('open')), 'Escape did not close modal');
+    });
+    await test('browser/publication', 'Логотипы, фоны и напоминание после загрузки и перерисовки', async page => {
+      const missing = await page.evaluate(() => performance.getEntriesByType('resource').filter(x => /publication\.js/.test(x.name)).map(x => x.name));
+      assert(missing.length === 0, 'Obsolete publication script still requested');
+      for (const query of ['TMON', '']) {
+        await page.locator('#search').fill(query);
+        const logos = page.locator('#grid>.card .top img');
+        assert(await logos.count() === await page.locator('#grid>.card').count(), 'Fund logos missing');
+        await logos.first().evaluate(img => img.decode());
+        assert(await logos.evaluateAll(images => images.every(img => img.complete && img.naturalWidth > 0)), 'Broken fund logo');
+      }
+      for (const [name, selector] of [['funds', '.funds-scenery img'], ['mission', '.mission-scenery img']]) {
+        await show(page, name);
+        await page.locator(selector).evaluate(img => img.decode());
+        assert(await page.locator(selector).isVisible(), `${name} background missing`);
+      }
+      for (const name of ['funds', 'nszh', 'spk', 'model', 'smart-deposits']) {
+        await show(page, name);
+        assert(await page.locator('.site-independence').isVisible(), `Independence note hidden on ${name}`);
+        assert(await page.locator('.site-independence').evaluate(x => !x.closest('main')), 'Note moved into dynamic pages');
+      }
     });
     await test('browser/product-selection', 'Подбор передаёт срок и ставку в калькулятор', async page => {
       await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
@@ -90,12 +111,64 @@ export async function browserChecks(check, directory) {
       await card.locator('.ct-open-product').click();
       assert(await page.locator('#taccTerm').inputValue() === `months:${term}`, 'Selected offer term not transferred');
       close(Number(await page.locator('#taccRate').inputValue()), rates[term]);
+      await fillAmount(page, '#taccAmount', '1000000');
+      close(await number(page, '#taccProductBefore'), 1_000_000 + 1_000_000 * rates[term] / 100 * term / 12, 1);
+      await show(page, 'funds');
+      await card.locator('select').selectOption('months:3');
+      await card.locator('.ct-open-product').click();
+      assert(await page.locator('#taccTerm').inputValue() === 'months:3', 'Repeated selection lost');
+      close(Number(await page.locator('#taccRate').inputValue()), rates['3']);
+    });
+    await test('browser/product-selection-loading', 'Выбранный срок сохраняется при медленной загрузке условий', async page => {
+      let release;
+      const gate = new Promise(resolve => { release = resolve; });
+      const rates = await json('rates.json');
+      let requests = 0;
+      await page.route('**/rates.json*', async route => {
+        if (++requests === 1) await gate; // Calculator request precedes the catalogue's request.
+        await route.fulfill({ json: rates });
+      });
+      try {
+        await page.reload({ waitUntil: 'domcontentloaded' });
+        await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
+        const card = page.locator('#ctRail .ct-product').filter({ hasText: 'Т‑Счёт' });
+        await card.locator('option[value="months:18"]').waitFor({ state: 'attached' });
+        await card.locator('select').selectOption('months:18'); await card.locator('.ct-open-product').click();
+        release();
+        await page.waitForFunction(() => document.getElementById('taccTerm').value === 'months:18');
+        close(Number(await page.locator('#taccRate').inputValue()), rates.tAccount.rates.months['18']);
+      } finally { release(); }
     });
     await test('browser/product-favorites', 'Избранный продукт виден после перезагрузки', async page => {
       await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
       await page.locator('[data-favorite="product:taccount"]').click();
       await page.reload({ waitUntil: 'networkidle' }); await page.locator('[data-catalog-mode="favorites"]').click();
       assert(await page.locator('[data-favorite="product:taccount"]:visible').count() === 1, 'Favorite product counted but not displayed');
+      assert(await page.locator('#count').textContent() === 'Показано: 1', 'Favorite product not counted');
+      await page.locator('#search').fill('Инвестзайм');
+      assert(await page.locator('[data-favorite="product:taccount"]:visible').count() === 0, 'Favorite product ignores search');
+      await page.locator('#search').fill('');
+      await page.locator('[data-favorite="product:taccount"]').click();
+      assert(await page.locator('#count').textContent() === 'Показано: 0', 'Removed favorite still counted');
+      assert(await page.locator('#empty').isVisible(), 'Empty favorites message hidden');
+      await page.locator('[data-catalog-mode="all"]').click();
+      assert(await page.locator('.ct-product:visible').count() === 0, 'Products leaked into all-funds view');
+    });
+    await test('browser/mixed-favorites', 'Избранные продукты, фонды и синхронизация вкладок', async page => {
+      await page.locator('[data-fund-ticker="TMON"] .ct-star').click();
+      await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
+      for (const id of ['taccount', 'investloan', 'rentier']) await page.locator(`[data-favorite="product:${id}"]`).click();
+      await page.reload({ waitUntil: 'networkidle' }); await page.locator('[data-catalog-mode="favorites"]').click();
+      assert(await page.locator('.ct-product:visible').count() === 3, 'Some favorite products missing');
+      assert(await page.locator('#grid>.card').count() === 1, 'Favorite fund disappeared');
+      assert(await page.locator('#count').textContent() === 'Показано: 4', 'Mixed favorite count incorrect');
+      const tab = await page.context().newPage();
+      try {
+        await tab.goto(page.url(), { waitUntil: 'networkidle' });
+        await tab.evaluate(() => localStorage.setItem('funds-favorites-v1', JSON.stringify(['product:investloan'])));
+        await page.waitForFunction(() => document.getElementById('count').textContent === 'Показано: 1');
+        assert(await page.locator('[data-favorite="product:investloan"]:visible').count() === 1, 'Other-tab update lost product');
+      } finally { await tab.close(); }
     });
     await test('finance/products', 'Т‑Счёт и Инвестзайм: доход и НДФЛ', async page => {
       const config = await json('rates.json');
