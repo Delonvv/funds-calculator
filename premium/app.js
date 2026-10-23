@@ -1,12 +1,15 @@
 (() => {
   'use strict';
+  const page = document.getElementById('premiumPage');
+  if (!page) return;
+  const byId = id => page.querySelector('#' + id);
   const model = window.PREMIUM_DATA;
   if (!model) {
-    document.getElementById('selectioncount').textContent = 'Данные сравнения недоступны. Обновите страницу.';
+    byId('selectioncount').textContent = 'Данные сравнения недоступны. Обновите страницу.';
     return;
   }
   const meta = model.banks;
-  const board = document.getElementById('board');
+  const board = byId('board');
   const names = ['Платный вход', 'Начальный', 'Расширенный', 'Старший'];
   const descriptions = ['Обслуживание за плату', 'Первые пакеты по активам', 'Расширенные привилегии', 'Старшие пакеты'];
   const rowLabels = { 3: 'Бизнес-залы', 8: 'Fast Track · без очереди', 4: 'Рестораны', 5: 'Такси / каршеринг', 6: 'Страхование', 7: 'Что важно' };
@@ -19,7 +22,7 @@
 
   function extra(bank) {
     if (bank === 1 && stage === 1) return 'Также уровень 1: от 2 млн ₽, без залов. Здесь показан уровень 2 от 3 млн ₽.';
-    if (bank === 1 && stage === 3) return 'Также уровни 5 и 6: от 30 и 100 млн ₽. <a class="source" href="sber-levels.html">Все уровни →</a>';
+    if (bank === 1 && stage === 3) return 'Также уровни 5 и 6: от 30 и 100 млн ₽. <a class="source" href="#premium-sber">Все уровни →</a>';
     if (bank === 5 && stage === 2) return 'Также OPC при 7 млн ₽: поездки до 10 000 ₽ в год. Лимиты залов и ресторанов те же.';
     return '';
   }
@@ -57,8 +60,8 @@
   }
 
   function updateArrows() {
-    document.getElementById('prev').disabled = board.scrollLeft < 2;
-    document.getElementById('next').disabled = board.scrollLeft + board.clientWidth >= board.scrollWidth - 2;
+    byId('prev').disabled = board.scrollLeft < 2;
+    byId('next').disabled = board.scrollLeft + board.clientWidth >= board.scrollWidth - 2;
   }
 
   function slide(direction) {
@@ -70,30 +73,30 @@
     const left = keepScroll ? board.scrollLeft : 0;
     const focus = document.activeElement;
     const restore = ['bank', 'stage', 'benefit'].map(key => [key, focus?.dataset[key]]).find(([, val]) => val !== undefined);
-    document.getElementById('selectioncount').textContent = `Выбрано ${visible.filter(Boolean).length} из 7 · чёрный — выбран, серый — скрыт`;
-    document.getElementById('bankbuttons').innerHTML = meta.map((m, i) =>
+    byId('selectioncount').textContent = `Выбрано ${visible.filter(Boolean).length} из 7 · чёрный — выбран, серый — скрыт`;
+    byId('bankbuttons').innerHTML = meta.map((m, i) =>
       `<button type="button" data-bank="${i}" class="${visible[i] ? 'on' : ''}" aria-pressed="${visible[i]}">${visible[i] ? '✓ ' : ''}${m.name}</button>`).join('');
-    document.getElementById('rail').innerHTML = names.map((name, i) =>
+    byId('rail').innerHTML = names.map((name, i) =>
       `<button type="button" data-stage="${i}" class="${stage === i ? 'on' : ''}" aria-pressed="${stage === i}"><span class="step">0${i + 1}</span><span><b>${name}</b><small>${descriptions[i]}</small></span></button>`).join('');
-    document.getElementById('currentstage').textContent = `${names[stage]} уровень`;
+    byId('currentstage').textContent = `${names[stage]} уровень`;
     board.innerHTML = meta.map((_, i) => visible[i] ? card(i) : '').join('');
     board.scrollLeft = left;
-    if (restore) document.querySelector(`[data-${restore[0]}="${restore[1]}"]`)?.focus({ preventScroll: true });
+    if (restore) page.querySelector(`[data-${restore[0]}="${restore[1]}"]`)?.focus({ preventScroll: true });
     updateArrows();
   }
 
-  document.getElementById('bankbuttons').addEventListener('click', event => {
+  byId('bankbuttons').addEventListener('click', event => {
     const button = event.target.closest('[data-bank]');
     if (!button) return;
     const bank = Number(button.dataset.bank);
     if (visible[bank] && visible.filter(Boolean).length === 1) {
-      document.getElementById('selectioncount').textContent = 'Оставьте хотя бы один банк для сравнения';
+      byId('selectioncount').textContent = 'Оставьте хотя бы один банк для сравнения';
       return;
     }
     visible[bank] = !visible[bank];
     render();
   });
-  document.getElementById('rail').addEventListener('click', event => {
+  byId('rail').addEventListener('click', event => {
     const button = event.target.closest('[data-stage]');
     if (!button) return;
     stage = Number(button.dataset.stage);
@@ -108,7 +111,9 @@
   });
   board.addEventListener('scroll', updateArrows);
   window.addEventListener('resize', updateArrows);
-  document.getElementById('prev').addEventListener('click', () => slide(-1));
-  document.getElementById('next').addEventListener('click', () => slide(1));
+  byId('prev').addEventListener('click', () => slide(-1));
+  byId('next').addEventListener('click', () => slide(1));
   render();
+  // The carousel is initially hidden when another section is active. Re-measure on open.
+  new MutationObserver(updateArrows).observe(page, { attributes: true, attributeFilter: ['class'] });
 })();

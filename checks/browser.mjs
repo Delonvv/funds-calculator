@@ -152,6 +152,7 @@ export async function browserChecks(check, directory) {
       let release;
       const gate = new Promise(resolve => { release = resolve; });
       const rates = await json('rates.json');
+      const term = Math.max(...Object.keys(rates.tAccount.rates.months).map(Number));
       let requests = 0;
       await page.route('**/rates.json*', async route => {
         if (++requests === 1) await gate; // Calculator request precedes the catalogue's request.
@@ -161,11 +162,11 @@ export async function browserChecks(check, directory) {
         await page.reload({ waitUntil: 'domcontentloaded' });
         await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
         const card = page.locator('#ctRail .ct-product').filter({ hasText: 'Т‑Счёт' });
-        await card.locator('option[value="months:18"]').waitFor({ state: 'attached' });
-        await card.locator('select').selectOption('months:18'); await card.locator('.ct-open-product').click();
+        await card.locator(`option[value="months:${term}"]`).waitFor({ state: 'attached' });
+        await card.locator('select').selectOption(`months:${term}`); await card.locator('.ct-open-product').click();
         release();
-        await page.waitForFunction(() => document.getElementById('taccTerm').value === 'months:18');
-        close(Number(await page.locator('#taccRate').inputValue()), rates.tAccount.rates.months['18']);
+        await page.waitForFunction(value => document.getElementById('taccTerm').value === value, `months:${term}`);
+        close(Number(await page.locator('#taccRate').inputValue()), rates.tAccount.rates.months[term]);
       } finally { release(); }
     });
     await test('browser/product-favorites', 'Избранный продукт виден после перезагрузки', async page => {
@@ -203,18 +204,20 @@ export async function browserChecks(check, directory) {
       const config = await json('rates.json');
       for (const [name, prefix, key] of [['taccount', 'tacc', 'tAccount'], ['investloan', 'loan', 'investLoan']]) {
         await show(page, name); await fillAmount(page, `#${prefix}Amount`, '2000000');
-        await page.locator(`#${prefix}Term`).selectOption('months:6'); await page.locator(`#${prefix}Tax`).check();
-        const income = 2_000_000 * config[key].rates.months['6'] / 100 / 2;
+        const months = config[key].rates.months['6'] !== undefined ? 6 : Math.max(...Object.keys(config[key].rates.months).map(Number));
+        const years = months / 12;
+        await page.locator(`#${prefix}Term`).selectOption(`months:${months}`); await page.locator(`#${prefix}Tax`).check();
+        const income = 2_000_000 * config[key].rates.months[months] / 100 * years;
         close(await number(page, `#${prefix}ProductBefore`), 2_000_000 + income, 1);
         close(await number(page, `#${prefix}ProductAfter`), 2_000_000 + income * .87, 1);
         await page.locator(`#${prefix}DepositRate`).fill('12');
-        for (const [cap, periods] of [['none', 1], ['monthly', 6], ['daily', 182.5]]) {
+        for (const [cap, periods] of [['none', 1], ['monthly', months], ['daily', 365 * years]]) {
           await page.locator(`#${prefix}DepositCap`).selectOption(cap);
-          // Independent repeated accrual; the half-day uses the documented fractional-period convention.
+          // Independent repeated accrual over the available offer term, including fractional days.
           let balance = 2_000_000;
-          const step = cap === 'daily' ? .12 / 365 : cap === 'monthly' ? .01 : .06;
+          const step = cap === 'daily' ? .12 / 365 : cap === 'monthly' ? .01 : .12 * years;
           for (let i = 0; i < Math.floor(periods); i++) balance += balance * step;
-          if (periods % 1) balance *= Math.sqrt(1 + step);
+          if (periods % 1) balance *= Math.pow(1 + step, periods % 1);
           close(await number(page, `#${prefix}DepositBefore`), balance, 1);
         }
       }
