@@ -2,8 +2,26 @@ import { assert } from './core.mjs';
 
 export async function premiumPreviewChecks(test, origin) {
   // The small static test server serves files rather than directory indexes.
-  const openPreview = page => page.goto(`${origin}/designs/premium/index.html`, { waitUntil: 'networkidle' });
-  await test('browser/premium-selection', 'Макет премиумов: банки, ступени и раскрытие условий', async page => {
+  const openPreview = page => page.goto(`${origin}/premium/index.html`, { waitUntil: 'networkidle' });
+  await test('browser/premium-navigation', 'Премиум: позиция после Умных продаж и перед Миссией', async page => {
+    for (const width of [360, 390, 768, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      const order = await page.locator('.product-nav').evaluate(nav => {
+        const premium = nav.querySelector('[data-page="premium"]');
+        return { previous: premium.previousElementSibling.className, next: premium.nextElementSibling.textContent };
+      });
+      assert(order.previous.includes('smart-sales-nav') && order.next === 'Миссия', 'Wrong premium navigation order');
+    }
+    await page.locator('.product-nav [data-page="premium"]').click();
+    assert(new URL(page.url()).pathname === '/premium/index.html', 'Premium link broken');
+    assert(await page.locator('#bankbuttons button').count() === 7, 'Released page did not initialize');
+    const nav = page.locator('header nav');
+    assert((await nav.locator('a').allTextContents()).slice(-3).join('|') === 'Умные продажи|Премиум банков|Миссия', 'Wrong order on premium page');
+    assert(!(await page.locator('body').innerText()).includes('Макет'), 'Preview banner leaked to production');
+    await nav.getByRole('link', { name: 'Миссия', exact: true }).click();
+    await page.waitForSelector('#missionPage.active');
+  });
+  await test('browser/premium-selection', 'Премиум банков: банки, ступени и раскрытие условий', async page => {
     await openPreview(page);
     assert(await page.locator('#bankbuttons button').count() === 7, 'Seven bank choices required');
     assert(await page.locator('select').count() === 0, 'Duplicate level selector');
@@ -24,7 +42,7 @@ export async function premiumPreviewChecks(test, origin) {
     assert(await detail.evaluate(el => document.activeElement === el), 'Focus lost on disclosure');
     assert(await detail.locator('small').isVisible(), 'Disclosure text not visible');
   });
-  await test('browser/premium-periods', 'Макет премиумов: месяц, год, 30 дней и Fast Track', async page => {
+  await test('browser/premium-periods', 'Премиум банков: месяц, год, 30 дней и Fast Track', async page => {
     await openPreview(page);
     await page.locator('[data-bank="2"]').click();
     const alfa = page.locator('[data-bank-id="a"]');
@@ -39,7 +57,7 @@ export async function premiumPreviewChecks(test, origin) {
     assert(appearance.bg === 'rgba(0, 0, 0, 0)' && appearance.label === appearance.normalLabel, 'Fast Track highlighted separately');
     assert(await page.locator('.proof-link').first().getAttribute('rel') === 'noopener noreferrer', 'External source link missing protections');
   });
-  await test('browser/premium-mobile', 'Макет премиумов: мобильные карточки и выбранные состояния', async page => {
+  await test('browser/premium-mobile', 'Премиум банков: мобильные карточки и выбранные состояния', async page => {
     await openPreview(page);
     for (const id of [2, 3, 4, 6]) await page.locator(`[data-bank="${id}"]`).click();
     for (const width of [360, 390, 768, 1440]) {

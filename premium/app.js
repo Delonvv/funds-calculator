@@ -1,8 +1,8 @@
 (() => {
   'use strict';
-  const model = window.PREMIUM_PREVIEW_DATA;
+  const model = window.PREMIUM_DATA;
   if (!model) {
-    document.getElementById('selectioncount').textContent = 'Данные макета недоступны. Обновите страницу.';
+    document.getElementById('selectioncount').textContent = 'Данные сравнения недоступны. Обновите страницу.';
     return;
   }
   const meta = model.banks;

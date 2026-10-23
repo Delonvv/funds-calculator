@@ -606,6 +606,7 @@ window.setLoanPayoutMode=function(mode){if(!['monthly','maturity'].includes(mode
 <script>
 (function(){
  var nav=document.querySelector('.product-nav');if(!nav)return;
+ var premium=document.createElement('a');premium.className='product-tab';premium.dataset.page='premium';premium.href='premium/index.html';premium.textContent='Премиум банков';premium.style.textDecoration='none';nav.appendChild(premium);
  var tab=document.createElement('button');tab.type='button';tab.className='product-tab';tab.dataset.page='mission';tab.textContent='Миссия';tab.addEventListener('click',function(){window.showProductPage('mission')});nav.appendChild(tab);
  var previous=window.showProductPage;
  window.showProductPage=function(name){document.body.classList.toggle('mission-active',name==='mission');return previous(name)};
