@@ -1,8 +1,10 @@
 import { assert } from './core.mjs';
 
 export async function premiumPreviewChecks(test, origin) {
-  // The small static test server serves files rather than directory indexes.
-  const openPreview = page => page.goto(`${origin}/premium/index.html`, { waitUntil: 'networkidle' });
+  const openPreview = async page => {
+    await page.goto(`${origin}/index.html#premium`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('#premiumPage.active #bankbuttons button');
+  };
   await test('browser/premium-navigation', 'Премиум: позиция после Умных продаж и перед Миссией', async page => {
     for (const width of [360, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 900 });
@@ -13,18 +15,59 @@ export async function premiumPreviewChecks(test, origin) {
       assert(order.previous.includes('smart-sales-nav') && order.next === 'Миссия', 'Wrong premium navigation order');
     }
     await page.locator('.product-nav [data-page="premium"]').click();
-    assert(new URL(page.url()).pathname === '/premium/index.html', 'Premium link broken');
-    assert(await page.locator('#bankbuttons button').count() === 7, 'Released page did not initialize');
-    const nav = page.locator('header nav');
-    assert((await nav.locator('a').allTextContents()).slice(-3).join('|') === 'Умные продажи|Премиум банков|Миссия', 'Wrong order on premium page');
-    assert(!(await page.locator('body').innerText()).includes('Макет'), 'Preview banner leaked to production');
-    await nav.getByRole('link', { name: 'Миссия', exact: true }).click();
+    assert(new URL(page.url()).hash === '#premium', 'Premium must use the shared application route');
+    assert(await page.locator('#premiumPage.active #bankbuttons button').count() === 7, 'Premium did not initialize');
+    assert(await page.locator('body > header').count() === 1, 'Duplicate header');
+    await page.locator('.product-nav [data-page="mission"]').click();
     await page.waitForSelector('#missionPage.active');
+  });
+  await test('browser/premium-shared-shell', 'Премиум: общая тема, меню продаж, калькулятор и старые ссылки', async page => {
+    await openPreview(page);
+    await page.evaluate(() => { window.auditPremiumHeader = document.querySelector('body > header'); });
+    await page.locator('[data-bank="2"]').click();
+    await page.locator('[data-stage="1"]').click();
+    await page.locator('#themeToggle').click();
+    assert(await page.locator('html').getAttribute('data-theme') === 'dark', 'Theme switch missing or ineffective');
+    const palette = await page.locator('#premiumPage .bankpickerfinal').evaluate(el => {
+      const probe = document.createElement('div'); probe.style.backgroundColor = 'var(--panel)'; el.append(probe);
+      const expected = getComputedStyle(probe).backgroundColor; probe.remove();
+      return { actual: getComputedStyle(el).backgroundColor, expected };
+    });
+    assert(palette.actual === palette.expected, 'Premium did not adopt shared theme palette');
+    await page.locator('.smart-sales-trigger').click();
+    await page.locator('.smart-sales-menu [data-smart-page="stocks"]').click();
+    await page.waitForSelector('#smart-stocksPage.active');
+    await page.locator('[data-page="premium"]').click();
+    assert(await page.locator('[data-bank="2"]').getAttribute('aria-pressed') === 'true', 'Navigation lost selected banks');
+    assert(await page.locator('[data-stage="1"]').getAttribute('aria-pressed') === 'true', 'Navigation lost selected level');
+    assert(await page.evaluate(() => document.querySelector('body > header') === window.auditPremiumHeader), 'Header recreated on navigation');
+    await page.locator('.header-actions .primary').click();
+    await page.waitForSelector('#modalBg.open');
+    await page.evaluate(() => window.closeCalc());
+    await page.locator('[data-page="funds"]').click();
+    const scenery = page.locator('#fundsPage .page-scenery img');
+    assert((await scenery.getAttribute('src')).includes('funds-calm-city'), 'Funds background was replaced');
+    await page.goto(`${origin}/premium/index.html`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('#premiumPage.active #bankbuttons button');
+    assert(new URL(page.url()).hash === '#premium', 'Old URL did not reach shared route');
+    assert(await page.locator('html').getAttribute('data-theme') === 'dark', 'Old URL lost saved theme');
+    await page.locator('#themeToggle').click();
+    assert(await page.locator('html').getAttribute('data-theme') === 'brand', 'Light theme not restored');
+    assert(await page.locator('#premiumPage .premium-scenery img').evaluate(el => el.complete && el.naturalWidth > 0), 'Premium background image did not load');
+    await page.locator('#premiumPage .pagefoot a').click();
+    await page.waitForSelector('#premiumSberPage.active');
+    assert(await page.locator('body > header').count() === 1, 'Sber reference replaced shared header');
+    await page.locator('#themeToggle').click();
+    assert(await page.locator('html').getAttribute('data-theme') === 'dark', 'Sber reference lost theme switch');
+    await page.goto(`${origin}/premium/sber-levels.html`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('#premiumSberPage.active');
+    assert(await page.locator('#premiumSberPage .sberfull thead th').count() === 7, 'Sber reference table lost levels');
+
   });
   await test('browser/premium-selection', 'Премиум банков: банки, ступени и раскрытие условий', async page => {
     await openPreview(page);
     assert(await page.locator('#bankbuttons button').count() === 7, 'Seven bank choices required');
-    assert(await page.locator('select').count() === 0, 'Duplicate level selector');
+    assert(await page.locator('#premiumPage select').count() === 0, 'Duplicate level selector');
     for (const id of [2, 3, 4, 6]) await page.locator(`[data-bank="${id}"]`).click();
     assert(await page.locator('.bcard').count() === 7, 'Selected bank missing');
     for (let tier = 0; tier < 4; tier++) {
