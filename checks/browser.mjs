@@ -41,7 +41,7 @@ export async function browserChecks(check, directory) {
       } finally { await context.close(); }
     });
     const show = (page, name) => page.evaluate(value => window.showProductPage(value), name);
-    const number = async (page, selector) => Number((await page.locator(selector).textContent()).replace(/[^\d,.-]/g, '').replace(',', '.'));
+    const number = async (page, selector) => Number((await page.locator(selector).textContent()).replaceAll('−', '-').replace(/[^\d,.-]/g, '').replace(',', '.'));
     const fillAmount = async (page, selector, value) => {
       const field = page.locator(selector);
       await field.focus();
@@ -52,6 +52,51 @@ export async function browserChecks(check, directory) {
     };
 
     await premiumPreviewChecks(test, origin);
+
+    await test('browser/interface-motion', 'Переходы, меню и раскрывающиеся блоки сохраняют управление', async page => {
+      for (const route of ['taccount', 'spk', 'nszh', 'investloan', 'premium', 'mission', 'model', 'smart-stocks', 'funds']) {
+        await show(page, route);
+        assert(await page.locator('.product-page.active').count() === 1, `Several sections active: ${route}`);
+        await page.waitForTimeout(340);
+        const opacity = await page.locator('.product-page.active>:not(.page-scenery)').first().evaluate(x => getComputedStyle(x).opacity);
+        assert(opacity === '1', `Section left faded: ${route}`);
+      }
+      await page.evaluate(() => { for (let i = 0; i < 5; i++) { window.showProductPage('premium'); window.showProductPage('funds'); } });
+      assert(await page.locator('.product-page.active').getAttribute('id') === 'fundsPage', 'Rapid navigation lost final section');
+      await page.locator('#ctFilterToggle').click();
+      await page.locator('#filters button').filter({ hasText: 'Только квалам' }).click();
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(() => getComputedStyle(document.getElementById('ctFilters')).display === 'none');
+      await page.locator('#ctReset').click();
+      await page.locator('#search').fill('TMON');
+      for (let i = 0; i < 3; i++) await page.locator('#grid .compare').click();
+      assert(await page.locator('#grid .compare').getAttribute('aria-expanded') === 'true', 'Comparison lost open state');
+      await page.locator('.peers.open button').filter({ hasText: '1 месяц' }).click();
+      await page.locator('#grid .compare').click();
+      await page.waitForFunction(() => getComputedStyle(document.getElementById('peers-TMON')).display === 'none');
+      const fees = page.locator('#grid .exit-fees');
+      await fees.locator('summary').click();
+      assert(await fees.getAttribute('open') !== null, 'Fee conditions did not expand');
+      await fees.locator('summary').click();
+      await page.locator('.smart-sales-trigger').click();
+      await page.locator('[data-smart-page="stocks"]').click();
+      assert(await page.locator('#smart-stocksPage').isVisible(), 'Dropdown navigation failed');
+    });
+    await test('browser/reduced-motion', 'Уменьшение движения отключает эффекты и сохраняет действия', async page => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await show(page, 'premium');
+      await show(page, 'funds');
+      assert(await page.evaluate(() => document.getAnimations().length) === 0, 'Motion remains enabled');
+      await page.locator('#ctFilterToggle').click();
+      assert(await page.locator('#ctFilters').isVisible(), 'Filters unavailable without animation');
+      await page.keyboard.press('Escape');
+      assert(!await page.locator('#ctFilters').isVisible(), 'Filters remain visible');
+      await page.locator('#search').fill('TMON');
+      await page.locator('#grid .compare').click();
+      assert(await page.locator('.peers.open').isVisible(), 'Comparison unavailable without animation');
+      await page.locator('#grid .compare').click();
+      assert(!await page.locator('#peers-TMON').isVisible(), 'Comparison remains visible');
+    });
 
     await test('browser/catalog', 'Поиск, фильтры, сброс и сравнение', async page => {
       const cards = page.locator('#grid>.card');
@@ -235,13 +280,47 @@ export async function browserChecks(check, directory) {
       const rate = (await json('market-rates.json')).rusfar.value / 100;
       let balance = 1_000_000; for (let day = 0; day < 365; day++) balance += balance * rate / 365;
       close(await number(page, '#spkBefore'), 1_000_000 + (balance - 1_000_000) * .87, 1);
-      await page.locator('#spkTax').uncheck(); close(await number(page, '#spkBefore'), balance, 1);
+      await page.locator('#spkTax').uncheck(); close(await number(page, '#spkBefore'), 1_000_000 + (balance - 1_000_000) * .87, 1);
       await show(page, 'nszh'); await page.locator('#nszhAmount').fill('500000'); await page.locator('#nszhTerm').selectOption('60');
       const terms = (await json('nszh-config.json')).terms;
       const total = 500_000 + 500_000 * terms.find(x => x.months === 60).annualRate / 100 * 5;
       await page.locator('#nszhExempt').check(); close(await number(page, '#nszhAfter'), total, 1);
       await page.locator('#nszhExempt').uncheck(); close(await number(page, '#nszhAfter'), 500_000 + (total - 500_000) * .87, 1);
       await page.locator('#nszhAmount').fill('100'); assert(await page.locator('#nszhAfter').textContent() === '—', 'Below-minimum NSZH calculated');
+    });
+    await test('finance/spk-deposit-tax', 'НДФЛ СПК постоянен, переключатель меняет только вклад и итог сравнения', async page => {
+      await show(page, 'spk');
+      await fillAmount(page, '#spkAmount', '1000000');
+      await page.locator('#spkTerm').fill('12');
+      await page.locator('#spkSegment').selectOption('employee');
+      const rate = (await json('market-rates.json')).rusfar.value / 100;
+      let spkBalance = 1_000_000;
+      for (let day = 0; day < 365; day++) spkBalance += spkBalance * rate / 365;
+      const spkIncome = (spkBalance - 1_000_000) * .87;
+      for (const cap of ['none', 'monthly', 'daily']) {
+        await page.locator('#spkDepositCap').selectOption(cap);
+        await page.locator('#spkDepositRate').fill('12');
+        let depositBalance = 1_000_000;
+        const periods = cap === 'daily' ? 365 : cap === 'monthly' ? 12 : 1;
+        for (let i = 0; i < periods; i++) depositBalance += depositBalance * .12 / periods;
+        for (const enabled of [true, false, true]) {
+          await page.locator('#spkTax').setChecked(enabled);
+          close(await number(page, '#spkBefore'), 1_000_000 + spkIncome, 1);
+          close(await number(page, '#spkIncome'), spkIncome, 1);
+          close(await number(page, '#spkDepositBefore'), 1_000_000 + (depositBalance - 1_000_000) * (enabled ? .87 : 1), 1);
+          const difference = spkIncome - (depositBalance - 1_000_000) * (enabled ? .87 : 1);
+          await page.waitForFunction(positive => document.getElementById('spkVerdict').classList.contains('positive') === positive, difference > 0);
+          close(await number(page, '#spkVerdict .after-tax strong'), difference, 1);
+        }
+      }
+      // Pick a deposit between the SPK gross and net returns to exercise a change of winner.
+      await page.locator('#spkDepositCap').selectOption('none');
+      await page.locator('#spkDepositRate').fill(String((spkBalance - 1_000_000) * .935 / 1_000_000 * 100));
+      await page.locator('#spkTax').check();
+      await page.waitForFunction(() => document.getElementById('spkVerdict').classList.contains('positive'));
+      await page.locator('#spkTax').uncheck();
+      await page.waitForFunction(() => !document.getElementById('spkVerdict').classList.contains('positive'));
+      assert((await page.locator('#spkVerdict .spk-verdict-head').textContent()).includes('Вклад выгоднее'), 'Comparison ignores deposit-only tax mode');
     });
     await test('finance/rentier', 'Рантье: периодичность, сумма выплат и возврат взноса', async page => {
       await show(page, 'nszh'); await page.locator('[data-program="rentier"]').click();

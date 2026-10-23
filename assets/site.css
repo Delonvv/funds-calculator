@@ -549,3 +549,92 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
 
 /* === spk-up-to-wording === */
 #spkPage .spk-result-card>strong{font-size:clamp(19px,1.55vw,25px);white-space:nowrap;letter-spacing:-.035em}#spkPage .spk-result-row b{white-space:nowrap;font-size:11px}@media(max-width:780px){#spkPage .spk-result-card>strong{font-size:25px}}
+
+/* Motion enhances the existing interface without changing layout or scenery. */
+@media (prefers-reduced-motion: no-preference) {
+  .product-page.active > :not(.page-scenery) {
+    animation: page-content-enter 300ms cubic-bezier(.2,.7,.2,1);
+  }
+
+  .product-tab, .chips button, .ct-toolbar button, .actions a, .actions button {
+    transition: background-color 160ms ease, color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .smart-sales-menu {
+    transition: opacity 160ms ease, transform 180ms ease,
+      visibility 0s linear 180ms;
+    pointer-events: none;
+  }
+  .smart-sales-nav:hover .smart-sales-menu,
+  .smart-sales-nav:focus-within .smart-sales-menu,
+  .smart-sales-nav.open .smart-sales-menu {
+    transition-delay: 0s;
+    pointer-events: auto;
+  }
+
+  .peers.open, #premiumPage .benefitbtn.open small {
+    animation: disclosure-enter 200ms ease-out;
+  }
+
+  .ct-popup, .ct-filter-popup {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 180ms ease, transform 180ms ease,
+      display 180ms allow-discrete;
+  }
+  .ct-popup[hidden], .ct-filter-popup[hidden] {
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+  }
+  @starting-style {
+    .ct-popup:not([hidden]), .ct-filter-popup:not([hidden]) {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+
+  @supports (interpolate-size: allow-keywords) {
+    .peers {
+      interpolate-size: allow-keywords;
+      height: 0;
+      opacity: 0;
+      overflow: clip;
+      transition: height 220ms ease, opacity 180ms ease,
+        display 220ms allow-discrete;
+    }
+    .peers.open { height: auto; opacity: 1; animation: none; }
+    .peers:not(.open) { pointer-events: none; }
+    @starting-style {
+      .peers.open { height: 0; opacity: 0; }
+    }
+
+    .product-page details::details-content {
+      interpolate-size: allow-keywords;
+      block-size: 0;
+      overflow: clip;
+      transition: block-size 220ms ease,
+        content-visibility 220ms allow-discrete;
+    }
+    .product-page details[open]::details-content { block-size: auto; }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  #fundsPage .card, #fundsPage .ct-placement, #premiumPage .bcard {
+    transition: box-shadow 180ms ease;
+  }
+  #fundsPage .card:hover, #fundsPage .ct-placement:hover, #premiumPage .bcard:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,.09);
+  }
+}
+
+@keyframes page-content-enter {
+  from { opacity: .35; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes disclosure-enter {
+  from { opacity: .35; }
+  to { opacity: 1; }
+}
