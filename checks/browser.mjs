@@ -3,6 +3,7 @@ import path from 'node:path';
 import http from 'node:http';
 import { chromium } from 'playwright';
 import { root, json, assert, close } from './core.mjs';
+import { premiumPreviewChecks } from './premium-preview.mjs';
 
 export async function browserChecks(check, directory) {
   const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.otf': 'font/otf' };
@@ -49,6 +50,8 @@ export async function browserChecks(check, directory) {
       await field.fill(value);
       await field.blur();
     };
+
+    await premiumPreviewChecks(test, origin);
 
     await test('browser/catalog', 'Поиск, фильтры, сброс и сравнение', async page => {
       const cards = page.locator('#grid>.card');
