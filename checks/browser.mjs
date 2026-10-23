@@ -4,6 +4,7 @@ import http from 'node:http';
 import { chromium } from 'playwright';
 import { root, json, assert, close } from './core.mjs';
 import { premiumPreviewChecks } from './premium-preview.mjs';
+import { catalogBannerChecks } from './catalog-banner.mjs';
 
 export async function browserChecks(check, directory) {
   const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.otf': 'font/otf' };
@@ -52,14 +53,16 @@ export async function browserChecks(check, directory) {
     };
 
     await premiumPreviewChecks(test, origin);
+    await catalogBannerChecks(test);
 
     await test('browser/interface-motion', 'Переходы, меню и раскрывающиеся блоки сохраняют управление', async page => {
       for (const route of ['taccount', 'spk', 'nszh', 'investloan', 'premium', 'mission', 'model', 'smart-stocks', 'funds']) {
         await show(page, route);
         assert(await page.locator('.product-page.active').count() === 1, `Several sections active: ${route}`);
-        await page.waitForTimeout(340);
-        const opacity = await page.locator('.product-page.active>:not(.page-scenery)').first().evaluate(x => getComputedStyle(x).opacity);
-        assert(opacity === '1', `Section left faded: ${route}`);
+        await page.waitForFunction(() => {
+          const content = document.querySelector('.product-page.active>:not(.page-scenery)');
+          return content && getComputedStyle(content).opacity === '1';
+        });
       }
       await page.evaluate(() => { for (let i = 0; i < 5; i++) { window.showProductPage('premium'); window.showProductPage('funds'); } });
       assert(await page.locator('.product-page.active').getAttribute('id') === 'fundsPage', 'Rapid navigation lost final section');
@@ -176,7 +179,7 @@ export async function browserChecks(check, directory) {
       }
     });
     await test('browser/product-selection', 'Подбор передаёт срок и ставку в калькулятор', async page => {
-      await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
+      await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctFrequency').selectOption('maturity'); await page.locator('#ctApply').click();
       const card = page.locator('#ctRail .ct-product').filter({ hasText: 'Т‑Счёт' });
       const rates = (await json('rates.json')).tAccount.rates.months;
       const term = Math.max(...Object.keys(rates).map(Number));
@@ -205,7 +208,7 @@ export async function browserChecks(check, directory) {
       });
       try {
         await page.reload({ waitUntil: 'domcontentloaded' });
-        await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
+        await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctFrequency').selectOption('maturity'); await page.locator('#ctApply').click();
         const card = page.locator('#ctRail .ct-product').filter({ hasText: 'Т‑Счёт' });
         await card.locator(`option[value="months:${term}"]`).waitFor({ state: 'attached' });
         await card.locator('select').selectOption(`months:${term}`); await card.locator('.ct-open-product').click();
@@ -215,7 +218,7 @@ export async function browserChecks(check, directory) {
       } finally { release(); }
     });
     await test('browser/product-favorites', 'Избранный продукт виден после перезагрузки', async page => {
-      await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
+      await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctFrequency').selectOption('maturity'); await page.locator('#ctApply').click();
       await page.locator('[data-favorite="product:taccount"]').click();
       await page.reload({ waitUntil: 'networkidle' }); await page.locator('[data-catalog-mode="favorites"]').click();
       assert(await page.locator('[data-favorite="product:taccount"]:visible').count() === 1, 'Favorite product counted but not displayed');
@@ -231,7 +234,7 @@ export async function browserChecks(check, directory) {
     });
     await test('browser/mixed-favorites', 'Избранные продукты, фонды и синхронизация вкладок', async page => {
       await page.locator('[data-fund-ticker="TMON"] .ct-star').click();
-      await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctApply').click();
+      await page.locator('#ctPayoutToggle').click(); await page.locator('#ctType').selectOption('products'); await page.locator('#ctFrequency').selectOption('maturity'); await page.locator('#ctApply').click();
       for (const id of ['taccount', 'investloan', 'rentier']) await page.locator(`[data-favorite="product:${id}"]`).click();
       await page.reload({ waitUntil: 'networkidle' }); await page.locator('[data-catalog-mode="favorites"]').click();
       assert(await page.locator('.ct-product:visible').count() === 3, 'Some favorite products missing');
