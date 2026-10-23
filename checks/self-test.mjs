@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
+import './deploy-ignore.test.mjs';
 import { ageDays, fresh, validateRuns, weeklyChecks, getUpdateRuns } from './weekly.mjs';
 const { syncIssue, report } = createRequire(import.meta.url)('./report.cjs');
 
