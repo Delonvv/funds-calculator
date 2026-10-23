@@ -1,27 +1,7 @@
 {
-  "updatedAt": "2026-10-22T14:38:44.263Z",
+  "updatedAt": "2026-10-23T09:43:32.414Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
-    {
-      "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
-      "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "ЭкоНива",
-      "title": "Облигации ЭкоНива",
-      "issueName": "ЭкоНива 001P-04",
-      "coupon": "Фиксированный купон до 18%",
-      "currency": "RUB",
-      "deadline": "До 29 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
     {
       "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
       "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
@@ -43,8 +23,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-b33b71b9-d851-4964-abd5-aae6ca764dc4",
-      "sourceId": "b33b71b9-d851-4964-abd5-aae6ca764dc4",
+      "id": "primary-f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
+      "sourceId": "f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -52,13 +32,33 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 30 октября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "issuer": "Долговые ЦФА ГК ДОБРОФЛОТ",
+      "title": "Долговые ЦФА ГК ДОБРОФЛОТ",
+      "issueName": "ГК ДОБРОФЛОТ 2",
+      "coupon": "Процентная ставка 18,25%",
       "currency": "RUB",
-      "deadline": "До 23 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "deadline": "До 27 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/dobroflotx160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
+      "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "ЭкоНива",
+      "title": "Облигации ЭкоНива",
+      "issueName": "ЭкоНива 001P-04",
+      "coupon": "Фиксированный купон до 18%",
+      "currency": "RUB",
+      "deadline": "До 29 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -83,8 +83,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
-      "sourceId": "f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
+      "id": "primary-7cc310a1-fb8a-4a9e-859a-af8463a2c789",
+      "sourceId": "7cc310a1-fb8a-4a9e-859a-af8463a2c789",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -92,13 +92,33 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Долговые ЦФА ГК ДОБРОФЛОТ",
-      "title": "Долговые ЦФА ГК ДОБРОФЛОТ",
-      "issueName": "ГК ДОБРОФЛОТ 2",
-      "coupon": "Процентная ставка 18,25%",
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 02 ноября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/dobroflotx160.png",
+      "deadline": "До 26 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-b33b71b9-d851-4964-abd5-aae6ca764dc4",
+      "sourceId": "b33b71b9-d851-4964-abd5-aae6ca764dc4",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 30 октября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 23 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     }
