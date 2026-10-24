@@ -89,7 +89,7 @@ function createBanner(){
   const banner=document.createElement('section');banner.className='ct-banner';
   banner.setAttribute('aria-label','Возможности каталога');banner.setAttribute('aria-roledescription','карусель');
   banner.innerHTML=`
-    <button class="ct-banner-arrow ct-banner-prev" type="button" aria-label="Предыдущий слайд">‹</button>
+    <button class="ct-banner-arrow ct-banner-prev" type="button" aria-label="Предыдущий слайд"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg></button>
     <div class="ct-banner-window"><div class="ct-banner-track">
       <div class="ct-banner-slide" role="group" aria-roledescription="слайд" aria-label="1 из 2">
         <svg class="ct-banner-art" viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="ct-calendar-gold" x2="1" y2="1"><stop stop-color="#fff3ce"/><stop offset="1" stop-color="#d4a047"/></linearGradient></defs><rect x="16" y="20" width="66" height="64" rx="12" fill="url(#ct-calendar-gold)" stroke="#c69643"/><path d="M16 40h66M34 13v18M65 13v18" fill="none" stroke="#b98226" stroke-width="5" stroke-linecap="round"/><g fill="#fff9e9"><rect x="29" y="50" width="10" height="10" rx="2"/><rect x="46" y="50" width="10" height="10" rx="2"/><rect x="63" y="50" width="10" height="10" rx="2"/><rect x="29" y="67" width="10" height="10" rx="2"/><rect x="46" y="67" width="10" height="10" rx="2"/></g></svg>
@@ -102,7 +102,7 @@ function createBanner(){
         <button type="button" class="ct-banner-cta" data-open-model>Открыть портфель <span aria-hidden="true">→</span></button>
       </div>
     </div></div>
-    <button class="ct-banner-arrow ct-banner-next" type="button" aria-label="Следующий слайд">›</button>
+    <button class="ct-banner-arrow ct-banner-next" type="button" aria-label="Следующий слайд"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg></button>
     <div class="ct-banner-dots"><button type="button" aria-label="Слайд 1: Подбор под задачу клиента" aria-current="true"></button><button type="button" aria-label="Слайд 2: Модельный портфель" aria-current="false"></button></div>
     <span class="ct-banner-status" role="status" aria-live="polite"></span>`;
   grid.before(banner);

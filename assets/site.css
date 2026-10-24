@@ -668,37 +668,37 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
 }
 #fundsPage .ct-banner-art { width: 80px; height: 72px; object-fit: contain; }
 #fundsPage .ct-banner-copy { min-width: 0; }
-#fundsPage .ct-banner-copy h2 { margin: 0 0 5px; font-size: 21px; line-height: 1.2; letter-spacing: -.025em; }
-#fundsPage .ct-banner-copy p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--muted); }
+#fundsPage .ct-banner-copy h2 { margin: 0 0 5px; font-size: 24px; line-height: 1.2; letter-spacing: -.025em; }
+#fundsPage .ct-banner-copy p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--muted); }
 #fundsPage .ct-banner-cta {
   border: 1px solid var(--y);
   border-radius: 11px;
   background: var(--y);
   color: #302718;
-  padding: 12px 17px;
+  padding: 13px 22px;
   font: inherit;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
 }
 #fundsPage .ct-banner-arrow {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 4px);
   transform: translateY(-50%);
   width: 34px;
   height: 34px;
   display: grid;
   place-items: center;
-  padding: 0 0 3px;
+  padding: 0;
   border: 1px solid var(--line);
   border-radius: 50%;
   background: var(--panel);
   color: var(--white);
   font: inherit;
-  font-size: 29px;
   cursor: pointer;
 }
+#fundsPage .ct-banner-arrow svg { width: 18px; height: 18px; display: block; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 #fundsPage .ct-banner-prev { left: 12px; }
 #fundsPage .ct-banner-next { right: 12px; }
 #fundsPage .ct-banner-dots { position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%); display: flex; }
@@ -737,18 +737,19 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
 @media(max-width:850px) {
   #fundsPage .ct-banner-slide { grid-template-columns: 58px minmax(0,1fr) auto; gap: 12px; }
   #fundsPage .ct-banner-art { width: 58px; height: 64px; }
-  #fundsPage .ct-banner-copy h2 { font-size: 18px; }
-  #fundsPage .ct-banner-copy p { font-size: 12px; }
-  #fundsPage .ct-banner-cta { padding: 11px 12px; font-size: 12px; }
+  #fundsPage .ct-banner-copy h2 { font-size: 21px; }
+  #fundsPage .ct-banner-copy p { font-size: 14px; }
+  #fundsPage .ct-banner-cta { padding: 12px 16px; font-size: 14px; }
 }
 @media(max-width:600px) {
   #fundsPage .ct-banner-window { margin: 0 38px; }
   #fundsPage .ct-banner-slide { min-height: 176px; grid-template-columns: 42px minmax(0,1fr); gap: 8px 10px; padding: 14px 6px 28px; }
   #fundsPage .ct-banner-art { width: 42px; height: 48px; }
-  #fundsPage .ct-banner-copy h2 { font-size: 16px; }
-  #fundsPage .ct-banner-copy p { font-size: 11px; }
+  #fundsPage .ct-banner-copy h2 { font-size: 18px; }
+  #fundsPage .ct-banner-copy p { font-size: 13px; }
   #fundsPage .ct-banner-cta { grid-column: 1/-1; justify-self: start; white-space: normal; }
-  #fundsPage .ct-banner-arrow { width: 29px; height: 29px; font-size: 25px; }
+  #fundsPage .ct-banner-arrow { width: 29px; height: 29px; }
+  #fundsPage .ct-banner-arrow svg { width: 16px; height: 16px; }
   #fundsPage .ct-banner-prev { left: 7px; }
   #fundsPage .ct-banner-next { right: 7px; }
   .ct-anchored-popup .ct-fields { grid-template-columns: 1fr; }
