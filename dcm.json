@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-23T14:23:51.852Z",
+  "updatedAt": "2026-10-24T13:37:41.815Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
-      "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
-      "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
+      "id": "primary-32e7553c-e947-47fd-93fc-23de5ed93bc1",
+      "sourceId": "32e7553c-e947-47fd-93fc-23de5ed93bc1",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -12,13 +12,13 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "ЭкоНива",
-      "title": "Облигации ЭкоНива",
-      "issueName": "ЭкоНива 001P-04",
-      "coupon": "Фиксированный купон до 18%",
+      "issuer": "Смарт-Процент на 3 месяца",
+      "title": "Смарт-Процент на 3 месяца",
+      "issueName": "До 25 января",
+      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 29 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
+      "deadline": "До 26 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -36,26 +36,6 @@
       "title": "Смарт-Процент на 7 дней",
       "issueName": "До 02 ноября",
       "coupon": "Фиксированная доходность 13% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-32e7553c-e947-47fd-93fc-23de5ed93bc1",
-      "sourceId": "32e7553c-e947-47fd-93fc-23de5ed93bc1",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 3 месяца",
-      "title": "Смарт-Процент на 3 месяца",
-      "issueName": "До 25 января",
-      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
       "currency": "RUB",
       "deadline": "До 26 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
@@ -99,6 +79,26 @@
       "currency": "RUB",
       "deadline": "До 26 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
+      "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "ЭкоНива",
+      "title": "Облигации ЭкоНива",
+      "issueName": "ЭкоНива 001P-04",
+      "coupon": "Фиксированный купон до 18%",
+      "currency": "RUB",
+      "deadline": "До 29 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/ekonivax160.png",
       "isQual": false,
       "missingChecks": 0
     }
