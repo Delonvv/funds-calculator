@@ -1,27 +1,7 @@
 {
-  "updatedAt": "2026-10-26T09:55:16.317Z",
+  "updatedAt": "2026-10-26T16:27:40.464Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
-    {
-      "id": "primary-7cc310a1-fb8a-4a9e-859a-af8463a2c789",
-      "sourceId": "7cc310a1-fb8a-4a9e-859a-af8463a2c789",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 02 ноября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
     {
       "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
       "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
@@ -43,8 +23,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "id": "primary-aabcdbef-97ba-4334-9d43-e60de103755b",
+      "sourceId": "aabcdbef-97ba-4334-9d43-e60de103755b",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -52,13 +32,13 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Европлан",
-      "title": "Облигации Европлан",
-      "issueName": "Европлан 001Р-11",
-      "coupon": "Фиксированный купон до 15%",
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 03 ноября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
+      "deadline": "До 27 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -83,28 +63,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-021078a6-7b63-4f70-8989-ae334c780ed1",
-      "sourceId": "021078a6-7b63-4f70-8989-ae334c780ed1",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 1 день",
-      "title": "Смарт-Процент на 1 день",
-      "issueName": "До 27 октября",
-      "coupon": "Фиксированная доходность 11,5% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-32e7553c-e947-47fd-93fc-23de5ed93bc1",
-      "sourceId": "32e7553c-e947-47fd-93fc-23de5ed93bc1",
+      "id": "primary-7d294327-cdc5-4b9c-a72b-741a2a8e0554",
+      "sourceId": "7d294327-cdc5-4b9c-a72b-741a2a8e0554",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -117,8 +77,28 @@
       "issueName": "До 25 января",
       "coupon": "Фиксированная доходность 13,5% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 26 октября",
+      "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-44dc23b3-679b-4edf-bb58-fe388c34f6f9",
+      "sourceId": "44dc23b3-679b-4edf-bb58-fe388c34f6f9",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "Русбонд-Удобрения",
+      "title": "Облигации Русбонд-Удобрения",
+      "issueName": "Русбонд-Удобрения 001Р-02",
+      "coupon": "Плавающий купон до 16,75%",
+      "currency": "RUB",
+      "deadline": "До 27 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/agronextx160.png",
       "isQual": false,
       "missingChecks": 0
     }
