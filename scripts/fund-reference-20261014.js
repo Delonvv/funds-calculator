@@ -64,12 +64,18 @@ window.fundReference = {
   "TMON": {
     "type": "БПИФ",
     "access": "Квалам и неквалам",
-    "weekend": false,
-    "evening": false,
+    "weekend": true,
+    "evening": true,
     "morning": false,
-    "exchange": "Мосбиржа",
-    "asOf": "14.10.2026",
-    "source": "https://www.moex.com/ru/SecuritiesListing.aspx"
+    "exchange": "СПБ Биржа",
+    "asOf": "26.10.2026",
+    "source": "https://spbexchange.ru/about/news/d2678e3d-b2cd-4500-b73c-68c7f77a1e90/",
+    "weekendSource": "https://t.me/spbexchange_official/491",
+    "tradingSchedule": {
+      "weekdays": "09:00–23:50",
+      "weekends": "10:00–23:50",
+      "note": "Праздничные исключения — по календарю биржи."
+    }
   },
   "TMOS": {
     "type": "БПИФ",

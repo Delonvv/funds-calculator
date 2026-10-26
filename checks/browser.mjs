@@ -55,6 +55,20 @@ export async function browserChecks(check, directory) {
     await premiumPreviewChecks(test, origin);
     await catalogBannerChecks(test);
 
+    await test('browser/tmon-schedule', 'TMON: будни и выходные относятся к СПБ Бирже', async page => {
+      const schedule = page.locator('[data-fund-ticker="TMON"] .trading-schedule');
+      const text = await schedule.textContent();
+      assert(text.includes('СПБ Биржа · Пн–Пт 09:00–23:50 МСК'), 'Wrong TMON weekday schedule');
+      assert(text.includes('Сб–Вс · 10:00–23:50 МСК'), 'Missing TMON weekend trading');
+      assert(!text.includes('Мосбирж'), 'TMON schedule mixes trading venues');
+      assert(text.includes('Праздничные исключения'), 'Missing calendar qualification');
+      const reference = await page.evaluate(() => window.fundReference.TMON);
+      assert(reference.weekend && reference.exchange === 'СПБ Биржа', 'Reference contradicts displayed schedule');
+      assert(reference.source.startsWith('https://spbexchange.ru/') && reference.weekendSource === 'https://t.me/spbexchange_official/491', 'Missing primary sources');
+      const other = await page.locator('[data-fund-ticker="TBRU"] .trading-schedule').textContent();
+      assert(other.includes('Мосбиржа 09:50–19:00 МСК'), 'Other venue schedules changed');
+    });
+
     await test('browser/interface-motion', 'Переходы, меню и раскрывающиеся блоки сохраняют управление', async page => {
       for (const route of ['taccount', 'spk', 'nszh', 'investloan', 'premium', 'mission', 'model', 'smart-stocks', 'funds']) {
         await show(page, route);

@@ -24,7 +24,7 @@
 </script>
 <!-- /Yandex.Metrika counter -->
 
-<script src="scripts/fund-reference-20261014.js?v=20261020-release-3"></script>
+<script src="scripts/fund-reference-20261014.js?v=20261026-tmon-schedule"></script>
 
 </head>
 <body>
@@ -280,6 +280,10 @@ const groups = [['category', 'Тип', [...new Set(data.map(function (x) { retur
 const riskBucket = function (r) { return ['Низкий', 'Ниже среднего', 'Средний'].includes(r) ? 'До среднего' : 'Выше среднего'; }, exitBucket = function (x) { return x.v.includes('Внебиржевой') || x.v.includes('регламенту') ? 'Особый порядок' : 'Продажа · Т+1'; };
 function tradingScheduleHtml(x) {
  const ref=(window.fundReference||{})[x.t];
+ if(ref&&ref.tradingSchedule){
+  const schedule=ref.tradingSchedule;
+  return '<b class="trading-schedule"><span>'+ref.exchange+' · Пн–Пт '+schedule.weekdays+' МСК</span><small class="weekend-open">Сб–Вс · '+schedule.weekends+' МСК</small><small>'+schedule.note+'</small></b>';
+ }
  const weekend=ref&&ref.exchange ? '<small class="'+(ref.weekend?'weekend-open':'weekend-closed')+'">Сб–Вс · '+(ref.weekend?'Мосбиржа 09:50–19:00 МСК':'на Мосбирже торгов нет')+'</small>' : '<small class="weekend-closed">Сб–Вс · расписание уточняется</small>';
  return '<b class="trading-schedule"><span>'+x.v+' МСК</span>'+weekend+'</b>';
 }
