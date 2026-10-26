@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-25T13:54:31.661Z",
+  "updatedAt": "2026-10-26T09:55:16.317Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
-      "id": "primary-32e7553c-e947-47fd-93fc-23de5ed93bc1",
-      "sourceId": "32e7553c-e947-47fd-93fc-23de5ed93bc1",
+      "id": "primary-7cc310a1-fb8a-4a9e-859a-af8463a2c789",
+      "sourceId": "7cc310a1-fb8a-4a9e-859a-af8463a2c789",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -12,33 +12,13 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Смарт-Процент на 3 месяца",
-      "title": "Смарт-Процент на 3 месяца",
-      "issueName": "До 25 января",
-      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 02 ноября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
       "currency": "RUB",
       "deadline": "До 26 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Европлан",
-      "title": "Облигации Европлан",
-      "issueName": "Европлан 001Р-11",
-      "coupon": "Фиксированный купон до 15%",
-      "currency": "RUB",
-      "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -63,8 +43,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-7cc310a1-fb8a-4a9e-859a-af8463a2c789",
-      "sourceId": "7cc310a1-fb8a-4a9e-859a-af8463a2c789",
+      "id": "primary-ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
+      "sourceId": "ea384f29-fb79-4fa0-9509-70fb0a7d71cf",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -72,13 +52,13 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 02 ноября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "issuer": "Европлан",
+      "title": "Облигации Европлан",
+      "issueName": "Европлан 001Р-11",
+      "coupon": "Фиксированный купон до 15%",
       "currency": "RUB",
       "deadline": "До 26 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A100DG5x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -99,6 +79,46 @@
       "currency": "RUB",
       "deadline": "До 27 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/dobroflotx160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-021078a6-7b63-4f70-8989-ae334c780ed1",
+      "sourceId": "021078a6-7b63-4f70-8989-ae334c780ed1",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 1 день",
+      "title": "Смарт-Процент на 1 день",
+      "issueName": "До 27 октября",
+      "coupon": "Фиксированная доходность 11,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 26 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-32e7553c-e947-47fd-93fc-23de5ed93bc1",
+      "sourceId": "32e7553c-e947-47fd-93fc-23de5ed93bc1",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 3 месяца",
+      "title": "Смарт-Процент на 3 месяца",
+      "issueName": "До 25 января",
+      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 26 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     }
