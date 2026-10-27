@@ -1,7 +1,47 @@
 {
-  "updatedAt": "2026-10-26T16:27:40.464Z",
+  "updatedAt": "2026-10-27T15:32:18.412Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
+    {
+      "id": "primary-99d55138-a104-421d-ba96-a8f4ba34224b",
+      "sourceId": "99d55138-a104-421d-ba96-a8f4ba34224b",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Долговые ЦФА Медскан",
+      "title": "Долговые ЦФА Медскан",
+      "issueName": "Медскан 4",
+      "coupon": "Процентная ставка 17,5%",
+      "currency": "RUB",
+      "deadline": "До 3 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/medscannx160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-708d4748-ffb5-46d3-be80-afb55e9ea14d",
+      "sourceId": "708d4748-ffb5-46d3-be80-afb55e9ea14d",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 8 дней",
+      "title": "Смарт-Процент на 8 дней",
+      "issueName": "До 05 ноября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 28 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
     {
       "id": "primary-b642af21-a867-4327-a28b-f1a9a5c961b8",
       "sourceId": "b642af21-a867-4327-a28b-f1a9a5c961b8",
@@ -23,48 +63,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-aabcdbef-97ba-4334-9d43-e60de103755b",
-      "sourceId": "aabcdbef-97ba-4334-9d43-e60de103755b",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 03 ноября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
-      "sourceId": "f46a7d7d-8cd5-4e54-999a-ba9026c0adbc",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Долговые ЦФА ГК ДОБРОФЛОТ",
-      "title": "Долговые ЦФА ГК ДОБРОФЛОТ",
-      "issueName": "ГК ДОБРОФЛОТ 2",
-      "coupon": "Процентная ставка 18,25%",
-      "currency": "RUB",
-      "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/dobroflotx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-7d294327-cdc5-4b9c-a72b-741a2a8e0554",
-      "sourceId": "7d294327-cdc5-4b9c-a72b-741a2a8e0554",
+      "id": "primary-f8d78d64-051f-41a4-b769-50520fc1682f",
+      "sourceId": "f8d78d64-051f-41a4-b769-50520fc1682f",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -74,17 +74,17 @@
       ],
       "issuer": "Смарт-Процент на 3 месяца",
       "title": "Смарт-Процент на 3 месяца",
-      "issueName": "До 25 января",
+      "issueName": "До 26 января",
       "coupon": "Фиксированная доходность 13,5% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 27 октября",
+      "deadline": "До 28 октября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
     {
-      "id": "current-44dc23b3-679b-4edf-bb58-fe388c34f6f9",
-      "sourceId": "44dc23b3-679b-4edf-bb58-fe388c34f6f9",
+      "id": "current-7b7eeed8-cea4-44e7-80df-6d8bc308ad54",
+      "sourceId": "7b7eeed8-cea4-44e7-80df-6d8bc308ad54",
       "section": "current",
       "sourceSections": [
         "current"
@@ -92,13 +92,33 @@
       "sourceShelves": [
         "Сейчас размещаются"
       ],
-      "issuer": "Русбонд-Удобрения",
-      "title": "Облигации Русбонд-Удобрения",
-      "issueName": "Русбонд-Удобрения 001Р-02",
-      "coupon": "Плавающий купон до 16,75%",
+      "issuer": "ДОМ.РФ",
+      "title": "Облигации ДОМ.РФ",
+      "issueName": "ДОМ.РФ 002P-12",
+      "coupon": "Плавающий купон до 15,3%",
       "currency": "RUB",
-      "deadline": "До 27 октября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/agronextx160.png",
+      "deadline": "До 28 октября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0ZYAR5x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-78d3a6d1-cd4c-4f34-a4ab-aaa8097f6a12",
+      "sourceId": "78d3a6d1-cd4c-4f34-a4ab-aaa8097f6a12",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "Глоракс Доп. выпуск 1",
+      "title": "Глоракс Доп. выпуск 1",
+      "issueName": "Глоракс 002P-01 Доп 1",
+      "coupon": "Фиксированный купон 19,5%",
+      "currency": "RUB",
+      "deadline": "До 3 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/Gloraxx160.png",
       "isQual": false,
       "missingChecks": 0
     }
