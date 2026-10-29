@@ -757,3 +757,87 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
 @media(prefers-reduced-motion:reduce) {
   #fundsPage .ct-banner-track { transition: none; }
 }
+
+/* Compact fund calculator: the shared scenario model supplies both columns. */
+#modalBg{background:color-mix(in srgb,#211d18 55%,transparent);backdrop-filter:blur(7px)}
+#modalBg .compact-calculator{--calc-gold:#c5a15d;--calc-tint:#faf1dc;--calc-green:#1c7547;width:min(820px,100%);background:var(--panel);border:1px solid var(--line);border-radius:24px;color:var(--white);box-shadow:0 24px 90px #17120c45}
+#modalBg .modal-head{padding:21px 26px 17px;background:var(--panel);border-bottom:1px solid var(--line);align-items:center;gap:12px}
+#modalBg .calc-identity{display:flex;align-items:center;gap:13px;min-width:0}
+#modalBg .calc-emblem{display:grid;place-items:center;flex:0 0 40px;height:44px;border-radius:12px;background:linear-gradient(145deg,#e4cf9e,#ae8a49);color:#fff9e9;font-size:27px}
+#modalBg #calcTicker{font-size:11px;letter-spacing:.1em;color:var(--muted)}
+#modalBg #calcName{margin:4px 0 0;font-size:15px;color:var(--white);line-height:1.4}
+#modalBg .close{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;padding:0;font-size:24px;font-weight:400;line-height:1;background:transparent;border:1px solid var(--line);border-radius:10px;color:var(--white)}
+#modalBg .modal-body{display:block;padding:21px 26px 22px}
+#modalBg .form{padding:0}
+#modalBg .calc-main-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 22px}
+#modalBg .fields label{min-width:0;gap:7px}
+#modalBg .fields label>span{font-size:13px;font-weight:500;color:var(--white)}
+#modalBg .fields input{width:100%;height:48px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--white);padding:0 14px;font:500 18px 'T Sans',Arial,sans-serif;font-variant-numeric:tabular-nums;min-width:0;box-sizing:border-box}
+#modalBg .fields input:focus-visible,#modalBg button:focus-visible,#modalBg summary:focus-visible{outline:2px solid var(--calc-gold);outline-offset:3px}
+#modalBg .fields input:disabled{opacity:.55}
+#modalBg .fields small{font-size:11px;line-height:1.35;color:var(--muted)}
+#modalBg .term{display:grid;grid-template-columns:minmax(65px,1fr) auto;gap:7px}
+#modalBg .term-buttons{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:4px}
+#modalBg .term-buttons button{padding:0 11px;font-size:12px;border-radius:8px;color:var(--muted)}
+#modalBg .term-buttons button.on{background:var(--calc-gold);color:#211c12}
+#modalBg .calc-options{margin:15px 0 17px}
+#modalBg .calc-options>summary,#modalBg .calc-details>summary{cursor:pointer;font-size:13px;color:var(--white);padding:10px 0;line-height:1.5}
+#modalBg .calc-options>summary span{margin-left:10px;font-size:11px;color:var(--muted)}
+#modalBg .calc-options-body{padding:8px 0 10px}
+#modalBg .calc-options .tax-switch{margin:8px 0;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+#modalBg .calc-options .fields{max-width:340px}
+#modalBg .calculationNote{font-size:12px;line-height:1.6}
+#modalBg .calc-comparison{border:1px solid var(--line);border-radius:13px;overflow:hidden}
+#modalBg .calc-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:14px;line-height:1.4;font-variant-numeric:tabular-nums}
+#modalBg .calc-table th,#modalBg .calc-table td{padding:12px 16px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);overflow-wrap:anywhere}
+#modalBg .calc-table th:first-child{width:36%;text-align:left;font-weight:400}
+#modalBg .calc-table thead th{font-size:12px;font-weight:600;color:var(--muted);background:var(--soft);text-align:right}
+#modalBg .calc-table thead th:nth-child(2){background:var(--calc-tint);color:var(--white)}
+#modalBg .calc-table td{text-align:right;white-space:normal}
+#modalBg .calc-table tr:last-child>*{border-bottom:0}
+#modalBg .calc-table tr>*:last-child{border-right:0}
+#modalBg .calc-table .calc-net-row>*{background:var(--calc-tint);font-weight:700}
+#modalBg .calc-net-row th{box-shadow:inset 3px 0 var(--calc-gold)}
+#modalBg .calc-net-row td{font-size:19px;color:var(--calc-green)}
+#modalBg .calc-verdict{margin-top:14px}
+#modalBg .calc-verdict .difference-row{margin:0;padding:15px 18px;grid-template-columns:minmax(90px,1fr) auto;background:var(--calc-tint);border:1px solid color-mix(in srgb,var(--calc-gold) 50%,var(--line));border-radius:13px;gap:12px}
+#modalBg .calc-verdict .difference-row>span{font-size:12px;color:var(--muted);font-weight:400}
+#modalBg .calc-verdict .difference-value{align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:8px 12px}
+#modalBg .calc-verdict strong{font-size:27px;line-height:1.2}
+#modalBg .calc-verdict em{font-size:13px;font-weight:600}
+#modalBg .calc-verdict .positive .difference-value{color:var(--calc-green)}
+#modalBg .calc-verdict .negative .difference-value{color:var(--white)}
+#modalBg .calc-footnote{display:flex;justify-content:space-between;gap:12px;margin:14px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
+#modalBg .calc-footnote>span:first-child{max-width:72%}
+#modalBg .calc-details{margin-top:8px}
+#modalBg .calc-details>summary{font-size:12px;color:var(--muted);padding-bottom:0}
+#modalBg .calc-details .result{margin-top:12px;padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+#modalBg .calc-details .result-total{font-size:26px}
+#modalBg .calc-details .depositTotal{font-size:24px}
+:root[data-theme=dark] #modalBg .compact-calculator{--calc-gold:#d5bb80;--calc-tint:#393429;--calc-green:#a7de96;background:#252628}
+:root[data-theme=dark] #modalBg .modal-head{background:#252628}
+:root[data-theme=dark] #modalBg .fields input,:root[data-theme=dark] #modalBg .term-buttons{background:#2e3032}
+:root[data-theme=dark] #modalBg .calc-table thead th{background:#2e3032}
+:root[data-theme=dark] #modalBg .calc-table thead th:nth-child(2){background:var(--calc-tint)}
+@media(max-width:600px){
+ #modalBg{padding:8px}
+ #modalBg .compact-calculator{max-height:calc(100dvh - 16px);border-radius:18px}
+ #modalBg .modal-head{padding:16px}
+ #modalBg .modal-body{padding:16px}
+ #modalBg #calcName{font-size:13px}
+ #modalBg .calc-emblem{flex-basis:32px;height:38px;font-size:24px}
+ #modalBg .calc-main-fields{gap:14px;grid-template-columns:minmax(0,1fr)}
+ #modalBg .calc-main-fields>label:nth-child(3),#modalBg .calc-main-fields>label:nth-child(4){gap:6px}
+ #modalBg .calc-options>summary span{display:none}
+ #modalBg .calc-table{font-size:12px}
+ #modalBg .calc-table th,#modalBg .calc-table td{padding:11px 8px}
+ #modalBg .calc-table th:first-child{width:35%}
+ #modalBg .calc-table thead th{font-size:11px}
+ #modalBg .calc-net-row td{font-size:16px}
+ #modalBg .calc-verdict .difference-row{padding:13px 12px;grid-template-columns:1fr;gap:7px}
+ #modalBg .calc-verdict .difference-value{justify-content:flex-start}
+ #modalBg .calc-verdict strong{font-size:24px}
+ #modalBg .calc-footnote{display:block}
+ #modalBg .calc-footnote>span{display:block;max-width:none!important}
+ #modalBg .calc-footnote>span+span{margin-top:4px}
+}
