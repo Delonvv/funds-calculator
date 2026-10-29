@@ -70,7 +70,7 @@ export async function browserChecks(check, directory) {
     });
 
     await test('browser/interface-motion', 'Переходы, меню и раскрывающиеся блоки сохраняют управление', async page => {
-      for (const route of ['taccount', 'spk', 'nszh', 'investloan', 'premium', 'mission', 'model', 'smart-stocks', 'funds']) {
+      for (const route of ['taccount', 'spk', 'nszh', 'investloan', 'premium', 'model', 'smart-stocks', 'funds']) {
         await show(page, route);
         assert(await page.locator('.product-page.active').count() === 1, `Several sections active: ${route}`);
         await page.waitForFunction(() => {
@@ -171,6 +171,41 @@ export async function browserChecks(check, directory) {
       await page.keyboard.press('Escape');
       assert(!await page.locator('#modalBg').evaluate(x => x.classList.contains('open')), 'Escape did not close modal');
     });
+    await test('browser/compact-calculator', 'Компактный калькулятор: таблица, темы, настройки и клавиатура', async page => {
+      for (const theme of ['brand', 'dark']) {
+        await page.evaluate(value => { document.documentElement.dataset.theme = value; }, theme);
+        await page.locator('.header-actions .primary').click();
+        assert(await page.locator('#initial').evaluate(el => el === document.activeElement), 'Initial amount did not receive focus');
+        assert(await page.locator('#calcTitle').count() === 0, 'Large title still present');
+        await fillAmount(page, '#initial', '500000');
+        await page.locator('#rate').fill('13.9'); await page.locator('#depositRate').fill('12');
+        await page.locator('.calc-options>summary').click();
+        await page.locator('#depositTaxEnabled').check();
+        const net = page.locator('#calcTableBody .calc-net-row td');
+        const read = text => Number(text.replace(/[^\d,.-]/g, '').replace(',', '.'));
+        close(read(await net.nth(0).innerText()), 5039, 1);
+        close(read(await net.nth(1).innerText()), 4350, 1);
+        await page.locator('#depositTaxEnabled').uncheck();
+        close(read(await net.nth(1).innerText()), 5000, 1);
+        assert((await page.locator('#calcTaxNote').innerText()).includes('выключен'), 'Tax mode not explained');
+        await page.locator('#fundFeeEnabled').check();
+        assert(await page.locator('#fundFee').isEnabled(), 'Fee editor unavailable');
+        await page.locator('#fundFee').fill('1.2');
+        close(read(await net.nth(0).innerText()), 4604, 1);
+        await page.locator('.calc-details>summary').click();
+        assert(await page.locator('#metrics').isVisible(), 'Detailed results unavailable');
+        await page.locator('.compact-calculator .close').focus();
+        await page.keyboard.press('Shift+Tab');
+        assert(await page.locator('.compact-calculator').evaluate(el => el.contains(document.activeElement)), 'Focus escaped modal');
+        await page.keyboard.press('Escape');
+        assert(await page.locator('.header-actions .primary').evaluate(el => el === document.activeElement), 'Focus not restored');
+        await page.locator('[data-fund-ticker="TMON"] .calc').click();
+        assert(await page.locator('#calcTableBody tr').count() === 4, 'Fund card opened a different calculator');
+        await page.locator('.compact-calculator .close').click();
+        // Close disclosures for the next opening, preserving their ordinary user state.
+        await page.locator('.compact-calculator details[open]').evaluateAll(elements => elements.forEach(el => { el.open = false; }));
+      }
+    });
     await test('browser/publication', 'Логотипы, фоны и напоминание после загрузки и перерисовки', async page => {
       const missing = await page.evaluate(() => performance.getEntriesByType('resource').filter(x => /publication\.js/.test(x.name)).map(x => x.name));
       assert(missing.length === 0, 'Obsolete publication script still requested');
@@ -181,7 +216,7 @@ export async function browserChecks(check, directory) {
         await logos.first().evaluate(img => img.decode());
         assert(await logos.evaluateAll(images => images.every(img => img.complete && img.naturalWidth > 0)), 'Broken fund logo');
       }
-      for (const [name, selector] of [['funds', '.funds-scenery img'], ['mission', '.mission-scenery img']]) {
+      for (const [name, selector] of [['funds', '.funds-scenery img']]) {
         await show(page, name);
         await page.locator(selector).evaluate(img => img.decode());
         assert(await page.locator(selector).isVisible(), `${name} background missing`);

@@ -5,21 +5,23 @@ export async function premiumPreviewChecks(test, origin) {
     await page.goto(`${origin}/index.html#premium`, { waitUntil: 'networkidle' });
     await page.waitForSelector('#premiumPage.active #bankbuttons button');
   };
-  await test('browser/premium-navigation', 'Премиум: позиция после Умных продаж и перед Миссией', async page => {
+  await test('browser/premium-navigation', 'Премиум: позиция после Умных продаж', async page => {
     for (const width of [360, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       const order = await page.locator('.product-nav').evaluate(nav => {
         const premium = nav.querySelector('[data-page="premium"]');
-        return { previous: premium.previousElementSibling.className, next: premium.nextElementSibling.textContent };
+        return { previous: premium.previousElementSibling.className, next: premium.nextElementSibling?.textContent ?? null };
       });
-      assert(order.previous.includes('smart-sales-nav') && order.next === 'Миссия', 'Wrong premium navigation order');
+      assert(order.previous.includes('smart-sales-nav') && order.next === null, 'Wrong premium navigation order');
     }
     await page.locator('.product-nav [data-page="premium"]').click();
     assert(new URL(page.url()).hash === '#premium', 'Premium must use the shared application route');
     assert(await page.locator('#premiumPage.active #bankbuttons button').count() === 7, 'Premium did not initialize');
     assert(await page.locator('body > header').count() === 1, 'Duplicate header');
-    await page.locator('.product-nav [data-page="mission"]').click();
-    await page.waitForSelector('#missionPage.active');
+    assert(await page.locator('#missionPage, .product-nav [data-page="mission"]').count() === 0, 'Mission page still present');
+    await page.goto(`${origin}/index.html#mission`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('#fundsPage.active');
+    assert(new URL(page.url()).hash === '#funds', 'Legacy mission link did not return to funds');
   });
   await test('browser/premium-shared-shell', 'Премиум: общая тема, меню продаж, калькулятор и старые ссылки', async page => {
     await openPreview(page);
