@@ -1,7 +1,67 @@
 {
-  "updatedAt": "2026-10-30T16:12:13.218Z",
+  "updatedAt": "2026-10-31T15:29:37.736Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
+    {
+      "id": "primary-2aeba45a-4af9-4c12-bfc0-02b0a6a86766",
+      "sourceId": "2aeba45a-4af9-4c12-bfc0-02b0a6a86766",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 3 месяца",
+      "title": "Смарт-Процент на 3 месяца",
+      "issueName": "До 01 февраля",
+      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 2 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-af619f39-b13e-4a5b-a915-b19dbe44f64b",
+      "sourceId": "af619f39-b13e-4a5b-a915-b19dbe44f64b",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 09 ноября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 2 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-14a553d1-56ba-446d-9753-5a905006c4ea",
+      "sourceId": "14a553d1-56ba-446d-9753-5a905006c4ea",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "АБЗ-1",
+      "title": "Облигации АБЗ-1",
+      "issueName": "АБЗ-1 002Р-08",
+      "coupon": "Фиксированный купон до 19%",
+      "currency": "RUB",
+      "deadline": "До 10 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A102LW1x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
     {
       "id": "primary-99d55138-a104-421d-ba96-a8f4ba34224b",
       "sourceId": "99d55138-a104-421d-ba96-a8f4ba34224b",
@@ -23,8 +83,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-14a553d1-56ba-446d-9753-5a905006c4ea",
-      "sourceId": "14a553d1-56ba-446d-9753-5a905006c4ea",
+      "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
+      "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -32,13 +92,13 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "АБЗ-1",
-      "title": "Облигации АБЗ-1",
-      "issueName": "АБЗ-1 002Р-08",
-      "coupon": "Фиксированный купон до 19%",
+      "issuer": "Новые Технологии",
+      "title": "Облигации Новые Технологии",
+      "issueName": "Новые Технологии 001Р-09",
+      "coupon": "Фиксированный купон до 18,5%",
       "currency": "RUB",
-      "deadline": "До 10 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A102LW1x160.png",
+      "deadline": "До 12 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/ntliftx160.png",
       "isQual": false,
       "missingChecks": 0
     },
