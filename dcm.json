@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T16:18:51.025Z",
+  "updatedAt": "2026-11-02T12:14:33.665Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
@@ -19,46 +19,6 @@
       "currency": "RUB",
       "deadline": "До 2 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
-      "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Новые Технологии",
-      "title": "Облигации Новые Технологии",
-      "issueName": "Новые Технологии 001Р-09",
-      "coupon": "Фиксированный купон до 18,5%",
-      "currency": "RUB",
-      "deadline": "До 12 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/ntliftx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-99d55138-a104-421d-ba96-a8f4ba34224b",
-      "sourceId": "99d55138-a104-421d-ba96-a8f4ba34224b",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Долговые ЦФА Медскан",
-      "title": "Долговые ЦФА Медскан",
-      "issueName": "Медскан 4",
-      "coupon": "Процентная ставка 17,5%",
-      "currency": "RUB",
-      "deadline": "До 3 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/medscannx160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -83,6 +43,26 @@
       "missingChecks": 0
     },
     {
+      "id": "primary-b91d2ff7-660d-46ff-a54b-e6cbd2fc1df9",
+      "sourceId": "b91d2ff7-660d-46ff-a54b-e6cbd2fc1df9",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 1 день",
+      "title": "Смарт-Процент на 1 день",
+      "issueName": "До 03 ноября",
+      "coupon": "Фиксированная доходность 11,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 2 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
       "id": "primary-14a553d1-56ba-446d-9753-5a905006c4ea",
       "sourceId": "14a553d1-56ba-446d-9753-5a905006c4ea",
       "section": "primary",
@@ -99,6 +79,66 @@
       "currency": "RUB",
       "deadline": "До 10 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A102LW1x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
+      "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Новые Технологии",
+      "title": "Облигации Новые Технологии",
+      "issueName": "Новые Технологии 001Р-09",
+      "coupon": "Фиксированный купон до 18,5%",
+      "currency": "RUB",
+      "deadline": "До 12 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/ntliftx160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-aed3a684-3754-4fbb-b18a-9201c5f8dea9",
+      "sourceId": "aed3a684-3754-4fbb-b18a-9201c5f8dea9",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Долговые ЦФА Т-Проекты",
+      "title": "Долговые ЦФА Т-Проекты",
+      "issueName": "Т-Проекты 11",
+      "coupon": "Процентная ставка 15%",
+      "currency": "RUB",
+      "deadline": "До 6 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-99d55138-a104-421d-ba96-a8f4ba34224b",
+      "sourceId": "99d55138-a104-421d-ba96-a8f4ba34224b",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Долговые ЦФА Медскан",
+      "title": "Долговые ЦФА Медскан",
+      "issueName": "Медскан 4",
+      "coupon": "Процентная ставка 17,5%",
+      "currency": "RUB",
+      "deadline": "До 3 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/medscannx160.png",
       "isQual": false,
       "missingChecks": 0
     },
