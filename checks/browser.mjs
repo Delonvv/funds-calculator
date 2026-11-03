@@ -206,6 +206,44 @@ export async function browserChecks(check, directory) {
         await page.locator('.compact-calculator details[open]').evaluateAll(elements => elements.forEach(el => { el.open = false; }));
       }
     });
+    await test('finance/model-portfolios', 'Пять моделей: доли, округление рублей, копирование и резервные данные', async page => {
+      const config = await json('model-portfolios.json');
+      assert(config.profiles.length === 5, 'Expected five risk profiles');
+      for (const profile of config.profiles) {
+        close(Object.values(profile.assets).reduce((sum, share) => sum + share, 0), 100, .00001);
+        assert(!Object.hasOwn(profile.assets, 'Альтернативные инвестиции'), 'Excluded alternative allocation remains');
+      }
+      for (const [middle, left, right] of [[1, 0, 2], [3, 2, 4]]) {
+        for (const asset of Object.keys(config.profiles[middle].assets)) {
+          close(config.profiles[middle].assets[asset], (config.profiles[left].assets[asset] + config.profiles[right].assets[asset]) / 2, .051);
+        }
+      }
+      await show(page, 'model');
+      await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.modelCopiedText = text; } } }));
+      const readRub = text => Number(text.replace(/[^\d]/g, ''));
+      for (const profile of config.profiles) {
+        await page.locator('#modelProfile').selectOption(profile.id);
+        for (const amount of [0, 1, 1000003]) {
+          await page.locator('#modelAmount').fill(String(amount));
+          const legend = await page.locator('#modelLegend b').allTextContents();
+          const buy = await page.locator('#modelBuyList .model-buy-row>b').allTextContents();
+          assert(JSON.stringify(legend) === JSON.stringify(buy), 'Legend and purchase amounts differ');
+          close(legend.reduce((sum, text) => sum + readRub(text), 0), amount, 0);
+          await page.locator('#modelCopy').click();
+          const copied = await page.evaluate(() => window.modelCopiedText);
+          const lines = copied.split('\n').filter(line => line.includes(' · '));
+          close(lines.reduce((sum, line) => sum + readRub(line.split(' · ')[1]), 0), amount, 0);
+        }
+      }
+      assert(!(await page.locator('#modelLegend').innerText()).includes('Альтернативные инвестиции'), 'Excluded class visible');
+      assert(await page.locator('#modelSource').getAttribute('href') === null, 'Image incorrectly attributed to an unrelated publication');
+      await page.route('**/model-portfolios.json*', route => route.abort());
+      await page.reload({ waitUntil: 'networkidle' });
+      await show(page, 'model');
+      assert(await page.locator('#modelProfile option').count() === 5, 'Fallback profiles stale');
+      await page.locator('#modelProfile').selectOption('balanced');
+      assert((await page.locator('#modelLegend').innerText()).includes('30%'), 'Fallback has old asset shares');
+    });
     await test('browser/publication', 'Логотипы, фоны и напоминание после загрузки и перерисовки', async page => {
       const missing = await page.evaluate(() => performance.getEntriesByType('resource').filter(x => /publication\.js/.test(x.name)).map(x => x.name));
       assert(missing.length === 0, 'Obsolete publication script still requested');
