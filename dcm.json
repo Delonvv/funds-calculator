@@ -1,47 +1,7 @@
 {
-  "updatedAt": "2026-11-02T19:44:45.537Z",
+  "updatedAt": "2026-11-03T17:18:29.510Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
-    {
-      "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
-      "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Новые Технологии",
-      "title": "Облигации Новые Технологии",
-      "issueName": "Новые Технологии 001Р-09",
-      "coupon": "Фиксированный купон до 18,5%",
-      "currency": "RUB",
-      "deadline": "До 12 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/ntliftx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-99d55138-a104-421d-ba96-a8f4ba34224b",
-      "sourceId": "99d55138-a104-421d-ba96-a8f4ba34224b",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Долговые ЦФА Медскан",
-      "title": "Долговые ЦФА Медскан",
-      "issueName": "Медскан 4",
-      "coupon": "Процентная ставка 17,5%",
-      "currency": "RUB",
-      "deadline": "До 3 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/medscannx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
     {
       "id": "primary-14a553d1-56ba-446d-9753-5a905006c4ea",
       "sourceId": "14a553d1-56ba-446d-9753-5a905006c4ea",
@@ -59,6 +19,46 @@
       "currency": "RUB",
       "deadline": "До 10 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A102LW1x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-4b8b6f01-dcf1-42a4-9eb4-ad2031c6a186",
+      "sourceId": "4b8b6f01-dcf1-42a4-9eb4-ad2031c6a186",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 12 ноября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 5 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
+      "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Новые Технологии",
+      "title": "Облигации Новые Технологии",
+      "issueName": "Новые Технологии 001Р-09",
+      "coupon": "Фиксированный купон до 18,5%",
+      "currency": "RUB",
+      "deadline": "До 12 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/ntliftx160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -83,22 +83,22 @@
       "missingChecks": 0
     },
     {
-      "id": "current-78d3a6d1-cd4c-4f34-a4ab-aaa8097f6a12",
-      "sourceId": "78d3a6d1-cd4c-4f34-a4ab-aaa8097f6a12",
-      "section": "current",
+      "id": "primary-f8177aa2-ce2a-44ee-b932-060f6d1db2f0",
+      "sourceId": "f8177aa2-ce2a-44ee-b932-060f6d1db2f0",
+      "section": "primary",
       "sourceSections": [
-        "current"
+        "primary"
       ],
       "sourceShelves": [
-        "Сейчас размещаются"
+        "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Глоракс Доп. выпуск 1",
-      "title": "Глоракс Доп. выпуск 1",
-      "issueName": "Глоракс 002P-01 Доп 1",
-      "coupon": "Фиксированный купон 19,5%",
+      "issuer": "Смарт-Процент на 1 месяц",
+      "title": "Смарт-Процент на 1 месяц",
+      "issueName": "До 08 декабря",
+      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 3 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/Gloraxx160.png",
+      "deadline": "До 5 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     }
