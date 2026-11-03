@@ -15,43 +15,53 @@
     },
     {
       "months": 12,
-      "annualRate": 14.9
+      "annualRate": 14.5,
+      "asOf": "2026-11-03"
     },
     {
       "months": 24,
-      "annualRate": 16.2
+      "annualRate": 16,
+      "asOf": "2026-11-03"
     },
     {
       "months": 36,
-      "annualRate": 17.3
+      "annualRate": 16.9,
+      "asOf": "2026-11-03"
     },
     {
       "months": 48,
-      "annualRate": 18.4
+      "annualRate": 15.2,
+      "asOf": "2026-11-03"
     },
     {
       "months": 60,
-      "annualRate": 19.3
+      "annualRate": 19.5,
+      "asOf": "2026-11-03"
     },
     {
       "months": 72,
-      "annualRate": 20.5
+      "annualRate": 20.5,
+      "asOf": "2026-11-03"
     },
     {
       "months": 84,
-      "annualRate": 20.5
+      "annualRate": 20.5,
+      "asOf": "2026-11-03"
     },
     {
       "months": 96,
-      "annualRate": 22
+      "annualRate": 22,
+      "asOf": "2026-11-03"
     },
     {
       "months": 108,
-      "annualRate": 22.5
+      "annualRate": 23.5,
+      "asOf": "2026-11-03"
     },
     {
       "months": 120,
-      "annualRate": 23
+      "annualRate": 25,
+      "asOf": "2026-11-03"
     }
   ],
   "surrender": {
@@ -130,5 +140,6 @@
       224,
       257
     ]
-  }
+  },
+  "annualRatesSource": "Таблица ставок НСЖ, предоставленная владельцем сайта 03.11.2026"
 }
