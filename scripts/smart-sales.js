@@ -21,6 +21,8 @@
   const oldShow=window.showProductPage;
   window.showProductPage=function(name){
     if(name!=='model'){dropdown.classList.remove('open');dropdown.querySelector('.smart-sales-trigger').classList.remove('active');return oldShow(name)}
+    dropdown.classList.remove('open');dropdown.querySelector('.smart-sales-trigger').setAttribute('aria-expanded','false');
+    dropdown.querySelectorAll('.smart-sales-menu button').forEach(b=>b.classList.toggle('active',b.dataset.smartPage==='model'));
     document.querySelectorAll('.product-page').forEach(x=>x.classList.remove('active'));
     document.querySelectorAll('.product-tab').forEach(x=>x.classList.remove('active'));
     dropdown.querySelector('.smart-sales-trigger').classList.add('active');page.classList.add('active');
