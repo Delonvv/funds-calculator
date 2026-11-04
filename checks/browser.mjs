@@ -5,6 +5,7 @@ import { chromium } from 'playwright';
 import { root, json, assert, close } from './core.mjs';
 import { premiumPreviewChecks } from './premium-preview.mjs';
 import { catalogBannerChecks } from './catalog-banner.mjs';
+import { strategyChecks } from './strategy.mjs';
 
 export async function browserChecks(check, directory) {
   const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.otf': 'font/otf' };
@@ -53,6 +54,7 @@ export async function browserChecks(check, directory) {
     };
 
     await premiumPreviewChecks(test, origin);
+    await strategyChecks(test, origin);
     await catalogBannerChecks(test);
 
     await test('browser/tmon-schedule', 'TMON: будни и выходные относятся к СПБ Бирже', async page => {
