@@ -61,3 +61,17 @@
 /* Keep the discovery cue visible on shorter screens until the ideas are revealed. */
 .strategy-page:not(.strategy-seen) .strategy-scroll-invitation{position:sticky;bottom:12px;z-index:5;box-shadow:0 3px 14px #0000000a}
 @media(max-width:600px){.strategy-page:not(.strategy-seen) .strategy-scroll-invitation{bottom:8px}}
+/* Expanded scenario memos: explanation and monitoring, without client questions. */
+.strategy-scenario-body{gap:24px 30px;padding:24px}
+.strategy-scenario-body h3{font-size:19px;line-height:1.35;letter-spacing:-.15px;margin:0 0 12px}
+.strategy-scenario-body p{font-size:14px;line-height:1.75}
+.strategy-scenario-body h3:not(:first-child){margin-top:24px}
+.strategy-scenario-body>.strategy-scenario-watch{border:0;padding:0}
+.strategy-impacts{margin:0;padding-left:19px;font-size:14px;line-height:1.75}
+.strategy-impacts li+li{margin-top:12px}.strategy-impacts li::marker{color:var(--strategy-accent)}
+.strategy-scenario-watch ul{list-style:none;padding:17px 18px;margin:0;background:var(--soft);border-radius:12px}
+.strategy-scenario-watch li+li{margin-top:18px}.strategy-scenario-watch b{display:block;font-size:14px;margin-bottom:5px}
+.strategy-scenario-watch p{color:var(--muted);font-size:13px;line-height:1.7}
+.strategy-scenario-body>.strategy-scenario-explanation{grid-column:1/-1;border:0;padding:18px 20px;background:var(--strategy-tint);border-radius:12px}
+.strategy-scenario-explanation h3{font-size:17px;margin-bottom:8px}
+@media(max-width:800px){.strategy-scenario-body{padding:18px;gap:23px}.strategy-scenario-body h3{font-size:18px}.strategy-scenario-body>.strategy-scenario-watch{padding-top:20px;border-top:1px solid var(--line)}.strategy-scenario-body>.strategy-scenario-explanation{padding:16px}.strategy-scenario-watch ul{padding:15px}}

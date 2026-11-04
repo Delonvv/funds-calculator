@@ -39,6 +39,15 @@ export async function strategyChecks(test, origin) {
     const content = await page.locator('#strategyIdeasPanel').innerText(); assert(content.includes('CNY') && content.includes('USD'), 'Currency information missing');
     await page.locator('[data-strategy-scenario="inflation"]').click();
     assert(await page.locator('#strategyScenario-inflation').getAttribute('open') !== null, 'Risk shortcut did not expand scenario');
+    for (const scenario of config.scenarios) {
+      const memo = page.locator('#strategyScenario-' + scenario.id);
+      if (await memo.getAttribute('open') === null) await memo.locator('summary').click();
+      await memo.locator('.strategy-scenario-watch').waitFor({state:'visible'});
+      const text = await memo.textContent();
+      for (const heading of ['Что происходит и почему', 'Как это может повлиять на активы', 'На что смотреть дальше', 'Кратко, простыми словами']) assert(text.includes(heading), `Missing memo section: ${heading}`);
+      assert(!text.includes('Что обсудить') && !text.includes('Что уточнить у клиента') && !text.includes('?'), 'Client questions remain in memo');
+      assert(await memo.locator('.strategy-impacts li').count() === scenario.effects.length && await memo.locator('.strategy-scenario-watch li').count() === scenario.watch.length, 'Memo list truncated');
+    }
     assert(new URL(page.url()).hash === '#smart-strategy', 'In-page scroll changed application route');
     const future = page.locator('.strategy-accordion').last(); await future.locator('summary').click();
     await future.locator('.strategy-future').waitFor({state:'visible'});
