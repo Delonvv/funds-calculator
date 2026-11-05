@@ -1,67 +1,7 @@
 {
-  "updatedAt": "2026-11-04T17:28:25.888Z",
+  "updatedAt": "2026-11-05T17:37:07.734Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
-    {
-      "id": "primary-aed3a684-3754-4fbb-b18a-9201c5f8dea9",
-      "sourceId": "aed3a684-3754-4fbb-b18a-9201c5f8dea9",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Долговые ЦФА Т-Проекты",
-      "title": "Долговые ЦФА Т-Проекты",
-      "issueName": "Т-Проекты 11",
-      "coupon": "Процентная ставка 15%",
-      "currency": "RUB",
-      "deadline": "До 6 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-4b8b6f01-dcf1-42a4-9eb4-ad2031c6a186",
-      "sourceId": "4b8b6f01-dcf1-42a4-9eb4-ad2031c6a186",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 12 ноября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 5 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-f8177aa2-ce2a-44ee-b932-060f6d1db2f0",
-      "sourceId": "f8177aa2-ce2a-44ee-b932-060f6d1db2f0",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 1 месяц",
-      "title": "Смарт-Процент на 1 месяц",
-      "issueName": "До 08 декабря",
-      "coupon": "Фиксированная доходность 13,5% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 5 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
     {
       "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
       "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
@@ -99,6 +39,26 @@
       "currency": "RUB",
       "deadline": "До 10 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A102LW1x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-aed3a684-3754-4fbb-b18a-9201c5f8dea9",
+      "sourceId": "aed3a684-3754-4fbb-b18a-9201c5f8dea9",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Долговые ЦФА Т-Проекты",
+      "title": "Долговые ЦФА Т-Проекты",
+      "issueName": "Т-Проекты 11",
+      "coupon": "Процентная ставка 15%",
+      "currency": "RUB",
+      "deadline": "До 6 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     }
