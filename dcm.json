@@ -1,27 +1,7 @@
 {
-  "updatedAt": "2026-11-05T17:37:07.734Z",
+  "updatedAt": "2026-11-06T16:55:46.862Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
-    {
-      "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
-      "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Новые Технологии",
-      "title": "Облигации Новые Технологии",
-      "issueName": "Новые Технологии 001Р-09",
-      "coupon": "Фиксированный купон до 18,5%",
-      "currency": "RUB",
-      "deadline": "До 12 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/ntliftx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
     {
       "id": "primary-14a553d1-56ba-446d-9753-5a905006c4ea",
       "sourceId": "14a553d1-56ba-446d-9753-5a905006c4ea",
@@ -43,8 +23,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-aed3a684-3754-4fbb-b18a-9201c5f8dea9",
-      "sourceId": "aed3a684-3754-4fbb-b18a-9201c5f8dea9",
+      "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
+      "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -52,13 +32,13 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Долговые ЦФА Т-Проекты",
-      "title": "Долговые ЦФА Т-Проекты",
-      "issueName": "Т-Проекты 11",
-      "coupon": "Процентная ставка 15%",
+      "issuer": "Новые Технологии",
+      "title": "Облигации Новые Технологии",
+      "issueName": "Новые Технологии 001Р-09",
+      "coupon": "Фиксированный купон до 18,5%",
       "currency": "RUB",
-      "deadline": "До 6 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "deadline": "До 12 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/ntliftx160.png",
       "isQual": false,
       "missingChecks": 0
     }
