@@ -414,6 +414,25 @@ export async function browserChecks(check, directory) {
       await page.waitForFunction(() => !document.getElementById('spkVerdict').classList.contains('positive'));
       assert((await page.locator('#spkVerdict .spk-verdict-head').textContent()).includes('Вклад выгоднее'), 'Comparison ignores deposit-only tax mode');
     });
+    await test('finance/nszh-surrender', 'НСЖ: выкупные суммы четырёхлетнего договора по PDF от 03.11.2026', async page => {
+      await show(page, 'nszh');
+      await page.locator('#nszhExitTerm').selectOption('4');
+      for (const [amount, payouts] of [[500000, [500000, 576000, 590000, 685000]], [1000000, [1000000, 1152000, 1180000, 1370000]]]) {
+        await fillAmount(page, '#nszhAmount', String(amount));
+        const rows = await page.locator('#nszhExitRows b').allTextContents();
+        assert(rows.length === 4, 'Incorrect year count');
+        for (const [index, row] of rows.entries()) {
+          const [percentage, rubles] = row.split(' · ');
+          close(Number(percentage.replace('%', '').replace(',', '.')), [100, 115.2, 118, 137][index], .00001);
+          close(Number(rubles.replace(/[^\d]/g, '')), payouts[index], 0);
+        }
+      }
+      await fillAmount(page, '#nszhAmount', '500000');
+      await page.locator('#nszhExitTerm').selectOption('5');
+      close(await number(page, '#nszhMaturity'), 987500, 0);
+      const config = await json('nszh-config.json');
+      assert(config.surrenderSource.asOf === '2026-11-03' && config.surrenderSource.page === 2, 'Missing PDF source');
+    });
     await test('finance/rentier', 'Рантье: периодичность, сумма выплат и возврат взноса', async page => {
       await show(page, 'nszh'); await page.locator('[data-program="rentier"]').click();
       await page.locator('#rentierAmount').fill('500000'); await page.locator('#rentierYears').selectOption('3');
