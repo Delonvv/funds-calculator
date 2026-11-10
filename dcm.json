@@ -1,7 +1,27 @@
 {
-  "updatedAt": "2026-11-09T20:00:28.940Z",
+  "updatedAt": "2026-11-10T17:16:04.412Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
+    {
+      "id": "primary-14a553d1-56ba-446d-9753-5a905006c4ea",
+      "sourceId": "14a553d1-56ba-446d-9753-5a905006c4ea",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "АБЗ-1",
+      "title": "Облигации АБЗ-1",
+      "issueName": "АБЗ-1 002Р-08",
+      "coupon": "Фиксированный купон 19%",
+      "currency": "RUB",
+      "deadline": "До 13 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A102LW1x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
     {
       "id": "primary-e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
       "sourceId": "e2f9a9f2-5c48-47a0-b7dc-7f943e11b811",
@@ -23,66 +43,6 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-14a553d1-56ba-446d-9753-5a905006c4ea",
-      "sourceId": "14a553d1-56ba-446d-9753-5a905006c4ea",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "АБЗ-1",
-      "title": "Облигации АБЗ-1",
-      "issueName": "АБЗ-1 002Р-08",
-      "coupon": "Фиксированный купон до 19%",
-      "currency": "RUB",
-      "deadline": "До 10 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A102LW1x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-fe6c1ab6-265c-4131-a401-66f88438934a",
-      "sourceId": "fe6c1ab6-265c-4131-a401-66f88438934a",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 4 месяца",
-      "title": "Смарт-Процент на 4 месяца",
-      "issueName": "До 10 марта",
-      "coupon": "Фиксированная ставка 14,5% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 10 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-e6a48ce5-b0e2-4b3e-875b-d7cea2592fbf",
-      "sourceId": "e6a48ce5-b0e2-4b3e-875b-d7cea2592fbf",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 1 месяц",
-      "title": "Смарт-Процент на 1 месяц",
-      "issueName": "До 10 декабря",
-      "coupon": "Фиксированная доходность 13,4% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 10 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "primary-68060862-c9d8-4c17-8374-3e1c76b911d6",
       "sourceId": "68060862-c9d8-4c17-8374-3e1c76b911d6",
       "section": "primary",
@@ -99,6 +59,86 @@
       "currency": "RUB",
       "deadline": "До 16 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/econivax160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-5db33236-fb2a-436d-b4f2-d06e9815ac1a",
+      "sourceId": "5db33236-fb2a-436d-b4f2-d06e9815ac1a",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 4 месяца",
+      "title": "Смарт-Процент на 4 месяца",
+      "issueName": "До 11 марта",
+      "coupon": "Фиксированная ставка 14,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 11 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-23af2833-77ee-4ebb-b6cb-dad9ac8b9575",
+      "sourceId": "23af2833-77ee-4ebb-b6cb-dad9ac8b9575",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "ФосАгро Доп. выпуск 2",
+      "title": "ФосАгро Доп. выпуск 2",
+      "issueName": "ФосАгро БО-02-01 Доп 2",
+      "coupon": "Плавающий купон 15,2%",
+      "currency": "RUB",
+      "deadline": "До 12 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JRKT8x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-3840408a-e926-483a-8350-e7d1a5c1f3ac",
+      "sourceId": "3840408a-e926-483a-8350-e7d1a5c1f3ac",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "Газпром капитал",
+      "title": "Облигации Газпром капитал",
+      "issueName": "Газпром капитал БО-003Р-31",
+      "coupon": "Плавающий купон до 15,6%",
+      "currency": "RUB",
+      "deadline": "До 13 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU0007661625x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-aa291ea6-e8fc-4e09-b907-ce6ddaf917e3",
+      "sourceId": "aa291ea6-e8fc-4e09-b907-ce6ddaf917e3",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "Казаньоргсинтез",
+      "title": "Облигации Казаньоргсинтез",
+      "issueName": "Казаньоргсинтез 001Р-01",
+      "coupon": "Плавающий купон до 15,4%",
+      "currency": "RUB",
+      "deadline": "До 16 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU0009089825x160.png",
       "isQual": false,
       "missingChecks": 0
     }
