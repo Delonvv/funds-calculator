@@ -639,82 +639,28 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
   to { opacity: 1; }
 }
 
-/* A single, manually controlled catalogue banner. */
-#fundsPage .ct-banner {
-  --ct-slide: 0;
-  position: relative;
-  min-width: 0;
-  margin: 16px 0 20px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: linear-gradient(100deg, color-mix(in srgb, var(--y) 10%, var(--panel)), var(--panel));
-}
-#fundsPage .ct-banner-window { margin: 0 50px; overflow: hidden; touch-action: pan-y; }
-#fundsPage .ct-banner-track {
-  display: flex;
-  width: 200%;
-  transform: translateX(calc(var(--ct-slide) * -50%));
-  transition: transform 280ms cubic-bezier(.2,.7,.2,1);
-}
-#fundsPage .ct-banner-slide {
-  flex: 0 0 50%;
-  min-width: 0;
-  min-height: 100px;
-  display: grid;
-  grid-template-columns: 80px minmax(0,1fr) auto;
-  align-items: center;
-  gap: 18px;
-  padding: 10px 12px 18px;
-}
-#fundsPage .ct-banner-art { width: 80px; height: 72px; object-fit: contain; }
-#fundsPage .ct-banner-copy { min-width: 0; }
-#fundsPage .ct-banner-copy h2 { margin: 0 0 5px; font-size: 24px; line-height: 1.2; letter-spacing: -.025em; }
-#fundsPage .ct-banner-copy p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--muted); }
-#fundsPage .ct-banner-cta {
-  border: 1px solid var(--y);
-  border-radius: 11px;
-  background: var(--y);
-  color: #302718;
-  padding: 13px 22px;
-  font: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  white-space: nowrap;
-  cursor: pointer;
-}
-#fundsPage .ct-banner-arrow {
-  position: absolute;
-  top: calc(50% - 4px);
-  transform: translateY(-50%);
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: var(--panel);
-  color: var(--white);
-  font: inherit;
-  cursor: pointer;
-}
-#fundsPage .ct-banner-arrow svg { width: 18px; height: 18px; display: block; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-#fundsPage .ct-banner-prev { left: 12px; }
-#fundsPage .ct-banner-next { right: 12px; }
-#fundsPage .ct-banner-dots { position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%); display: flex; }
-#fundsPage .ct-banner-dots button {
-  width: 22px;
-  height: 20px;
-  display: grid;
-  place-items: center;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
-}
-#fundsPage .ct-banner-dots button::after { content: ''; width: 8px; height: 8px; border: 1px solid var(--muted); border-radius: 50%; }
-#fundsPage .ct-banner-dots button[aria-current=true]::after { border-color: var(--y); background: var(--y); }
-#fundsPage .ct-banner-status { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* Secondary placement preview; fund cards remain the main catalogue content. */
+#fundsPage .ct-placements-strip{min-width:0;margin:16px 0 22px}
+#fundsPage .ct-strip-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+#fundsPage .ct-strip-head h2{font-size:15px;font-weight:500;color:var(--muted);margin:0}
+#fundsPage .ct-strip-head>div{display:flex;align-items:center;gap:6px}
+#fundsPage .ct-strip-head a{font-size:12px;color:var(--muted);margin-right:8px;text-decoration:none}
+#fundsPage .ct-strip-head button{width:32px;height:32px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--white);font:inherit;font-size:23px;cursor:pointer;display:grid;place-items:center;padding:0}
+#fundsPage .ct-strip-head button:disabled{opacity:.3;cursor:default}
+#fundsPage .ct-strip-rail{min-height:84px;box-sizing:border-box;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--line) transparent;overscroll-behavior-x:contain;padding:2px 1px 5px}
+#fundsPage .ct-strip-card{flex:0 0 calc((100% - 20px)/3);min-width:0;display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--panel) 55%,transparent);color:var(--white);text-decoration:none;scroll-snap-align:start;box-sizing:border-box}
+#fundsPage .ct-strip-monogram{width:32px;height:32px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--line) 50%,transparent);font-size:14px;color:var(--muted)}
+#fundsPage .ct-strip-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+#fundsPage .ct-strip-copy b{font-size:15px;font-weight:600;line-height:1.2}
+#fundsPage .ct-strip-copy>span{font-size:12px;line-height:1.3;color:var(--muted)}
+#fundsPage .ct-strip-copy small{font-size:11px;line-height:1.3;color:var(--muted)}
+#fundsPage .ct-strip-date{min-height:12px;line-height:12px;margin:3px 0 0;font-size:10px;color:var(--muted)}
+#fundsPage .ct-strip-rail>p{margin:8px 0;font-size:13px;color:var(--muted)}
+#fundsPage .ct-strip-rail>p button{font:inherit;color:inherit;background:transparent;border:0;text-decoration:underline;cursor:pointer}
+#fundsPage .ct-strip-card:focus-visible,#fundsPage .ct-strip-head :focus-visible,#fundsPage .ct-strip-rail:focus-visible{outline:2px solid var(--y);outline-offset:2px}
+#fundsPage .ct-toolbar #ctPayoutToggle{background:transparent;border-color:transparent;text-decoration:underline;font-size:13px;padding:8px;color:var(--muted)}
+@media(max-width:1000px){#fundsPage .ct-strip-card{flex-basis:calc((100% - 10px)/2)}}
+@media(max-width:600px){#fundsPage .ct-strip-card{flex-basis:85%}#fundsPage .ct-strip-head a{font-size:11px}#fundsPage .ct-strip-head h2{font-size:14px}}
 
 /* Body-level fixed overlays are not clipped by the animated page or slider. */
 .ct-anchored-popup.ct-popup, .ct-anchored-popup.ct-filter-popup {
@@ -734,28 +680,8 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
 .ct-anchored-popup .ct-popup-actions { justify-content: flex-end; }
 .ct-filter-actions { display: flex; align-items: center; gap: 14px; }
 .ct-filter-close { border: 0; padding: 0 4px; background: transparent; color: var(--white); font: inherit; font-size: 25px; cursor: pointer; }
-@media(max-width:850px) {
-  #fundsPage .ct-banner-slide { grid-template-columns: 58px minmax(0,1fr) auto; gap: 12px; }
-  #fundsPage .ct-banner-art { width: 58px; height: 64px; }
-  #fundsPage .ct-banner-copy h2 { font-size: 21px; }
-  #fundsPage .ct-banner-copy p { font-size: 14px; }
-  #fundsPage .ct-banner-cta { padding: 12px 16px; font-size: 14px; }
-}
 @media(max-width:600px) {
-  #fundsPage .ct-banner-window { margin: 0 38px; }
-  #fundsPage .ct-banner-slide { min-height: 176px; grid-template-columns: 42px minmax(0,1fr); gap: 8px 10px; padding: 14px 6px 28px; }
-  #fundsPage .ct-banner-art { width: 42px; height: 48px; }
-  #fundsPage .ct-banner-copy h2 { font-size: 18px; }
-  #fundsPage .ct-banner-copy p { font-size: 13px; }
-  #fundsPage .ct-banner-cta { grid-column: 1/-1; justify-self: start; white-space: normal; }
-  #fundsPage .ct-banner-arrow { width: 29px; height: 29px; }
-  #fundsPage .ct-banner-arrow svg { width: 16px; height: 16px; }
-  #fundsPage .ct-banner-prev { left: 7px; }
-  #fundsPage .ct-banner-next { right: 7px; }
   .ct-anchored-popup .ct-fields { grid-template-columns: 1fr; }
-}
-@media(prefers-reduced-motion:reduce) {
-  #fundsPage .ct-banner-track { transition: none; }
 }
 
 /* Compact fund calculator: the shared scenario model supplies both columns. */
@@ -841,3 +767,9 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
  #modalBg .calc-footnote>span{display:block;max-width:none!important}
  #modalBg .calc-footnote>span+span{margin-top:4px}
 }
+
+/* Fund identity links reuse the existing broker-card destination. */
+.card .fund-icon-link{display:flex;flex-shrink:0;border-radius:14px;color:inherit;text-decoration:none}
+.card .fund-name-link{color:inherit;text-decoration:none}
+.card .fund-name-link:hover{text-decoration:underline;text-underline-offset:3px}
+.card .fund-icon-link:focus-visible,.card .fund-name-link:focus-visible{outline:2px solid var(--y);outline-offset:4px}
