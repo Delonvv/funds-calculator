@@ -29,10 +29,11 @@ function positionPopup(){
   current.style.width='';
   let box=current.getBoundingClientRect(),y=bounds.bottom+gap;
   if(y+box.height>top+height-padding)y=bounds.top-gap-box.height;
+  y=Math.max(top+padding,Math.min(y,top+height-box.height-padding));
   let x=bounds.right-box.width;
-  // Keep the toolbar reachable when a short desktop viewport places the popup above the banner.
+  // Keep both toolbar triggers reachable when an overlay opens above the controls.
   const tools=toolbar.getBoundingClientRect();
-  if(current===popup&&width>=850&&y<tools.bottom&&y+box.height>tools.top){
+  if(width>=850&&y<tools.bottom&&y+box.height>tools.top){
     const edge=Math.max(...[...toolbar.querySelectorAll('button')].map(button=>button.getBoundingClientRect().right))+padding;
     const room=left+width-padding-edge;
     if(room>=360){
