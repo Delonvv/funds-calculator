@@ -6,10 +6,13 @@ export async function catalogBannerChecks(test) {
     const rail=page.locator('.ct-strip-rail');
     await rail.locator('.ct-strip-card').first().waitFor();
     const titles=await rail.locator('.ct-strip-copy b').allTextContents();
+    const size=await rail.evaluate(x=>({width:x.clientWidth,card:x.querySelector('.ct-strip-card').getBoundingClientRect().width}));
+    assert(Math.abs(size.card*2+10-size.width)<5,'Expected two cards per row');
     await page.locator('[data-strip-next]').click();
     await page.waitForFunction(()=>document.querySelector('.ct-strip-rail').scrollLeft>10);
     await page.waitForTimeout(700);
     const position=await rail.evaluate(x=>x.scrollLeft);
+    assert(Math.abs(position-2*(size.card+10))<5,'Arrow should advance by a pair');
     await page.waitForTimeout(1100);
     assert(Math.abs(position-await rail.evaluate(x=>x.scrollLeft))<2,'Unexpected auto-scroll');
     await page.emulateMedia({reducedMotion:'reduce'});
