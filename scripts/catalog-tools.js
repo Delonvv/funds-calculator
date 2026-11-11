@@ -100,11 +100,11 @@ let placementStrip;
 function createPlacementStrip(){
   placementStrip=document.createElement('section');placementStrip.className='ct-placements-strip';
   placementStrip.setAttribute('aria-label','Рублёвые размещения');
-  placementStrip.innerHTML=`<div class="ct-strip-head"><h2>Рублёвые размещения</h2><div><a href="#smart-fixed-income">Все размещения ↗</a><button type="button" data-strip-prev aria-label="Предыдущие размещения" disabled>‹</button><button type="button" data-strip-next aria-label="Следующие размещения" disabled>›</button></div></div><div class="ct-strip-rail" tabindex="0" aria-label="Текущие рублёвые размещения"><p role="status">Загрузка размещений…</p></div><p class="ct-strip-date"></p>`;
+  placementStrip.innerHTML=`<div class="ct-strip-head"><h2>Рублёвые размещения</h2><div><a href="#smart-fixed-income">Все размещения ↗</a><button type="button" data-strip-prev aria-label="Предыдущие размещения" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button><button type="button" data-strip-next aria-label="Следующие размещения" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button></div></div><div class="ct-strip-rail" tabindex="0" aria-label="Текущие рублёвые размещения"><p role="status">Загрузка размещений…</p></div><p class="ct-strip-date"></p>`;
   grid.before(placementStrip);
   const rail=placementStrip.querySelector('.ct-strip-rail'),prev=placementStrip.querySelector('[data-strip-prev]'),next=placementStrip.querySelector('[data-strip-next]');
   const update=()=>{prev.disabled=rail.scrollLeft<=2;next.disabled=rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-2;};
-  function move(direction){const card=rail.querySelector('.ct-strip-card');rail.scrollBy({left:direction*((card?.getBoundingClientRect().width||rail.clientWidth)+10),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+  function move(direction){const card=rail.querySelector('.ct-strip-card');rail.scrollBy({left:direction*((card?.getBoundingClientRect().width||rail.clientWidth)+10)*(matchMedia('(min-width:601px)').matches?2:1),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
   prev.onclick=()=>move(-1);next.onclick=()=>move(1);
   rail.addEventListener('scroll',update,{passive:true});
   rail.addEventListener('keydown',e=>{if(e.target===rail&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();move(e.key==='ArrowRight'?1:-1);}});
