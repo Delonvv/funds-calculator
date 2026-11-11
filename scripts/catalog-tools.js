@@ -119,7 +119,8 @@ function renderPlacementStrip(payload){
     date.textContent='';rail.dispatchEvent(new Event('scroll'));return;
   }
   const items=window.getFixedIncomePlacements(payload.placements);
-  rail.innerHTML=items.length?items.map(x=>`<a class="ct-strip-card" href="#smart-fixed-income"><span class="ct-strip-monogram" aria-hidden="true">${esc((x.issuer||x.title||'₽').slice(0,1))}</span><span class="ct-strip-copy"><b>${esc(x.issuer||x.title||'Размещение')}</b><span>${esc(x.coupon||'Купон уточняется')}</span><small>${esc(x.deadline||'Срок приёма заявок уточняется')}${x.isQual===true?' · Для квалов':''}</small></span><span aria-hidden="true">→</span></a>`).join(''):'<p role="status">Сейчас нет рублёвых размещений.</p>';
+  rail.innerHTML=items.length?items.map(x=>`<a class="ct-strip-card" href="#smart-fixed-income"><span class="ct-strip-monogram" aria-hidden="true">${esc((x.issuer||x.title||'₽').slice(0,1))}${typeof x.image==='string'&&/^https:\/\//.test(x.image)?`<img src="${esc(x.image)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}</span><span class="ct-strip-copy"><b>${esc(x.issuer||x.title||'Размещение')}</b><span>${esc(x.coupon||'Купон уточняется')}</span><small>${esc(x.deadline||'Срок приёма заявок уточняется')}${x.isQual===true?' · Для квалов':''}</small></span><span aria-hidden="true">→</span></a>`).join(''):'<p role="status">Сейчас нет рублёвых размещений.</p>';
+  rail.querySelectorAll('.ct-strip-monogram img').forEach(img=>{img.onerror=()=>img.remove();});
   const updated=new Date(payload.updatedAt);date.textContent=Number.isNaN(updated.valueOf())?'Дата обновления не указана':'Данные на '+updated.toLocaleString('ru-RU',{timeZone:'Europe/Moscow'})+' МСК';
   rail.scrollLeft=0;rail.dispatchEvent(new Event('scroll'));
 }

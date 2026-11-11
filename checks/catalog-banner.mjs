@@ -37,6 +37,20 @@ export async function catalogBannerChecks(test) {
     await page.locator('.ct-strip-card').first().waitFor();
   });
 
+  await test('browser/catalog-placement-logos', 'Логотипы эмитентов из JSON и заглушка при сбое изображения', async page => {
+    await page.context().route('https://invest-brands.cdn-tinkoff.ru/**',r=>r.fulfill({contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><rect width="32" height="32" fill="gray"/></svg>'}));
+    await page.reload({waitUntil:'networkidle'});
+    const logos=page.locator('.ct-strip-monogram img');
+    await logos.first().waitFor();
+    await page.waitForFunction(()=>document.querySelector('.ct-strip-monogram img')?.naturalWidth>0);
+    assert(await logos.first().getAttribute('src')!==null,'Logo URL missing');
+    await page.context().route('https://invest-brands.cdn-tinkoff.ru/**',r=>r.abort());
+    await page.reload({waitUntil:'networkidle'});
+    await page.locator('.ct-strip-card').first().waitFor();
+    await page.waitForFunction(()=>document.querySelector('.ct-strip-monogram')&&!document.querySelector('.ct-strip-monogram').querySelector('img'));
+    assert((await page.locator('.ct-strip-monogram').first().textContent()).length>0,'Fallback missing');
+  });
+
   await test('browser/fund-identity-links', 'Иконка и название всех фондов ведут в карточку брокера', async page => {
     const links=await page.locator('#grid>.card').evaluateAll(cards=>cards.map(card=>({ticker:card.dataset.fundTicker,name:card.querySelector('h2 a')?.href,icon:card.querySelector('.fund-icon-link')?.href,targets:[...card.querySelectorAll('.fund-name-link,.fund-icon-link')].map(a=>[a.target,a.rel])})));
     for(const item of links){
@@ -66,11 +80,11 @@ export async function catalogBannerChecks(test) {
     const total = await page.locator('#grid>.card').count();
     await page.locator('[data-fund-ticker="TMON"] .ct-star').click();
     await page.locator('#ctPayoutToggle').scrollIntoViewIfNeeded();
-    const before = await page.locator('#grid').boundingBox();
+    const before = await page.locator('#grid').evaluate(x=>x.getBoundingClientRect().top+scrollY);
     await page.locator('#ctPayoutToggle').click();
     await page.locator('#ctPayout').waitFor({ state: 'visible' });
-    const after = await page.locator('#grid').boundingBox();
-    assert(Math.abs(before.y - after.y) < 1, 'Popup moves the catalogue');
+    const after = await page.locator('#grid').evaluate(x=>x.getBoundingClientRect().top+scrollY);
+    assert(Math.abs(before - after) < 1, 'Popup moves the catalogue');
     assert(await page.locator('#ctPayout').evaluate(x => x.parentElement === document.body), 'Popup remains inside clipping ancestors');
     assert(JSON.stringify(await page.locator('#ctFrequency option').evaluateAll(a => a.map(x => x.value))) === JSON.stringify(['monthly','quarterly','semiannual','maturity']), 'Unexpected frequencies');
     assert(await page.locator('#ctFrequency').inputValue() === 'monthly', 'Default frequency is not monthly');

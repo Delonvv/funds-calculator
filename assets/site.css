@@ -649,7 +649,7 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
 #fundsPage .ct-strip-head button:disabled{opacity:.3;cursor:default}
 #fundsPage .ct-strip-rail{min-height:84px;box-sizing:border-box;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--line) transparent;overscroll-behavior-x:contain;padding:2px 1px 5px}
 #fundsPage .ct-strip-card{flex:0 0 calc((100% - 20px)/3);min-width:0;display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--panel) 55%,transparent);color:var(--white);text-decoration:none;scroll-snap-align:start;box-sizing:border-box}
-#fundsPage .ct-strip-monogram{width:32px;height:32px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--line) 50%,transparent);font-size:14px;color:var(--muted)}
+#fundsPage .ct-strip-monogram{position:relative;overflow:hidden;width:32px;height:32px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--line) 50%,transparent);font-size:14px;color:var(--muted)}
 #fundsPage .ct-strip-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
 #fundsPage .ct-strip-copy b{font-size:15px;font-weight:600;line-height:1.2}
 #fundsPage .ct-strip-copy>span{font-size:12px;line-height:1.3;color:var(--muted)}
@@ -773,3 +773,5 @@ html body #fundsPage>#grid,html body #fundsPage>.ct-carousel,html body #fundsPag
 .card .fund-name-link{color:inherit;text-decoration:none}
 .card .fund-name-link:hover{text-decoration:underline;text-underline-offset:3px}
 .card .fund-icon-link:focus-visible,.card .fund-name-link:focus-visible{outline:2px solid var(--y);outline-offset:4px}
+
+#fundsPage .ct-strip-monogram img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--panel)}
