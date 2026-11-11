@@ -5,7 +5,7 @@ let favorites=new Set(),mode='all',selection=null,placements=[],placementError=f
 try{const saved=JSON.parse(localStorage.getItem('funds-favorites-v1')||'[]');if(Array.isArray(saved))favorites=new Set(saved.filter(x=>typeof x==='string'));}catch(e){}
 const knownFundFrequency={TPAY:'monthly',TRBR:'semiannual'};
 const frequencyLabels={monthly:'Ежемесячно',quarterly:'Ежеквартально',semiannual:'Раз в полгода',annual:'Раз в год',maturity:'В конце срока'};
-const toolbar=document.createElement('div');toolbar.className='ct-toolbar';toolbar.innerHTML='<div class="ct-tabs"><button type="button" data-catalog-mode="all" aria-pressed="true" class="selected">Все фонды</button><button type="button" data-catalog-mode="favorites" aria-pressed="false">★ Избранное <span id="ctFavoriteCount"></span></button></div><button type="button" id="ctFilterToggle" aria-expanded="false" aria-controls="ctFilters">☷ Фильтры</button><button type="button" id="ctReset">Сбросить</button>';
+const toolbar=document.createElement('div');toolbar.className='ct-toolbar';toolbar.innerHTML='<div class="ct-tabs"><button type="button" data-catalog-mode="all" aria-pressed="true" class="selected">Все фонды</button><button type="button" data-catalog-mode="favorites" aria-pressed="false">★ Избранное <span id="ctFavoriteCount"></span></button></div><button type="button" id="ctFilterToggle" aria-expanded="false" aria-controls="ctFilters">☷ Фильтры</button><button type="button" id="ctReset">Сбросить</button><button type="button" id="ctPayoutToggle" aria-expanded="false" aria-controls="ctPayout">Подбор выплат</button>';
 panel.before(toolbar);panel.id='ctFilters';panel.classList.add('ct-filter-popup');panel.hidden=true;
 const popup=document.createElement('section');popup.id='ctPayout';popup.className='ct-popup';popup.hidden=true;popup.setAttribute('aria-label','Подбор выплат');popup.innerHTML='<div class="ct-popup-head"><b>Подбор выплат</b><button type="button" id="ctClose" aria-label="Закрыть подбор выплат">×</button></div><div class="ct-fields"><label>Доходность от, % годовых<input id="ctMin" inputmode="decimal" placeholder="Например, 18"></label><label>Периодичность<select id="ctFrequency"><option value="monthly">Ежемесячно</option><option value="quarterly">Ежеквартально</option><option value="semiannual">Раз в полгода</option><option value="maturity">В конце срока</option></select></label><label>Тип инструмента<select id="ctType"><option value="all">Все инструменты</option><option value="funds">Фонды</option><option value="placements">Размещения</option><option value="products">Другие продукты</option></select></label></div><small>Купон и ожидаемая доходность обозначены отдельно. Неизвестные значения не считаем нулевыми.</small><div class="ct-popup-actions"><button type="button" id="ctApply" class="ct-primary">Показать подборку</button><button type="button" id="ctPopupReset">Сбросить</button></div><p id="ctError" role="status"></p>';
 toolbar.after(popup);const chips=document.createElement('div');chips.className='ct-active';popup.after(chips);const results=document.createElement('section');results.className='ct-placement-results';grid.after(results);const note=document.createElement('p');note.className='ct-note';results.after(note);
@@ -29,10 +29,11 @@ function positionPopup(){
   current.style.width='';
   let box=current.getBoundingClientRect(),y=bounds.bottom+gap;
   if(y+box.height>top+height-padding)y=bounds.top-gap-box.height;
+  y=Math.max(top+padding,Math.min(y,top+height-box.height-padding));
   let x=bounds.right-box.width;
-  // Keep the toolbar reachable when a short desktop viewport places the popup above the banner.
+  // Keep both toolbar triggers reachable when an overlay opens above the controls.
   const tools=toolbar.getBoundingClientRect();
-  if(current===popup&&width>=850&&y<tools.bottom&&y+box.height>tools.top){
+  if(width>=850&&y<tools.bottom&&y+box.height>tools.top){
     const edge=Math.max(...[...toolbar.querySelectorAll('button')].map(button=>button.getBoundingClientRect().right))+padding;
     const room=left+width-padding-edge;
     if(room>=360){
@@ -84,59 +85,45 @@ for(const id of ['ctReset','ctPopupReset'])document.getElementById(id).onclick=r
 document.getElementById('ctApply').onclick=()=>{const text=document.getElementById('ctMin').value.trim(),min=text===''?null:Number(text.replace(',','.'));if(min!==null&&(!Number.isFinite(min)||min<0||min>100)){document.getElementById('ctError').textContent='Укажите доходность от 0 до 100%.';return;}document.getElementById('ctError').textContent='';selection={min,frequency:document.getElementById('ctFrequency').value,type:document.getElementById('ctType').value};close(true);run();(document.querySelector('.ct-carousel:not([hidden])')||grid).scrollIntoView({behavior:'smooth',block:'start'});};
 page.addEventListener('click',e=>{const b=e.target.closest('[data-favorite]');if(!b)return;const key=b.dataset.favorite;favorites.has(key)?favorites.delete(key):favorites.add(key);store();run();});document.addEventListener('keydown',e=>{if(e.key==='Escape')close(true);});document.addEventListener('click',e=>{if(!panel.contains(e.target)&&!popup.contains(e.target)&&!toolbar.contains(e.target)&&!e.target.closest('#ctPayoutToggle'))close();});
 window.addEventListener('storage',e=>{if(e.key==='funds-favorites-v1'){try{const list=JSON.parse(e.newValue||'[]');if(Array.isArray(list))favorites=new Set(list.filter(x=>typeof x==='string'));run();}catch(err){}}});
-fetch('./dcm.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(c=>{const seen=new Set();placements=(c.placements||[]).filter(x=>{if(!x.id||seen.has(x.sourceId||x.id))return false;seen.add(x.sourceId||x.id);return true;});run();}).catch(()=>{placementError=true;run();});run();
-function createBanner(){
-  const banner=document.createElement('section');banner.className='ct-banner';
-  banner.setAttribute('aria-label','Возможности каталога');banner.setAttribute('aria-roledescription','карусель');
-  banner.innerHTML=`
-    <button class="ct-banner-arrow ct-banner-prev" type="button" aria-label="Предыдущий слайд"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg></button>
-    <div class="ct-banner-window"><div class="ct-banner-track">
-      <div class="ct-banner-slide" role="group" aria-roledescription="слайд" aria-label="1 из 2">
-        <svg class="ct-banner-art" viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="ct-calendar-gold" x2="1" y2="1"><stop stop-color="#fff3ce"/><stop offset="1" stop-color="#d4a047"/></linearGradient></defs><rect x="16" y="20" width="66" height="64" rx="12" fill="url(#ct-calendar-gold)" stroke="#c69643"/><path d="M16 40h66M34 13v18M65 13v18" fill="none" stroke="#b98226" stroke-width="5" stroke-linecap="round"/><g fill="#fff9e9"><rect x="29" y="50" width="10" height="10" rx="2"/><rect x="46" y="50" width="10" height="10" rx="2"/><rect x="63" y="50" width="10" height="10" rx="2"/><rect x="29" y="67" width="10" height="10" rx="2"/><rect x="46" y="67" width="10" height="10" rx="2"/></g></svg>
-        <div class="ct-banner-copy"><h2>Подбор под задачу клиента</h2><p>Инструменты по доходности и периодичности выплат</p></div>
-        <button type="button" id="ctPayoutToggle" class="ct-banner-cta" aria-expanded="false" aria-controls="ctPayout">Открыть подбор</button>
-      </div>
-      <div class="ct-banner-slide" role="group" aria-roledescription="слайд" aria-label="2 из 2" inert aria-hidden="true">
-        <img class="ct-banner-art" src="assets/investloan-pie-20261014.webp" alt="" width="80" height="80">
-        <div class="ct-banner-copy"><h2>Модельный портфель</h2><p>Распределите сумму по классам активов</p></div>
-        <button type="button" class="ct-banner-cta" data-open-model>Открыть портфель <span aria-hidden="true">→</span></button>
-      </div>
-    </div></div>
-    <button class="ct-banner-arrow ct-banner-next" type="button" aria-label="Следующий слайд"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg></button>
-    <div class="ct-banner-dots"><button type="button" aria-label="Слайд 1: Подбор под задачу клиента" aria-current="true"></button><button type="button" aria-label="Слайд 2: Модельный портфель" aria-current="false"></button></div>
-    <span class="ct-banner-status" role="status" aria-live="polite"></span>`;
-  grid.before(banner);
-  const slides=[...banner.querySelectorAll('.ct-banner-slide')],dots=[...banner.querySelectorAll('.ct-banner-dots button')];
-  let slide=0,start=null;
-  function showSlide(value,keyboard=false){
-    const next=(value+slides.length)%slides.length;
-    if(next===slide)return;
-    const moveFocus=keyboard&&slides[slide].contains(document.activeElement);
-    close(false,true);slide=next;
-    banner.style.setProperty('--ct-slide',String(slide));
-    slides.forEach((item,i)=>{item.inert=i!==slide;item.setAttribute('aria-hidden',String(i!==slide));});
-    dots.forEach((dot,i)=>dot.setAttribute('aria-current',String(i===slide)));
-    banner.querySelector('.ct-banner-status').textContent='Слайд '+(slide+1)+' из 2: '+slides[slide].querySelector('h2').textContent;
-    if(moveFocus)slides[slide].querySelector('button').focus({preventScroll:true});
+async function loadPlacements(){
+  try{
+    const response=await fetch('./dcm.json?v='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw Error(response.status);
+    const payload=await response.json();if(!Array.isArray(payload.placements))throw Error('Invalid placements');
+    const seen=new Set();placements=payload.placements.filter(x=>{if(!x.id||seen.has(x.sourceId||x.id))return false;seen.add(x.sourceId||x.id);return true;});
+    placementError=false;renderPlacementStrip(payload);
+  }catch{placementError=true;renderPlacementStrip(null);}
+  run();
+}
+loadPlacements();run();
+let placementStrip;
+function createPlacementStrip(){
+  placementStrip=document.createElement('section');placementStrip.className='ct-placements-strip';
+  placementStrip.setAttribute('aria-label','Рублёвые размещения');
+  placementStrip.innerHTML=`<div class="ct-strip-head"><h2>Рублёвые размещения</h2><div><a href="#smart-fixed-income">Все размещения ↗</a><button type="button" data-strip-prev aria-label="Предыдущие размещения" disabled>‹</button><button type="button" data-strip-next aria-label="Следующие размещения" disabled>›</button></div></div><div class="ct-strip-rail" tabindex="0" aria-label="Текущие рублёвые размещения"><p role="status">Загрузка размещений…</p></div><p class="ct-strip-date"></p>`;
+  grid.before(placementStrip);
+  const rail=placementStrip.querySelector('.ct-strip-rail'),prev=placementStrip.querySelector('[data-strip-prev]'),next=placementStrip.querySelector('[data-strip-next]');
+  const update=()=>{prev.disabled=rail.scrollLeft<=2;next.disabled=rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-2;};
+  function move(direction){const card=rail.querySelector('.ct-strip-card');rail.scrollBy({left:direction*((card?.getBoundingClientRect().width||rail.clientWidth)+10),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+  prev.onclick=()=>move(-1);next.onclick=()=>move(1);
+  rail.addEventListener('scroll',update,{passive:true});
+  rail.addEventListener('keydown',e=>{if(e.target===rail&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();move(e.key==='ArrowRight'?1:-1);}});
+  new ResizeObserver(update).observe(rail);
+  placementStrip.addEventListener('click',e=>{if(e.target.closest('a')){e.preventDefault();close();window.showProductPage('smart-fixed-income');}});
+  document.getElementById('ctPayoutToggle').onclick=e=>openPopup(popup,e.currentTarget);
+}
+function renderPlacementStrip(payload){
+  const rail=placementStrip.querySelector('.ct-strip-rail'),date=placementStrip.querySelector('.ct-strip-date');
+  if(!payload||!Array.isArray(payload.placements)){
+    rail.innerHTML='<p role="status">Не удалось загрузить размещения. <button type="button" data-strip-retry>Повторить</button></p>';
+    rail.querySelector('button').onclick=e=>{e.currentTarget.disabled=true;loadPlacements();};
+    date.textContent='';rail.dispatchEvent(new Event('scroll'));return;
   }
-  banner.querySelector('.ct-banner-prev').onclick=()=>showSlide(slide-1);
-  banner.querySelector('.ct-banner-next').onclick=()=>showSlide(slide+1);
-  dots.forEach((dot,i)=>dot.onclick=()=>showSlide(i));
-  banner.querySelector('[data-open-model]').onclick=()=>{close();window.showProductPage('model');};
-  banner.querySelector('#ctPayoutToggle').onclick=e=>openPopup(popup,e.currentTarget);
-  banner.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();showSlide(slide+(e.key==='ArrowRight'?1:-1),true);}});
-  const viewport=banner.querySelector('.ct-banner-window');
-  viewport.addEventListener('pointerdown',e=>{
-    if(e.pointerType==='mouse'||e.target.closest('button'))return;
-    start={x:e.clientX,y:e.clientY,id:e.pointerId};viewport.setPointerCapture(e.pointerId);
-  });
-  viewport.addEventListener('pointerup',e=>{
-    if(!start||e.pointerId!==start.id)return;
-    const dx=e.clientX-start.x,dy=e.clientY-start.y;start=null;
-    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.25)showSlide(slide+(dx<0?1:-1));
-  });
-  viewport.addEventListener('pointercancel',()=>{start=null;});
-  banner.addEventListener('animationend',schedulePosition);
+  const items=window.getFixedIncomePlacements(payload.placements);
+  rail.innerHTML=items.length?items.map(x=>`<a class="ct-strip-card" href="#smart-fixed-income"><span class="ct-strip-monogram" aria-hidden="true">${esc((x.issuer||x.title||'₽').slice(0,1))}${typeof x.image==='string'&&/^https:\/\//.test(x.image)?`<img src="${esc(x.image)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}</span><span class="ct-strip-copy"><b>${esc(x.issuer||x.title||'Размещение')}</b><span>${esc(x.coupon||'Купон уточняется')}</span><small>${esc(x.deadline||'Срок приёма заявок уточняется')}${x.isQual===true?' · Для квалов':''}</small></span><span aria-hidden="true">→</span></a>`).join(''):'<p role="status">Сейчас нет рублёвых размещений.</p>';
+  rail.querySelectorAll('.ct-strip-monogram img').forEach(img=>{img.onerror=()=>img.remove();});
+  const updated=new Date(payload.updatedAt);date.textContent=Number.isNaN(updated.valueOf())?'Дата обновления не указана':'Данные на '+updated.toLocaleString('ru-RU',{timeZone:'Europe/Moscow'})+' МСК';
+  rail.scrollLeft=0;rail.dispatchEvent(new Event('scroll'));
 }
 // Единая лента подбора; полный каталог сохраняет прежние карточки.
 const heroCopy=page.querySelector('.hero-copy');if(heroCopy)heroCopy.append(toolbar,chips);
@@ -154,7 +141,7 @@ window.addEventListener('scroll',schedulePosition,{capture:true,passive:true});
 window.visualViewport?.addEventListener('resize',schedulePosition);
 window.visualViewport?.addEventListener('scroll',schedulePosition);
 new MutationObserver(()=>{if(!page.classList.contains('active'))close(false,true);}).observe(page,{attributes:true,attributeFilter:['class']});
-createBanner();
+createPlacementStrip();
 
 const carousel=document.createElement('section');carousel.className='ct-carousel';carousel.hidden=true;carousel.innerHTML='<div class="ct-carousel-head"><h2>Подборка инструментов</h2><div><button type="button" id="ctPrev" aria-label="Предыдущие инструменты">‹</button><button type="button" id="ctNext" aria-label="Следующие инструменты">›</button></div></div><div class="ct-rail" id="ctRail" tabindex="0" aria-label="Подборка инструментов"></div>';grid.before(carousel);const rail=carousel.querySelector('.ct-rail');let productConfig=null,rentierConfig=null,monthlyLoanConfig=null;
 function productOptions(key){const source=key==='investLoan'&&selection?.frequency==='monthly'?monthlyLoanConfig:productConfig&&productConfig[key];if(!source||!source.rates)return [];const out=[];for(const unit of ['months','days'])for(const [term,value] of Object.entries(source.rates[unit]||{})){const rate=Number(value&&typeof value==='object'?value.rate:value);if(Number.isFinite(rate))out.push({term:Number(term),unit,rate});}return out.sort((a,b)=>a.unit.localeCompare(b.unit)||a.term-b.term);}

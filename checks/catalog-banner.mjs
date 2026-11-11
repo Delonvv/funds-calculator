@@ -1,38 +1,90 @@
 import { assert } from './core.mjs';
 
 export async function catalogBannerChecks(test) {
-  await test('browser/catalog-banner', 'Два ручных слайда, клавиатура и существующий модельный портфель', async page => {
-    const banner = page.locator('.ct-banner');
-    assert(await banner.count() === 1, 'Expected exactly one banner');
-    assert(await banner.locator('.ct-banner-slide').count() === 2, 'Expected exactly two slides');
-    assert(await page.locator('.ct-toolbar #ctPayoutToggle').count() === 0, 'Old payout button remains');
-    assert(await banner.locator('#ctPayoutToggle').isVisible(), 'Banner payout trigger missing');
-    const height = (await banner.boundingBox()).height;
-    assert(height >= 90 && height <= 110, `Desktop banner height: ${height}`);
-    await banner.locator('.ct-banner-next').click();
-    assert(await banner.locator('.ct-banner-dots button').nth(1).getAttribute('aria-current') === 'true', 'Next slide not selected');
-    await page.waitForTimeout(2200);
-    assert(await banner.locator('.ct-banner-dots button').nth(1).getAttribute('aria-current') === 'true', 'Unexpected automatic slide change');
-    await banner.getByRole('button', { name: 'Открыть портфель', exact: false }).click();
-    assert(await page.locator('#modelPage').isVisible(), 'Existing model page not opened');
-    await page.evaluate(() => window.showProductPage('funds'));
-    await banner.locator('.ct-banner-prev').click();
-    await banner.locator('.ct-banner-dots button').nth(1).click();
-    await page.keyboard.press('ArrowLeft');
-    assert(await banner.locator('.ct-banner-dots button').first().getAttribute('aria-current') === 'true', 'Keyboard slide navigation failed');
-    await page.emulateMedia({ reducedMotion: 'reduce' });
-    await banner.locator('.ct-banner-next').click();
-    assert(await banner.locator('.ct-banner-track').evaluate(x => x.getAnimations().length) === 0, 'Reduced motion not respected');
+  await test('browser/catalog-placement-strip', 'Лёгкая лента совпадает с Fixed Income, ручная прокрутка и переход', async page => {
+    assert(await page.locator('.ct-banner').count() === 0, 'Old banner remains');
+    const rail=page.locator('.ct-strip-rail');
+    await rail.locator('.ct-strip-card').first().waitFor();
+    const titles=await rail.locator('.ct-strip-copy b').allTextContents();
+    await page.locator('[data-strip-next]').click();
+    await page.waitForFunction(()=>document.querySelector('.ct-strip-rail').scrollLeft>10);
+    await page.waitForTimeout(700);
+    const position=await rail.evaluate(x=>x.scrollLeft);
+    await page.waitForTimeout(1100);
+    assert(Math.abs(position-await rail.evaluate(x=>x.scrollLeft))<2,'Unexpected auto-scroll');
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await rail.focus();await page.keyboard.press('ArrowLeft');
+    await page.waitForFunction(()=>document.querySelector('.ct-strip-rail').scrollLeft<10);
+    await rail.locator('.ct-strip-card').first().click();
+    await page.locator('#smart-fixed-incomePage').waitFor({state:'visible'});
+    await page.locator('#ssDcmTrack .ss-dcm-card').first().waitFor();
+    assert(JSON.stringify(titles)===JSON.stringify(await page.locator('#ssDcmTrack h3').allTextContents()),'Preview differs from Fixed Income');
+    await page.evaluate(()=>window.showProductPage('funds'));
+    await page.locator('#search').fill('TMON');
+    assert(await rail.locator('.ct-strip-card').count()===titles.length,'Fund search filters placements');
+  });
+
+  await test('browser/catalog-placement-errors', 'Пустые данные, сбой JSON и повтор загрузки не ломают каталог', async page => {
+    await page.route('**/dcm.json?*',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({placements:[],updatedAt:'2026-11-11T10:00:00Z'})}));
+    await page.reload({waitUntil:'networkidle'});
+    assert((await page.locator('.ct-strip-rail').textContent()).includes('Сейчас нет'),'Missing empty state');
+    await page.route('**/dcm.json?*',r=>r.fulfill({status:503,body:'Unavailable'}));
+    await page.reload({waitUntil:'networkidle'});
+    assert(await page.locator('#grid>.card').count()>0,'Failed DCM hides funds');
+    assert(await page.locator('[data-strip-retry]').isVisible(),'Missing retry');
+    await page.unroute('**/dcm.json?*');
+    await page.locator('[data-strip-retry]').click();
+    await page.locator('.ct-strip-card').first().waitFor();
+  });
+
+  await test('browser/catalog-placement-logos', 'Логотипы эмитентов из JSON и заглушка при сбое изображения', async page => {
+    await page.context().route('https://invest-brands.cdn-tinkoff.ru/**',r=>r.fulfill({contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><rect width="32" height="32" fill="gray"/></svg>'}));
+    await page.reload({waitUntil:'networkidle'});
+    const logos=page.locator('.ct-strip-monogram img');
+    await logos.first().waitFor();
+    await page.waitForFunction(()=>document.querySelector('.ct-strip-monogram img')?.naturalWidth>0);
+    assert(await logos.first().getAttribute('src')!==null,'Logo URL missing');
+    await page.context().route('https://invest-brands.cdn-tinkoff.ru/**',r=>r.abort());
+    await page.reload({waitUntil:'networkidle'});
+    await page.locator('.ct-strip-card').first().waitFor();
+    await page.waitForFunction(()=>document.querySelector('.ct-strip-monogram')&&!document.querySelector('.ct-strip-monogram').querySelector('img'));
+    assert((await page.locator('.ct-strip-monogram').first().textContent()).length>0,'Fallback missing');
+  });
+
+  await test('browser/fund-identity-links', 'Иконка и название всех фондов ведут в карточку брокера', async page => {
+    const links=await page.locator('#grid>.card').evaluateAll(cards=>cards.map(card=>({ticker:card.dataset.fundTicker,name:card.querySelector('h2 a')?.href,icon:card.querySelector('.fund-icon-link')?.href,targets:[...card.querySelectorAll('.fund-name-link,.fund-icon-link')].map(a=>[a.target,a.rel])})));
+    for(const item of links){
+      const expected=await page.evaluate(t=>fundSource(data.find(x=>x.t===t)),item.ticker);
+      assert(item.name===expected&&item.icon===expected,'Wrong destination '+item.ticker);
+      assert(item.targets.length===2&&item.targets.every(([target,rel])=>target==='_blank'&&rel.includes('noopener')),'Unsafe link '+item.ticker);
+    }
+    const destination=links.find(x=>x.ticker==='TMON').name;
+    await page.context().route(destination,r=>r.fulfill({contentType:'text/html',body:'<title>Broker destination test</title>'}));
+    for(const selector of ['.fund-name-link','.fund-icon-link']){
+      const opened=page.context().waitForEvent('page');
+      await page.locator('[data-fund-ticker="TMON"] '+selector).click();
+      const external=await opened;await external.waitForLoadState();
+      assert(external.url()===destination,'Click did not open broker card');await external.close();
+    }
+    await page.locator('[data-fund-ticker="TMON"] .ct-star').click();
+    await page.locator('#ctPayoutToggle').click();await page.locator('#ctApply').click();
+    const selected=page.locator('.ct-rail .fund-name-link');
+    assert(await selected.count()>0,'Fund identity missing in payout rail');
+    await page.locator('#ctReset').click();
+    await page.locator('[data-fund-ticker="TMON"] .calc').click();
+    assert(await page.locator('#modalBg').isVisible(),'Calculator stopped opening');
   });
 
   await test('browser/catalog-banner-popup', 'Подбор поверх каталога, четыре периода, применение, сброс и избранное', async page => {
+    await page.locator('.ct-strip-card').first().waitFor();
     const total = await page.locator('#grid>.card').count();
     await page.locator('[data-fund-ticker="TMON"] .ct-star').click();
-    const before = await page.locator('#grid').boundingBox();
+    await page.locator('#ctPayoutToggle').scrollIntoViewIfNeeded();
+    const before = await page.locator('#grid').evaluate(x=>x.getBoundingClientRect().top+scrollY);
     await page.locator('#ctPayoutToggle').click();
     await page.locator('#ctPayout').waitFor({ state: 'visible' });
-    const after = await page.locator('#grid').boundingBox();
-    assert(Math.abs(before.y - after.y) < 1, 'Popup moves the catalogue');
+    const after = await page.locator('#grid').evaluate(x=>x.getBoundingClientRect().top+scrollY);
+    assert(Math.abs(before - after) < 1, 'Popup moves the catalogue');
     assert(await page.locator('#ctPayout').evaluate(x => x.parentElement === document.body), 'Popup remains inside clipping ancestors');
     assert(JSON.stringify(await page.locator('#ctFrequency option').evaluateAll(a => a.map(x => x.value))) === JSON.stringify(['monthly','quarterly','semiannual','maturity']), 'Unexpected frequencies');
     assert(await page.locator('#ctFrequency').inputValue() === 'monthly', 'Default frequency is not monthly');
@@ -69,10 +121,6 @@ export async function catalogBannerChecks(test) {
     assert(await page.locator('#grid>.card').count() === 1, 'Reset lost favorites');
     await page.locator('[data-catalog-mode="all"]').click();
     await page.locator('#ctPayoutToggle').click();
-    await page.locator('.ct-banner-next').click();
-    await page.locator('#ctPayout').waitFor({ state: 'hidden' });
-    await page.locator('.ct-banner-prev').click();
-    await page.locator('#ctPayoutToggle').click();
     await page.locator('h1').first().click();
     await page.locator('#ctPayout').waitFor({ state: 'hidden' });
     await page.locator('#ctFilterToggle').click();
@@ -84,16 +132,17 @@ export async function catalogBannerChecks(test) {
     await page.setViewportSize({ width: 390, height: 844 });
     const cdp = await page.context().newCDPSession(page);
     await cdp.send('Emulation.setTouchEmulationEnabled', { enabled: true });
-    const area = await page.locator('.ct-banner-window').boundingBox();
-    const y = area.y + 30, start = area.x + area.width - 15, end = area.x + 15;
-    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: start, y }] });
-    for (let i = 1; i <= 5; i++) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: start + (end-start)*i/5, y }] });
-    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
-    assert(await page.locator('.ct-banner-dots button').nth(1).getAttribute('aria-current') === 'true', 'Touch swipe failed');
-    await page.locator('.ct-banner-dots button').first().click();
+    await page.locator('.ct-strip-card').first().waitFor();
+    const rail=page.locator('.ct-strip-rail');
+    await rail.scrollIntoViewIfNeeded();
+    const area=await rail.boundingBox(),y=area.y+area.height/2,start=area.x+area.width-20,end=area.x+20;
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:start,y}]});
+    for(let i=1;i<=8;i++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start+(end-start)*i/8,y}]});
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    await page.waitForFunction(()=>document.querySelector('.ct-strip-rail').scrollLeft>10);
     for (const theme of ['brand','dark']) {
       await page.evaluate(value => window.setTheme(value), theme);
-      for (const width of [360,390,768]) {
+      for (const width of [360,390,768,1440]) {
         await page.setViewportSize({ width, height: 844 });
         for (const id of ['ctPayoutToggle','ctFilterToggle']) {
           await page.locator('#'+id).click();
