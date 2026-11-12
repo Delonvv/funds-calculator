@@ -31,7 +31,10 @@ async function getJson(url) {
 }
 
 async function updateTicker(ticker) {
-  const marketUrl = `https://iss.moex.com/iss/engines/stock/markets/shares/securities/${encodeURIComponent(ticker)}.json?iss.meta=off&iss.only=marketdata&marketdata.columns=SECID,LAST,MARKETPRICE,SYSTIME`;
+  // TCNY was reused: quote in RUB on TQBR, and never include the former fund's history.
+  const boardPath=ticker==='TCNY'?'/boards/TQBR':'';
+  if(ticker==='TCNY'&&data.history?.TCNY?.asOf<'2026-11-12')delete data.history.TCNY;
+  const marketUrl = `https://iss.moex.com/iss/engines/stock/markets/shares${boardPath}/securities/${encodeURIComponent(ticker)}.json?iss.meta=off&iss.only=marketdata&marketdata.columns=SECID,LAST,MARKETPRICE,SYSTIME`;
   const marketJson = await getJson(marketUrl);
   const row = marketJson.marketdata?.data?.find(r => r[1] != null || r[2] != null);
   const price = row ? Number(row[1] ?? row[2]) : NaN;
@@ -45,11 +48,11 @@ async function updateTicker(ticker) {
   }
 
   if (skippedHistory.has(ticker)) return;
-  const candlesUrl = `https://iss.moex.com/iss/engines/stock/markets/shares/securities/${encodeURIComponent(ticker)}/candles.json?iss.meta=off&from=${iso(from)}&interval=24&candles.columns=close,end`;
+  const candlesUrl = `https://iss.moex.com/iss/engines/stock/markets/shares${boardPath}/securities/${encodeURIComponent(ticker)}/candles.json?iss.meta=off&from=${iso(from)}&interval=24&candles.columns=close,end`;
   const candlesJson = await getJson(candlesUrl);
   const candles = (candlesJson.candles?.data || [])
     .map(r => ({close: Number(r[0]), date: String(r[1]).slice(0, 10)}))
-    .filter(x => Number.isFinite(x.close) && x.close > 0 && /^\d{4}-\d{2}-\d{2}$/.test(x.date))
+    .filter(x => Number.isFinite(x.close) && x.close > 0 && /^\d{4}-\d{2}-\d{2}$/.test(x.date) && (ticker!=='TCNY'||x.date>='2026-11-12'))
     .sort((a, b) => a.date.localeCompare(b.date));
   if (candles.length < 2) return;
   const latest = candles[candles.length - 1];

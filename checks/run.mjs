@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import { root } from './core.mjs';
 import { staticChecks, financialChecks } from './core.mjs';
 import { browserChecks } from './browser.mjs';
+import { tcnyUpdaterChecks } from './tcny.mjs';
 import { weeklyChecks } from './weekly.mjs';
 
 const weekly = process.argv.includes('--weekly');
@@ -24,6 +25,7 @@ try {
   const daily = checker('daily');
   await staticChecks(daily);
   await financialChecks(daily);
+  await tcnyUpdaterChecks(daily);
   await daily('browser/runner', 'Запуск браузерных проверок', () => browserChecks(daily, directory));
   if (weekly) await checker('weekly')('weekly/runner', 'Проверки данных и обновления', () => weeklyChecks(checker('weekly')));
 } finally {
