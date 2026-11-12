@@ -5,7 +5,7 @@ import {spawnSync} from 'node:child_process';
 import {assert,read,json} from './core.mjs';
 
 export async function tcnyUpdaterChecks(check){
-  await check('finance/tcny-updater','TCNY: режим TQBR в рублях и защита от истории прежнего фонда',async()=>{
+  await check('finance/tcny-updater','TCNY: режим TQBR в рублях и защита от данных до запуска торгов',async()=>{
     const source=await json('funds.json');assert(source.tickers.filter(x=>x==='TCNY').length===1,'TCNY absent or duplicated');
     for(const name of ['update-data.mjs','update-funds.mjs']){
       const dir=await fs.mkdtemp(path.join(os.tmpdir(),'tcny-updater-'));
@@ -26,7 +26,7 @@ export async function tcnyUpdaterChecks(check){
         assert(result.status===0,result.stderr||result.error?.message||'Updater failed');
         const actual=JSON.parse(await fs.readFile(path.join(dir,'funds.json'),'utf8'));
         assert(actual.market.TCNY.price===13.14&&actual.market.TCNY.currency==='RUB','Wrong TCNY quote currency');
-        assert(!actual.history.TCNY,'Former TCNY history survived');
+        assert(!actual.history.TCNY,'Synthetic pre-launch history survived');
         assert(actual.failedTickers.length===0,'Unexpected updater warning');
       }finally{await fs.rm(dir,{recursive:true,force:true});}
     }

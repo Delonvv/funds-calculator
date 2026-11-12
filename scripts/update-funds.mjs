@@ -30,7 +30,7 @@ async function getJson(url) {
 }
 
 async function updateTicker(ticker) {
-  // TCNY was reused: quote in RUB on TQBR, and never include the former fund's history.
+  // TCNY: RUB quotes on TQBR; reject any data predating this fund's trading start.
   const boardPath=ticker==='TCNY'?'/boards/TQBR':'';
   if(ticker==='TCNY'&&data.history?.TCNY?.asOf<'2026-11-12')delete data.history.TCNY;
   const marketUrl = `https://iss.moex.com/iss/engines/stock/markets/shares${boardPath}/securities/${encodeURIComponent(ticker)}.json?iss.meta=off&iss.only=marketdata&marketdata.columns=SECID,LAST,MARKETPRICE,SYSTIME`;
