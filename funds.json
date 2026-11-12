@@ -170,6 +170,12 @@
       "currency": "RUB",
       "asOf": "2026-11-11 20:25:02",
       "source": "https://www.moex.com/"
+    },
+    "TCNY": {
+      "price": 13.14,
+      "currency": "RUB",
+      "asOf": "2026-11-12 11:12:35",
+      "source": "https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/TCNY.json"
     }
   },
   "nav": {
@@ -376,6 +382,12 @@
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/11247/",
       "value": 2094868384.27
+    },
+    "TCNY": {
+      "value": 24370579.84,
+      "currency": "CNY",
+      "asOf": "2026-11-10",
+      "source": "https://t-capital-funds.ru/statistics/"
     }
   },
   "history": {
@@ -724,6 +736,7 @@
     "SBMX",
     "SBRB",
     "TBRU",
+    "TCNY",
     "TDIV",
     "TGLD",
     "TIND",
