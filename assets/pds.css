@@ -106,3 +106,18 @@ main:has(>#pdsPage.active)>.page-data-status{margin:10px 0 0;padding:4px 0;borde
 #pdsBreakdownState:empty{display:none}
 @media(max-width:1200px){.pds-scenario-amounts{gap:13px;padding:15px}.pds-scenario-amounts>section+section{padding-left:13px}.pds-scenario-amounts strong{font-size:26px}}
 @media(max-width:700px){.pds-scenario-amounts{grid-template-columns:1fr}.pds-scenario-amounts>section+section{border-left:0;border-top:1px solid var(--line);padding:14px 0 0}.pds-scenario-amounts h3{margin-bottom:8px}.pds-scenario-table th,.pds-scenario-table td{padding:9px 10px;font-size:13px}.pds-scenario-table th{width:40%}.pds-scenario-rate label{flex:1 1 100%}}
+/* Ambient light belongs to PDS only; the shared palette and other pages stay intact. */
+body:has(#pdsPage.active){
+  --pds-canvas:#faf7f2;
+  --pds-cool-light:rgba(139,145,158,.15);
+  --pds-warm-light:rgba(230,186,128,.20);
+  background-color:var(--pds-canvas);
+  background-image:linear-gradient(180deg,var(--pds-canvas) 0,var(--pds-canvas) 120px,transparent 460px),radial-gradient(ellipse at 2% 40%,var(--pds-cool-light),transparent 67%),radial-gradient(ellipse at 98% 38%,var(--pds-warm-light),transparent 68%);
+  background-size:100% 1400px;
+  background-repeat:no-repeat;
+}
+:root[data-theme=dark] body:has(#pdsPage.active){--pds-canvas:#191c22;--pds-cool-light:rgba(131,145,172,.10);--pds-warm-light:rgba(186,152,91,.09)}
+body:has(#pdsPage.active)>header{background:var(--pds-canvas);border-bottom-color:color-mix(in srgb,var(--line) 40%,var(--pds-canvas))}
+body:has(#pdsPage.active)::before,body:has(#pdsPage.active)::after{display:none}
+body:has(#pdsPage.active)>.site-independence{background:transparent}
+@media(max-width:700px){body:has(#pdsPage.active){background-size:100% 1100px;background-image:linear-gradient(180deg,var(--pds-canvas) 0,var(--pds-canvas) 120px,transparent 420px),radial-gradient(ellipse at 0 48%,var(--pds-cool-light),transparent 73%),radial-gradient(ellipse at 100% 42%,var(--pds-warm-light),transparent 75%)}}
