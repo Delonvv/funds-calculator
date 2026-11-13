@@ -5,11 +5,12 @@ import { chromium } from 'playwright';
 import { root, json, assert, close } from './core.mjs';
 import { premiumPreviewChecks } from './premium-preview.mjs';
 import { catalogBannerChecks } from './catalog-banner.mjs';
+import { pdsBrowserChecks } from './pds.mjs';
 import { tcnyBrowserChecks } from './tcny.mjs';
 import { strategyChecks } from './strategy.mjs';
 
 export async function browserChecks(check, directory) {
-  const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.otf': 'font/otf' };
+  const types = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.otf': 'font/otf' };
   const server = http.createServer(async (request, response) => {
     try {
       const url = new URL(request.url, 'http://localhost');
@@ -58,6 +59,7 @@ export async function browserChecks(check, directory) {
     await strategyChecks(test, origin);
     await catalogBannerChecks(test);
     await tcnyBrowserChecks(test);
+    await pdsBrowserChecks(test);
 
     await test('browser/tmon-schedule', 'TMON: будни и выходные относятся к СПБ Бирже', async page => {
       const schedule = page.locator('[data-fund-ticker="TMON"] .trading-schedule');

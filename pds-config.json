@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-13",
+  "support": {"minimumAnnual": 2000, "annualCap": 36000, "years": 10, "divisors": {"low": 1, "middle": 2, "high": 4}},
+  "tax": {"scenarioRate": 0.13, "annualContributionLimit": 400000},
+  "payments": {"years": 15, "ages": {"female": 55, "male": 60}},
+  "guarantee": {"years": 5},
+  "returns": {"historicalYear": 2025, "historicalPercent": 21.14, "forecastYear": 2026, "forecastMaxPercent": 15},
+  "promo": {
+    "nominalPercent": 15,
+    "capitalizedPercent": 16.07,
+    "months": 12,
+    "minimumAmount": 50000,
+    "maximumBoostedAmount": 1000000,
+    "fundingDays": 10,
+    "activationDays": 3,
+    "sourceFile": "b98790bf-0634-4bd7-8878-2dca60e2890a.pdf",
+    "sourcePages": [1, 2],
+    "sourceSha256": "48b121a16eb3c3b1331f9722868f7d0073c45ad63a739bcf0b16812e60b0660f",
+    "termsUrl": "https://cdn.tbank.ru/static/documents/promo-increased-rate-deposit-for-active-participation-long-savings-program.pdf"
+  },
+  "sources": {
+    "program": "https://www.tbank.ru/pension/",
+    "help": "https://www.tbank.ru/invest/help/services/savings-program/about/what-is-it/",
+    "support": "https://www.tbank.ru/invest/social/profile/T-Investments/do-360-tysyach-rublej-na-schet-kak-rabotaet-gospodderzhka-po-pds/",
+    "tax": "https://www.nalog.gov.ru/rn26/news/smi/16639140/",
+    "incomes": "https://www.nalog.gov.ru/rn19/news/activities_fts/16639944/",
+    "promo": "https://www.tbank.ru/pension/pds/bundle/"
+  }
+}

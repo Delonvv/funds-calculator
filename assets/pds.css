@@ -1,0 +1,65 @@
+/* Scoped to PDS: shared navigation, palette and page width stay in site.css. */
+.pds-page{min-width:0;padding:42px 0 36px;color:var(--white);font-weight:400}
+.pds-page h1{font-size:36px;font-weight:600;line-height:1.2;letter-spacing:-.6px;margin:0 0 7px}
+.pds-page .pds-lead{margin:0 0 28px;font-size:17px;color:var(--muted)}
+.pds-page h2{font-size:20px;font-weight:500;margin:0 0 12px;line-height:1.35}
+.pds-page p{line-height:1.55}
+.pds-form{display:grid;grid-template-columns:minmax(200px,1.2fr) minmax(110px,.7fr) minmax(180px,1fr) auto;gap:14px;align-items:end}
+.pds-field{display:flex;flex-direction:column;gap:7px;min-width:0;font-size:13px;color:var(--muted)}
+.pds-amount-head{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:25px}
+.pds-page input,.pds-page select{width:100%;box-sizing:border-box;min-height:50px;padding:11px 14px;background:var(--panel);color:var(--white);border:1px solid var(--line);border-radius:11px;font:inherit;font-size:16px;min-width:0}
+.pds-period{display:flex;gap:2px;border:1px solid var(--line);border-radius:8px;padding:2px;background:var(--panel)}
+.pds-period button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:11px;padding:3px 8px;border-radius:6px;cursor:pointer;white-space:nowrap}
+.pds-period button[aria-pressed=true]{background:var(--y);color:#302718}
+.pds-calculate{min-height:50px;padding:11px 24px;border:1px solid var(--y);border-radius:11px;background:var(--y);color:#302718;font:inherit;font-size:16px;font-weight:500;cursor:pointer}
+.pds-small{font-size:12px;color:var(--muted);margin:8px 0;line-height:1.5}
+.pds-page details{min-width:0}
+.pds-page summary{cursor:pointer;list-style:none;font-size:14px;font-weight:400;line-height:1.4}
+.pds-page summary::-webkit-details-marker{display:none}
+.pds-page summary::after{content:'⌄';display:inline-block;margin-left:10px;color:var(--muted)}
+.pds-page details[open]>summary::after{transform:rotate(180deg)}
+.pds-parameters{margin:18px 0 22px}
+.pds-parameter-fields{display:grid;grid-template-columns:180px 180px;gap:14px;margin-top:12px}
+.pds-error{color:#b84335;font-size:13px;margin:10px 0}.pds-error:empty{display:none}
+.pds-assumption{font-size:11px;color:var(--muted);margin:0 0 20px}
+.pds-status{display:flex;gap:15px;align-items:center;padding:16px 18px;border-radius:12px;background:color-mix(in srgb,var(--y) 12%,var(--panel));margin-bottom:22px}
+.pds-status[data-state=met]{background:color-mix(in srgb,#83b052 17%,var(--panel))}
+.pds-status-icon{font-size:23px;color:var(--muted);flex-shrink:0}.pds-status[data-state=met] .pds-status-icon{color:#57802d}
+:root[data-theme=dark] .pds-status[data-state=met] .pds-status-icon{color:#b0d787}
+.pds-status-label{font-size:12px;color:var(--muted)}
+.pds-status strong{display:block;font-size:20px;font-weight:500;line-height:1.35;margin:3px 0}
+.pds-status p{font-size:12px;margin:0;color:var(--muted)}
+.pds-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pds-benefit{border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--panel) 65%,transparent);padding:15px;min-width:0}
+.pds-benefit h3{font-size:14px;font-weight:400;margin:0 0 7px}
+.pds-benefit strong{font-weight:500;font-size:18px;line-height:1.35;display:block}
+.pds-benefit p{font-size:12px;color:var(--muted);margin:7px 0 10px}
+.pds-benefit details{font-size:12px}.pds-benefit summary{font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.pds-benefit details p{font-size:12px}
+.pds-incomes{grid-column:2;min-width:0;font-size:12px}
+.pds-incomes summary{font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.pds-incomes div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:8px;font-size:12px}
+.pds-incomes p{margin:0 0 7px}
+.pds-lower{margin-top:18px;border-top:1px solid var(--line);padding-top:12px}
+.pds-lower>summary{font-size:14px}
+.pds-detail-body{font-size:13px;line-height:1.6;margin-top:12px;max-width:900px}
+.pds-detail-body p{margin:8px 0}.pds-detail-body ul{padding-left:20px}
+.pds-page a{color:inherit;text-underline-offset:3px}
+.pds-history{font-size:13px;padding:12px 0;margin:14px 0 0;border-top:1px solid var(--line);line-height:1.6}
+.pds-history small{display:block;color:var(--muted);font-size:11px}
+.pds-promo>summary{display:inline-block;border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:13px;background:var(--panel)}
+.pds-promo-facts{display:flex;flex-wrap:wrap;gap:20px;margin:12px 0}
+.pds-promo-facts>div{min-width:160px}.pds-promo-facts strong{display:block;font-size:20px;font-weight:500}.pds-promo-facts span{font-size:12px;color:var(--muted)}
+.pds-page :is(input,select,button,summary,a):focus-visible{outline:2px solid var(--y);outline-offset:3px}
+.pds-loading{font-size:14px;padding:24px 0;color:var(--muted)}
+@media(max-width:1100px){.pds-form{grid-template-columns:minmax(170px,1fr) minmax(100px,.65fr) minmax(160px,1fr)}.pds-calculate{grid-column:1/-1;justify-self:start}.pds-benefits{gap:9px}.pds-benefit{padding:13px}}
+@media(max-width:700px){.pds-page{padding:25px 0}.pds-page h1{font-size:28px}.pds-page .pds-lead{font-size:15px;margin-bottom:20px}.pds-form{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}.pds-field-income{grid-column:1/-1}.pds-calculate{justify-self:stretch}.pds-parameter-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.pds-benefits{grid-template-columns:1fr}.pds-incomes{grid-column:auto;grid-row:3}.pds-status{padding:13px}.pds-status strong{font-size:18px}.pds-benefit strong{font-size:17px}.pds-period button{padding:3px 6px}.pds-promo-facts{gap:12px}.pds-assumption{font-size:10px}}
+
+.pds-page [hidden]{display:none!important}
+.pds-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:28px}
+.pds-page .pds-heading .pds-lead{margin-bottom:0}
+.pds-promo-shortcut{flex-shrink:0;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--white);font:inherit;font-size:13px;padding:10px 13px;cursor:pointer;min-height:42px}
+.pds-promo-shortcut:hover{border-color:var(--y)}
+.pds-promo-shortcut span{margin-left:8px}
+#pdsPromo{scroll-margin-top:110px}
+@media(max-width:700px){.pds-heading{flex-direction:column;gap:12px;margin-bottom:22px}.pds-page .pds-heading .pds-lead{margin-bottom:0}}
