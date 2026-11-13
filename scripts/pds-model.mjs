@@ -29,6 +29,12 @@ export function calculatePds(input, config) {
     // This is a conditional ceiling, not an entitlement or the PDS account balance.
     taxRetainedCeiling: years >= minimum ? taxAnnual * years : 0,
     ageWait, wait, ageMetNow: ageWait === 0, eligibleAtEnd: years >= wait,
-    guaranteeCycles: Math.floor(years / config.guarantee.years)
+    guaranteeCycles: Math.floor(years / config.guarantee.years),
+    conditions: {
+      supportMinimum:config.support.minimumAnnual, supportCap:config.support.annualCap,
+      supportYears:config.support.years, supportDivisor:band ? config.support.divisors[band] : null,
+      taxLimit:config.tax.annualContributionLimit, taxRate:config.tax.scenarioRate,
+      guaranteeYears:config.guarantee.years
+    }
   };
 }
