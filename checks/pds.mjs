@@ -116,6 +116,15 @@ export async function pdsBrowserChecks(test) {
     }
     await page.locator('#pdsAge').focus();await page.keyboard.press('Tab');
     assert(await page.locator('#pdsSex').evaluate(x=>x===document.activeElement), 'Client keyboard navigation failed');
+    const surface=()=>page.evaluate(()=>({body:getComputedStyle(document.body).background,header:getComputedStyle(document.querySelector('body>header')).background}));
+    for(const theme of ['brand','dark']){
+      await page.evaluate(t=>window.setTheme(t),theme);
+      await page.evaluate(()=>window.showProductPage('funds'));const original=await surface();
+      await page.evaluate(()=>window.showProductPage('pds'));
+      assert(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor===getComputedStyle(document.querySelector('body>header')).backgroundColor),'PDS header and canvas have a harsh colour boundary');
+      await page.evaluate(()=>window.showProductPage('funds'));
+      assert(JSON.stringify(await surface())===JSON.stringify(original),'PDS background leaked into another section');
+    }
   });
   await test('browser/pds-json', 'ПДС: сбой и некорректные условия не дают ложного расчёта', async page => {
     await page.route('**/pds-config.json?*', route=>route.fulfill({status:503,body:'Unavailable'}));
