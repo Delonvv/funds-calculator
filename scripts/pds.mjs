@@ -1,4 +1,4 @@
-import {calculatePds} from './pds-model.mjs?v=20261113-calendar';
+import {calculatePds, minimumTaxYears} from './pds-model.mjs?v=20261113-calendar';
 import {projectPdsScenario, scenarioAnniversary, DEFAULT_PDS_SCENARIO_RATE} from './pds-scenario.mjs?v=20261113-calendar';
 
 const nav = document.querySelector('.product-nav');
@@ -25,7 +25,15 @@ if (nav && menu && !document.getElementById('pdsPage')) {
   const q = id => page.querySelector('#pds' + id);
   const currentDate = () => {const parts=new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'Europe/Moscow'}).formatToParts(new Date()),get=type=>parts.find(x=>x.type===type).value;return `${get('year')}-${get('month')}-${get('day')}`;};
   const dateLabel = value => value.split('-').reverse().join('.');
-  function defaultEndDate(){try{const anniversary=scenarioAnniversary(scenarioStartDate,Number(q('Years')?.value||5));return `${anniversary.slice(0,4)}-09-01`;}catch{return '';}}
+  function defaultEndDate(){
+    try{
+      const years=Number(q('Years')?.value||5),anniversary=scenarioAnniversary(scenarioStartDate,years);
+      const september=`${anniversary.slice(0,4)}-09-01`,minimum=minimumTaxYears(Number(scenarioStartDate.slice(0,4)));
+      // Keep a plan reaching the tax minimum from ending before its calendar anniversary.
+      const minimumEnd=scenarioAnniversary(scenarioStartDate,minimum);
+      return years>=minimum && september<minimumEnd ? minimumEnd : september;
+    }catch{return '';}
+  }
   const defaultBenefitDate=()=>/^\d{4}-\d{2}-\d{2}$/.test(scenarioStartDate||'')?`${Number(scenarioStartDate.slice(0,4))+1}-07-31`:'';
   const link = (url, title) => /^https:\/\//.test(url || '') ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(title)} ↗</a>` : esc(title);
   const previous = window.showProductPage;
@@ -107,7 +115,7 @@ if (nav && menu && !document.getElementById('pdsPage')) {
       </section>
       </div>
       <details class="pds-lower pds-breakdown" id="pdsBreakdown"><summary>Из чего складывается сценарий</summary><div class="pds-detail-body">
-        <div class="pds-scenario-dates"><label class="pds-field">Дата первого взноса<input type="date" id="pdsScenarioStart" value="${esc(scenarioStartDate)}"></label><label class="pds-field">Расчётная дата выхода<input type="date" id="pdsScenarioEnd" value="${esc(scenarioEndDate??defaultEndDate())}"></label><label class="pds-field">Первая доплата · допущение<input type="date" id="pdsScenarioBenefit" value="${esc(scenarioBenefitDate??defaultBenefitDate())}"></label></div><p class="pds-small">По умолчанию первый взнос — сегодня, выход — 1 сентября выбранного года (при сроке 1 год — следующего года), доплаты за календарный год — 31 июля следующего года. Даты можно уточнить; ранняя дата доплаты не является обещанием её получения. Уточнённая дата выхода имеет приоритет над плановым сроком. Для этой модели год договора совпадает с годом первого взноса; возраст указывается на дату первого взноса.</p>
+        <div class="pds-scenario-dates"><label class="pds-field">Дата первого взноса<input type="date" id="pdsScenarioStart" value="${esc(scenarioStartDate)}"></label><label class="pds-field">Расчётная дата выхода<input type="date" id="pdsScenarioEnd" value="${esc(scenarioEndDate??defaultEndDate())}"></label><label class="pds-field">Первая доплата · допущение<input type="date" id="pdsScenarioBenefit" value="${esc(scenarioBenefitDate??defaultBenefitDate())}"></label></div><p class="pds-small">По умолчанию первый взнос — сегодня, выход — 1 сентября выбранного года (при сроке 1 год — следующего года). Если план достигает минимального налогового срока, автоматическая дата выхода не будет раньше его окончания: для договора 2026 года это 5 полных лет. Доплаты за календарный год — 31 июля следующего года. Даты можно уточнить; ранняя дата доплаты не является обещанием её получения. Уточнённая дата выхода имеет приоритет над плановым сроком. Для этой модели год договора совпадает с годом первого взноса; возраст указывается на дату первого взноса.</p>
         <div class="pds-scenario-rate"><label class="pds-field" for="pdsScenarioRate">Инвестдоход в сценарии, % годовых<input id="pdsScenarioRate" type="number" min="-100" max="100" step="0.1" value="15" aria-describedby="pdsScenarioRateHint"></label><p id="pdsScenarioRateHint">Условное постоянное допущение на выбранный срок, а не прогноз банка. Можно изменить, в том числе проверить нулевой или отрицательный результат.</p></div>
         <p id="pdsBreakdownState" role="status"></p>
         <div id="pdsBreakdownFigures" hidden><div class="pds-scenario-table"><table aria-label="Состав результата сценария ПДС"><tbody><tr><th scope="row">Личные взносы</th><td id="pdsBreakdownPersonal"></td></tr><tr><th scope="row">Софинансирование</th><td id="pdsBreakdownSupport"></td></tr><tr><th scope="row">Инвестдоход в сценарии</th><td id="pdsBreakdownInvestment"></td></tr><tr><th scope="row">Возврат НДФЛ отдельно</th><td id="pdsBreakdownTax"></td></tr><tr><th scope="row">Средний дополнительный результат за год</th><td id="pdsBreakdownAverageGain"></td></tr><tr><th scope="row">Средний вложенный капитал</th><td id="pdsBreakdownAverageCapital"></td></tr><tr><th scope="row">Простой годовой эффект</th><td id="pdsBreakdownSimple"></td></tr></tbody><tfoot><tr><th scope="row">Дополнительный результат</th><td id="pdsBreakdownAdditional"></td></tr></tfoot></table></div>
