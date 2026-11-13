@@ -71,12 +71,16 @@ export async function pdsScenarioBrowserChecks(test) {
     await show(page);
     assert(!await page.locator('#pdsScenarioTotals').isVisible(),'Unknown income shows invented result');
     await page.locator('#pdsAmount').fill('50000');await page.locator('#pdsIncome').selectOption('low');await page.locator('#pdsForm button[type=submit]').click();
+    await page.locator('#pdsScenarioDetailsToggle').click();
+    assert(await page.locator('#pdsScenarioEnd').inputValue()==='2031-09-01','Default exit is not September');
+    assert((await page.locator('#pdsTax').textContent()).includes('не сохраняется'),'Default September ignores actual tax anniversary');
+    await page.locator('#pdsScenarioEnd').fill('2031-11-13');
     assert((await page.locator('#pdsScenarioAnnual').textContent()).includes('47%'),'Simple rate wrong');
     assert((await page.locator('#pdsScenarioIrrBadge').textContent()).includes('33%'),'IRR confused with simple rate');
     assert((await page.locator('#pdsScenarioAccount').textContent()).includes('570 270'),'Account wrong');
     assert((await page.locator('#pdsScenarioAdditional').textContent()).includes('352 770'),'Additional result wrong');
     await page.locator('[data-pds-period=monthly]').click();assert((await page.locator('#pdsScenarioAccount').textContent()).includes('506 894'),'Calendar monthly flows ignored');await page.locator('[data-pds-period=annual]').click();
-    await page.locator('#pdsScenarioDetailsToggle').click();await page.waitForFunction(()=>document.querySelector('#pdsBreakdown').open);
+    if(await page.locator('#pdsBreakdown').getAttribute('open')===null)await page.locator('#pdsScenarioDetailsToggle').click();await page.waitForFunction(()=>document.querySelector('#pdsBreakdown').open);
     assert(await page.locator('#pdsScenarioStart').inputValue()==='2026-11-13','Start not Moscow today');
     assert((await page.locator('#pdsScenarioCalendar').textContent()).includes('31.12.2030'),'Cutoff not visible');
     await page.locator('#pdsScenarioRate').fill('0');assert((await page.locator('#pdsScenarioAccount').textContent()).includes('430 000'),'Rate assumption ignored');
@@ -86,6 +90,21 @@ export async function pdsScenarioBrowserChecks(test) {
     assert((await page.locator('#pdsScenarioAccount').textContent()).includes('188 841'),'One-year account wrong');
     await page.locator('#pdsScenarioRate').fill('101');assert(!await page.locator('#pdsScenarioTotals').isVisible(),'Invalid rate leaves stale results');await page.locator('#pdsScenarioRate').fill('15');
     await page.locator('#pdsAmount').fill('0');await page.locator('#pdsForm button[type=submit]').click();assert((await page.locator('#pdsScenarioPrompt').textContent()).includes('нулевых'),'Undefined rate not explained');
+  });
+  await test('browser/pds-september-default','ПДС: сентябрь по умолчанию, ручная дата и точный налоговый срок',async page=>{
+    await show(page);await page.locator('#pdsAmount').fill('150000');await page.locator('#pdsIncome').selectOption('low');await page.locator('#pdsYears').fill('1');await page.locator('#pdsForm button[type=submit]').click();
+    await page.locator('#pdsScenarioDetailsToggle').click();
+    assert(await page.locator('#pdsScenarioEnd').inputValue()==='2027-09-01','One-year default still anniversary');
+    assert((await page.locator('#pdsAssumption').textContent()).includes('292 дней'),'Default holding time wrong');
+    assert((await page.locator('#pdsScenarioAnnual').textContent()).includes('32,4%'),'September rate uses old full year');
+    await page.locator('#pdsScenarioEnd').fill('2027-07-01');
+    assert(await page.locator('#pdsScenarioEnd').inputValue()==='2027-07-01','Manual exit overridden');
+    await page.locator('#pdsScenarioRate').fill('14');assert(await page.locator('#pdsScenarioEnd').inputValue()==='2027-07-01','Recalculation resets manual date');
+    await page.locator('#pdsYears').fill('2');await page.locator('#pdsForm button[type=submit]').click();
+    assert(await page.locator('#pdsScenarioEnd').inputValue()==='2028-09-01','Term change does not restore September default');
+    await page.locator('#pdsYears').fill('5');await page.locator('#pdsForm button[type=submit]').click();
+    assert(await page.locator('#pdsScenarioEnd').inputValue()==='2031-09-01','Five-year default wrong');
+    assert((await page.locator('#pdsTax').textContent()).includes('не сохраняется'),'September before anniversary retains tax');
   });
   await test('browser/pds-half-year','ПДС: 36 тысяч на 150 тысяч за полгода — простой эффект и проверка даты доплаты',async page=>{
     await show(page);await page.locator('#pdsAmount').fill('150000');await page.locator('#pdsIncome').selectOption('low');await page.locator('#pdsYears').fill('1');await page.locator('#pdsForm button[type=submit]').click();
