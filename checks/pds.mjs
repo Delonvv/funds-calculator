@@ -60,10 +60,10 @@ export async function pdsBrowserChecks(test) {
     await page.locator('#pdsAge').fill('56');await page.locator('#pdsSex').selectOption('female');
     assert(await page.locator('#pdsStatus').getAttribute('data-state') === 'met', 'No fulfilled-age highlight');
     assert((await page.locator('#pdsSupport').textContent()).includes('180 000'), 'Five-year support wrong');
-    assert((await page.locator('#pdsTax').textContent()).includes('не сохраняется'), 'September exit before five-year anniversary retains tax');
+    assert((await page.locator('#pdsTax').textContent()).includes('23 400'), 'Default five-year plan excludes tax refund');
     await page.locator('#pdsScenarioDetailsToggle').click();
     const start=await page.locator('#pdsScenarioStart').inputValue();
-    await page.locator('#pdsScenarioEnd').fill(`${Number(start.slice(0,4))+5}${start.slice(4)}`);
+    assert(await page.locator('#pdsScenarioEnd').inputValue()===`${Number(start.slice(0,4))+5}${start.slice(4)}`, 'Default exit precedes five-year anniversary');
     assert((await page.locator('#pdsTax').textContent()).includes('23 400'), 'Full five-year custom date tax wrong');
     await page.locator('#pdsBreakdown>summary').click();
     await page.locator('[data-pds-period="monthly"]').click();
