@@ -37,7 +37,7 @@ if (nav && menu && !document.getElementById('pdsPage')) {
 
   function validate(c) {
     if (c?.schemaVersion !== 1 || !/^\d{4}-\d{2}-\d{2}$/.test(c.checkedAt || '')) throw Error('Неверный формат условий');
-    const values = [c.support?.minimumAnnual,c.support?.annualCap,c.support?.years,c.tax?.scenarioRate,c.tax?.annualContributionLimit,c.payments?.years,c.payments?.ages?.female,c.payments?.ages?.male,c.guarantee?.years,...Object.values(c.support?.divisors || {}),c.returns?.historicalPercent,c.returns?.forecastMaxPercent,c.promo?.nominalPercent,c.promo?.capitalizedPercent];
+    const values = [c.support?.minimumAnnual,c.support?.annualCap,c.support?.years,c.tax?.scenarioRate,c.tax?.annualContributionLimit,c.payments?.years,c.payments?.ages?.female,c.payments?.ages?.male,c.guarantee?.years,...Object.values(c.support?.divisors || {}),c.returns?.historicalPercent,c.returns?.forecastMaxPercent,c.promo?.nominalPercent,c.promo?.capitalizedPercent,c.promo?.months,c.promo?.minimumAmount,c.promo?.maximumBoostedAmount,c.promo?.fundingDays,c.promo?.activationDays];
     if (values.some(x => !Number.isFinite(x) || x <= 0) || c.tax.scenarioRate > 1 || ['low','middle','high'].some(x => !c.support.divisors[x])) throw Error('Некорректные числа в условиях');
     if (!c.sources?.program || !c.sources?.help || !c.promo?.termsUrl) throw Error('Нет источника условий');
   }
@@ -129,5 +129,13 @@ if (nav && menu && !document.getElementById('pdsPage')) {
     const tens = n % 100, units = n % 10;
     return tens >= 11 && tens <= 14 ? 'лет' : units === 1 ? 'год' : units >= 2 && units <= 4 ? 'года' : 'лет';
   }
+  window.pageDataRefresh?.register({pages:['pds'],file:'pds-config.json',current:()=>config,validate:c=>{validate(c);return true;},apply:c=>{
+    const fields=Object.fromEntries(['Amount','Years','Income','Age','Sex'].map(id=>[id,q(id)?.value]));
+    const open=[...page.querySelectorAll('details')].map((x,i)=>x.open?i:-1).filter(i=>i>=0);
+    config=c;mount();
+    for(const [id,value] of Object.entries(fields))if(value!==undefined)q(id).value=value;
+    page.querySelectorAll('[data-pds-period]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pdsPeriod===period)));
+    const details=page.querySelectorAll('details');open.forEach(i=>{if(details[i])details[i].open=true;});render();
+  }});
   if (location.hash === '#pds') window.showProductPage('pds');
 }

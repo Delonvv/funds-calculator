@@ -81,6 +81,8 @@
   document.getElementById('modelCalculate').addEventListener('click',render);
   document.getElementById('modelCopy').addEventListener('click',copy);
   document.getElementById('modelBuyList').addEventListener('click',e=>{const b=e.target.closest('.model-open');if(b)openDetails(b.dataset.asset)});
+  window.pageDataRefresh?.register({pages:['model'],file:'model-portfolios.json',current:()=>config,validate:c=>Array.isArray(c?.profiles)&&c.profiles.length&&c.profiles.every(p=>p.id&&p.assets&&Object.values(p.assets).every(v=>Number.isFinite(v)&&v>=0)&&Object.values(p.assets).reduce((a,b)=>a+b,0)>0),apply:c=>{config=c;fillProfiles();render();}});
+  window.pageDataRefresh?.register({pages:['model'],file:'model-recommendations.json',current:()=>recommendations,validate:c=>c&&typeof c.classes==='object',apply:c=>{recommendations=c;render();}});
   formatAmount();fillProfiles();render();
   Promise.all([
     fetch('./model-portfolios.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()),
