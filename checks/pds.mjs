@@ -35,6 +35,19 @@ export async function pdsFinancialChecks(check) {
 
 export async function pdsBrowserChecks(test) {
   const show = async page => {await page.locator('[data-page="pds"]').click();await page.locator('#pdsForm').waitFor();};
+  await test('browser/pds-initial-refresh', 'ПДС: поздняя начальная загрузка не сбрасывает заполненные поля', async page => {
+    let release;
+    const gate=new Promise(resolve=>{release=resolve;});
+    await page.route('**/pds-config.json?v=*',async route=>{await gate;await route.continue();});
+    try {
+      await show(page);
+      await page.locator('#pdsIncome').selectOption('low');
+      await page.locator('#pdsAge').fill('56');await page.locator('#pdsSex').selectOption('female');
+      release();await page.waitForLoadState('networkidle');
+      assert(await page.locator('#pdsAge').inputValue()==='56' && await page.locator('#pdsSex').inputValue()==='female','Initial response reset client fields');
+      assert(await page.locator('#pdsStatus').getAttribute('data-state')==='met','Initial response reset eligibility');
+    } finally {release();}
+  });
   await test('browser/pds', 'ПДС: навигация, месячный/годовой взнос, возраст и льготы', async page => {
     await page.locator('[data-page="pds"]').waitFor();
     assert(await page.locator('[data-page="pds"]').evaluate(x=>x.nextElementSibling.classList.contains('smart-sales-nav')), 'PDS is not left of Smart Sales');
@@ -42,7 +55,7 @@ export async function pdsBrowserChecks(test) {
     assert(await page.locator('.product-page.active').getAttribute('id') === 'pdsPage', 'PDS route inactive');
     assert(await page.locator('#pdsIncome').inputValue() === '' && (await page.locator('#pdsSupport').textContent()).includes('Укажите'), 'Income assumption hidden');
     await page.locator('#pdsIncome').selectOption('low');
-    await page.locator('.pds-parameters summary').click();
+    assert(await page.locator('#pdsAge').isVisible() && await page.locator('#pdsSex').isVisible(), 'Client fields hidden');
     assert(await page.locator('.pds-parameter-fields input,.pds-parameter-fields select').count() === 2, 'Unexpected personal fields');
     await page.locator('#pdsAge').fill('56');await page.locator('#pdsSex').selectOption('female');
     assert(await page.locator('#pdsStatus').getAttribute('data-state') === 'met', 'No fulfilled-age highlight');
@@ -59,6 +72,7 @@ export async function pdsBrowserChecks(test) {
     assert((await page.locator('#pdsTax').textContent()).includes('не сохраняется'), 'Early-exit tax condition missing');
     await page.locator('.pds-incomes summary').click();
     assert((await page.locator('.pds-incomes').textContent()).includes('НПД'), 'Income explanation missing');
+    assert((await page.locator('.pds-incomes').locator('..').locator('h3').textContent())==='Налоговый возврат', 'Income help detached from tax result');
     await page.locator('#pdsAmount').fill('-10');await page.locator('#pdsForm button[type="submit"]').click();
     assert(await page.locator('#pdsError').textContent(), 'Invalid amount silently accepted');
     assert(!await page.locator('#pdsBenefits').isVisible(), 'Stale results remain after invalid input');
@@ -95,9 +109,13 @@ export async function pdsBrowserChecks(test) {
       await page.locator('#pdsForm button[type="submit"]').click();
       assert(await page.locator('#pdsSupport').isVisible(), 'Mobile results missing');
       assert(await page.locator('.pds-period').evaluate(x=>x.getBoundingClientRect().right<=innerWidth), 'Period toggle outside screen');
+      assert(await page.locator('#pdsAge').isVisible() && await page.locator('#pdsSex').isVisible(), 'Client parameters require discovery');
+      const layout=await page.locator('.pds-layout').evaluate(x=>{const form=x.querySelector('form').getBoundingClientRect(),result=x.querySelector('.pds-results').getBoundingClientRect();return {formRight:form.right,formBottom:form.bottom,formTop:form.top,resultLeft:result.left,resultTop:result.top};});
+      if(width===1440)assert(layout.resultLeft>=layout.formRight+20&&Math.abs(layout.formTop-layout.resultTop)<2,'Desktop panels not aligned');
+      else assert(layout.resultTop>=layout.formBottom+18,'Mobile form and results overlap');
     }
-    const details=page.locator('.pds-parameters');await details.locator('summary').focus();await page.keyboard.press('Enter');
-    assert(await details.getAttribute('open') !== null, 'Keyboard disclosure failed');
+    await page.locator('#pdsAge').focus();await page.keyboard.press('Tab');
+    assert(await page.locator('#pdsSex').evaluate(x=>x===document.activeElement), 'Client keyboard navigation failed');
   });
   await test('browser/pds-json', 'ПДС: сбой и некорректные условия не дают ложного расчёта', async page => {
     await page.route('**/pds-config.json?*', route=>route.fulfill({status:503,body:'Unavailable'}));
