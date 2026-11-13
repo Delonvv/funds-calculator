@@ -175,6 +175,11 @@ page.addEventListener('click',async e=>{
   }
   if(button.dataset.rentier==='true')document.querySelector('[data-program="rentier"]')?.click();
 });
+let currentPlacementSnapshot;
+window.pageDataRefresh?.register({pages:['funds'],file:'dcm.json',current:()=>currentPlacementSnapshot,validate:c=>Array.isArray(c?.placements),apply:c=>{currentPlacementSnapshot=c;const seen=new Set();placements=c.placements.filter(x=>{const key=x.sourceId||x.id;if(!x.id||seen.has(key))return false;seen.add(key);return true;});placementError=false;renderPlacementStrip(c);run();}});
+window.pageDataRefresh?.register({pages:['funds'],file:'rates.json',current:()=>productConfig,validate:c=>c?.tAccount?.rates&&c?.investLoan?.rates,apply:c=>{productConfig=c;run();}});
+window.pageDataRefresh?.register({pages:['funds'],file:'rentier-config.json',current:()=>rentierConfig,validate:c=>c?.rates&&[1,2,4,12].every(f=>c.rates[f]?.length===10&&c.rates[f].every(v=>Number.isFinite(v)&&v>=0)),apply:c=>{rentierConfig=c;run();}});
+window.pageDataRefresh?.register({pages:['funds'],file:'investloan-monthly-rates.json',current:()=>monthlyLoanConfig,validate:c=>c?.rates?.months&&Object.values(c.rates.months).every(v=>Number.isFinite(v)&&v>=0),apply:c=>{monthlyLoanConfig=c;run();}});
 Promise.allSettled([fetch('./investloan-monthly-rates.json?v=20261020-1',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(c=>{monthlyLoanConfig=c;}),fetch('./rates.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(c=>{productConfig=c;}),fetch('./rentier-config.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(c=>{rentierConfig=c;})]).then(run);
 run();
 

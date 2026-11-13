@@ -6,6 +6,7 @@ import { root, json, assert, close } from './core.mjs';
 import { premiumPreviewChecks } from './premium-preview.mjs';
 import { catalogBannerChecks } from './catalog-banner.mjs';
 import { pdsBrowserChecks } from './pds.mjs';
+import { refreshChecks } from './refresh.mjs';
 import { tcnyBrowserChecks } from './tcny.mjs';
 import { strategyChecks } from './strategy.mjs';
 
@@ -60,6 +61,7 @@ export async function browserChecks(check, directory) {
     await catalogBannerChecks(test);
     await tcnyBrowserChecks(test);
     await pdsBrowserChecks(test);
+    await refreshChecks(test);
 
     await test('browser/tmon-schedule', 'TMON: будни и выходные относятся к СПБ Бирже', async page => {
       const schedule = page.locator('[data-fund-ticker="TMON"] .trading-schedule');

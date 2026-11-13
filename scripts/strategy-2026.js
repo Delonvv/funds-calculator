@@ -63,6 +63,14 @@
       revealObserver.observe(page.querySelector('.strategy-idea-panel'));
     }
   }
+  function validateSnapshot(payload) {
+      if (payload.version !== 1 || !Array.isArray(payload.macro) || payload.macro.length !== 4 || !payload.ideas?.bonds?.length || !payload.ideas?.stocks?.length || !payload.ideas?.currency?.length || !payload.scenarios?.length || !payload.equityIndex?.length) throw Error('Invalid strategy snapshot');
+      if (!payload.macro.every(m => Number.isFinite(m.value2026) && Number.isFinite(m.value2027) && m.period2026 && m.period2027) || !payload.equityIndex.every(x => Number.isFinite(x.low) && Number.isFinite(x.high) && x.low <= x.high && x.period) || !Object.entries(payload.ideas).every(([group, rows]) => Array.isArray(rows) && rows.every(x => x.name && ['RUB','CNY','USD'].includes(x.currency) && Number.isFinite(group === 'stocks' ? x.targetPrice : x.yield)))) throw Error('Invalid financial values');
+      if (!payload.scenarios.every(s => s.context && s.plainExplanation && s.effects?.length && s.watch?.length && s.effects.every(x => x.asset && x.text) && s.watch.every(x => x.title && x.text))) throw Error('Incomplete scenario memo');
+      const sources = [payload.sourceUrl, payload.stocksSourceUrl].map(x => new URL(x));
+      if (sources.some(x => x.protocol !== 'https:' || x.hostname !== 'www.tbank.ru')) throw Error('Invalid source');
+  }
+  window.pageDataRefresh?.register({pages:['smart-strategy'],file:'strategy-2026.json',current:()=>data,validate:c=>{validateSnapshot(c);return true;},apply:c=>{data=c;render();}});
   async function load() {
     if (loading || data) return;
     loading = true; page.setAttribute('aria-busy', 'true');
@@ -70,11 +78,7 @@
       const response = await fetch('./strategy-2026.json?v=20261104-scenario-memos', {cache:'no-store'});
       if (!response.ok) throw Error('HTTP ' + response.status);
       const payload = await response.json();
-      if (payload.version !== 1 || !Array.isArray(payload.macro) || payload.macro.length !== 4 || !payload.ideas?.bonds?.length || !payload.ideas?.stocks?.length || !payload.ideas?.currency?.length || !payload.scenarios?.length || !payload.equityIndex?.length) throw Error('Invalid strategy snapshot');
-      if (!payload.macro.every(m => Number.isFinite(m.value2026) && Number.isFinite(m.value2027) && m.period2026 && m.period2027) || !payload.equityIndex.every(x => Number.isFinite(x.low) && Number.isFinite(x.high) && x.low <= x.high && x.period) || !Object.entries(payload.ideas).every(([group, rows]) => Array.isArray(rows) && rows.every(x => x.name && ['RUB','CNY','USD'].includes(x.currency) && Number.isFinite(group === 'stocks' ? x.targetPrice : x.yield)))) throw Error('Invalid financial values');
-      if (!payload.scenarios.every(s => s.context && s.plainExplanation && s.effects?.length && s.watch?.length && s.effects.every(x => x.asset && x.text) && s.watch.every(x => x.title && x.text))) throw Error('Incomplete scenario memo');
-      const sources = [payload.sourceUrl, payload.stocksSourceUrl].map(x => new URL(x));
-      if (sources.some(x => x.protocol !== 'https:' || x.hostname !== 'www.tbank.ru')) throw Error('Invalid source');
+      validateSnapshot(payload);
       data = payload; render();
     } catch {
       data = undefined;

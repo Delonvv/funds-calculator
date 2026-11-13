@@ -3,12 +3,12 @@
   const page = document.getElementById('premiumPage');
   if (!page) return;
   const byId = id => page.querySelector('#' + id);
-  const model = window.PREMIUM_DATA;
+  let model = window.PREMIUM_DATA;
   if (!model) {
     byId('selectioncount').textContent = 'Данные сравнения недоступны. Обновите страницу.';
     return;
   }
-  const meta = model.banks;
+  let meta = model.banks;
   const board = byId('board');
   const names = ['Платный вход', 'Начальный', 'Расширенный', 'Старший'];
   const descriptions = ['Обслуживание за плату', 'Первые пакеты по активам', 'Расширенные привилегии', 'Старшие пакеты'];
@@ -113,6 +113,7 @@
   window.addEventListener('resize', updateArrows);
   byId('prev').addEventListener('click', () => slide(-1));
   byId('next').addEventListener('click', () => slide(1));
+  window.pageDataRefresh?.register({pages:['premium','premium-sber'],file:'premium/data.js',decode:text=>{const match=text.match(/window\.PREMIUM_DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/);if(!match)throw Error('Invalid premium data');return JSON.parse(match[1]);},current:()=>model,validate:c=>c?.version===1&&/^\d{4}-\d{2}-\d{2}$/.test(c.checkedAt)&&c.banks?.length===7&&c.stages?.length===4&&c.stages.every(stage=>stage.length===7&&stage.every(bank=>Array.isArray(bank)&&bank.length>=9&&bank.every(row=>Array.isArray(row))))&&c.fastTrack&&c.periods,apply:c=>{model=c;meta=c.banks;window.PREMIUM_DATA=c;render(true);const date=page.querySelector('.pill');if(date)date.textContent='Данные на '+c.checkedAt.split('-').reverse().join('.');}});
   render();
   // The carousel is initially hidden when another section is active. Re-measure on open.
   new MutationObserver(updateArrows).observe(page, { attributes: true, attributeFilter: ['class'] });
