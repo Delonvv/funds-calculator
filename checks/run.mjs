@@ -3,6 +3,7 @@ import { root } from './core.mjs';
 import { staticChecks, financialChecks } from './core.mjs';
 import { browserChecks } from './browser.mjs';
 import { pdsFinancialChecks } from './pds.mjs';
+import { pdsScenarioFinancialChecks } from './pds-scenario.mjs';
 import { tcnyUpdaterChecks } from './tcny.mjs';
 import { weeklyChecks } from './weekly.mjs';
 
@@ -28,6 +29,7 @@ try {
   await financialChecks(daily);
   await tcnyUpdaterChecks(daily);
   await pdsFinancialChecks(daily);
+  await pdsScenarioFinancialChecks(daily);
   await daily('browser/runner', 'Запуск браузерных проверок', () => browserChecks(daily, directory));
   if (weekly) await checker('weekly')('weekly/runner', 'Проверки данных и обновления', () => weeklyChecks(checker('weekly')));
 } finally {

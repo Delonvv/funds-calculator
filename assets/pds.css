@@ -76,3 +76,33 @@
 @media(max-width:1050px){.pds-layout{grid-template-columns:1fr;gap:20px}.pds-client-heading{flex-wrap:nowrap}.pds-optional{margin-left:auto}.pds-form-fields{grid-template-columns:1.2fr .65fr 1fr}.pds-field-amount{grid-column:auto}.pds-benefit{grid-template-columns:minmax(0,1fr) auto}.pds-benefit h3{grid-column:1;grid-row:1}.pds-benefit>strong{grid-column:2;grid-row:1;text-align:right;max-width:300px}.pds-benefit>p{grid-column:1;grid-row:2}.pds-benefit>details:not(.pds-incomes){grid-column:2;grid-row:2;text-align:right}.pds-benefit>details[open]:not(.pds-incomes){grid-column:1/-1;grid-row:3}.pds-parameter-fields{max-width:440px}}
 @media(max-width:700px){.pds-page{padding:22px 0}.pds-page h1{font-size:28px}.pds-page .pds-lead{font-size:15px}.pds-heading{align-items:flex-start;flex-direction:column;gap:14px;margin-bottom:20px}.pds-form{padding:16px}.pds-form-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 12px}.pds-field-amount{grid-column:1/-1}.pds-client-heading{gap:9px;flex-wrap:wrap}.pds-client-heading h3{font-size:16px}.pds-optional{margin-left:51px}.pds-status{padding:15px;gap:10px}.pds-status strong{font-size:19px}.pds-benefit{grid-template-columns:minmax(0,1fr);padding:16px}.pds-benefit h3,.pds-benefit>strong,.pds-benefit>p,.pds-benefit>details:not(.pds-incomes),.pds-benefit>details[open]:not(.pds-incomes){grid-column:1;grid-row:auto;text-align:left}.pds-benefit>strong{font-size:20px;max-width:none}.pds-history{padding:13px 15px;font-size:15px}.pds-lower{padding-left:14px;padding-right:14px}}
 main:has(>#pdsPage.active)>.page-data-status{margin:10px 0 0;padding:4px 0;border:0;background:transparent;font-size:13px}
+/* Scenario valuation is separate from programme benefits and payout eligibility. */
+.pds-scenario{margin-top:18px;padding:15px;border:1px solid color-mix(in srgb,var(--y) 55%,var(--line));border-radius:13px;background:color-mix(in srgb,var(--y) 20%,var(--panel))}
+.pds-scenario-main{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;align-items:baseline}
+.pds-scenario-main>span{font-size:15px}.pds-scenario-main>strong{font-size:23px;font-weight:500;line-height:1.3}
+.pds-scenario-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:end;margin-top:9px}
+.pds-scenario-actions p{font-size:13px;color:var(--muted);margin:0;flex:1 1 130px}
+.pds-scenario-actions button{font:inherit;font-size:14px;color:var(--white);padding:6px 0;border:0;border-bottom:1px solid var(--white);background:transparent;cursor:pointer;text-align:left}
+.pds-scenario-actions button span{margin-left:6px}.pds-scenario-prompt{font-size:13px;margin:10px 0 0;color:var(--muted)}.pds-scenario-prompt:empty{display:none}
+.pds-scenario-totals{margin-top:16px;min-width:0}
+.pds-scenario-amounts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;border:1px solid var(--line);border-radius:13px;padding:18px;background:color-mix(in srgb,var(--y) 18%,var(--panel))}
+.pds-scenario-amounts>section+section{border-left:1px solid var(--line);padding-left:18px}
+.pds-scenario-amounts h3{font-size:15px;font-weight:400;line-height:1.4;margin:0 0 12px}
+.pds-scenario-amounts strong{font-size:30px;line-height:1.25;font-weight:500;display:block;overflow-wrap:anywhere}
+.pds-scenario-amounts p{font-size:12px;color:var(--muted);margin:9px 0 0}
+.pds-scenario-amounts strong[data-sign=negative]{color:#bd5147}
+.pds-scenario-irr{margin-top:10px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:var(--panel);font-size:14px}
+.pds-scenario-irr small{font-size:12px;color:var(--muted);display:block;margin-top:5px}
+.pds-scenario-irr>strong{font-size:19px;font-weight:500;background:color-mix(in srgb,var(--y) 18%,var(--panel));padding:8px 10px;border-radius:8px}
+#pdsBreakdown{scroll-margin-top:110px;margin-top:20px}
+.pds-breakdown .pds-detail-body{max-width:none}
+.pds-scenario-rate{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;margin-bottom:16px}
+.pds-scenario-rate label{flex:0 1 270px}.pds-scenario-rate p{flex:1 1 240px;color:var(--muted);font-size:13px}
+.pds-scenario-table{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+.pds-scenario-table table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}
+.pds-scenario-table th,.pds-scenario-table td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--line);font-weight:400;vertical-align:top}
+.pds-scenario-table th{width:38%}.pds-scenario-table tfoot{background:color-mix(in srgb,var(--y) 15%,var(--panel))}
+.pds-scenario-table tfoot :is(th,td){font-weight:500;border-bottom:0}
+#pdsBreakdownState:empty{display:none}
+@media(max-width:1200px){.pds-scenario-amounts{gap:13px;padding:15px}.pds-scenario-amounts>section+section{padding-left:13px}.pds-scenario-amounts strong{font-size:26px}}
+@media(max-width:700px){.pds-scenario-amounts{grid-template-columns:1fr}.pds-scenario-amounts>section+section{border-left:0;border-top:1px solid var(--line);padding:14px 0 0}.pds-scenario-amounts h3{margin-bottom:8px}.pds-scenario-table th,.pds-scenario-table td{padding:9px 10px;font-size:13px}.pds-scenario-table th{width:40%}.pds-scenario-rate label{flex:1 1 100%}}
