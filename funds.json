@@ -4,21 +4,21 @@
   "source": "MOEX ISS and preserved manual data",
   "market": {
     "AKGD": {
-      "price": 227.85,
+      "price": 227.89,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:21",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "AKME": {
-      "price": 187.3,
+      "price": 187.16,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:07:48",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "AKMM": {
-      "price": 181.61,
+      "price": 181.62,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:24",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "BOND": {
@@ -42,7 +42,7 @@
     "LQDT": {
       "price": 2.1346,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:26",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "OBLG": {
@@ -64,9 +64,9 @@
       "source": "https://www.moex.com/"
     },
     "SBGB": {
-      "price": 15.561,
+      "price": 15.542,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:00",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "SBGD": {
@@ -78,25 +78,25 @@
     "SBMM": {
       "price": 19.8595,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:28",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "SBMX": {
-      "price": 18.035,
+      "price": 18.023,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:07",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "SBRB": {
-      "price": 19.412,
+      "price": 19.411,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:05",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "TBRU": {
       "price": 8.68,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:00",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "TDIV": {
@@ -130,21 +130,21 @@
       "source": "https://www.moex.com/"
     },
     "TMOS": {
-      "price": 6.3,
+      "price": 6.32,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:00",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "TOFZ": {
-      "price": 13.91,
+      "price": 14,
       "currency": "RUB",
-      "asOf": "2026-11-15 13:43:01",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "TPAY": {
       "price": 101.96,
       "currency": "RUB",
-      "asOf": "2026-11-15 16:08:33",
+      "asOf": "2026-11-15 19:15:18",
       "source": "https://www.moex.com/"
     },
     "TRND": {
@@ -549,9 +549,9 @@
       "asOf": "2026-11-15",
       "currency": "RUB",
       "returns": {
-        "m1": -8.68,
-        "m6": -3.84,
-        "y1": -4.92
+        "m1": -8.73,
+        "m6": -3.88,
+        "y1": -4.97
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
@@ -560,9 +560,9 @@
       "asOf": "2026-11-15",
       "currency": "RUB",
       "returns": {
-        "m1": 3.89,
-        "m6": 0.49,
-        "y1": 4.13
+        "m1": 3.75,
+        "m6": 0.35,
+        "y1": 3.99
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
@@ -604,9 +604,9 @@
       "asOf": "2026-11-15",
       "currency": "RUB",
       "returns": {
-        "m1": 1.24,
-        "m6": -1.05,
-        "y1": 6.4
+        "m1": 1.12,
+        "m6": -1.17,
+        "y1": 6.27
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
@@ -626,9 +626,9 @@
       "asOf": "2026-11-15",
       "currency": "RUB",
       "returns": {
-        "m1": 4.75,
-        "m6": -0.26,
-        "y1": 6.94
+        "m1": 4.68,
+        "m6": -0.32,
+        "y1": 6.88
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
@@ -768,6 +768,6 @@
     "TVEN",
     "XSECUR"
   ],
-  "lastRun": "2026-11-15T13:08:35.198Z",
+  "lastRun": "2026-11-15T16:33:37.215Z",
   "failedTickers": []
 }

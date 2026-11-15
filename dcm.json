@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-15T13:08:54.684Z",
+  "updatedAt": "2026-11-15T16:33:57.770Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
-      "id": "primary-7dc63150-ae7f-4332-a6a5-c4c64fecbccf",
-      "sourceId": "7dc63150-ae7f-4332-a6a5-c4c64fecbccf",
+      "id": "primary-dbe6cd29-4d55-4f0b-95d2-b5b09325bbc5",
+      "sourceId": "dbe6cd29-4d55-4f0b-95d2-b5b09325bbc5",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -12,30 +12,10 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Смарт-Процент на 1 месяц",
-      "title": "Смарт-Процент на 1 месяц",
-      "issueName": "До 16 декабря",
-      "coupon": "Фиксированная доходность 13,4% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 16 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-0511c988-72f0-4fc3-b60d-98fa94943e4a",
-      "sourceId": "0511c988-72f0-4fc3-b60d-98fa94943e4a",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 4 месяца",
-      "title": "Смарт-Процент на 4 месяца",
-      "issueName": "До 16 марта",
-      "coupon": "Фиксированная ставка 14,5% от Т-Банка",
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 23 ноября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
       "currency": "RUB",
       "deadline": "До 16 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
@@ -63,6 +43,26 @@
       "missingChecks": 0
     },
     {
+      "id": "primary-7dc63150-ae7f-4332-a6a5-c4c64fecbccf",
+      "sourceId": "7dc63150-ae7f-4332-a6a5-c4c64fecbccf",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 1 месяц",
+      "title": "Смарт-Процент на 1 месяц",
+      "issueName": "До 16 декабря",
+      "coupon": "Фиксированная доходность 13,4% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 16 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
       "id": "primary-3840408a-e926-483a-8350-e7d1a5c1f3ac",
       "sourceId": "3840408a-e926-483a-8350-e7d1a5c1f3ac",
       "section": "primary",
@@ -79,6 +79,26 @@
       "currency": "RUB",
       "deadline": "До 18 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU0007661625x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-0511c988-72f0-4fc3-b60d-98fa94943e4a",
+      "sourceId": "0511c988-72f0-4fc3-b60d-98fa94943e4a",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 4 месяца",
+      "title": "Смарт-Процент на 4 месяца",
+      "issueName": "До 16 марта",
+      "coupon": "Фиксированная ставка 14,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 16 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -103,28 +123,8 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-dbe6cd29-4d55-4f0b-95d2-b5b09325bbc5",
-      "sourceId": "dbe6cd29-4d55-4f0b-95d2-b5b09325bbc5",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 23 ноября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 16 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-ba4c4850-3b73-41bd-8991-3f83e229055d",
-      "sourceId": "ba4c4850-3b73-41bd-8991-3f83e229055d",
+      "id": "current-4e7f77dd-0c77-4891-9dad-7bf40f00b74d",
+      "sourceId": "4e7f77dd-0c77-4891-9dad-7bf40f00b74d",
       "section": "current",
       "sourceSections": [
         "current"
@@ -132,13 +132,13 @@
       "sourceShelves": [
         "Сейчас размещаются"
       ],
-      "issuer": "А7",
-      "title": "Облигации А7",
-      "issueName": "А7 001Р-01",
-      "coupon": "Фиксированный купон до 17,5%",
+      "issuer": "ЛОЭСК",
+      "title": "Облигации ЛОЭСК",
+      "issueName": "ЛОЭСК  001Р-02",
+      "coupon": "Фиксированный купон до 19%",
       "currency": "RUB",
-      "deadline": "До 24 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/А7x160.png",
+      "deadline": "До 17 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/loeskx160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -163,26 +163,6 @@
       "missingChecks": 0
     },
     {
-      "id": "current-4e7f77dd-0c77-4891-9dad-7bf40f00b74d",
-      "sourceId": "4e7f77dd-0c77-4891-9dad-7bf40f00b74d",
-      "section": "current",
-      "sourceSections": [
-        "current"
-      ],
-      "sourceShelves": [
-        "Сейчас размещаются"
-      ],
-      "issuer": "ЛОЭСК",
-      "title": "Облигации ЛОЭСК",
-      "issueName": "ЛОЭСК  001Р-02",
-      "coupon": "Фиксированный купон до 19%",
-      "currency": "RUB",
-      "deadline": "До 17 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/loeskx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
       "id": "current-79499cdf-dc52-4bfd-a51a-b8d92ec98da1",
       "sourceId": "79499cdf-dc52-4bfd-a51a-b8d92ec98da1",
       "section": "current",
@@ -199,6 +179,26 @@
       "currency": "RUB",
       "deadline": "До 16 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/avtofinancex160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-ba4c4850-3b73-41bd-8991-3f83e229055d",
+      "sourceId": "ba4c4850-3b73-41bd-8991-3f83e229055d",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "А7",
+      "title": "Облигации А7",
+      "issueName": "А7 001Р-01",
+      "coupon": "Фиксированный купон до 17,5%",
+      "currency": "RUB",
+      "deadline": "До 24 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/А7x160.png",
       "isQual": false,
       "missingChecks": 0
     }
