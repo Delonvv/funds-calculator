@@ -5,6 +5,7 @@ import { chromium } from 'playwright';
 import { root, json, assert, close } from './core.mjs';
 import { premiumPreviewChecks } from './premium-preview.mjs';
 import { catalogBannerChecks } from './catalog-banner.mjs';
+import {pdsLumpSumBrowserChecks} from './pds-lump-sum.mjs';
 import { pdsBrowserChecks } from './pds.mjs';
 import { pdsScenarioBrowserChecks } from './pds-scenario.mjs';
 import { refreshChecks } from './refresh.mjs';
@@ -62,6 +63,7 @@ export async function browserChecks(check, directory) {
     await catalogBannerChecks(test);
     await tcnyBrowserChecks(test);
     await pdsBrowserChecks(test);
+    await pdsLumpSumBrowserChecks(test);
     await pdsScenarioBrowserChecks(test);
     await refreshChecks(test);
 
