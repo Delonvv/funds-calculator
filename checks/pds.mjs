@@ -68,6 +68,7 @@ export async function pdsBrowserChecks(test) {
     assert(await page.locator('#pdsScenarioEnd').inputValue()===`${Number(start.slice(0,4))+5}${start.slice(4)}`, 'Default exit precedes five-year anniversary');
     assert((await page.locator('#pdsTax').textContent()).includes('23 400'), 'Full five-year custom date tax wrong');
     await page.locator('#pdsBreakdown>summary').click();
+    await page.waitForFunction(()=>document.activeElement===document.querySelector('#pdsScenarioDetailsToggle'));
     await page.locator('[data-pds-period="monthly"]').click();
     assert((await page.locator('#pdsAmount').inputValue()).replace(/\s/g,'') === '3000', 'Monthly conversion wrong');
     await page.locator('[data-pds-period="annual"]').click();
@@ -76,7 +77,12 @@ export async function pdsBrowserChecks(test) {
     await page.locator('#pdsForm button[type="submit"]').click();
     assert(await page.locator('#pdsStatus').getAttribute('data-state') === 'future', 'Future condition shown as already met');
     assert((await page.locator('#pdsEligibility').textContent()).includes('через 2'), 'Age wait missing');
-    assert((await page.locator('#pdsTax').textContent()).includes('не сохраняется'), 'Early-exit tax condition missing');
+    assert((await page.locator('#pdsTaxNote').textContent()).includes('не сохраняется'), 'Early-exit tax condition missing');
+    assert(await page.locator('#pdsTaxRow').getAttribute('data-state')==='excluded' && (await page.locator('#pdsTax').textContent())==='Не включён','Early exit not explained next to tax amount');
+    assert((await page.locator('#pdsScenarioAdditionalNote').textContent()).includes('Без возврата НДФЛ'),'Headline includes lost tax benefit');
+    assert(await page.locator('#pdsScenarioBalances').isVisible() && await page.locator('#pdsInvestmentResult').isVisible(),'Result composition missing');
+    await page.locator('#pdsYears').fill('5');await page.locator('#pdsForm button[type=submit]').click();
+    assert(await page.locator('#pdsTaxRow').getAttribute('data-state')==='included' && !(await page.locator('#pdsTaxNote').textContent()).includes('не сохраняется'),'Five-year plan retains stale warning');
     await page.locator('.pds-incomes summary').click();
     assert((await page.locator('.pds-incomes').textContent()).includes('НПД'), 'Income explanation missing');
     assert((await page.locator('.pds-incomes').locator('..').locator('h3').textContent())==='Налоговый возврат', 'Income help detached from tax result');
