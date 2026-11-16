@@ -44,6 +44,7 @@ export async function pdsBrowserChecks(test) {
       await page.locator('#pdsIncome').selectOption('low');
       await page.locator('#pdsAge').fill('56');await page.locator('#pdsSex').selectOption('female');
       release();await page.waitForLoadState('networkidle');
+      assert(await page.locator('#pdsIncome').inputValue()==='low','Initial response reset selected income');
       assert(await page.locator('#pdsAge').inputValue()==='56' && await page.locator('#pdsSex').inputValue()==='female','Initial response reset client fields');
       assert(await page.locator('#pdsStatus').getAttribute('data-state')==='met','Initial response reset eligibility');
     } finally {release();}
@@ -53,7 +54,8 @@ export async function pdsBrowserChecks(test) {
     assert(await page.locator('[data-page="pds"]').evaluate(x=>x.nextElementSibling.classList.contains('smart-sales-nav')), 'PDS is not left of Smart Sales');
     await show(page);
     assert(await page.locator('.product-page.active').getAttribute('id') === 'pdsPage', 'PDS route inactive');
-    assert(await page.locator('#pdsIncome').inputValue() === '' && (await page.locator('#pdsSupport').textContent()).includes('Укажите'), 'Income assumption hidden');
+    assert(await page.locator('#pdsIncome').inputValue() === 'high', 'Default income is not above 150 thousand');
+    assert((await page.locator('#pdsSupport').textContent()).includes('45 000'), 'Default income uses wrong support coefficient');
     await page.locator('#pdsIncome').selectOption('low');
     assert(await page.locator('#pdsAge').isVisible() && await page.locator('#pdsSex').isVisible(), 'Client fields hidden');
     assert(await page.locator('.pds-parameter-fields input,.pds-parameter-fields select').count() === 2, 'Unexpected personal fields');

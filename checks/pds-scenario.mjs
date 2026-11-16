@@ -69,6 +69,7 @@ export async function pdsScenarioBrowserChecks(test) {
   const show=async page=>{await page.clock.setFixedTime(new Date('2026-11-13T09:00:00Z'));await page.emulateMedia({reducedMotion:'reduce'});await page.locator('[data-page=pds]').click();await page.locator('#pdsForm').waitFor();};
   await test('browser/pds-scenario','ПДС: календарные даты, простая ставка и IRR, раскрытие и ошибки',async page=>{
     await show(page);
+    await page.locator('#pdsIncome').selectOption('');
     assert(!await page.locator('#pdsScenarioTotals').isVisible(),'Unknown income shows invented result');
     await page.locator('#pdsAmount').fill('50000');await page.locator('#pdsIncome').selectOption('low');await page.locator('#pdsForm button[type=submit]').click();
     await page.locator('#pdsScenarioDetailsToggle').click();

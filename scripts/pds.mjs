@@ -81,7 +81,7 @@ if (nav && menu && !document.getElementById('pdsPage')) {
         <div class="pds-form-fields">
         <div class="pds-field pds-field-amount"><div class="pds-amount-head"><label for="pdsAmount">Взнос, ₽</label><span class="pds-period" role="group" aria-label="Период взноса"><button type="button" data-pds-period="monthly" aria-pressed="false">В месяц</button><button type="button" data-pds-period="annual" aria-pressed="true">В год</button></span></div><input id="pdsAmount" inputmode="decimal" value="36 000" aria-describedby="pdsTaxAssumption"></div>
         <label class="pds-field">Плановый срок, лет<input id="pdsYears" type="number" min="1" max="30" step="1" value="5"></label>
-        <label class="pds-field pds-field-income">Доход в месяц<select id="pdsIncome"><option value="">Выберите доход</option><option value="low">До 80 000 ₽</option><option value="middle">Свыше 80 до 150 тыс. ₽</option><option value="high">Свыше 150 000 ₽</option></select></label>
+        <label class="pds-field pds-field-income">Доход в месяц<select id="pdsIncome"><option value="">Выберите доход</option><option value="low">До 80 000 ₽</option><option value="middle">Свыше 80 до 150 тыс. ₽</option><option value="high" selected>Свыше 150 000 ₽</option></select></label>
         </div>
         <section class="pds-parameters" aria-labelledby="pdsClientTitle">
           <div class="pds-client-heading"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3Z"/></svg><div><h3 id="pdsClientTitle">Возраст и пол</h3><p>Чтобы определить срок выплат</p></div><span class="pds-optional">Необязательно</span></div>
