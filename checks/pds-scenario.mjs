@@ -79,6 +79,8 @@ export async function pdsScenarioBrowserChecks(test) {
     assert((await page.locator('#pdsScenarioIrrBadge').textContent()).includes('33%'),'IRR confused with simple rate');
     assert((await page.locator('#pdsScenarioAccount').textContent()).includes('570 270'),'Account wrong');
     assert((await page.locator('#pdsScenarioAdditional').textContent()).includes('352 770'),'Additional result wrong');
+    assert((await page.locator('#pdsInvestmentResult').textContent()).includes('140 270'),'Visible composition uses a different investment result');
+    assert((await page.locator('#pdsScenarioPersonal').textContent()).includes('250 000'),'Personal contributions missing from compact totals');
     await page.locator('[data-pds-period=monthly]').click();assert((await page.locator('#pdsScenarioAccount').textContent()).includes('506 894'),'Calendar monthly flows ignored');await page.locator('[data-pds-period=annual]').click();
     if(await page.locator('#pdsBreakdown').getAttribute('open')===null)await page.locator('#pdsScenarioDetailsToggle').click();await page.waitForFunction(()=>document.querySelector('#pdsBreakdown').open);
     assert(await page.locator('#pdsScenarioStart').inputValue()==='2026-11-13','Start not Moscow today');
@@ -107,14 +109,14 @@ export async function pdsScenarioBrowserChecks(test) {
     assert((await page.locator('#pdsTax').textContent()).includes('97 500'),'Five-year default excludes refund');
     assert(await page.locator('#pdsGuarantee').textContent()==='Пятилетний период','Five-year default does not complete guarantee period');
     await page.locator('#pdsScenarioEnd').fill('2031-11-12');
-    assert((await page.locator('#pdsTax').textContent()).includes('не сохраняется'),'Manual date one day before minimum retains tax');
+    assert((await page.locator('#pdsTaxNote').textContent()).includes('не сохраняется'),'Manual date one day before minimum retains tax');
     await page.locator('#pdsYears').fill('6');await page.locator('#pdsForm button[type=submit]').click();
     assert(await page.locator('#pdsScenarioEnd').inputValue()==='2032-09-01','Longer plan lost September exit');
     await page.locator('#pdsScenarioStart').fill('2027-11-13');
     assert(await page.locator('#pdsScenarioEnd').inputValue()==='2033-11-13','2027 contract ignores six-year minimum');
     await page.locator('#pdsYears').fill('5');await page.locator('#pdsForm button[type=submit]').click();
     assert(await page.locator('#pdsScenarioEnd').inputValue()==='2032-09-01','Shorter 2027 plan unexpectedly extended');
-    assert((await page.locator('#pdsTax').textContent()).includes('не сохраняется'),'Five years incorrectly sufficient for 2027 contract');
+    assert((await page.locator('#pdsTaxNote').textContent()).includes('не сохраняется'),'Five years incorrectly sufficient for 2027 contract');
   });
   await test('browser/pds-half-year','ПДС: 36 тысяч на 150 тысяч за полгода — простой эффект и проверка даты доплаты',async page=>{
     await show(page);await page.locator('#pdsAmount').fill('150000');await page.locator('#pdsIncome').selectOption('low');await page.locator('#pdsYears').fill('1');await page.locator('#pdsForm button[type=submit]').click();
