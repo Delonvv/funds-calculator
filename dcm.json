@@ -1,10 +1,30 @@
 {
-  "updatedAt": "2026-11-17T18:45:08.982Z",
+  "updatedAt": "2026-11-18T18:28:06.091Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
-      "id": "primary-a5eabb9d-22b4-4034-8f8d-1f3fb6d88468",
-      "sourceId": "a5eabb9d-22b4-4034-8f8d-1f3fb6d88468",
+      "id": "primary-26654826-bb0e-4ca9-bcb5-9308cb7a9a84",
+      "sourceId": "26654826-bb0e-4ca9-bcb5-9308cb7a9a84",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 26 ноября",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 19 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-6e337043-01b3-4870-ab55-be206dc7c862",
+      "sourceId": "6e337043-01b3-4870-ab55-be206dc7c862",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -14,50 +34,10 @@
       ],
       "issuer": "Смарт-Процент на 1 месяц",
       "title": "Смарт-Процент на 1 месяц",
-      "issueName": "До 18 декабря",
+      "issueName": "До 21 декабря",
       "coupon": "Фиксированная доходность 13,4% от Т-Банка",
       "currency": "RUB",
-      "deadline": "До 18 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-3840408a-e926-483a-8350-e7d1a5c1f3ac",
-      "sourceId": "3840408a-e926-483a-8350-e7d1a5c1f3ac",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Газпром капитал",
-      "title": "Облигации Газпром капитал",
-      "issueName": "Газпром капитал БО-003Р-31",
-      "coupon": "Плавающий купон до 15,6%",
-      "currency": "RUB",
-      "deadline": "До 18 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU0007661625x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-f34ad1ad-3c45-4a0c-b153-83a5f4b81449",
-      "sourceId": "f34ad1ad-3c45-4a0c-b153-83a5f4b81449",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 4 месяца",
-      "title": "Смарт-Процент на 4 месяца",
-      "issueName": "До 18 марта",
-      "coupon": "Фиксированная ставка 14,5% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 18 ноября",
+      "deadline": "До 19 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
@@ -83,22 +63,22 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-2ff27598-07ab-4281-b3b5-8bb5c1a64c37",
-      "sourceId": "2ff27598-07ab-4281-b3b5-8bb5c1a64c37",
-      "section": "primary",
+      "id": "current-ba4c4850-3b73-41bd-8991-3f83e229055d",
+      "sourceId": "ba4c4850-3b73-41bd-8991-3f83e229055d",
+      "section": "current",
       "sourceSections": [
-        "primary"
+        "current"
       ],
       "sourceShelves": [
-        "Первичные размещения от Т-Банка"
+        "Сейчас размещаются"
       ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 25 ноября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "issuer": "А7",
+      "title": "Облигации А7",
+      "issueName": "А7 001Р-01",
+      "coupon": "Фиксированный купон до 17,5%",
       "currency": "RUB",
-      "deadline": "До 18 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "deadline": "До 24 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/А7x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -123,8 +103,8 @@
       "missingChecks": 0
     },
     {
-      "id": "current-ba4c4850-3b73-41bd-8991-3f83e229055d",
-      "sourceId": "ba4c4850-3b73-41bd-8991-3f83e229055d",
+      "id": "current-f9cfb620-50c3-4c16-a340-0123b7c3a838",
+      "sourceId": "f9cfb620-50c3-4c16-a340-0123b7c3a838",
       "section": "current",
       "sourceSections": [
         "current"
@@ -132,13 +112,13 @@
       "sourceShelves": [
         "Сейчас размещаются"
       ],
-      "issuer": "А7",
-      "title": "Облигации А7",
-      "issueName": "А7 001Р-01",
-      "coupon": "Фиксированный купон до 17,5%",
+      "issuer": "Трансмашхолдинг",
+      "title": "Облигации Трансмашхолдинг",
+      "issueName": "Трансмашхолдинг ПБО-09",
+      "coupon": "Плавающий купон до 15,8%",
       "currency": "RUB",
-      "deadline": "До 24 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/А7x160.png",
+      "deadline": "До 19 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JXD07x160.png",
       "isQual": false,
       "missingChecks": 0
     }
