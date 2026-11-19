@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-18T18:28:06.091Z",
+  "updatedAt": "2026-11-19T18:42:54.418Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
-      "id": "primary-26654826-bb0e-4ca9-bcb5-9308cb7a9a84",
-      "sourceId": "26654826-bb0e-4ca9-bcb5-9308cb7a9a84",
+      "id": "primary-ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
+      "sourceId": "ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
       "section": "primary",
       "sourceSections": [
         "primary"
@@ -12,73 +12,13 @@
       "sourceShelves": [
         "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 26 ноября",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "issuer": "Россети",
+      "title": "Облигации Россети",
+      "issueName": "Россети 001Р-28R",
+      "coupon": "Плавающий купон до 15,5%",
       "currency": "RUB",
-      "deadline": "До 19 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-6e337043-01b3-4870-ab55-be206dc7c862",
-      "sourceId": "6e337043-01b3-4870-ab55-be206dc7c862",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 1 месяц",
-      "title": "Смарт-Процент на 1 месяц",
-      "issueName": "До 21 декабря",
-      "coupon": "Фиксированная доходность 13,4% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 19 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-e2c47901-1552-4b30-9343-6197ab09b59e",
-      "sourceId": "e2c47901-1552-4b30-9343-6197ab09b59e",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Атомэнергопром",
-      "title": "Облигации Атомэнергопром",
-      "issueName": "Атомэнергопром 001P-20",
-      "coupon": "Плавающий купон до 15,9%",
-      "currency": "RUB",
-      "deadline": "До 19 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A103AT8x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-ba4c4850-3b73-41bd-8991-3f83e229055d",
-      "sourceId": "ba4c4850-3b73-41bd-8991-3f83e229055d",
-      "section": "current",
-      "sourceSections": [
-        "current"
-      ],
-      "sourceShelves": [
-        "Сейчас размещаются"
-      ],
-      "issuer": "А7",
-      "title": "Облигации А7",
-      "issueName": "А7 001Р-01",
-      "coupon": "Фиксированный купон до 17,5%",
-      "currency": "RUB",
-      "deadline": "До 24 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/А7x160.png",
+      "deadline": "До 26 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -103,8 +43,8 @@
       "missingChecks": 0
     },
     {
-      "id": "current-f9cfb620-50c3-4c16-a340-0123b7c3a838",
-      "sourceId": "f9cfb620-50c3-4c16-a340-0123b7c3a838",
+      "id": "current-ba4c4850-3b73-41bd-8991-3f83e229055d",
+      "sourceId": "ba4c4850-3b73-41bd-8991-3f83e229055d",
       "section": "current",
       "sourceSections": [
         "current"
@@ -112,13 +52,13 @@
       "sourceShelves": [
         "Сейчас размещаются"
       ],
-      "issuer": "Трансмашхолдинг",
-      "title": "Облигации Трансмашхолдинг",
-      "issueName": "Трансмашхолдинг ПБО-09",
-      "coupon": "Плавающий купон до 15,8%",
+      "issuer": "А7",
+      "title": "Облигации А7",
+      "issueName": "А7 001Р-01",
+      "coupon": "Фиксированный купон до 17,5%",
       "currency": "RUB",
-      "deadline": "До 19 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JXD07x160.png",
+      "deadline": "До 24 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/А7x160.png",
       "isQual": false,
       "missingChecks": 0
     }
