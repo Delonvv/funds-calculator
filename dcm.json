@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T18:42:54.418Z",
+  "updatedAt": "2026-11-20T10:05:58.842Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
@@ -19,26 +19,6 @@
       "currency": "RUB",
       "deadline": "До 26 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-4e7f77dd-0c77-4891-9dad-7bf40f00b74d",
-      "sourceId": "4e7f77dd-0c77-4891-9dad-7bf40f00b74d",
-      "section": "current",
-      "sourceSections": [
-        "current"
-      ],
-      "sourceShelves": [
-        "Сейчас размещаются"
-      ],
-      "issuer": "ЛОЭСК",
-      "title": "Облигации ЛОЭСК",
-      "issueName": "ЛОЭСК  001Р-02",
-      "coupon": "Фиксированный купон до 19%",
-      "currency": "RUB",
-      "deadline": "До 20 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/loeskx160.png",
       "isQual": false,
       "missingChecks": 0
     },
