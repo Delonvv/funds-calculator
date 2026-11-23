@@ -5,6 +5,19 @@ export async function catalogBannerChecks(test) {
     assert(await page.locator('.ct-banner').count() === 0, 'Old banner remains');
     const rail=page.locator('.ct-strip-rail');
     await rail.locator('.ct-strip-card').first().waitFor();
+    const live = await page.evaluate(async () => (await fetch('./dcm.json')).json());
+    if (live.placements.length <= 2) {
+      assert(await page.locator('[data-strip-next]').isDisabled(), 'No extra placements: next arrow should be disabled');
+    }
+    // Scrolling coverage must not depend on how many real issues are open today.
+    const placements = Array.from({length:4}, (_, i) => ({
+      ...live.placements[i % live.placements.length],
+      id:`test-placement-${i}`, sourceId:`test-source-${i}`,
+      issueName:`Тестовый выпуск ${i + 1}`
+    }));
+    await page.route('**/dcm.json?*', r => r.fulfill({contentType:'application/json', body:JSON.stringify({...live, placements})}));
+    await page.reload({waitUntil:'networkidle'});
+    await rail.locator('.ct-strip-card').nth(3).waitFor();
     const titles=await rail.locator('.ct-strip-copy b').allTextContents();
     const size=await rail.evaluate(x=>({width:x.clientWidth,card:x.querySelector('.ct-strip-card').getBoundingClientRect().width}));
     assert(Math.abs(size.card*2+10-size.width)<5,'Expected two cards per row');
