@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-11-23",
-  "source": "MOEX ISS and preserved manual data",
+  "source": "MOEX ISS; T-Capital official statistics; Investfunds manual snapshots",
   "market": {
     "AKGD": {
       "price": 214.38,
@@ -70,9 +70,9 @@
       "source": "https://www.moex.com/"
     },
     "SBGD": {
-      "price": 27.985,
+      "price": 28.225,
       "currency": "RUB",
-      "asOf": "2026-11-22 06:42:57",
+      "asOf": "2026-11-23 10:08:01",
       "source": "https://www.moex.com/"
     },
     "SBMM": {
@@ -180,214 +180,256 @@
   },
   "nav": {
     "TMON": {
-      "asOf": "2026-10-01",
+      "value": 328438031631.05,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/8628/",
-      "value": 322295633054.17
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TBRU": {
-      "asOf": "2026-10-01",
+      "value": 8981921424.96,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/7067/",
-      "value": 9196688196.52
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TOFZ": {
-      "asOf": "2026-08-31",
+      "value": 4265074791.8,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/11445/",
-      "value": 5269448344.87
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TMOS": {
-      "asOf": "2026-10-01",
+      "value": 14816114295.33,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/6333/",
-      "value": 13659829636.78
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TDIV": {
-      "asOf": "2026-10-01",
+      "value": 1002217004.5,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/9585/",
-      "value": 978189219.24
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TITR": {
-      "asOf": "2026-09-30",
+      "value": 314724389.82,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/10421/",
-      "value": 294765842.47
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TRND": {
-      "asOf": "2026-09-30",
+      "value": 516903473.21,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/11925/",
-      "value": 497715019.54
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TGLD": {
-      "asOf": "2026-10-01",
+      "value": 167217586.64,
       "currency": "USD",
-      "source": "https://investfunds.ru/funds/6329/",
-      "value": 179439142.11
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TRUR": {
-      "asOf": "2026-10-01",
+      "value": 17350203717.71,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/5945/",
-      "value": 17828480668.69
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TLCB": {
-      "asOf": "2026-10-01",
+      "value": 11310839281.73,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/9627/",
-      "value": 11932208477.39
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TPAY": {
-      "value": 23246001680.54,
+      "value": 25390981997.71,
       "currency": "RUB",
-      "source": "https://www.tbank.ru/invest/etfs/TPAY/",
-      "asOf": null
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TIND": {
-      "value": 3348885093.23,
+      "value": 3422276804.63,
       "currency": "RUB",
-      "source": "https://www.tbank.ru/invest/etfs/TIND/",
-      "asOf": null
+      "asOf": "2026-10-30",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TKVC": {
-      "value": 1915897991.87,
+      "value": 1928684013.23,
       "currency": "RUB",
-      "source": "https://www.tbank.ru/invest/etfs/TKVC/",
-      "asOf": null
+      "asOf": "2026-10-30",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TLCN": {
-      "value": 2920100298.23,
+      "value": 2951198370.97,
       "currency": "RUB",
-      "source": "https://www.tbank.ru/invest/etfs/TLCN/",
-      "asOf": null
+      "asOf": "2026-10-30",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TRBR": {
-      "value": 689845796.98,
+      "value": 648346875.82,
       "currency": "RUB",
-      "source": "https://www.tbank.ru/invest/etfs/RU000A106G80/",
-      "asOf": null
+      "asOf": "2026-10-30",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TSAV": {
-      "value": 1174688459.12,
+      "value": 8491446464.97,
       "currency": "RUB",
-      "source": "https://www.tbank.ru/invest/etfs/TSAV/",
-      "asOf": null
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TRRE": {
-      "value": 1143941866.7,
+      "value": 1148326964.14,
       "currency": "RUB",
-      "source": "https://www.tbank.ru/invest/etfs/TRRE/",
-      "asOf": null
+      "asOf": "2026-10-30",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "AKMM": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 340332534049.73,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/8181/",
-      "value": 333700820225.77
+      "checkedAt": "2026-11-23"
     },
     "LQDT": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 906365827090.14,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/5973/",
-      "value": 763827958448.15
+      "checkedAt": "2026-11-23"
     },
     "SBMM": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 409977567803.91,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/7373/",
-      "value": 355684683255.47
+      "checkedAt": "2026-11-23"
     },
     "AKGD": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 16205682116.62,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/7589/",
-      "value": 20657287670.06
+      "checkedAt": "2026-11-23"
     },
     "AKME": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 13956585917.97,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/6575/",
-      "value": 13012350691.81
+      "checkedAt": "2026-11-23"
     },
     "EQMX": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 13189052338.81,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/6073/",
-      "value": 11800873080.59
+      "checkedAt": "2026-11-23"
     },
     "GOLD": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 20358481360.22,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/6223/",
-      "value": 24440896666.72
+      "checkedAt": "2026-11-23"
     },
     "SBCB": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 8510220915.85,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/5395/",
-      "value": 9401801411.07
+      "checkedAt": "2026-11-23"
     },
     "SBGB": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 4498412123.81,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/5393/",
-      "value": 4637037545.46
+      "checkedAt": "2026-11-23"
     },
     "SBGD": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 7942419429.51,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/8293/",
-      "value": 9961449085.93
+      "checkedAt": "2026-11-23"
     },
     "SBMX": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 19354261679.05,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/5247/",
-      "value": 18554997677.89
+      "checkedAt": "2026-11-23"
     },
     "SBRB": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 26914720285.91,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/5713/",
-      "value": 42489006394.76
+      "checkedAt": "2026-11-23"
     },
     "OBLG": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 9942047792.87,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/5433/",
-      "value": 10123464524.51
+      "checkedAt": "2026-11-23"
     },
     "BOND": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-11-19",
+      "value": 1687554704.18,
       "currency": "RUB",
       "source": "https://investfunds.ru/funds/8003/",
-      "value": 1766350899.61
+      "checkedAt": "2026-11-23"
     },
     "TKVM": {
-      "asOf": "2026-07-31",
+      "value": 3086211537.64,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/3925/",
-      "value": 3016023648.06
+      "asOf": "2026-10-30",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "XSECUR": {
-      "asOf": "2026-08-27",
+      "value": 5514836286.65,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/14077/",
-      "value": 5308646129.57
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TVEN": {
-      "asOf": "2026-07-31",
+      "value": 2146769887.78,
       "currency": "RUB",
-      "source": "https://investfunds.ru/funds/11247/",
-      "value": 2094868384.27
+      "asOf": "2026-10-30",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     },
     "TCNY": {
-      "value": 24370579.84,
+      "value": 28291120.49,
       "currency": "CNY",
-      "asOf": "2026-11-10",
-      "source": "https://t-capital-funds.ru/statistics/"
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
+    },
+    "RU000A109KH9": {
+      "value": 2176689407.22,
+      "currency": "RUB",
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
     }
   },
   "history": {
@@ -458,14 +500,16 @@
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TGLD": {
-      "source": "https://investfunds.ru/funds/6329/",
-      "asOf": "2026-10-01",
-      "currency": "USD",
       "returns": {
-        "m1": -4.85,
-        "m6": -11.7,
-        "y1": 8.02
-      }
+        "m1": -10.7,
+        "m6": -16.96,
+        "y1": -11.25
+      },
+      "currency": "USD",
+      "asOf": "2026-11-19",
+      "source": "https://investfunds.ru/funds/6329/",
+      "basis": "Прирост расчётной стоимости пая; выплаты не добавлены",
+      "checkedAt": "2026-11-23"
     },
     "TITR": {
       "source": "https://www.moex.com/ru/issue.aspx?code=TITR",
@@ -612,12 +656,12 @@
     },
     "SBGD": {
       "source": "https://www.moex.com/ru/issue.aspx?code=SBGD",
-      "asOf": "2026-11-20",
+      "asOf": "2026-11-23",
       "currency": "RUB",
       "returns": {
-        "m1": -10.89,
-        "m6": -10.84,
-        "y1": -9.05
+        "m1": -7.08,
+        "m6": -8.98,
+        "y1": -7.16
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
@@ -666,24 +710,28 @@
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TRBR": {
-      "source": "https://investfunds.ru/funds/9037/",
-      "asOf": "2026-07-31",
-      "currency": "RUB",
       "returns": {
-        "m1": 1.1,
-        "m6": 3.95,
-        "y1": 0.58
-      }
+        "m1": -2.45,
+        "m6": 7.47,
+        "y1": 2.69
+      },
+      "currency": "RUB",
+      "asOf": "2026-10-30",
+      "source": "https://investfunds.ru/funds/9037/",
+      "basis": "Прирост расчётной стоимости пая; выплаты не добавлены",
+      "checkedAt": "2026-11-23"
     },
     "TKVM": {
-      "source": "https://investfunds.ru/funds/3925/",
-      "asOf": "2026-07-31",
-      "currency": "RUB",
       "returns": {
-        "m1": 0.5,
-        "m6": 8.14,
-        "y1": 17.83
-      }
+        "m1": 0.59,
+        "m6": 3.68,
+        "y1": 18.71
+      },
+      "currency": "RUB",
+      "asOf": "2026-10-30",
+      "source": "https://investfunds.ru/funds/3925/",
+      "basis": "Прирост расчётной стоимости пая; выплаты не добавлены",
+      "checkedAt": "2026-11-23"
     },
     "XSECUR": {
       "source": "https://www.moex.com/ru/issue.aspx?code=XSECUR",
@@ -697,14 +745,16 @@
       "basis": "Изменение биржевой цены; выплаты не добавлены"
     },
     "TVEN": {
-      "source": "https://investfunds.ru/funds/11247/",
-      "asOf": "2026-07-31",
-      "currency": "RUB",
       "returns": {
-        "m1": 0.77,
-        "m6": 4.93,
-        "y1": 12.3
-      }
+        "m1": 0.74,
+        "m6": 4.83,
+        "y1": 10.43
+      },
+      "currency": "RUB",
+      "asOf": "2026-10-30",
+      "source": "https://investfunds.ru/funds/11247/",
+      "basis": "Прирост расчётной стоимости пая; выплаты не добавлены",
+      "checkedAt": "2026-11-23"
     },
     "RU000A106G80": {
       "source": "https://www.moex.com/ru/issue.aspx?code=RU000A106G80",
@@ -727,6 +777,54 @@
         "y1": null
       },
       "basis": "Изменение биржевой цены; выплаты не добавлены"
+    },
+    "RU000A109KH9": {
+      "returns": {
+        "m1": -0.8,
+        "m6": 0.84,
+        "y1": 6.82
+      },
+      "currency": "RUB",
+      "asOf": "2026-11-19",
+      "source": "https://investfunds.ru/funds/7515/",
+      "basis": "Прирост расчётной стоимости пая; выплаты не добавлены",
+      "checkedAt": "2026-11-23"
+    },
+    "TIND": {
+      "returns": {
+        "m1": 0.22,
+        "m6": 4.41,
+        "y1": null
+      },
+      "currency": "RUB",
+      "asOf": "2026-10-30",
+      "source": "https://investfunds.ru/funds/13497/",
+      "basis": "Прирост расчётной стоимости пая; выплаты не добавлены",
+      "checkedAt": "2026-11-23"
+    },
+    "TRRE": {
+      "returns": {
+        "m1": -0.27,
+        "m6": 4.2,
+        "y1": 7.47
+      },
+      "currency": "RUB",
+      "asOf": "2026-10-30",
+      "source": "https://investfunds.ru/funds/8001/",
+      "basis": "Прирост расчётной стоимости пая; выплаты не добавлены",
+      "checkedAt": "2026-11-23"
+    },
+    "TLCN": {
+      "returns": {
+        "m1": 0.49,
+        "m6": 3.82,
+        "y1": 7.52
+      },
+      "currency": "RUB",
+      "asOf": "2026-10-30",
+      "source": "https://investfunds.ru/funds/8536/",
+      "basis": "Прирост расчётной стоимости пая; выплаты не добавлены",
+      "checkedAt": "2026-11-23"
     }
   },
   "tickers": [
@@ -769,8 +867,18 @@
     "XSECUR"
   ],
   "lastRun": "2026-11-23T07:02:01.126Z",
-  "failedTickers": [
-    "SBGD: fetch failed",
-    "TLCN: fetch failed"
-  ]
+  "failedTickers": [],
+  "manualReview": {
+    "checkedAt": "2026-11-23",
+    "automaticRun": "https://github.com/Delonvv/funds-calculator/actions/runs/45127998541",
+    "resolvedWarnings": [
+      "SBGD: fetch failed",
+      "TLCN: fetch failed"
+    ],
+    "recovery": {
+      "SBGD": "Повторные запросы MOEX успешны; котировка и история восстановлены.",
+      "TLCN": "MOEX успешно вернул пустые списки котировок и свечей; биржевая цена не выдумана. СЧА — УК, история стоимости пая — Investfunds."
+    },
+    "navSourceNote": "22 фонда каталога: индексированная официальная статистика Т-Капитала; прямой HTTP 503. 14 фондов сравнения: Investfunds. Даты оценки указаны отдельно от даты сверки."
+  }
 }
