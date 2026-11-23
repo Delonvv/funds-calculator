@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T07:02:24.071Z",
+  "updatedAt": "2026-11-23T21:39:15.380Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
     {
@@ -19,6 +19,66 @@
       "currency": "RUB",
       "deadline": "До 26 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-53c02f5a-4ce7-4aae-9e81-edb0bb16d9db",
+      "sourceId": "53c02f5a-4ce7-4aae-9e81-edb0bb16d9db",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 1 месяц",
+      "title": "Смарт-Процент на 1 месяц",
+      "issueName": "До 24 декабря",
+      "coupon": "Фиксированная доходность 13,4% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 23 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-dd2eb3aa-ad4b-45e1-b620-a902607f4fd3",
+      "sourceId": "dd2eb3aa-ad4b-45e1-b620-a902607f4fd3",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 4 месяца",
+      "title": "Смарт-Процент на 4 месяца",
+      "issueName": "До 24 марта",
+      "coupon": "Фиксированная ставка 14,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 24 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-3dc98a77-97ce-48f6-9c6b-af3c76fbec7a",
+      "sourceId": "3dc98a77-97ce-48f6-9c6b-af3c76fbec7a",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "Структурный актив на Сбер",
+      "title": "Структурный актив на Сбер",
+      "issueName": "Доходность до 50% на росте Сбера",
+      "coupon": "Доходность до 50% на росте Сбера",
+      "currency": "RUB",
+      "deadline": "До 2 декабря",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
