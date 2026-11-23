@@ -9,6 +9,7 @@ import {pdsLumpSumBrowserChecks} from './pds-lump-sum.mjs';
 import { pdsBrowserChecks } from './pds.mjs';
 import { pdsScenarioBrowserChecks } from './pds-scenario.mjs';
 import { refreshChecks } from './refresh.mjs';
+import {tiraBrowserChecks} from './tira.mjs';
 import { tcnyBrowserChecks } from './tcny.mjs';
 import { strategyChecks } from './strategy.mjs';
 
@@ -62,6 +63,7 @@ export async function browserChecks(check, directory) {
     await strategyChecks(test, origin);
     await catalogBannerChecks(test);
     await tcnyBrowserChecks(test);
+    await tiraBrowserChecks(test);
     await pdsBrowserChecks(test);
     await pdsLumpSumBrowserChecks(test);
     await pdsScenarioBrowserChecks(test);

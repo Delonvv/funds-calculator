@@ -5,6 +5,7 @@ import { browserChecks } from './browser.mjs';
 import {pdsLumpSumFinancialChecks} from './pds-lump-sum.mjs';
 import { pdsFinancialChecks } from './pds.mjs';
 import { pdsScenarioFinancialChecks } from './pds-scenario.mjs';
+import {tiraUpdaterChecks} from './tira.mjs';
 import { tcnyUpdaterChecks } from './tcny.mjs';
 import { weeklyChecks } from './weekly.mjs';
 
@@ -29,6 +30,7 @@ try {
   await staticChecks(daily);
   await financialChecks(daily);
   await tcnyUpdaterChecks(daily);
+  await tiraUpdaterChecks(daily);
   await pdsFinancialChecks(daily);
   await pdsLumpSumFinancialChecks(daily);
   await pdsScenarioFinancialChecks(daily);

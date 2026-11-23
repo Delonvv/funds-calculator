@@ -176,6 +176,12 @@
       "currency": "RUB",
       "asOf": "2026-11-23 10:01:01",
       "source": "https://www.moex.com/"
+    },
+    "TIRA": {
+      "price": 10.04,
+      "currency": "RUB",
+      "asOf": "2026-11-23 13:26:11",
+      "source": "https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/TIRA.json"
     }
   },
   "nav": {
@@ -426,6 +432,13 @@
     },
     "RU000A109KH9": {
       "value": 2176689407.22,
+      "currency": "RUB",
+      "asOf": "2026-11-19",
+      "source": "https://t-capital-funds.ru/statistics/",
+      "checkedAt": "2026-11-23"
+    },
+    "TIRA": {
+      "value": 49995832.33,
       "currency": "RUB",
       "asOf": "2026-11-19",
       "source": "https://t-capital-funds.ru/statistics/",
@@ -849,6 +862,7 @@
     "TDIV",
     "TGLD",
     "TIND",
+    "TIRA",
     "TITR",
     "TKVC",
     "TKVM",

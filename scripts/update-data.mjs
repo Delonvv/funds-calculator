@@ -31,9 +31,10 @@ async function getJson(url) {
 }
 
 async function updateTicker(ticker) {
-  // TCNY: RUB quotes on TQBR; reject any data predating this fund's trading start.
-  const boardPath=ticker==='TCNY'?'/boards/TQBR':'';
-  if(ticker==='TCNY'&&data.history?.TCNY?.asOf<'2026-11-12')delete data.history.TCNY;
+  // New funds: RUB quotes on TQBR; reject observations before their trading start.
+  const firstTradeDate={TCNY:'2026-11-12',TIRA:'2026-11-23'}[ticker];
+  const boardPath=firstTradeDate?'/boards/TQBR':'';
+  if(firstTradeDate&&data.history?.[ticker]?.asOf<firstTradeDate)delete data.history[ticker];
   const marketUrl = `https://iss.moex.com/iss/engines/stock/markets/shares${boardPath}/securities/${encodeURIComponent(ticker)}.json?iss.meta=off&iss.only=marketdata&marketdata.columns=SECID,LAST,MARKETPRICE,SYSTIME`;
   const marketJson = await getJson(marketUrl);
   const row = marketJson.marketdata?.data?.find(r => r[1] != null || r[2] != null);
@@ -52,7 +53,7 @@ async function updateTicker(ticker) {
   const candlesJson = await getJson(candlesUrl);
   const candles = (candlesJson.candles?.data || [])
     .map(r => ({close: Number(r[0]), date: String(r[1]).slice(0, 10)}))
-    .filter(x => Number.isFinite(x.close) && x.close > 0 && /^\d{4}-\d{2}-\d{2}$/.test(x.date) && (ticker!=='TCNY'||x.date>='2026-11-12'))
+    .filter(x => Number.isFinite(x.close) && x.close > 0 && /^\d{4}-\d{2}-\d{2}$/.test(x.date) && (!firstTradeDate||x.date>=firstTradeDate))
     .sort((a, b) => a.date.localeCompare(b.date));
   if (candles.length < 2) return;
   const latest = candles[candles.length - 1];
