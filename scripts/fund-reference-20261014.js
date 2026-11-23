@@ -1,4 +1,5 @@
 window.fundReference = {
+  "TIRA": {"type":"БПИФ","access":"Квалам и неквалам","exchange":"Мосбиржа","weekend":null,"evening":null,"asOf":"23.11.2026","source":"https://iss.moex.com/iss/securities/TIRA.json","isin":"RU000A10GKD8","registrationNumber":"8172","fundCurrency":"RUB","quoteCurrency":"RUB","quoteBoard":"TQBR","firstTradeDate":"2026-11-23","feeSource":"https://data.investfunds.ru/funds/14523/rules-tira.docx","feeSections":[92,95]},
   "TCNY": {"type":"БПИФ","access":"Квалам и неквалам","exchange":"Мосбиржа","evening":true,"weekend":null,"asOf":"12.11.2026","source":"https://iss.moex.com/iss/securities/TCNY.json","isin":"RU000A10GF35","fundCurrency":"CNY","quoteCurrency":"RUB","quoteBoard":"TQBR","firstTradeDate":"2026-11-12","feeSource":"https://data.investfunds.ru/funds/14479/rules-tcny.docx","feeSections":[92,95],"benchmark":"RUSFAR CNY"},
   "TRBR": {
     "type": "ЗПИФ",

@@ -50,6 +50,7 @@ export async function pdsBrowserChecks(test) {
     } finally {release();}
   });
   await test('browser/pds', 'ПДС: навигация, месячный/годовой взнос, возраст и льготы', async page => {
+    const fundTickers = await page.locator('#grid>.card').evaluateAll(cards=>cards.map(card=>card.dataset.fundTicker));
     await page.locator('[data-page="pds"]').waitFor();
     assert(await page.locator('[data-page="pds"]').evaluate(x=>x.nextElementSibling.classList.contains('smart-sales-nav')), 'PDS is not left of Smart Sales');
     await show(page);
@@ -90,7 +91,7 @@ export async function pdsBrowserChecks(test) {
     assert(await page.locator('#pdsError').textContent(), 'Invalid amount silently accepted');
     assert(!await page.locator('#pdsBenefits').isVisible(), 'Stale results remain after invalid input');
     await page.locator('[data-page="funds"]').click();
-    assert(await page.locator('#grid>.card').count() === 22, 'PDS changed catalogue');
+    assert(JSON.stringify(await page.locator('#grid>.card').evaluateAll(cards=>cards.map(card=>card.dataset.fundTicker))) === JSON.stringify(fundTickers), 'PDS changed catalogue');
     await page.evaluate(()=>window.showProductPage('model'));
     assert(await page.locator('#modelPage').isVisible(), 'Model navigation broken');
   });
