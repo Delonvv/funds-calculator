@@ -34,7 +34,26 @@ export async function pdsFinancialChecks(check) {
 }
 
 export async function pdsBrowserChecks(test) {
-  const show = async page => {await page.locator('[data-page="pds"]').click();await page.locator('#pdsForm').waitFor();};
+  const show = async page => {await page.locator('[data-page="pds"]').click();await page.locator('#pdsForm').waitFor();await page.locator('#pdsClientParameters>summary').click();await page.locator('#pdsAge').waitFor({state:'visible'});};
+  await test('browser/pds-compact','ПДС: компактный экран, видимый статус вычета и доступные подробности',async page=>{
+    await page.clock.setFixedTime(new Date('2026-11-24T09:00:00Z'));
+    await page.locator('[data-page="pds"]').click();await page.locator('#pdsForm').waitFor();
+    assert(await page.locator('#pdsScenarioAdditional').isVisible(),'Main result hidden');
+    assert(!await page.locator('#pdsBenefits').isVisible()&&!await page.locator('#pdsAge').isVisible(),'Secondary information dominates initial screen');
+    const fonts=await page.evaluate(()=>({annual:parseFloat(getComputedStyle(document.querySelector('#pdsScenarioAnnual')).fontSize),total:parseFloat(getComputedStyle(document.querySelector('#pdsScenarioAdditional')).fontSize)}));
+    assert(fonts.annual>=25&&fonts.annual<fonts.total,'Annual effect should be highlighted but smaller than main total');
+    await page.locator('#pdsYears').fill('2');await page.locator('#pdsForm button[type=submit]').click();
+    assert(await page.locator('#pdsTaxStatus').isVisible()&&(await page.locator('#pdsTaxStatus').textContent()).includes('не сохраняется'),'Short-plan tax warning hidden');
+    const client=page.locator('#pdsClientParameters>summary');await client.focus();await page.keyboard.press('Enter');await page.locator('#pdsAge').waitFor({state:'visible'});
+    await page.locator('#pdsAge').fill('56');await page.locator('#pdsSex').selectOption('female');
+    assert(await page.locator('#pdsStatus').getAttribute('data-state')==='met','Age eligibility lost');
+    await page.keyboard.press('Escape');assert(await client.evaluate(x=>x===document.activeElement),'Client focus not restored');
+    const toggle=page.locator('#pdsScenarioDetailsToggle');await toggle.focus();await page.keyboard.press('Enter');await page.locator('#pdsSupport').waitFor({state:'visible'});await page.locator('#pdsScenarioRate').waitFor({state:'visible'});
+    assert(await toggle.getAttribute('aria-expanded')==='true'&&await page.locator('#pdsScenarioRate').isVisible(),'Details inaccessible');
+    await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#pdsDetails').open);
+    assert(await toggle.evaluate(x=>x===document.activeElement),'Details focus not restored');
+    await page.locator('.pds-memo-shortcut').click();assert(await page.locator('#pdsMemo').getAttribute('open')!==null,'Manager memo inaccessible');
+  });
   await test('browser/pds-initial-refresh', 'ПДС: поздняя начальная загрузка не сбрасывает заполненные поля', async page => {
     let release;
     const gate=new Promise(resolve=>{release=resolve;});
@@ -121,6 +140,7 @@ export async function pdsBrowserChecks(test) {
       await page.locator('#pdsForm').scrollIntoViewIfNeeded();
       await page.locator('#pdsAmount').fill('36000');
       await page.locator('#pdsForm button[type="submit"]').click();
+      if(await page.locator('#pdsDetails').getAttribute('open')===null)await page.locator('#pdsScenarioDetailsToggle').click();
       assert(await page.locator('#pdsSupport').isVisible(), 'Mobile results missing');
       assert(await page.locator('.pds-period').evaluate(x=>x.getBoundingClientRect().right<=innerWidth), 'Period toggle outside screen');
       assert(await page.locator('#pdsAge').isVisible() && await page.locator('#pdsSex').isVisible(), 'Client parameters require discovery');

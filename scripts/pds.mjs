@@ -84,10 +84,10 @@ if (nav && menu && !document.getElementById('pdsPage')) {
         <label class="pds-field">Срок, лет<input id="pdsYears" type="number" min="1" max="30" step="1" value="5"></label>
         <label class="pds-field pds-field-income">Доход в месяц<select id="pdsIncome"><option value="">Выберите доход</option><option value="low">До 80 000 ₽</option><option value="middle">Свыше 80 до 150 тыс. ₽</option><option value="high" selected>Свыше 150 000 ₽</option></select></label>
         </div>
-        <section class="pds-parameters" aria-labelledby="pdsClientTitle">
-          <div class="pds-client-heading"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3Z"/></svg><div><h3 id="pdsClientTitle">Возраст и пол</h3><p>Чтобы определить срок выплат</p></div><span class="pds-optional">Необязательно</span></div>
+        <details class="pds-parameters" id="pdsClientParameters">
+          <summary class="pds-client-heading"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3Z"/></svg><div><h3 id="pdsClientTitle">Возраст и пол</h3><p>Для срока выплат</p></div></summary>
           <div class="pds-parameter-fields"><label class="pds-field">Возраст<input id="pdsAge" type="number" min="18" max="110" step="1" placeholder="Укажите возраст"></label><label class="pds-field">Пол<select id="pdsSex"><option value="">Выберите</option><option value="female">Женщина</option><option value="male">Мужчина</option></select></label></div>
-        </section>
+        </details>
         <button class="pds-calculate" type="submit">Рассчитать</button>
         <section class="pds-scenario" aria-label="Сценарная доходность">
           <div class="pds-scenario-main" aria-live="polite" aria-atomic="true"><span id="pdsScenarioTitle"></span><strong id="pdsScenarioAnnual">—</strong></div>
@@ -129,26 +129,34 @@ if (nav && menu && !document.getElementById('pdsPage')) {
       </section>
       </div>
       <p class="pds-small">Условия основного расчёта проверены ${esc(config.checkedAt.split('-').reverse().join('.'))}. Суммы льгот — условные ориентиры, не гарантированная выплата.</p>`;
+    compactLayout();
     q('PromoShortcut').onclick = () => {
+      q('Details').open=true;
       const promo = q('Promo');
       promo.open = true;
       promo.querySelector('summary').focus({preventScroll:true});
       promo.scrollIntoView({block:'start', behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
     };
     q('LumpSumShortcut').onclick=()=>{
-      q('Payments').open=true;q('LumpSum').open=true;
+      q('Details').open=true;q('Payments').open=true;q('LumpSum').open=true;
       const sex=q('Sex').value;
       if(sex==='female'||sex==='male')q(sex==='female'?'LumpSumFemale':'LumpSumMale').open=true;
       q('LumpSum').querySelector('summary').focus({preventScroll:true});
       q('LumpSum').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
     };
     for(const id of ['Payments','LumpSum'])q(id).addEventListener('toggle',()=>q('LumpSumShortcut').setAttribute('aria-expanded',String(q('Payments').open&&q('LumpSum').open)));
-    const breakdown=q('Breakdown'),toggle=q('ScenarioDetailsToggle');
+    const breakdown=q('Breakdown'),toggle=q('ScenarioDetailsToggle'),details=q('Details');
     toggle.onclick=()=>{
-      breakdown.open=!breakdown.open;
-      if(breakdown.open){breakdown.querySelector('summary').focus({preventScroll:true});breakdown.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+      details.open=!details.open;
+      if(details.open){breakdown.open=true;details.querySelector('summary').focus({preventScroll:true});details.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
     };
-    breakdown.addEventListener('toggle',()=>{toggle.setAttribute('aria-expanded',String(breakdown.open));toggle.querySelector('span').textContent=breakdown.open?'⌃':'⌄';if(!breakdown.open&&breakdown.contains(document.activeElement))toggle.focus({preventScroll:true});});
+    details.addEventListener('toggle',()=>{toggle.setAttribute('aria-expanded',String(details.open));toggle.querySelector('span').textContent=details.open?'⌃':'⌄';if(!details.open&&details.contains(document.activeElement))toggle.focus({preventScroll:true});});
+    breakdown.addEventListener('toggle',()=>{if(!breakdown.open&&breakdown.contains(document.activeElement))toggle.focus({preventScroll:true});});
+    page.onkeydown=event=>{
+      if(event.key!=='Escape')return;
+      if(details.open){details.open=false;toggle.focus({preventScroll:true});event.preventDefault();}
+      else if(q('ClientParameters').open){q('ClientParameters').open=false;q('ClientParameters').querySelector('summary').focus({preventScroll:true});event.preventDefault();}
+    };
     q('ScenarioRate').addEventListener('input',()=>{scenarioRatePercent=q('ScenarioRate').value.trim()===''?NaN:Number(q('ScenarioRate').value);render();});
     for(const [id,key] of [['ScenarioStart','start'],['ScenarioEnd','end'],['ScenarioBenefit','benefit']])q(id).addEventListener('input',()=>{if(key==='start')scenarioStartDate=q(id).value;if(key==='end'){scenarioEndDate=q(id).value;try{let years=Number(scenarioEndDate.slice(0,4))-Number(scenarioStartDate.slice(0,4));if(scenarioEndDate>scenarioAnniversary(scenarioStartDate,years))years++;if(years>=0&&years<=30)q('Years').value=Math.max(1,years);}catch{}}if(key==='benefit')scenarioBenefitDate=q(id).value;render();});
     q('Years').addEventListener('change',()=>{scenarioEndDate=null;});
@@ -164,6 +172,26 @@ if (nav && menu && !document.getElementById('pdsPage')) {
     });
     render();
   }
+  // Retain calculation nodes while grouping secondary information in one disclosure.
+  function compactLayout(){
+    const layout=page.querySelector('.pds-layout'),results=page.querySelector('.pds-results');
+    const verification=page.lastElementChild;
+    const details=document.createElement('details');details.id='pdsDetails';details.className='pds-all-details pds-lower';
+    const summary=document.createElement('summary');summary.textContent='Расчёт и условия';details.append(summary);
+    const body=document.createElement('div');body.className='pds-details-body';details.append(body);
+    for(const node of [q('Benefits'),q('Breakdown'),q('Payments'),q('Promo'),q('Memo')])body.append(node);
+    layout.after(details);
+    const status=document.createElement('div');status.className='pds-compact-status';
+    const tax=document.createElement('p');tax.id='pdsTaxStatus';tax.setAttribute('role','status');
+    status.append(q('Status'),tax,q('LumpSumShortcut'));layout.after(status);
+    q('Payments').querySelector('.pds-detail-body').prepend(q('EligibilityNote'));
+    results.append(q('ScenarioTotals'),page.querySelector('.pds-scenario'));
+    const toggle=q('ScenarioDetailsToggle');toggle.innerHTML='Показать расчёт и условия <span aria-hidden="true">⌄</span>';toggle.setAttribute('aria-controls','pdsDetails');toggle.classList.add('pds-details-trigger');results.append(toggle);
+    const foot=document.createElement('div');foot.className='pds-compact-footer';
+    const memo=document.createElement('button');memo.type='button';memo.className='pds-memo-shortcut';memo.textContent='Памятка менеджеру ↗';memo.setAttribute('aria-controls','pdsMemo');memo.onclick=()=>{details.open=true;q('Memo').open=true;q('Memo').querySelector('summary').focus({preventScroll:true});q('Memo').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});};
+    const note=document.createElement('p');note.textContent='Доходность не гарантирована.';foot.append(memo,note);status.after(foot);
+    body.append(verification);
+  }
   function render(focusError = false) {
     let r, scenario;
     try {
@@ -174,6 +202,7 @@ if (nav && menu && !document.getElementById('pdsPage')) {
       q('Error').textContent = ''; q('Benefits').hidden = false;
     } catch (error) {
       q('Error').textContent = error.message;
+      q('TaxStatus').textContent='Проверьте условия вычета';q('TaxStatus').dataset.state='unknown';
       q('Benefits').hidden = true;
       resetScenario('Проверьте параметры расчёта.');
       q('ScenarioAssumption').textContent='Сценарий не рассчитан.';
@@ -189,6 +218,8 @@ if (nav && menu && !document.getElementById('pdsPage')) {
     q('Support').textContent = r.support === null ? 'Укажите средний доход' : `до ${money(r.support)} за ${r.supportYears} ${yearsWord(r.supportYears)}`;
     q('SupportNote').textContent = r.support === null ? 'Выберите доход слева — от него зависит господдержка.' : r.annual < config.support.minimumAnnual ? `Для господдержки нужно внести от ${money(config.support.minimumAnnual)} за календарный год.` : `При ежегодном выполнении условий — до ${money(r.supportAnnual)} за взносный год. Зачисление позднее взносов.`;
     q('TaxRow').dataset.state=r.taxTermMet?'included':'excluded';
+    q('TaxStatus').dataset.state=r.taxTermMet?'included':'excluded';
+    q('TaxStatus').textContent=r.taxTermMet?'Вычет — при соблюдении условий':`Вычет не сохраняется: менее ${r.minimumTaxYears} полных лет`;
     q('Tax').textContent = r.taxTermMet ? `до ${money(r.taxPotential)}` : 'Не включён';
     q('TaxNote').textContent = r.taxTermMet ? 'При подходящем доходе и достаточном уплаченном НДФЛ. Возврат отдельно.' : `При выходе раньше ${r.minimumTaxYears} полных лет льгота не сохраняется. Ранее полученные вычеты нужно вернуть.`;
     q('TaxDetails').textContent = `Минимальная дата выхода для сохранения льготы — ${dateLabel(scenario.minimumTaxDate)}. Возрастное право на выплаты не отменяет налоговый срок. Для нового договора ${r.contractYear} года минимальный срок до обращения за выплатами для сохранения вычета — ${r.minimumTaxYears} ${yearsWord(r.minimumTaxYears)}. Потенциальный возврат за один год при принятых 13% — до ${money(r.taxAnnual)}. Вычет можно заявлять за соответствующие годы при соблюдении условий; если выйти раньше минимума, льгота не сохраняется.`;
@@ -217,10 +248,11 @@ if (nav && menu && !document.getElementById('pdsPage')) {
     q('ScenarioAccount').textContent=scenarioMoney(s.account);q('ScenarioPersonal').textContent=money(s.personal);
     q('InvestmentResult').textContent=scenarioMoney(s.investment);q('InvestmentResult').dataset.sign=s.investment<0?'negative':'positive';
     q('InvestmentDetails').textContent=`Результат по ${dateLabel(s.lastIncomeDate)} при условном темпе ${number(scenarioRatePercent)}% годовых, с учётом дат взносов и доплат. Год выхода в инвестдоход не включён.`;
+    q('ResultsTitle').textContent='Дополнительный результат';
     q('ScenarioAdditional').textContent=scenarioMoney(s.additional);
     q('ScenarioAdditional').dataset.sign=s.additional<0?'negative':'positive';
     q('ScenarioAccountNote').textContent=`Выход: ${dateLabel(s.endDate)}. Инвестдоход по ${dateLabel(s.lastIncomeDate)}.`;
-    q('ScenarioAdditionalNote').textContent=`По плану на ${r.years} ${yearsWord(r.years)}. ${s.taxTotal>0?'С учётом отдельного возврата НДФЛ — до '+money(s.taxTotal)+'.':'Без возврата НДФЛ.'}`;
+    q('ScenarioAdditionalNote').textContent=s.taxTotal>0?'Включая отдельный возврат НДФЛ':'Без возврата НДФЛ';
     q('BreakdownPersonal').textContent=money(s.personal);
     q('BreakdownSupport').textContent=`до ${money(s.support)} к дате выхода · по взносам календарных лет`;
     q('BreakdownInvestment').textContent=scenarioMoney(s.investment);
