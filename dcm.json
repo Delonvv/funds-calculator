@@ -1,27 +1,7 @@
 {
-  "updatedAt": "2026-11-23T21:39:15.380Z",
+  "updatedAt": "2026-11-24T09:55:57.471Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
-    {
-      "id": "primary-ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
-      "sourceId": "ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Россети",
-      "title": "Облигации Россети",
-      "issueName": "Россети 001Р-28R",
-      "coupon": "Плавающий купон до 15,5%",
-      "currency": "RUB",
-      "deadline": "До 26 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
     {
       "id": "primary-53c02f5a-4ce7-4aae-9e81-edb0bb16d9db",
       "sourceId": "53c02f5a-4ce7-4aae-9e81-edb0bb16d9db",
@@ -63,22 +43,22 @@
       "missingChecks": 0
     },
     {
-      "id": "current-3dc98a77-97ce-48f6-9c6b-af3c76fbec7a",
-      "sourceId": "3dc98a77-97ce-48f6-9c6b-af3c76fbec7a",
-      "section": "current",
+      "id": "primary-ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
+      "sourceId": "ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
+      "section": "primary",
       "sourceSections": [
-        "current"
+        "primary"
       ],
       "sourceShelves": [
-        "Сейчас размещаются"
+        "Первичные размещения от Т-Банка"
       ],
-      "issuer": "Структурный актив на Сбер",
-      "title": "Структурный актив на Сбер",
-      "issueName": "Доходность до 50% на росте Сбера",
-      "coupon": "Доходность до 50% на росте Сбера",
+      "issuer": "Россети",
+      "title": "Облигации Россети",
+      "issueName": "Россети 001Р-28R",
+      "coupon": "Плавающий купон до 15,5%",
       "currency": "RUB",
-      "deadline": "До 2 декабря",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "deadline": "До 26 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -99,6 +79,66 @@
       "currency": "RUB",
       "deadline": "До 24 ноября",
       "image": "https://invest-brands.cdn-tinkoff.ru/А7x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-a8767774-d16b-46b2-99e7-ed29fd7c8079",
+      "sourceId": "a8767774-d16b-46b2-99e7-ed29fd7c8079",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "ЦФА Coldy",
+      "title": "ЦФА Coldy",
+      "issueName": "COLDY 2",
+      "coupon": "Процентная ставка 24%",
+      "currency": "RUB",
+      "deadline": "До 1 декабря",
+      "image": "https://invest-brands.cdn-tinkoff.ru/coldyx160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-3dc98a77-97ce-48f6-9c6b-af3c76fbec7a",
+      "sourceId": "3dc98a77-97ce-48f6-9c6b-af3c76fbec7a",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "Структурный актив на Сбер",
+      "title": "Структурный актив на Сбер",
+      "issueName": "Доходность до 50% на росте Сбера",
+      "coupon": "Доходность до 50% на росте Сбера",
+      "currency": "RUB",
+      "deadline": "До 2 декабря",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "current-7175006c-d6cb-4ecd-b932-b21f8530c7ee",
+      "sourceId": "7175006c-d6cb-4ecd-b932-b21f8530c7ee",
+      "section": "current",
+      "sourceSections": [
+        "current"
+      ],
+      "sourceShelves": [
+        "Сейчас размещаются"
+      ],
+      "issuer": "Интерлизинг",
+      "title": "Облигации Интерлизинг",
+      "issueName": "Интерлизинг 001Р-12",
+      "coupon": "Фиксированный  купон до 18%",
+      "currency": "RUB",
+      "deadline": "До 24 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A102B30x160.png",
       "isQual": false,
       "missingChecks": 0
     }
