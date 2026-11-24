@@ -170,7 +170,12 @@
     root.querySelectorAll('[data-fund-forecast]').forEach(el=>{const x=typeof data==='object'&&Array.isArray(window.fundCatalogue)?window.fundCatalogue.find(f=>f.t===el.dataset.fundForecast):null;el.textContent=x&&x.e&&x.e!=='—'?'Ориентир из каталога: '+x.e+' · '+x.b+'. Актуальность проверяйте перед оформлением.':'Ориентир доходности — в актуальной карточке фонда.';});
     initDcm(root,'ssDcm',false);
   }
-  function eligiblePlacement(x){const text=[x.issuer,x.title,x.issueName,x.coupon,x.type,x.category].filter(Boolean).join(' ').replace(/\u00a0/g,' ');if(/структурн[а-яё]*\s+(?:актив|продукт)/i.test(text))return false;if(/цфа/i.test(text)&&!/смарт[- ]?процент|т[-‑– ](?:банк|проекты|инвестиции)/i.test(text))return false;return true;}
+  function eligiblePlacement(x){
+    // The bank still returns this dated campaign after its 23.11.2026 subscription deadline.
+    // Keep the raw source record, but exclude the confirmed closed campaign from current lists.
+    if(x.sourceId==='53c02f5a-4ce7-4aae-9e81-edb0bb16d9db'&&/^до\s+23\s+ноября$/i.test(String(x.deadline||'').replace(/\u00a0/g,' ').trim())&&new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())>'2026-11-23')return false;
+    const text=[x.issuer,x.title,x.issueName,x.coupon,x.type,x.category].filter(Boolean).join(' ').replace(/\u00a0/g,' ');if(/структурн[а-яё]*\s+(?:актив|продукт)/i.test(text))return false;if(/цфа/i.test(text)&&!/смарт[- ]?процент|т[-‑– ](?:банк|проекты|инвестиции)/i.test(text))return false;return true;
+  }
   function currencyPlacement(x){return /(?<![A-Za-zА-Яа-яЁё])(?:CNY|USD|EUR|юан[а-я]*|доллар[а-я]*|евро)(?![A-Za-zА-Яа-яЁё])|валютн|замещающ/i.test([x.currency,x.title,x.issueName,x.coupon].filter(Boolean).join(' '));}
   function placementList(items,foreign){const seen=new Set();return items.map(x=>x.sourceId==='ea384f29-fb79-4fa0-9509-70fb0a7d71cf'?{...x,currency:'RUB'}:x).filter(eligiblePlacement).filter(x=>currencyPlacement(x)===foreign&&(foreign||/^(RUB|SUR|RUR)$/i.test(x.currency||''))).filter(x=>{const key=String(x.sourceId||[x.issuer,x.issueName,x.currency].join('|')).replace(/\s+/g,' ').trim().toLowerCase();if(seen.has(key))return false;seen.add(key);return true;});}
   // One selection rule for Fixed Income and the catalogue preview.

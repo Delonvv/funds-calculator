@@ -84,7 +84,7 @@ if (nav && menu && !document.getElementById('pdsPage')) {
         <label class="pds-field">Срок, лет<input id="pdsYears" type="number" min="1" max="30" step="1" value="5"></label>
         <label class="pds-field pds-field-income">Доход в месяц<select id="pdsIncome"><option value="">Выберите доход</option><option value="low">До 80 000 ₽</option><option value="middle">Свыше 80 до 150 тыс. ₽</option><option value="high" selected>Свыше 150 000 ₽</option></select></label>
         </div>
-        <details class="pds-parameters" id="pdsClientParameters">
+        <details class="pds-parameters" id="pdsClientParameters" open>
           <summary class="pds-client-heading"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3Z"/></svg><div><h3 id="pdsClientTitle">Возраст и пол</h3><p>Для срока выплат</p></div></summary>
           <div class="pds-parameter-fields"><label class="pds-field">Возраст<input id="pdsAge" type="number" min="18" max="110" step="1" placeholder="Укажите возраст"></label><label class="pds-field">Пол<select id="pdsSex"><option value="">Выберите</option><option value="female">Женщина</option><option value="male">Мужчина</option></select></label></div>
         </details>
@@ -148,6 +148,7 @@ if (nav && menu && !document.getElementById('pdsPage')) {
     const breakdown=q('Breakdown'),toggle=q('ScenarioDetailsToggle'),details=q('Details');
     toggle.onclick=()=>{
       details.open=!details.open;
+      toggle.setAttribute('aria-expanded',String(details.open));toggle.querySelector('span').textContent=details.open?'⌃':'⌄';
       if(details.open){breakdown.open=true;details.querySelector('summary').focus({preventScroll:true});details.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
     };
     details.addEventListener('toggle',()=>{toggle.setAttribute('aria-expanded',String(details.open));toggle.querySelector('span').textContent=details.open?'⌃':'⌄';if(!details.open&&details.contains(document.activeElement))toggle.focus({preventScroll:true});});
@@ -270,11 +271,11 @@ if (nav && menu && !document.getElementById('pdsPage')) {
   }
   window.pageDataRefresh?.register({pages:['pds'],file:'pds-config.json',current:()=>config,validate:c=>{validate(c);return true;},apply:c=>{
     const fields=Object.fromEntries(['Amount','Years','Income','Age','Sex','ScenarioRate','ScenarioStart','ScenarioEnd','ScenarioBenefit'].map(id=>[id,q(id)?.value]));
-    const open=[...page.querySelectorAll('details')].map((x,i)=>x.open?i:-1).filter(i=>i>=0);
+    const open=[...page.querySelectorAll('details')].map(x=>x.open);
     config=c;mount();
     for(const [id,value] of Object.entries(fields))if(value!==undefined)q(id).value=value;
     page.querySelectorAll('[data-pds-period]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pdsPeriod===period)));
-    const details=page.querySelectorAll('details');open.forEach(i=>{if(details[i])details[i].open=true;});render();
+    const details=page.querySelectorAll('details');open.forEach((isOpen,i)=>{if(details[i])details[i].open=isOpen;});render();
   }});
   if (location.hash === '#pds') window.showProductPage('pds');
 }

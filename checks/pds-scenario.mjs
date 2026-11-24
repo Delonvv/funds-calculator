@@ -131,9 +131,11 @@ export async function pdsScenarioBrowserChecks(test) {
   await test('browser/pds-scenario-refresh','ПДС: обновление сохраняет ставку, даты и раскрытие',async page=>{
     await show(page);await page.locator('#pdsAmount').fill('50000');await page.locator('#pdsIncome').selectOption('low');
     await page.locator('#pdsScenarioDetailsToggle').click();await page.locator('#pdsScenarioRate').fill('0');
+    await page.locator('#pdsClientParameters>summary').click();
     const config=await json('pds-config.json');config.support.annualCap=30000;await page.route('**/pds-config.json?refresh=*',r=>r.fulfill({json:config}));
     await page.evaluate(()=>{window.showProductPage('funds');window.showProductPage('pds');});
     await page.waitForFunction(()=>document.querySelector('#pdsScenarioAccount').textContent.includes('400 000'));
+    assert(await page.locator('#pdsClientParameters').getAttribute('open')===null,'Manual client collapse reset by data refresh');
     assert(await page.locator('#pdsScenarioRate').inputValue()==='0','Rate reset');assert(await page.locator('#pdsScenarioStart').inputValue()==='2026-11-13','Date reset');assert(await page.locator('#pdsBreakdown').getAttribute('open')!==null,'Breakdown closed');
   });
 }
