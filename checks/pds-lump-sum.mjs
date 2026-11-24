@@ -25,7 +25,6 @@ export async function pdsLumpSumBrowserChecks(test) {
   await test('browser/pds-lump-memo','ПДС: памятка по выходу, две таблицы, PDF и мобильная прокрутка',async page=>{
     await page.emulateMedia({reducedMotion:'reduce'});await page.locator('[data-page=pds]').click();await page.locator('#pdsForm').waitFor();
     assert(await page.locator('#pdsLumpSum').getAttribute('open')===null,'Memo takes over initial screen');
-    await page.locator('#pdsClientParameters>summary').click();
     await page.locator('#pdsSex').selectOption('male');await page.locator('#pdsAge').fill('63');await page.locator('#pdsForm button[type=submit]').click();
     const balance=await page.locator('#pdsScenarioAccount').textContent();
     await page.locator('#pdsLumpSumShortcut').focus();await page.keyboard.press('Enter');

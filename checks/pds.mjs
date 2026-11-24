@@ -34,17 +34,18 @@ export async function pdsFinancialChecks(check) {
 }
 
 export async function pdsBrowserChecks(test) {
-  const show = async page => {await page.locator('[data-page="pds"]').click();await page.locator('#pdsForm').waitFor();await page.locator('#pdsClientParameters>summary').click();await page.locator('#pdsAge').waitFor({state:'visible'});};
+  const show = async page => {await page.locator('[data-page="pds"]').click();await page.locator('#pdsForm').waitFor();await page.locator('#pdsAge').waitFor({state:'visible'});};
   await test('browser/pds-compact','ПДС: компактный экран, видимый статус вычета и доступные подробности',async page=>{
     await page.clock.setFixedTime(new Date('2026-11-24T09:00:00Z'));
     await page.locator('[data-page="pds"]').click();await page.locator('#pdsForm').waitFor();
     assert(await page.locator('#pdsScenarioAdditional').isVisible(),'Main result hidden');
-    assert(!await page.locator('#pdsBenefits').isVisible()&&!await page.locator('#pdsAge').isVisible(),'Secondary information dominates initial screen');
+    assert(!await page.locator('#pdsBenefits').isVisible(),'Secondary information dominates initial screen');
+    assert(await page.locator('#pdsAge').isVisible()&&await page.locator('#pdsSex').isVisible(),'Client fields must be open by default');
     const fonts=await page.evaluate(()=>({annual:parseFloat(getComputedStyle(document.querySelector('#pdsScenarioAnnual')).fontSize),total:parseFloat(getComputedStyle(document.querySelector('#pdsScenarioAdditional')).fontSize)}));
     assert(fonts.annual>=25&&fonts.annual<fonts.total,'Annual effect should be highlighted but smaller than main total');
     await page.locator('#pdsYears').fill('2');await page.locator('#pdsForm button[type=submit]').click();
     assert(await page.locator('#pdsTaxStatus').isVisible()&&(await page.locator('#pdsTaxStatus').textContent()).includes('не сохраняется'),'Short-plan tax warning hidden');
-    const client=page.locator('#pdsClientParameters>summary');await client.focus();await page.keyboard.press('Enter');await page.locator('#pdsAge').waitFor({state:'visible'});
+    const client=page.locator('#pdsClientParameters>summary');await client.focus();await page.keyboard.press('Enter');await page.waitForFunction(()=>!document.querySelector('#pdsClientParameters').open);await page.keyboard.press('Enter');await page.locator('#pdsAge').waitFor({state:'visible'});
     await page.locator('#pdsAge').fill('56');await page.locator('#pdsSex').selectOption('female');
     assert(await page.locator('#pdsStatus').getAttribute('data-state')==='met','Age eligibility lost');
     await page.keyboard.press('Escape');assert(await client.evaluate(x=>x===document.activeElement),'Client focus not restored');

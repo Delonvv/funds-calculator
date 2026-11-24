@@ -1,6 +1,15 @@
 import { assert } from './core.mjs';
 
 export async function catalogBannerChecks(test) {
+  await test('browser/catalog-closed-placement','Завершённое предложение не попадает в актуальную ленту',async page=>{
+    await page.clock.setFixedTime(new Date('2026-11-24T09:00:00Z'));
+    const result=await page.evaluate(()=>{
+      const closed={id:'closed',sourceId:'53c02f5a-4ce7-4aae-9e81-edb0bb16d9db',issuer:'Смарт-Процент на 1 месяц',title:'Смарт-Процент на 1 месяц',currency:'RUB',deadline:'До 23 ноября'};
+      return {closed:window.getFixedIncomePlacements([closed]).length,reopened:window.getFixedIncomePlacements([{...closed,deadline:'До 26 ноября'}]).length,unknown:window.getFixedIncomePlacements([{...closed,id:'unknown',sourceId:'unknown',deadline:'Уточняется'}]).length};
+    });
+    assert(result.closed===0,'Expired subscription remains current');
+    assert(result.reopened===1&&result.unknown===1,'Unconfirmed closures were invented');
+  });
   await test('browser/catalog-placement-strip', 'Лёгкая лента совпадает с Fixed Income, ручная прокрутка и переход', async page => {
     assert(await page.locator('.ct-banner').count() === 0, 'Old banner remains');
     const rail=page.locator('.ct-strip-rail');
