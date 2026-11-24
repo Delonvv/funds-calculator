@@ -11,9 +11,10 @@ export async function catalogBannerChecks(test) {
     }
     // Scrolling coverage must not depend on how many real issues are open today.
     const placements = Array.from({length:4}, (_, i) => ({
-      ...live.placements[i % live.placements.length],
+      ...live.placements[0],
       id:`test-placement-${i}`, sourceId:`test-source-${i}`,
-      issueName:`Тестовый выпуск ${i + 1}`
+      issuer:`Тестовый эмитент ${i + 1}`, title:`Облигации тестового эмитента ${i + 1}`,
+      issueName:`Тестовый выпуск ${i + 1}`, currency:'RUB'
     }));
     await page.route('**/dcm.json?*', r => r.fulfill({contentType:'application/json', body:JSON.stringify({...live, placements})}));
     await page.reload({waitUntil:'networkidle'});
