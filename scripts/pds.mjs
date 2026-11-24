@@ -248,7 +248,7 @@ if (nav && menu && !document.getElementById('pdsPage')) {
     q('ScenarioAccount').textContent=scenarioMoney(s.account);q('ScenarioPersonal').textContent=money(s.personal);
     q('InvestmentResult').textContent=scenarioMoney(s.investment);q('InvestmentResult').dataset.sign=s.investment<0?'negative':'positive';
     q('InvestmentDetails').textContent=`Результат по ${dateLabel(s.lastIncomeDate)} при условном темпе ${number(scenarioRatePercent)}% годовых, с учётом дат взносов и доплат. Год выхода в инвестдоход не включён.`;
-    q('ResultsTitle').textContent=`Дополнительный результат за ${r.years} ${yearsWord(r.years)}`;
+    q('ResultsTitle').textContent='Дополнительный результат';
     q('ScenarioAdditional').textContent=scenarioMoney(s.additional);
     q('ScenarioAdditional').dataset.sign=s.additional<0?'negative':'positive';
     q('ScenarioAccountNote').textContent=`Выход: ${dateLabel(s.endDate)}. Инвестдоход по ${dateLabel(s.lastIncomeDate)}.`;
