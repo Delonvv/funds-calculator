@@ -1,7 +1,87 @@
 {
-  "updatedAt": "2026-11-26T19:15:58.115Z",
+  "updatedAt": "2026-11-27T19:09:52.137Z",
   "source": "https://www.tbank.ru/invest/recommendations/",
   "placements": [
+    {
+      "id": "primary-ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
+      "sourceId": "ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Россети",
+      "title": "Облигации Россети",
+      "issueName": "Россети 001Р-28R",
+      "coupon": "Плавающий купон 15,35%",
+      "currency": "RUB",
+      "deadline": "До 30 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-75277865-a0b4-4563-a951-08f1548892b9",
+      "sourceId": "75277865-a0b4-4563-a951-08f1548892b9",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 4 месяца",
+      "title": "Смарт-Процент на 4 месяца",
+      "issueName": "До 30 марта",
+      "coupon": "Фиксированная ставка 14,5% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 30 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-98a8a631-bbe9-4244-a37d-d28894d30c6c",
+      "sourceId": "98a8a631-bbe9-4244-a37d-d28894d30c6c",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 7 дней",
+      "title": "Смарт-Процент на 7 дней",
+      "issueName": "До 07 декабря",
+      "coupon": "Фиксированная доходность 13% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 30 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
+    {
+      "id": "primary-bbd4a701-19fa-4c2c-9174-8039821b06e4",
+      "sourceId": "bbd4a701-19fa-4c2c-9174-8039821b06e4",
+      "section": "primary",
+      "sourceSections": [
+        "primary"
+      ],
+      "sourceShelves": [
+        "Первичные размещения от Т-Банка"
+      ],
+      "issuer": "Смарт-Процент на 1 месяц",
+      "title": "Смарт-Процент на 1 месяц",
+      "issueName": "До 30 декабря",
+      "coupon": "Фиксированная доходность 13,4% от Т-Банка",
+      "currency": "RUB",
+      "deadline": "До 30 ноября",
+      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "isQual": false,
+      "missingChecks": 0
+    },
     {
       "id": "primary-05c7c274-f56f-46cb-bd96-830f22fe1504",
       "sourceId": "05c7c274-f56f-46cb-bd96-830f22fe1504",
@@ -19,46 +99,6 @@
       "currency": "RUB",
       "deadline": "До 1 декабря",
       "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JXVG0x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-4dcf6966-33f5-4034-8e5e-9e2421f56ce1",
-      "sourceId": "4dcf6966-33f5-4034-8e5e-9e2421f56ce1",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 1 месяц",
-      "title": "Смарт-Процент на 1 месяц",
-      "issueName": "До 29 декабря",
-      "coupon": "Фиксированная доходность 13,4% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 27 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "primary-c36fecaa-627d-4636-8a26-fa82e0e20a64",
-      "sourceId": "c36fecaa-627d-4636-8a26-fa82e0e20a64",
-      "section": "primary",
-      "sourceSections": [
-        "primary"
-      ],
-      "sourceShelves": [
-        "Первичные размещения от Т-Банка"
-      ],
-      "issuer": "Смарт-Процент на 7 дней",
-      "title": "Смарт-Процент на 7 дней",
-      "issueName": "До 04 декабря",
-      "coupon": "Фиксированная доходность 13% от Т-Банка",
-      "currency": "RUB",
-      "deadline": "До 27 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -83,42 +123,42 @@
       "missingChecks": 0
     },
     {
-      "id": "primary-ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
-      "sourceId": "ef3e2627-dde6-4ff6-888e-8cfa310f6f1c",
-      "section": "primary",
+      "id": "current-ab79f493-0ae0-4aa8-9095-02b75f30dce6",
+      "sourceId": "ab79f493-0ae0-4aa8-9095-02b75f30dce6",
+      "section": "current",
       "sourceSections": [
-        "primary"
+        "current"
       ],
       "sourceShelves": [
-        "Первичные размещения от Т-Банка"
+        "Сейчас размещаются"
       ],
-      "issuer": "Россети",
-      "title": "Облигации Россети",
-      "issueName": "Россети 001Р-28R",
-      "coupon": "Плавающий купон 15,3%",
+      "issuer": "ХМАО-Югры 34004",
+      "title": "Облигации ХМАО-Югры 34004",
+      "issueName": "ХМАО-Югры 34004",
+      "coupon": "Плавающий купон до 16,2%",
       "currency": "RUB",
       "deadline": "До 30 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
-      "isQual": false,
+      "image": "https://invest-brands.cdn-tinkoff.ru/hmao4x160.png",
+      "isQual": true,
       "missingChecks": 0
     },
     {
-      "id": "primary-04a3817d-0ec1-400b-82f9-469ad2d62099",
-      "sourceId": "04a3817d-0ec1-400b-82f9-469ad2d62099",
-      "section": "primary",
+      "id": "current-0ccab7cc-e1f8-41d7-b423-87564e7addc9",
+      "sourceId": "0ccab7cc-e1f8-41d7-b423-87564e7addc9",
+      "section": "current",
       "sourceSections": [
-        "primary"
+        "current"
       ],
       "sourceShelves": [
-        "Первичные размещения от Т-Банка"
+        "Сейчас размещаются"
       ],
-      "issuer": "Смарт-Процент на 4 месяца",
-      "title": "Смарт-Процент на 4 месяца",
-      "issueName": "До 29 марта",
-      "coupon": "Фиксированная ставка 14,5% от Т-Банка",
+      "issuer": "Россети Урал",
+      "title": "Облигации Россети Урал",
+      "issueName": "Россети Урал 001Р-01",
+      "coupon": "Плавающий купон до 15,65%",
       "currency": "RUB",
-      "deadline": "До 27 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/tcs2x160.png",
+      "deadline": "До 8 декабря",
+      "image": "https://invest-brands.cdn-tinkoff.ru/RU000A0JPVJ0x160.png",
       "isQual": false,
       "missingChecks": 0
     },
@@ -159,26 +199,6 @@
       "currency": "RUB",
       "deadline": "До 1 декабря",
       "image": "https://invest-brands.cdn-tinkoff.ru/coldyx160.png",
-      "isQual": false,
-      "missingChecks": 0
-    },
-    {
-      "id": "current-ba4c4850-3b73-41bd-8991-3f83e229055d",
-      "sourceId": "ba4c4850-3b73-41bd-8991-3f83e229055d",
-      "section": "current",
-      "sourceSections": [
-        "current"
-      ],
-      "sourceShelves": [
-        "Сейчас размещаются"
-      ],
-      "issuer": "А7",
-      "title": "Облигации А7",
-      "issueName": "А7 001Р-01",
-      "coupon": "Фиксированный купон до 17,5%",
-      "currency": "RUB",
-      "deadline": "До 27 ноября",
-      "image": "https://invest-brands.cdn-tinkoff.ru/А7x160.png",
       "isQual": false,
       "missingChecks": 0
     }
